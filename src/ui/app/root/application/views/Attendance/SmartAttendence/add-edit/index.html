@@ -1,0 +1,41 @@
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h3 class="modal-title">{{$t('Smart Attendance')}}</h3>
+
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="tree">
+                        <tree v-for="(item, index) in rsu" :tree-node="item" :key="item.id" :node-index="index"></tree>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

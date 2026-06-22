@@ -1,0 +1,115 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<!-- <section>
+  <div class="row text-center mt-5">
+    <div class="col-md-1" v-for="(item, index) in contrinuation">
+      <div class="form-check abc-radio">
+        <input class="form-check-input" type="radio" name="radio1" id="radio1" :value="item" @change="filterData(item)">
+        <label class="form-check-label" for="radio1">
+          {{item}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5" v-if="data.length > 0">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Concession Criteria List</label>
+        <select class="form-control form-control-sm" v-model="scholarshipCriteriaId" required v-if="data">
+          <option v-for="(model, index) in data" :value="model.scholarshipCriteriaId">
+            <span v-html="'&#8680; ' + model.concessionName"></span>
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>ConcessionRemarks</label>
+        <select class="form-control form-control-sm" v-model="remarksconcess" required v-if="data">
+          <option v-for="(model,index) in concessionremarksmarkslist" :value="model.remarks">
+            {{model.remarks}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row text-right mt-5">
+    <div class="col-md-12">
+      <button class="btn btn-primary" @click="IsAppliedConcession">Save</button>
+    </div>
+  </div>
+</section> -->
+<section>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.attendanceTeacherUser.class')}}</label>
+        <select-ex @input="loadClassData" :options="classList"  keyValue="classId" displayValue="fullName"
+          v-model="classId">
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2" v-for="(item, index) in contrinuation">
+      <div class="form-group">
+        <label class="kt-option kt-option-custom">
+          <span class="kt-option__label">
+            <span class="kt-option__head">
+              <span class="kt-option__title">
+                {{item}}
+              </span>
+            </span>
+          </span>
+          <span class="kt-option__control">
+            <span class="kt-radio kt-radio--bold kt-radio--brand" checked="">
+              <input type="radio" name="radio1" id="radio1" :value="item" @input="filterData(item)">
+              <span></span>
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" v-if="data.length > 0">
+    <div class="col-md-6 offset-md-3">
+      <div class="form-group mb-0">
+        <label>{{$t('modal.helper.Concession.installmentNo')}}<span style="color: red;">*</span></label>
+        <select-ex :options="maxInstallments" keyValue="item" displayValue="item" @input="CheckFeePaid"
+          v-model="installno">
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2" v-if="data.length > 0">
+    <div class="col-md-6 offset-md-3">
+      <div class="form-group mb-0">
+        <label>{{$t('modal.helper.Concession.concessionCriteriaList')}}<span style="color: red;">*</span></label>
+        <select-ex :options="data" keyValue="scholarshipCriteriaId" displayValue="concessionName"
+          v-model="scholarshipCriteriaId" required v-if="data">
+          <!-- <span v-html="'&#8680; ' + concessionName"></span> -->
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2" v-if="data.length > 0">
+    <div class="col-md-6 offset-md-3">
+      <div class="form-group mb-0">
+        <label>{{$t('modal.helper.Concession.concessionRemarks')}}<span style="color: red;">*</span></label>
+        <select-ex :options="concessionremarksmarkslist" keyValue="remarks" displayValue="remarks"
+          v-model="remarksconcess" required v-if="data">
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center mt-5">
+    <div class="col-md-12">
+      <button class="btn btn-light btn-hover btn-sm btn-primary" v-if="allowSubmit" @click="IsAppliedConcession">Save <i
+          class="la la-floppy-o"></i> </button>
+    </div>
+  </div>
+  <h5>Note : Concession Cannot be Applied on SubInstallment</h5>
+</section>

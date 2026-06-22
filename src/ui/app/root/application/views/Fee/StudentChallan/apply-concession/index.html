@@ -1,0 +1,57 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="apply-concession-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+  :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto"
+  @before-open="beforeModalOpen">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="#" @click="cancel" class="cancel">
+            <i class="fa fa-close"></i>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <div class="modal-title">
+            {{title}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="form-group m-form__group m--margin-top-10">
+        <div class="row ModeColor">
+          <div class="col-md-12">
+            <div class="row col-md-12" v-for="(item, index) in contrinuation">
+                <input type="radio" name="group1" :value="item" @change="filterData(item)"> &nbsp;&nbsp;
+                {{item}}
+            </div>
+            <br>
+            <div class="form-group">
+              <select class="form-control form-control-sm" v-model="scholarshipCriteriaId" required v-if="data">
+                <option v-for="(model, index) in data" :value="model.scholarshipCriteriaId">
+                  <span v-html="'&#8680; ' + model.concessionName"></span>
+                </option>
+              </select>
+              <label>ConcessionCriteriaList</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn btn-danger ripple" @click="cancel">Close</button>
+          <button class="btn btn-primary" @click="IsAppliedConcession">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal>

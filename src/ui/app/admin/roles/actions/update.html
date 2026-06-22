@@ -1,0 +1,93 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.listRoles')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Edit </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="title">
+    <template slot="portlet-body">
+      <div v-if="init && role">
+        <div class="row mb-2">
+          <div class="col-md-2">
+            <label for="name">{{$t('dict.name')}}</label>
+          </div>
+          <div class="col-md-3">
+            <input id="name" class="form-control form-control-sm" minlength="4" maxlength="64" v-model="role.name"
+              type="text" @input="$v.role.name.$touch()">
+            <span v-show="$v.role.name.$dirty">
+              <span class="alert-danger" v-if="!$v.role.name.required">{{$t('validation.required')}}</span>
+              <span class="alert-danger" v-if="!$v.role.name.duplicate">{{$t('validation.duplicate')}}</span>
+              <span class="alert-danger" v-if="!$v.role.name.minLength">{{$t('validation.minLength', [4])}}</span>
+            </span>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-2">
+            <label for="parentRoleId">{{$t('admin.role.parentRoleId')}}</label>
+          </div>
+          <div class="col-md-3">
+            <span v-if="role.isSystemRole">-</span>
+            <span v-else-if="!role.isSystemRole">
+              <router-link :to="{ name: 'viewRole', params: { id: role.parentRoleId }}">
+                {{role.parent.name}}
+              </router-link>
+            </span>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-2">
+            <label for="isSystemRole">{{$t('admin.role.isSystemRole')}}</label>
+          </div>
+          <div class="col-md-3">
+            <div id="isSystemRole">{{yesOrNo(role.isSystemRole)}}</div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-2">
+            <label for="enabled">{{$t('dict.enabled')}}</label>
+          </div>
+          <div class="col-md-3">
+            <toggle id="enabled" v-model="role.enabled" :on-text="onText" :off-text="offText"></toggle>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-md-2">
+            <label for="lastUpdated">{{$t('admin.role.lastUpdated')}}</label>
+          </div>
+          <div class="col-md-3">
+            <div id="lastUpdated">{{lastUpdateText}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <security-claims-editor v-on:change="onClaimsChange" :allowed-values-pattern="allowedValuesPattern"
+              :available-claims="availableClaims" :selected-claims="role.securityClaims">
+            </security-claims-editor>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button class="btn btn-light btn-hover btn-sm btn-primary" @click.prevent="submit()"
+              v-bind:disabled="!allowSubmit">{{$t('dict.submit')}}</button>
+            <router-link tag="button" class="btn btn-outline-secondary btn-hover btn-sm"
+              :to="{ name: 'viewRole', params: { id: role.roleId }}">
+              <span>{{$t('dict.cancel')}}</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

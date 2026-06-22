@@ -1,0 +1,161 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Profile
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- <div class="col-md-3">
+            <div class="form-group search">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Search...">
+              <span class="fa fa-search form-control-feedback"></span>
+            </div>
+          </div> -->
+          <div class="col-md-12 text-right">
+
+            <button @click="changePasswordModel" class="btn btn-primary btn-sm">Change Password
+              <i class="fa fa-lock"></i>
+            </button>
+          </div>
+        </div>
+        <div v-if="canRead">
+          <div class="form-group-attached">
+            <div class="row" style="padding-top: 15px">
+              <div class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-sm" v-model="data.fullName" required>
+                  <label>Full Name</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-sm" v-model="data.fatherName" required>
+                  <label>Father Name</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+
+                  <input readonly type="text" class="form-control form-control-sm" v-model="data.email" required>
+                  <label>Email</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-sm" v-model="data.cnic" required>
+                  <label>C N I C</label>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" v-model="data.religionId" required>
+                    <option v-for="(model,index) in ReligionList" :value="model.religionId">{{model.fullName}} </option>
+                  </select>
+                  <label>Choose Religion</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" v-model="data.genderId" required>
+                    <option v-for="(model,index) in GenderList" :value="model.genderId">{{model.description}} </option>
+                  </select>
+                  <label>Choose Gender</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <select class="form-control form-control-sm" v-model="data.bloodGroupId" required>
+                    <option v-for="(model,index) in BloodGroupList" :value="model.bloodGroupId">{{model.fullName}}
+                    </option>
+                  </select>
+                  <label>Choose Blood Group</label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <input type="date" class="form-control form-control-sm"
+                    :value="data.dateOfBirth && data.dateOfBirth.toString().split('T')[0]"
+                    @input="data.dateOfBirth = $event.target.value">
+                  <label>Date of Birth</label>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+                <input type="checkbox" v-model="data.maritalStatus"> <label class="ModeColor">Marital
+                  Status</label></input>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-md-4 ModeColor">
+                    <label> Address</label>
+                  </div>
+                  <div class="col-md-8 text-right">
+                    <a @click="addAddress" class="ModeColor" data-toggle="refresh">
+                      <feather icon="plus-circle"></feather>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-12" v-for="model in IAddressList">
+                  <div class="input-group">
+                    <input type="text" size=50 v-model="model.address" class="form-group-attached">
+                    <div class="input-group-append" @click="delAddress(model)">
+                      <span class="input-group-text danger">
+                        <i class="fa fa-close"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-md-4 ModeColor">
+                    <label>Contact</label>
+                  </div>
+                  <div class="col-md-8 text-right">
+                    <a @click="addPhoneNo" class="ModeColor" data-toggle="refresh">
+                      <feather icon="plus-circle"></feather>
+                    </a>
+                  </div>
+                </div>
+
+
+                <div class="col-12" v-for="model in IPhoneList">
+                  <div class="input-group">
+                    <input type="text" size=50 v-model="model.contactNo" class="form-group-attached">
+                    <div class="input-group-append" @click="delPhoneNo(model)">
+                      <span class="input-group-text danger">
+                        <i class="fa fa-close"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-right"><br>
+              <button class="btn btn-primary" @click="saveModel">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <add-edit-model></add-edit-model>
+  </div>
+</div>

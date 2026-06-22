@@ -1,0 +1,99 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="view-leave-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.leaveManagement.viewLeaves')}}</h3>
+                <p> {{$t('modal.leaveManagement.title')}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body programcourse">
+            <div class="row" v-if="editLeave==false">
+                <div class="col-md-12">
+                    <div class="fixed-header-table">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr role="row">
+                                    <th>{{$t('modal.leaveManagement.fromDate')}}</th>
+                                    <th>{{$t('modal.leaveManagement.toDate')}}</th>
+                                    <th>{{$t('modal.leaveManagement.day')}}</th>
+                                    <th>{{$t('modal.leaveManagement.partial')}}</th>
+                                    <th>{{$t('modal.leaveManagement.approved')}}</th>
+                                    <th>{{$t('modal.leaveManagement.action')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in Leaveinfolist">
+                                    <td class="align-middle">{{item.fromDate|formatDMY}}</td>
+                                    <td class="align-middle">{{item.toDate|formatDMY}}</td>
+                                    <td class="align-middle">{{getDays(item.fromDate,item.toDate)}}</td>
+                                    <td class="align-middle">
+                                        <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+                                            v-if="item.isPartial == true">Yes</span>
+                                        <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+                                            v-if="item.isPartial == false">No</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+                                            v-if="item.isApproved == true">Yes</span>
+                                        <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+                                            v-if="item.isApproved == false">No</span>
+                                    </td>
+                                    <td class="align-middle" v-if="item.isApproved==false">
+                                        <button @click="edit(item)"
+                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle" title="Edit">
+                                            <i class="la la-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td v-else> 
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="editLeave">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-hover btn-sm btn-outline-primary mb-4" style="height: 31px !important;
+                            margin-top: 16px;" @click="editLeave=false"> <i class="la la-arrow-left"></i>
+                        {{$t('button.back')}}</button>
+                    <add-edit-leave ref="childref" isNewRecord="false" :editModel="editModel" :passdata="obj">
+                    </add-edit-leave>
+                </div>
+            </div>
+            <div class="row mt-2" v-if="Leaveinfolist.length==0">
+                <div class="col-md-12">
+                    <h6>Leaves not approved/applied</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn  btn-hover btn-sm btn-primary" @click="$refs.childref.saveModel()">
+                    <i class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</modal>

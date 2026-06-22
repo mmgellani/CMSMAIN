@@ -1,0 +1,97 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="50%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        FeeActivity&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                            <select v-model="data.feeActivityId" class="form-control form-control-sm" required>
+                                <option :key="index" :value="model.feeActivityId" v-for="(model,index) in HeadList">{{model.fullName}}
+                                </option>
+                            </select>
+                            <label :class="!$v.model.feeActivityId.required">Fee Heads<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                <a href="#" @click="addNewFeeHead">
+                                    <i class="fa fa-plus m--hide success"></i>
+
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="#" @click="loadFeeHead">
+                                    <i class="fa fa-refresh m--hide"></i>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.studentChallanId" required>
+                            <label :class="!$v.model.studentChallanId.required">Student Challan Id<span style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.dated" />
+                            <label>Dated</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.description" required>
+                            <label :class="!$v.model.description.required">Description<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <FeeHead v-on:submit="loadFeeHead"></FeeHead>
+</modal>

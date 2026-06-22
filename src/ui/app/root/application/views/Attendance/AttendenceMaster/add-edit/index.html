@@ -1,0 +1,77 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="AttendenceMaster-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        AttendanceMaster&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="data.timeTableId" required>
+                                <option v-for="(model,index) in TimeTableList" :value="model.timeTableId">
+                                    {{model.dayName
+                                    +' - ' + model.roomName +' - (' + model.startTime +' - ' + model.endTime +') - ' + model.sectionName}} </option>
+                            </select>
+                            <label :class="!$v.model.timeTableId.required">Choose Time Table<span style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="date" :value="data.dated && data.dated.toString().split('T')[0]"
+                                @input="data.dated = $event.target.value" class="form-control form-control-sm">
+                            <label>Dated</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ModeColor">
+                        <div class="form-group">
+                            <input type="checkbox" class="mt-2" v-model="data.isApproved">Is Approved</input>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

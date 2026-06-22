@@ -1,0 +1,108 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.userList')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Edit </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" title="Edit">
+    <template slot="portlet-body">
+
+
+      <div v-if="init && user">
+        <div class="row">
+          <div class="col-md-12">
+            <h5>{{user.displayName}}</h5>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.email')}}</label>
+              <input type="text" class="form-control form-control-sm" v-model.trim="user.email" readonly required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.name')}}</label>
+              <input type="text" class="form-control form-control-sm" v-model.trim="user.displayName" required>
+              <span v-show="$v.user.displayName.$dirty">
+                <span class="alert-danger" v-if="!$v.user.displayName.required">{{$t('validation.required')}}</span>
+                <span class="alert-danger"
+                  v-if="!$v.user.displayName.minLength">{{$t('validation.minLength', 2)}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.role')}}</label>
+              <select v-model="selectedRole" class="form-control form-control-sm" style="height: 32px; width: 100%;">
+                <option v-for="items in availableRoles">{{items.label}}</option>
+              </select>
+              <!-- <v-select id="roles" v-model="selectedRole" :options="availableRoles" :searchable="false" /> -->
+              <span v-show="$v.user.roles.$dirty">
+                <span class="alert-danger" v-if="!$v.user.roles.required">{{$t('validation.required')}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.culture')}}</label>
+              <select v-model="selectedCulture" class="form-control form-control-sm" style="height: 32px; width: 100%;">
+                <option v-for="items in supportedCultures">{{items.label}}</option>
+              </select>
+              <!-- <v-select id="culture" v-model="selectedCulture" :options="supportedCultures" :searchable="false" /> -->
+              <span v-show="$v.user.cultureName.$dirty">
+                <span class="alert-danger" v-if="!$v.user.cultureName.required">{{$t('validation.required')}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.clock')}}</label>
+              <select v-model="selectedTimeZone" class="form-control form-control-sm"
+                style="height: 32px; width: 100%;">
+                <option v-for="items in supportedTimeZones">{{items.label}}</option>
+              </select>
+              <!-- <v-select id="timezones" v-model="selectedTimeZone" :options="supportedTimeZones" /> -->
+              <span v-show="$v.user.timeZoneId.$dirty">
+                <span class="alert-danger" v-if="!$v.user.timeZoneId.required">{{$t('validation.required')}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{$t('dict.enabled')}}</label> <br>
+              <label class="kt-checkbox kt-checkbox--brand">
+                <input type="checkbox" v-model="user.enabled" :on-text="onText" :off-text="offText"
+                  v-on:input="updateUserStatus(user)">
+                <span></span>
+              </label>
+              <!-- <check id="enabled" v-model="user.enabled" :on-text="onText" :off-text="offText"
+            v-on:input="updateUserStatus(user)"></check> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button class="btn btn-light btn-hover btn-sm btn-primary" @click.prevent="submit()"
+              v-bind:disabled="!allowSubmit">{{$t('dict.update')}}</button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

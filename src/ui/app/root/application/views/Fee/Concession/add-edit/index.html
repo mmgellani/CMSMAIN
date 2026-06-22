@@ -1,0 +1,144 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="Concession-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.feeConcession')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm" v-model.trim="data.fullName"
+                            :class="{'is-invalid': $v.data.fullName.$error}" @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.fullName.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.challanType')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="ChallantypeList" keyValue="challanTypeId" displayValue="fullName"
+                            v-model="data.challanTypeId" @input="$v.data.challanTypeId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.challanTypeId.$error">
+                            <span v-if="!$v.data.challanTypeId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.session')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="SessionList" keyValue="sessionId" displayValue="fullName"
+                            v-model="data.sessionId" @input="$v.data.sessionId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.sessionId.$error">
+                            <span v-if="!$v.data.sessionId.required">{{$t('validation.required')}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.zone')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="zoneList" keyValue="zoneId" displayValue="fullName" v-model="data.zoneId"
+                            @input="$v.data.zoneId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.zoneId.$error">
+                            <span v-if="!$v.data.zoneId.required">{{$t('validation.required')}}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.program')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="ProgramList" keyValue="programId" displayValue="fullName"
+                            v-model="data.programId" @input="$v.data.programId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.programId.$error">
+                            <span v-if="!$v.data.programId.required">{{$t('validation.required')}}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcession.shift')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="ShiftList" keyValue="shiftId" displayValue="fullName"
+                            v-model="data.shiftId" @input="$v.data.shiftId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.shiftId.$error">
+                            <span v-if="!$v.data.shiftId.required">{{$t('validation.required')}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</modal>

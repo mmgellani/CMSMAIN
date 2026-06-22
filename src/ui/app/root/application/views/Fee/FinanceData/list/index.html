@@ -1,0 +1,62 @@
+<!-- 
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}} </h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.financeData')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.financeData')">
+    <template slot="portlet-body">
+      <div v-if="canRead">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>{{$t('modal.financeData.date')}}</label>
+              <date-picker @input="refreshData" v-model="datestring" lang="en" type="month" format="YYYY-MM">
+              </date-picker>
+            </div>
+          </div>
+        </div>
+        <grid :data="datas" :columns="columns" pre="modal.financeData.">
+          <template slot="action-area">
+            <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+              <i class="la la-refresh"></i> {{$t('button.reload')}}
+            </button>
+            <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+              {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+            </button>
+          </template>
+          <template slot="payDate" slot-scope="item">
+            <span v-html="formatDate(item.row.payDate)"></span>
+          </template>
+          <template slot="payable_Date" slot-scope="item">
+            <span v-html="formatDate(item.row.payable_Date)"></span>
+          </template>
+
+          <template slot="generationDate" slot-scope="item">
+            <span v-html="formatDateEx(item.row.generationDate)"></span>
+          </template>
+          <template slot="print_Date" slot-scope="item">
+            <span v-html="formatDate(item.row.print_Date)"></span>
+          </template>
+          <template slot="due_Date" slot-scope="item">
+            <span v-html="formatDate(item.row.due_Date)"></span>
+          </template>
+          <template slot="activity_DateTime" slot-scope="item">
+            <span v-html="formatDateEx(item.row.activity_DateTime)"></span>
+          </template>
+        </grid>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

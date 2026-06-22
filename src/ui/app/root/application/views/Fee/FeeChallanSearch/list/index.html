@@ -1,0 +1,287 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row" style="overflow: visible !important">
+    <div class="col-md-12">
+        <div v-if="canRead" class="col-md-3">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-sm" v-model="filterString"
+                    placeholder="Enter Challan No " v-on:keydown.enter="SearchfeeChallanSearch">
+                <label>Enter Challan No </label>
+            </div>
+        </div>
+        <div class="pannel-background code-block" style="font-family: Montserrat-Regular">
+            <div class="card-title text-center">
+                <strong>Information</strong>
+            </div>
+            <hr />
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4"><strong>Refference # : </strong></div>
+                            <div class="col-md-8">{{RefrenceNo ? RefrenceNo : ''}}</div>
+
+                            <div class="col-md-4"><strong>Student's Name : </strong></div>
+                            <div class="col-md-8">{{Name ? Name : ''}}</div>
+
+                            <div class="col-md-4"><strong>Father's Name : </strong></div>
+                            <div class="col-md-8">{{fatherName ? fatherName : ''}}</div>
+
+                            <div class="col-md-4"><strong>Campus Name :</strong></div>
+                            <div class="col-md-8">{{campusName ? campusName : ''}}</div>
+
+                            <div class="col-md-4"><strong>Program :</strong></div>
+                            <div class="col-md-8">{{description ? description : ''}}-{{className ? className : ''}}
+                                ({{sectionName ? sectionName : ''}})</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="pannel-background code-block" style="font-family: Montserrat-Regular">
+            <div class="card-title text-center">
+                <strong>Fee Particulars </strong>, <strong>Installment
+                    #</strong>{{installmentNO ? installmentNO : ''}}
+
+                (Challan Status Code: {{accountNo}})
+            </div>
+            <hr />
+            <div class="cardbody">
+                <div class="row">
+                    <div class="col-md-3"><strong>Particulars</strong></div>
+                    <div class="col-md-3"><strong>Fee Amount</strong></div>
+                    <div class="col-md-3"><strong>Concession</strong></div>
+                    <div class="col-md-3"><strong>Payable</strong></div>
+                </div>
+
+                <div class="row" v-for="items in StudentFeedata">
+                    <div class="col-md-3">{{items.feeHead}}</div>
+                    <div class="col-md-3">{{items.stfeeamount}}</div>
+                    <div class="col-md-3">{{items.concessionName}}</div>
+                    <div class="col-md-3">{{items.payableAmount}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="pannel-background  code-block" style="font-family: Montserrat-Regular; overflow: visible;">
+            <div class="card-title text-center">
+                <div class="row">
+                    <div class="col-md-3"><strong>Total Amount</strong> : {{TotalAmount ? TotalAmount : ''}}
+                    </div>
+                    <div class="col-md-3"><strong>Collector Name</strong> : {{collectorName ? collectorName : ''}}
+                    </div>
+                    <div class="col-md-3"><strong>Due Date</strong> : {{dueDate ? dueDate : '' | formatDMY}}
+                    </div>
+                    <div class="col-md-3"><strong>Paid Date</strong> :
+                        {{recievedDate ? recievedDate : '' | formatDMY}}</div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div> -->
+
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.feeChallanSearch')}} </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.feeChallanSearch')">
+        <template slot="portlet-body">
+            <tabs>
+                <tab name='Filter Wise' :selected="true">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label> {{$t('modal.feeChallanSearch.enterChallanNo')}}</label>
+                                <input type="text"  v-restrict.number class="form-control  " v-model.trim="data.filterString"
+                                    placeholder="Enter Here" v-on:keydown.enter="SearchFeeConfirmation"
+                                    :class="{'is-invalid': $v.data.filterString.$error}">
+                                <div class="invalid-feedback" v-show="$v.data.filterString.$error">
+                                    <span v-if="!$v.data.filterString.required">Required Field</span>
+                                    <span v-if="!$v.data.filterString.minLength">Invalid Challan</span>
+                                    <span v-if="!$v.data.filterString.maxLength">Invalid Challan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="StudentFeedata.length>0">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{{$t('modal.feeChallanSearch.information')}}</h6>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>{{$t('modal.feeChallanSearch.reference')}}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                                color: black; font-size: 1rem;">
+                                            {{RefrenceNo ? RefrenceNo : ''}}</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{$t('modal.feeChallanSearch.studentName')}}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                                    color: black; font-size: 1rem;">
+                                            {{Name ? Name : ''}}</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{$t('modal.feeChallanSearch.fatherName')}}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                                color: black; font-size: 1rem;">
+                                            {{fatherName ? fatherName : ''}}</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{$t('modal.feeChallanSearch.program')}}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                                color: black; font-size: 1rem;">
+                                            {{description ? description : ''}}-{{className ? className : ''}}
+                                            ({{sectionName ? sectionName : ''}})</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{$t('modal.feeChallanSearch.campusName')}}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                                color: black; font-size: 1rem;">
+                                            {{campusName ? campusName : ''}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{{$t('modal.feeChallanSearch.feeStatus')}}</h6>
+                            </div>
+                        </div>
+                        <div class="row" v-if="isAlreadyPaid">
+                            <template>
+                                <div class="col-md-1 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.challanStatus')}}</label>
+                                    <span>{{accountNo ? accountNo : ''}}</span>
+                                </div>
+                                <div class="col-md-1 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.installment')}}</label>
+                                    <span>{{installmentNO ? installmentNO : ''}}</span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.totalAmount')}}</label>
+                                    <span>{{TotalAmount ? TotalAmount : ''}}</span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.collectorName')}}</label>
+                                    <span>{{collectorName ? collectorName : ''}}</span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.paidStatus')}}</label>
+                                    <span
+                                        class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">{{$t('modal.feeChallanSearch.challanPaid')}}</span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.dueDate')}}</label>
+                                    <span>{{dueDate ? dueDate : '' | formatDMY}}</span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <label class="d-block">{{$t('modal.feeChallanSearch.paidDate ')}}</label>
+                                    <span>{{recievedDate ? recievedDate : '' | formatDMY}}</span>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="row" v-else>
+
+                            <div class="col-md-1 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.challanStatus')}}</label>
+                                <span>{{accountNo ? accountNo : ''}}</span>
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.installment')}}</label>
+                                <span>{{installmentNO ? installmentNO : ''}}</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.totalAmount')}}</label>
+                                <span>{{TotalAmount ? TotalAmount : ''}}</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.collectorName')}}</label>
+                                <span>-</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.paidStatus')}}</label>
+                                <span
+                                    class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">{{$t('modal.feeChallanSearch.unpaid')}}</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.dueDate')}}</label>
+                                <span>{{dueDate ? dueDate : '' | formatDMY}}</span>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="d-block">{{$t('modal.feeChallanSearch.paidDate ')}}</label>
+                                <span>{{recievedDate ? recievedDate : '' | formatDMY}}</span>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{{$t('modal.feeChallanSearch.feeParticulars ')}}</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr role="row">
+                                            <th>{{$t('modal.feeChallanSearch.particulars')}}</th>
+                                            <th>{{$t('modal.feeChallanSearch.feeAmount')}}</th>
+                                            <th>{{$t('modal.feeChallanSearch.Concession')}}</th>
+                                            <th>{{$t('modal.feeChallanSearch.payable')}}</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="items in StudentFeedata">
+                                            <td class="align-middle"> {{items.feeHead}} </td>
+                                            <td class="align-middle"> {{items.stfeeamount}} </td>
+                                            <td class="align-middle">{{items.concessionName}} </td>
+                                            <td class="align-middle">{{items.payableAmount}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab name='Disable Challans Search'>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <disable-challan></disable-challan>
+
+
+                        </div>
+                    </div>
+
+                </tab>
+            </tabs>
+        </template>
+    </portlet-area>
+</page-area>

@@ -1,0 +1,96 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 ">
+                    <div class="modal-title">
+
+                        ExamDetail&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="data.examMasterId" required>
+                                <option v-for="(model,index) in ExamMasterList" :value="model.examMasterId">{{model.fullName}}
+                                </option>
+                            </select>
+                            <label>Exam Master<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                            <a href="#" @click="addNewExamMaster">
+                                <i class="fa fa-plus m--hide success"></i>
+
+                            </a>
+                        </div>
+                        <div class="row">
+                            <a href="#" @click="loadExamMaster">
+                                <i class="fa fa-refresh m--hide"></i>
+
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="data.admissionFormId" required>
+                                <option v-for="(model,index) in AdmissionFormList" :value="model.admissionFormId">{{model.fullName}}
+                                </option>
+                            </select>
+                            <label>Student<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="data.attendanceStatusId" required>
+                                <option v-for="(model,index) in AttendenceStatusList" :value="model.attendenceStatusId">{{model.fullName}}
+                                </option>
+                            </select>
+                            <label>Attendance Status<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.obtainMarks" required>
+                            <label>Obtained Marks<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ExamMaster v-on:submit="loadExamMaster"></ExamMaster>
+</modal>

@@ -1,0 +1,146 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<div class="modal-content">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <h5> <u>Exemption</u> </h5>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="background: none">
+        <select v-model="installNo" class="form-control form-control-sm" required @change.prevent="hasExecumption">
+          <option v-for="item in maxInstallments" :value="item">{{item}}</option>
+        </select>
+        <label>Select Installment</label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <input class="form-control form-control-sm" v-model="exemptionAmount" type="number" @change="updateFeeAmount"
+          :disabled="applyExemption" required>
+        <label>Exemption Amount</label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <select class="form-control form-control-sm" v-model="remarksconcess" required v-if="data">
+          <option v-for="(model,index) in concessionremarksmarkslist" :value="model.remarks">
+            {{model.remarks}}
+          </option>
+        </select>
+        <label>Exemption Remarks</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="row ModeColor">
+        <div class="col-md-4">
+
+          <div class="row">
+            <div class="col-md-5">
+              <span class="headingFont">Refference: </span>
+            </div>
+            <div class="col-md-6">
+              <span class="spanHeading">{{studentInfo.refferenceNo}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <span class="headingFont">Name:</span>
+            </div>
+            <div class="col-md-6">
+              <span class="spanHeading">{{getProperty('fullName')}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <span class="headingFont">Program:</span>
+            </div>
+            <div class="col-md-6">
+              <span class="spanHeading">{{getProperty('description')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr role="row">
+                    <th>FeeHeads </th>
+                    <th>FeeAmount</th>
+                    <th>Concession (if any)</th>
+                    <th>PayableAmount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in feeHeadData">
+                    <td class="v-align-middle">{{item.feeHead}}</td>
+                    <td class="v-align-middle">{{item.feeAmount | amount}}</td>
+
+                    <td class="v-align-middle" v-if="item.feeHeadId='00000000-0000-0000-0000-000000000000'">
+                      {{item.remarks}}</td>
+
+                    <td class="v-align-middle">{{item.payableAmount | amount}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total Amount</td>
+                    <td>{{sumFeeHead('feeAmount') | amount}}</td>
+                    <td></td>
+                    <td>{{sumFeeHead('payableAmount') | amount}}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <table class="table">
+        <thead>
+          <tr role="row">
+            <th> Challan No </th>
+            <th> Due Date </th>
+            <th> Challan Amount </th>
+            <th> Paid Date </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in feeDetail ">
+            <td> {{item.challanNo}} </td>
+            <td> {{item.dueDate | formatDMY}} </td>
+            <td> {{item.feeAmount | amount}} </td>
+            <td> {{item.paidDate | formatDMY}} </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td><b>Total Amount</b></td>
+            <td></td>
+            <td><b>{{sumFee('feeAmount') | amount}}</b></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <button class="btn btn-primary" v-if="exemptionAmount " @click="SaveFeeExemption"
+          v-show="shouldSave">Save</button>
+
+        <div v-if="showRevertExumption">
+          <button class="btn btn-primary" @click="RevertExemption">RevertExemption</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

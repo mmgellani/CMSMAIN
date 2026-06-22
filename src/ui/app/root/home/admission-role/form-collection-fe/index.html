@@ -1,0 +1,41 @@
+<widget-box class="col-lg-4 col-md-6 col-12 col-sm-6">
+    <template slot="title">
+        <div @click="refreshData" class="justify-content-between" style="display: flex">
+            <span class="circle bg-primary text-primary mr-xs" style="font-size: 4px; margin-top:7px;">.</span>
+            <div style="flex-grow: 1">Fee Statistics</div>
+        </div>
+    </template>
+    <template slot="content">
+        <div class="form-group">
+            <select v-model="shift" class="form-control form-control-sm" @change="refreshData" required>
+                <option :value="model.shift" v-for="(model,index) in model">
+                    {{model.shift}}
+                </option>
+            </select>
+        </div>
+        <h4 class="fw-semi-bold ml-lg mb-lg" style="margin-bottom: 35px;"></h4>
+        <div class="d-flex border-top" style="margin-bottom: 0;">
+            <div class="w-30 border-right p-2 px-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6>{{totalStudents}}</h6>
+                    <i class="la la-arrow-right text-success rotate-315"></i>
+                </div>
+                <p class="text-muted mb-0 mr"><small>Students</small></p>
+            </div>
+            <div class="w-37 border-right p-2 px-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6>{{paidAmount}}</h6>
+                    <i class="la la-arrow-right text-danger rotate-45"></i>
+                </div>
+                <p class="text-muted mb-0 mr"><small>Paid Amount</small></p>
+            </div>
+            <div class="w-33 p-2 px-1">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6>{{average}}</h6>
+                    <i class="la la-arrow-right text-danger rotate-45"></i>
+                </div>
+                <p class="text-muted mb-0 mr"><small>Average Amount</small></p>
+            </div>
+        </div>
+    </template>
+</widget-box>

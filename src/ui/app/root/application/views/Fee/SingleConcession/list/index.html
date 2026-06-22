@@ -1,0 +1,105 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<!-- 
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+       Single Concession
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group search">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Challan No "
+                v-on:keyup.enter="SearchSingleConcession">
+              <label>Enter RefrenceNo </label>
+            </div>
+          </div>
+          <div class="col-md-9 text-right">
+            <button @click="SearchSingleConcession" class="b-refresh">
+              <feather icon="refresh-ccw" ></feather>
+            </button>
+          </div>
+        </div>
+        <div class="mt-3" v-if="ConStddata.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Refferenco No</th>
+                <th>Name</th>
+                <th>Father Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td> {{RefrenceNo}} </td>
+                <td> {{Name}} </td>
+                <td> {{FatherName}} </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+              </div>
+            </div>
+            <div class="col-md-4 text-right">
+              <button class="btn btn-primary mt-4 " @click="Applyconcession">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+      <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+      <span class="kt-subheader__separator kt-hidden"></span>
+      <div class="kt-subheader__breadcrumbs">
+        <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a href="" class="kt-subheader__breadcrumbs-link">
+          {{$t('navigation.singleConcession')}} </a>
+      </div>
+    </template>
+    <portlet-area action="1" :title="$t('navigation.singleConcession')">
+      <template slot="portlet-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>{{$t('modal.singleConcession.enterRefNo')}}</label>
+              <input type="text" class="form-control form-control-sm" v-on:keydown.enter="SearchSingleConcession"
+                v-model="filterString" placeholder="Enter Refference No">
+
+                <!-- <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Challan No "
+                v-on:keyup.enter="SearchSingleConcession"> -->
+            </div>
+          </div>
+        </div>
+        <grid :data="data" :columns="columns" pre="modal.singleConcession.">
+          <!-- <template slot="action" slot-scope="item">
+            <button @click="editStudent(item.row)" title="Edit Student Concession" type="button"
+              class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+              <i class="la la-edit"></i>
+            </button>
+          </template> -->
+        </grid>
+        <template>
+            <div class="col-md-4 text-right">
+                <button class="btn btn-primary mt-4" @click="Applyconcession">Confirm</button>
+              </div>
+        </template>
+      </template>
+    </portlet-area>
+  </page-area>

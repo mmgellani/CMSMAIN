@@ -1,0 +1,188 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Enrollment Reversal
+      </div>
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" v-model="searchText"
+                placeholder="Enter RollNo/RefNo " v-on:keydown.enter="loadData()">
+              <label>Enter RollNo/RefNo</label>
+            </div>
+          </div>
+          <div class="col-md-2 offset-6 text-right">
+
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="table-responsive" v-if="canRead">
+        <div class="dataTables_wrapper no-footer">
+          <table class="table">
+            <thead>
+              <tr role="row">
+                <th> Reference No</th>
+                <th>Name</th>
+                <th>Section</th>
+                <th>Roll No</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in datas">
+                <td >{{item.refferenceNo}}</td>
+                <td >{{item.fullName}}</td>
+                <td >{{item.sectionName}}</td>
+                <td >{{item.rollNo}}</td>
+                <td >
+
+                  <button @click="insertModel(item.admissionFormId)" data-toggle="modal" data-target="#enrModal"
+                    href="#">
+                    <feather icon="rotate-ccw" xclass="b-edit color1"></feather>
+                  </button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="enrModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="enrModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to reverse Enrollment?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" @click="save" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.registration')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.enrollmentReverse')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.enrollmentReverse')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentReverse.enterRollNoRefNo')}}</label>
+            <input type="text" class="form-control  " v-model.trim="searchText"
+              v-on:keydown.enter="loadData()">
+          </div>
+        </div>
+      </div>
+
+      <grid :data="datas" :columns="columns" pre="modal.enrollmentReverse.">
+        <template slot="action" slot-scope="item">
+          <button v-if="shwbutn(item.row.admissionFormId)" @click="insertModel(item.row.admissionFormId)" data-toggle="modal" data-target="#enrModal" href="#"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-rotate-right"></i>
+          </button>
+        </template>
+      </grid>
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{$t('modal.enrollmentReverse.referenceNo')}}</th>
+                <th>{{$t('modal.enrollmentReverse.name')}}</th>
+                <th>{{$t('modal.enrollmentReverse.section')}}</th>
+                <th>{{$t('modal.enrollmentReverse.rollNo')}}</th>
+                <th>{{$t('modal.enrollmentReverse.action')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in datas">
+                <td>{{item.refferenceNo}}</td>
+                <td>{{item.fullName}}</td>
+                <td>{{item.sectionName}}</td>
+                <td>{{item.rollNo}}</td>
+                <td>
+
+                  <button @click="insertModel(item.admissionFormId)" data-toggle="modal" data-target="#enrModal"
+                    href="#" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                    <i class="la la-rotate-right"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div> -->
+    </template>
+  </portlet-area>
+  <div id="enrModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.enrollmentReverse')}}</h3>
+            <p>{{ title }}</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to reverse Enrollment?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            @click="save"><i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

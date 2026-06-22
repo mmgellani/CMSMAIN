@@ -1,0 +1,783 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"
+        ><i class="flaticon2-shelter"></i
+      ></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link"> CMS Student Survey</a>
+    </div>
+  </template>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label"
+          >{{$t('modal.reports.feeReports.city')}}</label
+        >
+
+        <select-ex
+          :options="cityList"
+          keyValue="cityId"
+          displayValue="fullName"
+          v-model="cityId"
+        >
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label"
+          >{{$t('modal.reports.feeReports.subCity')}}</label
+        >
+
+        <select-ex
+          :options="subCityList"
+          keyValue="subCityId"
+          displayValue="subCityName"
+          v-model="subCityId"
+        >
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3 form-group">
+      <label class="form-control-label"
+        >{{$t('modal.reports.feeReports.campus')}}
+      </label>
+      <select-ex
+        :options="campusCityList"
+        keyValue="campusId"
+        displayValue="campusName"
+        v-model="campusId"
+        groupBy="cityName"
+      >
+      </select-ex>
+    </div>
+
+    <div class="col-md-3 form-group">
+      <label class="form-control-label"
+        >{{$t('modal.reports.feeReports.program')}}
+      </label>
+      <select-ex
+        :options="programListEx"
+        keyValue="programId"
+        displayValue="fullName"
+        v-model="programId"
+      ></select-ex>
+    </div>
+
+    <div class="col-md-3 form-group">
+      <label class="form-control-label"
+        >{{$t('modal.reports.feeReports.class')}}
+      </label>
+      <select-ex
+        :options="classList"
+        keyValue="classId"
+        displayValue="fullName"
+        v-model.trim="classId"
+      >
+      </select-ex>
+    </div>
+    <!-- <div class="col-md-6 text-right">
+      <div class="form-group">
+        <button class="btn btn-light btn-hover btn-sm btn-primary" @click="clearSelection()" data-dismiss="modal"
+          type="submit">
+          Reset</button>
+      </div>
+    </div>-->
+  </div>
+  <div class="row">
+    <div v-if="subCheck" class="col-md-12 text-right mb-5">
+      <button
+        @click="loadcsv"
+        class="btn btn-light btn-hover btn-sm btn-outline-primary"
+      >
+        {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div v-if="teachCheck" class="col-md-12 text-right mb-5">
+      <button
+        @click="loadcsv2"
+        class="btn btn-light btn-hover btn-sm btn-outline-primary"
+      >
+        Export Teacher List<i class="la la-file-excel-o"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-12 text-right mb-2">
+    <button
+      type="button"
+      class="btn btn-hover btn-sm btn-outline-primary"
+      @click="loadPrevious"
+      v-if="teachCheck"
+    >
+      <i class="la la-arrow-left"></i> Go Back
+    </button>
+  </div>
+  <div v-if="question1.length && subCheck">
+    <h5><b>1. {{quetion1Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="col-md-12">
+      <div class="table-responsive mt-3">
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2">
+                  Subject
+                </th>
+                <th>
+                  Average
+                </th>
+                <th>
+                  OverAll Average
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="item in question1"
+                class="rowHover"
+                style="cursor: pointer;"
+                @click="loadTeachers(item.course)"
+              >
+                <td>
+                  <span v-html="item.course"></span>
+                </td>
+                <td>
+                  {{item.rating}}
+                </td>
+                <td>
+                  {{item.overAllRating}}
+                </td>
+              </tr>
+            </tbody>
+
+            <!-- <thead v-f="teachCheck">
+              <tr>
+                <th rowspan="2">
+                  Teacher
+                </th>
+                <th>
+                  Average
+                </th>
+              </tr>
+            </thead>
+            <tbody v-f="teachCheck">
+              <tr
+                v-for="item in teacherRatingList"
+                class="rowHover"
+                style="cursor: pointer;"
+              >
+                <td>
+                  <span v-html="item.teacherName"></span>
+                </td>
+                <td>
+                  {{item.rating}}
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+
+          <!-- <table v-f="teachCheck" style="width:100%;" class="customTable">
+            
+          </table> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div v-if="teachCheck">
+    <h5><b>1. {{quetion1Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="col-md-12">
+      <div class="table-responsive mt-3">
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2">
+                  Teacher
+                </th>
+                <th>
+                  Average
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="item in teacherRatingList"
+                class="rowHover"
+                style="cursor: pointer;"
+              >
+                <td>
+                  <span v-html="item.teacherName"></span>
+                </td>
+                <td>
+                  {{item.rating}}
+                </td>
+              </tr>
+            </tbody>
+
+            <!-- <thead v-f="teachCheck">
+              <tr>
+                <th rowspan="2">
+                  Teacher
+                </th>
+                <th>
+                  Average
+                </th>
+              </tr>
+            </thead>
+            <tbody v-f="teachCheck">
+              <tr
+                v-for="item in teacherRatingList"
+                class="rowHover"
+                style="cursor: pointer;"
+              >
+                <td>
+                  <span v-html="item.teacherName"></span>
+                </td>
+                <td>
+                  {{item.rating}}
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question2.length">
+    <h5><b>2. {{quetion2Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question2">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question3.length">
+    <h5><b>3. {{quetion3Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question3">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question4.length">
+    <h5><b>4. {{quetion4Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="col-md-12 mt-5">
+      <div class="table-responsive mt-3">
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2"></th>
+                <th>
+                  Average
+                </th>
+                <th>
+                  OverAll Average
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="item in question4"
+                class="rowHover"
+                style="cursor: pointer;"
+              >
+                <td>
+                  <span v-html="item.course"></span>
+                </td>
+                <td style="padding: 3px 15px;">
+                  <div
+                    class="circle-css m-auto"
+                    style="width: 44px; height: 44px; padding: 14px 0;"
+                  >
+                    {{item.rating}}
+                  </div>
+                </td>
+                <td style="padding: 3px 15px;">
+                  <div
+                    class="circle-css2 m-auto"
+                    style="width: 44px; height: 44px; padding: 14px 0;"
+                  >
+                    {{item.overAllRating}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question5.length">
+    <h5><b>5. {{quetion5Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="col-md-12 mt-5">
+      <div class="table-responsive mt-3">
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2"></th>
+                <th>
+                  Average
+                </th>
+                <th>
+                  OverAll Average
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="item in question5"
+                class="rowHover"
+                style="cursor: pointer;"
+              >
+                <td style="padding: 3px 15px;">
+                  <span v-html="item.course"></span>
+                </td>
+                <td style="padding: 3px 15px;">
+                  <div
+                    class="circle-css m-auto"
+                    style="width: 44px; height: 44px; padding: 14px 0;"
+                  >
+                    {{item.rating}}
+                  </div>
+                </td>
+                <td style="padding: 3px 15px;">
+                  <div
+                    class="circle-css2 m-auto"
+                    style="width: 44px; height: 44px; padding: 14px 0;"
+                  >
+                    {{item.overAllRating}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question6.length">
+    <h5><b>6. {{quetion6Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question6">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question7.length">
+    <h5><b>7. {{quetion7Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question7">
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h5 class="text-right mr-2">YES</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="bar">
+                      <div
+                        class="second"
+                        :style="{'width': + item.rating+ '%'}"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>{{item.rating}} %</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <strong>Average Answer</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h5 class="text-right mr-2">YES</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="bar">
+                      <div
+                        class="third"
+                        :style="{'width': + item.overAllRating+ '%'}"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>{{item.overAllRating}} %</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <strong>Overall Answer</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question8.length">
+    <h5><b>8. {{quetion8Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question8">
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h5 class="text-right mr-2">YES</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="bar">
+                      <div
+                        class="second"
+                        :style="{'width': + item.rating+ '%'}"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>{{item.rating}} %</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <strong>Average Answer</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h5 class="text-right mr-2">YES</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="bar">
+                      <div
+                        class="third"
+                        :style="{'width': + item.overAllRating+ '%'}"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>{{item.overAllRating}} %</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <strong>Overall Answer</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question9.length">
+    <h5><b>9. {{quetion9Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question9">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question10.length">
+    <h5><b>10. {{quetion10Name.replace(/\(Please.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question10">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question11.length">
+    <h5><b>11. {{quetion11Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question11">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question12.length">
+    <h5><b>12. {{quetion12Name.replace(/\(.*/,'')}}</b></h5>
+    <div class="mt-5" v-for="item in question12">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css">
+                {{item.rating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Average Rating</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="circle-css2">
+                {{item.overAllRating}}
+              </div>
+            </div>
+            <div class="col-md-12 mt-3">
+              <strong>Overall Rating</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" v-if="question13.length">
+    <h5>
+      <b>13. {{quetion13Name.replace(/\(.*/,'')}}</b
+      ><button
+        title="NPS score ranges between -100 and +100. A 'positive' score or NPS above 0 is considered 'Good',
+       +50 is 'Excellent' and +70 is considered 'World Class'"
+        class="circle-btn"
+      >
+        <i class="fa fa-info"></i>
+      </button>
+    </h5>
+    &nbsp;
+
+    <div class="mt-5" v-for="item in question13">
+      <div class="row ">
+        <div class="col-md-6 d-flex justify-content-center rightside-border">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="container-g mt-4">
+                <div class="gauge-a"></div>
+                <div class="gauge-b"></div>
+                <div
+                  id="gauge-c"
+                  :style="{'transform': 'rotate(' + guage + 'deg)'}"
+                ></div>
+                <div class="gauge-data">
+                  <h1 id="percent">{{item.rating}}</h1>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding-top: 65px;" class="col-md-12 mt-4 ml-5">
+              <div class="row">
+                <h5 class="mr-5">-100</h5>
+                <h5><b>Average</b></h5>
+                <h5 class="ml-5">100</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div>
+            <div class="col-md-12 ml-4">
+              <div class="container-g mt-4">
+                <div class="gauge-a"></div>
+                <div class="gauge-b"></div>
+                <div
+                  id="gauge-c2"
+                  :style="{'transform': 'rotate(' + guage1 + 'deg)'}"
+                ></div>
+                <div class="gauge-data">
+                  <h1 id="percent">{{item.overAllRating}}</h1>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding-top: 65px;" class="col-md-12 mt-4 ml-5">
+              <div class="row">
+                <h5 class="mr-5">-100</h5>
+                <h5><b>OverAll</b></h5>
+                <h5 class="ml-5">100</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="container-g mt-4">
+        <div class="gauge-a"></div>
+        <div class="gauge-b"></div>
+        <div id="gauge-c":style="{'transform': 'rotate(' + guage + 'deg)'}"></div>
+        <div class="gauge-data">
+          <h1 id="percent">{{item.rating}}</h1>
+          <span>Total Score</span>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</page-area>

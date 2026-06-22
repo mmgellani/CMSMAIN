@@ -1,0 +1,141 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true" :scrollable="true"
+    :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        Leave Mark&nbsp;&nbsp;
+                        <span class="font12"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="row ">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="date" class="form-control form-control-sm" :value="model.fromDate && model.fromDate.toString().split('T')[0]"
+                        @input="model.fromDate= $event.target.value">
+                    <label>From Date<span style="color:red"> *</span></label>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="date" class="form-control form-control-sm" :value="model.toDate && model.toDate.toString().split('T')[0]"
+                        @input="model.toDate= $event.target.value">
+                    <label>To Date<span style="color:red"> *</span></label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    Is Partial<input  class="switch" type="checkbox" v-model="model.isPartial" @change="CheckAll(model.isPartial)"  >
+                </div>
+
+                <div class="col-md-6">
+                        Is Approved<input  class="switch"     type="checkbox" v-model="model.isApproved"  >
+                    </div>
+                <div class="col-md-6">
+
+                    <table class="table">
+                        <thead>
+                            <tr role="row">
+                                <th>Coure Name</th>
+
+
+                            </tr>
+                            <tbody>
+                                <tr v-for="item in ProgramCourseListSelected">
+                                    <td>{{item.courseName}}</td>
+
+                                    <td>
+                                        <input type="checkbox" v-model="item.isSelected">
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </thead>
+
+                    </table>
+
+
+                </div>
+
+               
+            </div>
+
+            <div class="row">
+                    <div class="col-md-6">
+                    Remarks <input type="text"  class="form-control form-control-sm" v-model="remarks">
+
+                    </div>
+                </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" @click="saveModel" >Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</modal> -->
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.leaveManagement.addLeave')}}</h3>hgfdhdfh
+                <p>{{$t('modal.leaveManagement.insertRecord')}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <add-edit-leave ref="childref" isNewRecord="true" :passdata="obj"></add-edit-leave>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button v-if="show==true" class="btn btn-hover btn-sm btn-primary"  @click="$refs.childref.saveModel()" ><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,114 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Student Fee Detail Description
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+          <div class="row">
+              <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="date" v-model="fromDate" class="form-control" />
+                    <label>From: </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input @change="refreshData" type="date" v-model="toDate" class="form-control" />
+                    <label>To: </label>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive" v-if="canRead ">
+                <div class="dataTables_wrapper no-footer">
+                  <table class="table">
+                    <thead>
+                      <tr role="row">
+                        <th>Refference No</th>
+                        <th>RollNo</th>
+                       
+                        <th>ChallanNo</th>
+                        <th>FeeAmount</th>
+                        <th>Paid Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in data">
+                        <td class="v-align-middle">{{item.ref_No}}</td>
+                        <td class="v-align-middle">{{item.reg_No}}</td>
+                      
+                        <td class="v-align-middle">{{item.challan_Number}}</td>
+                        <td class="v-align-middle">{{item.total_Payable}}</td>
+                        <td class="v-align-middle">{{item.payDate|formatDMY}}</td>
+                       
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <userlog-detail-model v-on:submit="refreshData"></userlog-detail-model>
+</div> -->
+
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.studentFeeDetailDescription')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.studentFeeDetailDescription')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.StudentFeeDetailDescription.fromDate')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.StudentFeeDetailDescription.toDate')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" @input="refreshData"></date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-3 text-center">
+          <button class="btn btn-hover btn-sm btn-primary" @click="refreshData" style="margin-top: 22px;">View
+            Detail</button>
+        </div> -->
+
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.StudentFeeDetailDescription.">
+        <template slot="payDate" slot-scope="item">
+          {{item.row.payDate|formatDMY}}
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <!-- <userlog-detail-model v-on:submit="refreshData"></userlog-detail-model> -->
+</page-area>

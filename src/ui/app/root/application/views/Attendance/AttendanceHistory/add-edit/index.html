@@ -1,0 +1,153 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<!-- 
+<modal name="detail-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="70%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="modal-title">
+
+                        Attendence History&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="col-md-12" style="border-bottom: 1px solid red;">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <strong>Device Info: </strong>{{model.browserInfo}}
+                        </div>
+                        <div class="col-md-2">
+                            <strong>Count: </strong>{{model.count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" v-for="item in data">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>Inserted By: </strong>{{item.insertedBy}}
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Inserted Time: </strong>{{item.insertionTime || formatDMYt}}
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Slot Time: </strong>{{item.startTime || formatDMYt}} - {{ item.endTime || formatDMYt }}
+                            </div>
+                        </div>
+                        <div class="row" v-if="item.approvedBy">
+                            <div class="col-md-6">
+                                <strong>Approved By: </strong>{{item.approvedBy}}
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Approval Time: </strong>{{item.approvalTime || formatDMYt}}
+                            </div>
+                        </div>
+                        <div v-if="item.approvedBy" class="row" style="height: 1px; background: green"></div>
+                        <div v-else class="row" style="height: 1px; background: blue"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+<modal name="detail-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.attendanceHistory')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.attendanceHistory.deviceInfo')}}</h6>
+                        <p>{{model.browserInfo}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.attendanceHistory.count')}}</h6>
+                        <p>{{model.count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="fixed-header-table">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr role="row">
+                                    <th>{{$t('modal.attendanceHistory.insertedBy')}}</th>
+                                    <th>{{$t('modal.attendanceHistory.insertedTime')}}</th>
+                                    <th>{{$t('modal.attendanceHistory.slotTime')}}</th>
+                                    <th>{{$t('modal.attendanceHistory.approvedBy')}}</th>
+                                    <th style="width: 180px;">{{$t('modal.attendanceHistory.approvalTime')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in data">
+                                    <td>{{item.insertedBy}}</td>
+                                    <td>{{item.insertionTime || formatDMYt}}</td>
+                                    <td>{{item.startTime || formatDMYt}} - {{ item.endTime || formatDMYt }}</td>
+                                    <td>{{item.approvedBy}}</td>
+                                    <td>{{item.approvalTime || formatDMYt}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</modal>

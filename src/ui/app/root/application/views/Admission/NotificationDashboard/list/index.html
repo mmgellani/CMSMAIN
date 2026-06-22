@@ -1,0 +1,185 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.notificationDashboard')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.notificationDashboard')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-12">
+          <tabs>
+            <tab name='Overall View' :selected="true">
+              <template>
+                <notification-overall></notification-overall>
+              </template>
+            </tab>
+            <!--<tab name='Subject-Wise'>
+              <template>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.notification.session')}}</label>
+                      <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName"
+                        v-model.trim="sessionId">
+                      </select-ex>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.notification.campus')}}</label>
+                      <select-ex :options="campusCityList" groupBy="cityName" keyValue="campusId"
+                        displayValue="campusName" v-model.trim="campusId"></select-ex>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.notification.program')}}</label>
+                      <select-ex :options="campusProgramLinkList" groupBy="programName" keyValue="campusProgramId"
+                        displayValue="description" v-model.trim="campusProgramId" @input="loadClass"></select-ex>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.notification.class')}}</label>
+                      <select-ex :options="classList" groupBy="cityName" keyValue="classId" displayValue="fullName"
+                        v-model.trim="classid"></select-ex>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.notification.section')}}</label>
+                      <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+                        v-model.trim="sectionCourseLinkId"></select-ex>
+                    </div>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <div class="form-group">
+                      <button class="btn btn-light btn-hover btn-sm btn-primary" @click="clearSelection()"
+                        data-dismiss="modal" type="submit">
+                        Reset</button>
+                    </div>
+                  </div>
+                </div>-->
+                <!-- <div class="row">
+                  <div class="offset-md-9 col-md-3 text-right">
+                    <div class="form-group">
+                      <button class="btn btn-light btn-hover btn-sm btn-primary" @click="clearSelection()" data-dismiss="modal"
+                        type="submit">
+                         Reset</button>
+                    </div>
+                  </div>
+                </div>  -->
+                <!-- <div class="row">
+                  <div class="offset-md-9 col-md-3 text-right">
+                    <div class="form-group">
+                      <button class="btn btn-light btn-hover btn-sm btn-primary" @click="refreshData()" data-dismiss="modal"
+                        type="submit">
+                         refresh</button>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- <grid :data="data" :columns="columns" pre="modal.notificationDashboard.">  </grid>-->
+                <!--<div class="row">
+                  <div :class="[addVal ? 'col-md-6 ': 'col-md-12']">
+                    <div class="table-responsive" style="max-height: 510px; overflow-y: scroll;">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>
+                              Sr.No
+                            </th>
+                            <th>
+                              Subject
+                            </th>
+                            <th>
+                              Average
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody v-for="(item,index) in subjects">
+                          <tr @click.prevent="clearMain()">
+                            <td>
+                              {{index+1}}
+                            </td>
+                            <td style="cursor: pointer;" @click.prevent="append(index,item.value)">
+                              {{item.value}}
+                            </td>
+                            <td>
+                              {{ item.average }}
+                            </td>
+                          </tr>
+                          <tr v-if="index==curIndex">
+                            <td colspan="5" style="position: relative;">
+                              <table style="background: rgb(204, 204, 204);"
+                                class="table table-condensed animate__animated animate__fadeIn">
+                                <thead>
+                                  <tr>
+                                    <th>Teacher Name</th>
+                                    <th>Sub City</th>
+                                    <th> Overall Rating</th>
+                                    <th>Current Month Rating</th>
+                                    <th>
+                                      Previous Month Rating
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody v-for="(item,index) in data2">
+                                  <tr @click.prevent="addDiv(item.courseId,item.teacherId,item.subCity)"
+                                    style="cursor: pointer;">
+                                    <td>{{item.teacherName}}</td>
+                                    <td>{{item.subCity}}</td>
+                                    <td>{{item.average}}</td>
+                                    <td>{{item.currentAverage}}</td>
+                                    <td>{{item.previousAverage}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-6" v-if="addVal">
+                    <collapsible-widget>
+                      <template slot="title">
+                        Rating: Monthly Comparison
+                      </template>
+                      <template slot="content">
+                        <Highcharts :options="options" />
+                      </template>
+                    </collapsible-widget>
+                  </div>
+                </div>
+              </template>
+            </tab>-->
+            <tab name='Search Teacher'>
+              <template>
+                <teacherSearch></teacherSearch>
+              </template>
+            </tab>
+            <tab name='Comments'>
+              <template>
+                <comments></comments>
+              </template>
+            </tab>
+          </tabs>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+  <!-- <add-edit-model></add-edit-model> -->
+</page-area>

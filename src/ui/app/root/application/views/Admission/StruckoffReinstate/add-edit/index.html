@@ -1,0 +1,79 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.struckoffReinstate')}}</h3>
+                <p>{{title}}</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label
+                            class="left-p form-control-label">{{$t('modal.struckoffReinstate.struckoffdate')}}<span style="color:red">*</span></label>
+                        <date-picker :disabled="!IsNewRecord" class="input-28 mt-2" id="change-width" ref="changeWidth"
+                            v-model="model.struckoffDate" format="DD/MM/YYYY" lang="en"></date-picker>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label
+                            class="left-p form-control-label">{{$t('modal.struckoffReinstate.struckoffreason')}}<span style="color:red">*</span></label>
+                        <input :disabled="!IsNewRecord" type="text" class="form-control form-control-sm mt-2"
+                            v-model.trim="model.struckoffReason">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div v-if="!IsNewRecord" class="col-md-6">
+                    <div class="form-group">
+                        <label
+                            class="left-p form-control-label">{{$t('modal.struckoffReinstate.reinstatedate')}}<span style="color:red">*</span></label>
+                        <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth"
+                            v-model="model.reinstateDate" format="DD/MM/YYYY" lang="en" :disabled-date="(date) => disablePastDates(date)"></date-picker>
+
+                    </div>
+                </div>
+                <div v-if="!IsNewRecord" class="col-md-6">
+                    <div class="form-group">
+                        <label
+                            class="left-p form-control-label">{{$t('modal.struckoffReinstate.reinstatereason')}}<span style="color:red">*</span></label>
+                        <input type="text" class="form-control form-control-sm mt-2" v-model="model.reinstateReason">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</modal>

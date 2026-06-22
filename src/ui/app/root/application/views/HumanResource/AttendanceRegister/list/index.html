@@ -1,0 +1,101 @@
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title">{{$t('navigation.teachermng')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.attendanceRegister')}} </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.attendanceRegister')">
+        <template slot="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <label class="form-control-label">
+                            {{$t('modal.studentAttendance.section')}} <span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <label class="form-control-label">
+                            {{$t('modal.studentAttendance.dateFrom')}}<span style="color:red">
+                                *</span></label>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" format="DD/MM/YYYY" lang="en"
+                            v-mask="'##/##/####'">
+                        </date-picker>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <label class="form-control-label">
+                            {{$t('modal.studentAttendance.dateTo')}}<span style="color:red">
+                                *</span></label>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" format="DD/MM/YYYY" lang="en"
+                            v-mask="'##/##/####'">
+                        </date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sr.No
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Roll No.
+                                </th>
+                                <th>
+                                    Absent Count
+                                </th>
+                                <th>
+                                    Feb 01
+                                </th>
+                                <th>
+                                    Feb 02
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Asad Ali
+                                </td>
+                                <td>
+                                    36
+                                </td>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    <button title="Edit" type="button"
+                                        class="btn btn-outline-primary btn-icon btn-sm btn-circle">P</button>
+                                </td>
+                                <td>
+                                    <button title="Edit" type="button"
+                                        class="btn btn-outline-danger btn-icon btn-sm btn-circle">A</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </template>
+    </portlet-area>
+</page-area>

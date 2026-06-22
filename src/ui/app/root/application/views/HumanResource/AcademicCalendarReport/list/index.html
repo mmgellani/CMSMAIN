@@ -1,0 +1,141 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.academiccalendar')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.academicCalendarReport')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.academicCalendarReport')">
+
+
+    <template slot="portlet-body">
+      <div class="form-group col-md-3">
+        <label>{{$t('modal.reports.feeReports.reports')}}</label>
+        <select v-model="check" @change="selectReport" class="form-control" required>
+          <option value="Monthly Planner Report" >Disipline-wise Academic Calendar</option>
+          <option value="Breakup Report">Subject-wise Academic Calendar</option>
+        </select>
+      </div>
+      <div class="row" v-if="checkbutton">
+
+        <div class="col-md-3">
+
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('modal.reports.feeReports.session')}}<span style="color:red">
+                *</span></label>
+            <select-ex @input="loadAcademicCalendarMaster" :options="sessionList" keyValue="sessionId"
+              displayValue="fullName" v-model="sessionId">
+            </select-ex>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-3">
+        
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.campus')}}<span style="color:red">
+                *</span></label>
+            <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" v-model="campusId"
+              groupBy="cityName" @input="GetCalendarData" required>
+            </select-ex>
+
+          </div>
+
+        </div> -->
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.setupCampus.subCity')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex @input="loadAcademicCalendarMaster" :options="citySubCityList" keyValue="subCityId"
+            displayValue="subCityName" v-model="subCityId" groupBy="cityName">
+          </select-ex>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.reports.feeReports.campus')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" v-model="campusId"
+          groupBy="cityName">
+        </select-ex>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.reports.feeReports.program')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex :options="programList" keyValue="programId" displayValue="programName" v-model="programId"
+             >
+            </select-ex>
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.reports.feeReports.programDetail')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex :options="programDetailList" keyValue="programDetailId" displayValue="description"
+              groupBy="fullName" v-model.trim="programDetailId" >
+            </select-ex>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.class')}}</label><span style="color:red">
+              *</span>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId"
+              @input="loadAcademicCalendarMaster"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Academic Calendar Master<span style="color:red">
+                *</span>
+
+            </label>
+            <!-- <label>{{$t('navigation.boards')}}</label> -->
+            <select-ex :options="academicCalendarMasterList" @input="loadCourse" keyValue="academicCalendarMasterId"
+             displayValue="fullName" v-model="academicCalendarMasterId">
+            </select-ex>
+          </div>
+        </div>
+        
+        <div class="col-md-3" v-if="!checkDate">
+          <div class="form-group validated m-0">
+            <label class="form-control-label">Course<span style="color:red">
+                *</span></label>
+            <select-ex :options="programCourse" keyValue="courseId" displayValue="fullName" v-model.trim="courseId"
+              >
+            </select-ex>
+          </div>
+        </div>
+
+        <div class="col-md-3" v-if="checkDate">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.from')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3" v-if="checkDate">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.to')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-light btn-hover btn-sm btn-primary"
+            @click="generate">Generate</button>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+  <!-- <add-edit v-on:submit="GetAcadmicCaldenview()"></add-edit> -->
+  <!-- <view-Popup></view-Popup> -->
+</page-area>

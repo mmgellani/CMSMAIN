@@ -1,0 +1,186 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<modal name="BusinessGrp-add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.setupBusinessGroup')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row" v-if="!IsNewRecord">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="kt-option kt-option-custom">
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title mt-1">
+                                            {{$t('modal.setupBusinessGroup.recordStatus')}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="isActive">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        {{$t('modal.setupBusinessGroup.fullName')}}<span style="color:red">
+                                            *</span></label>
+                                    <!-- <input type="text" class="form-control form-control-sm" :maxlength="30"
+                                        v-model="data.fullName" required> -->
+                                    <input type="text" class="form-control  "
+                                        :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                                        @input="$v.data.fullName.$touch()">
+                                    <!-- <label :class="!$v.model.fullName.required">Full Name<span style="color:red">
+                                            *</span></label> -->
+                                    <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                                        {{$t('validation.required')}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        {{$t('modal.setupBusinessGroup.slogan')}}<span style="color:red">
+                                            *</span></label>
+                                    <!-- <input type="text" class="form-control form-control-sm" :maxlength="50"
+                                        v-model="data.slogan" required> -->
+                                    <input type="text" class="form-control  "
+                                        :class="{'is-invalid': $v.data.slogan.$error}" v-model.trim="data.slogan"
+                                        @input="$v.data.slogan.$touch()">
+                                    <div class="invalid-feedback" v-show="$v.data.slogan.$error">
+                                        {{$t('validation.required')}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        {{$t('modal.setupBusinessGroup.email')}}<span style="color:red">
+                                            *</span></label>
+                                    <!-- <input type="text" class="form-control form-control-sm" :maxlength="35"
+                                        v-model="data.email" required> -->
+                                    <input type="text" class="form-control  "
+                                        :class="{'is-invalid': $v.data.email.$error}" v-model.trim="data.email"
+                                        @input="$v.data.email.$touch()">
+                                    <div class="invalid-feedback" v-show="$v.data.email.$error">
+                                        <span v-if="!$v.data.email.required">{{$t('validation.required')}}</span>
+                                        <span v-if="!$v.data.email.email">{{$t('validation.email')}}</span>
+                                        <span v-if="!$v.data.email.maxLength">{{$t('validation.maxLength')}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        {{$t('modal.setupBusinessGroup.url')}}<span style="color:red">
+                                            *</span></label>
+                                    <!-- <input type="text" class="form-control form-control-sm" :maxlength="30"
+                                        v-model="data.uRL" required> -->
+                                    <input type="url"  placeholder="https://example.com" class="form-control  "
+                                        :class="{'is-invalid': $v.data.url.$error}" v-model.trim="data.url"
+                                        @input="$v.data.url.$touch()">
+                                    <div class="invalid-feedback" v-show="$v.data.url.$error">
+                                        <span v-if="!$v.data.url.required">{{$t('validation.required')}}</span>
+                                        <span v-if="!$v.data.url.maxLength">{{$t('validation.maxLength')}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">
+                                        {{$t('modal.setupBusinessGroup.uan')}}<span style="color:red">
+                                            *</span></label>
+                                    <!-- <input type="text" class="form-control form-control-sm" v-mask="'############'"
+                                        v-model="data.uAN" required> -->
+                                    <!-- <input type="text" class="form-control form-control-sm"
+                                        :class="{'is-invalid': $v.data.uan.$error}" v-model.trim="data.uan"
+                                        @input="$v.data.uan.$touch()"> -->
+                                    <the-mask :class="{'is-invalid': $v.data.uan.$error}" :mask="'############'"
+                                        v-model="data.uan" class="form-control  "
+                                        @input="$v.data.uan.$touch()" required />
+                                    <div class="invalid-feedback" v-show="$v.data.uan.$error">
+                                        <span v-if="!$v.data.uan.required">{{$t('validation.required')}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-control-label mb-3">
+                                    {{$t('modal.setupBusinessGroup.groupLogo')}}
+                                </label>
+                                <div v-if="!data.logo" class="dropzone-panel">
+                                    <div class="img-wrapper">
+                                        <div class="img-icon">
+                                            <label for="AttachFile" class="btn btn-primary">Attach File</label>
+                                            <input type="file" class="dropzone-select" style="display: none;"
+                                                id="AttachFile" @input="onFileChange($event)">
+                                        </div>
+                                    </div>
+                                    <span class="form-text text-muted">Max file size is 1MB.</span>
+                                </div>
+                                <div class="col-md-4" v-else>
+                                    <div class="group-logo-img">
+                                        <img :src="data.logo" />
+                                        <span text="Delete image">
+                                            <button class="group-logo-del" vs-type="border" vs-icon="close"
+                                                @click="removeImage">
+                                                <i class="la la-trash"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

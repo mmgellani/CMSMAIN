@@ -1,0 +1,305 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="Concession-add-edit-bulk-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="70%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        Concession&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <h5>For Concession</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Concession Name<span style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select v-model="data.challanTypeId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.challanTypeId"
+                                        v-for="(model,index) in ChallantypeList">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.challanTypeId.required" style="margin-left:15px;">Choose
+                                    Challan Type<span style="color:red">
+                                        *</span></label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewChallanType">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadChallanType">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select v-model="data.zoneId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.zoneId" v-for="(model,index) in zoneList">
+                                        {{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.zoneId.required" style="margin-left:15px;">Choose Zone<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewZone">
+                                        <i class="fa fa-plus m--hide success"></i>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadZone">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select @change="loadProgram()" v-model="data.sessionId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.sessionId" v-for="(model,index) in SessionList">
+                                        {{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.sessionId.required" style="margin-left:15px;">Choose
+                                    Session<span style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewSession">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadSession">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <select @change="loadProgram()" Placeholder="Campus" v-model="campusId" class="form-control form-control-sm" required>
+                                <template v-for="(item,index) in cityDDL">
+                                    <template v-if="item.group">
+                                        <option value="item.id" class="bold-option" disabled>
+                                            <strong>{{item.title}}</strong>
+                                        </option>
+                                        <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                                            <span v-html="'&#8680; ' + chItem.text"></span>
+                                        </option>
+                                    </template>
+                                </template>
+                            </select>
+                            <label>Campus</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select @click="loadProgram()" v-model="data.shiftId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.shiftId" v-for="(model,index) in ShiftList">
+                                        {{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.shiftId.required" style="margin-left:15px;">Choose Shift<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewShift">
+                                        <i class="fa fa-plus m--hide success"></i>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadShift">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-10 form-group">
+                                <h5>Continuation Policy</h5>
+                                <ul style="max-height:100px;overflow-y: auto; border:1px solid #ccc0d6;padding: 5px;">
+                                    <li v-for="(model,index) in continuationPolicyCBList" style="list-style:none;">
+                                        <input type="checkbox" v-model="model.isChecked">
+                                        {{model.fullName}}
+                                        </input>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewContinuationPolicy">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadContinuationPolicy">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 offset-1">
+                        <h5>Choose Programs</h5>
+                        <ul style="max-height:100px;overflow-y: auto; border:1px solid #ccc0d6;padding: 5px; ">
+                            <li v-for="(model, index) in programCBList" style="list-style:none;">
+                                <input type="checkbox" v-model="model.isChecked">
+                                {{model.name}}
+                                </input>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <h5>For Scholarship</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select @change="checkScholarship" v-model="bulkData.admissionTypeId"
+                                    class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.admissionTypeId"
+                                        v-for="(model,index) in admissionTypeList">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Admission Type<span style="color:red"> *</span></label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewAdmissionType">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadAdmissionType">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input maxlength="4" class="form-control form-control-sm" v-model="bulkData.attendancePercentage" required>
+                            <label>Attendance Percentage<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="bulkData.fullName" required>
+                            <label :class="!$v.model.fullName.required">Scholarship Crieteria Name<span
+                                    style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="row">
+
+                    <div class="form-group col-md-6" v-show="isScholarship">
+                        <select v-model="bulkData.scholarshipTypeId" class="form-control form-control-sm" required>
+                            <option :key="index" :value="model.scholarshipTypeId" v-for="(model,index) in GradesList">
+                                {{model.grades}}
+                            </option>
+                        </select>
+                        <label>Grades<span style="color:red"> *</span></label>
+                    </div>
+                    <div class="form-group col-md-6" v-show="isScholarship">
+                        <input class="form-control form-control-sm" v-model="bulkData.marksPer" required>
+                        <label>Marks Percentage<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row text-right">
+            <div class="col-md-12">
+                <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <ChallanType v-on:submit="loadChallanType"></ChallanType>
+    <Shift v-on:submit="loadShift"></Shift>
+    <Zone v-on:submit="loadZone"></Zone>
+    <Program v-on:submit="loadProgram"></Program>
+    <Session v-on:submit="loadSession"></Session>
+    <ContinuationPolicy v-on:submit="loadContinuationPolicy"></ContinuationPolicy>
+</modal>

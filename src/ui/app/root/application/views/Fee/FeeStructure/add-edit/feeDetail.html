@@ -1,0 +1,98 @@
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-12 text-center heading-fee-generation ">
+            <h2>{{program.fullName}}</h2>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9 text-center">
+            <div class="row mt-3">
+                <div :class="shiftSpacing" v-for="shifts in shiftList">
+                    <span class="kt-badge kt-badge--inline kt-badge--pill"
+                        style="background: #ebedf2; color: black; font-size: 1rem;">
+                        {{shifts.fullName}}</span>
+
+                    <div class="row mt-2">
+                        <div :class="classSpacing" v-for="classes in classList">
+                            <h6>{{classes.fullName}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3 text-center">
+            <div v-for="fhead in feeHeadList">
+                <h6 style="line-height: 39px;
+                height: 32px;">{{fhead.fullName}}</h6>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div :class="classShiftSpacing" v-for="(item, index) in values">
+                    <input type="number" v-model.trim="item.value" class="form-control form-control-sm mt-2"
+                        placeholder="Enter Amount" @change="repopulateInstllment" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3 text-center">
+            <div class="mt-2">
+                <span class="kt-badge kt-badge--inline kt-badge--pill"
+                    style="background: #ebedf2; color: black; font-size: 1rem;">
+                    Total</span>
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div :class="classShiftSpacing" v-for="(item, index) in total">
+                    <input type="text" v-model.trim="item.value" class="form-control form-control-sm" readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mb-2">
+        <div class="col-md-12 fee-generation-border mt-2" v-for="(item, index) in val">
+            <h6 class="mt-2">
+                <u>Installment No. {{index+1}}</u>
+            </h6>
+            <div class="row mt-2">
+                <div class="col-md-3">
+                    <div v-for="fhead in feeHeadList">
+                        <h6 style="line-height: 39px;
+                        height: 32px;">{{fhead.fullName}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div :class="classShiftSpacing" v-for="(itemss, ind) in values">
+                            <input @change="calculateInstallmentTotal" type="text" v-model="item.feestr[ind].value"
+                                class="form-control form-control-sm mt-2" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 mt-3">
+                    <span class="kt-badge kt-badge--inline kt-badge--pill"
+                        style="background: #ebedf2; color: black; font-size: 1rem;">
+                        Total</span>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div :class="classShiftSpacing" v-for="(itemz, ind) in tempFeestrIter">
+                            <input type="text" v-model.trim="totalInstallments[index].feestr[ind].value"
+                                class="form-control form-control-sm mt-2" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

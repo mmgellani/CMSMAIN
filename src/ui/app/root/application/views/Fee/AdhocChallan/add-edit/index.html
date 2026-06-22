@@ -1,0 +1,99 @@
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.adhocChallanLink')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6" v-if="IsNewRecord">
+                    <div class="form-group validated">
+
+                        <div class="form-group">
+                            <label>Fee Head</label>
+                            <span style="color:red">*</span></label>
+
+                            <select-ex :options="feeHeadList" keyValue="feeHeadId" displayValue="fullName"
+                                v-model="data.feeHeadId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.feeHeadId.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> Amount <span style="color:red">
+                                *</span></label>
+
+                        <input type="number" class="form-control" v-model.trim="data.amount", max="10000000"
+                            @keypress="if(['.',',','e'].includes($event.key)) $event.preventDefault()"
+                            @input="$v.data.amount.$touch();limitToOneCrore($event)" :class="{'is-invalid': $v.data.amount.$error}" />
+                        <div class="invalid-feedback"
+                            v-if="$v.data.amount.$error && !$v.data.amount.required && $v.data.amount.$dirty ">
+                            {{$t('validation.required')}}
+                        </div>
+                        <div class="invalid-feedback"
+     v-if="$v.data.amount.$dirty && !$v.data.amount.maxValue">
+    Amount cannot exceed 1 crore.
+</div>
+
+                       
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">Due Date<span style="color:red">
+                                *</span></label>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="data.toDate"
+                            format="DD/MM/YYYY" lang="en" :not-before="new Date().setHours(0, 0, 0, 0)"></date-picker>
+                        <div class="invalid-feedback" v-show="$v.data.toDate.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> Remarks <span style="color:red">
+                                *</span></label>
+
+                        <input type="text" class="form-control" v-model.trim="data.remarks"
+                            maxlength="25" />
+                        <div class="invalid-feedback"
+                            v-if="$v.data.remarks.$error && !$v.data.remarks.required && $v.data.remarks.$dirty">
+                            {{$t('validation.required')}}
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,103 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="content sm-gutter">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-alt">
+      <li class="breadcrumb-item active">Route Stop Link</li>
+    </ol>
+  </div>
+  <div class="container-fluid container-fixed-lg bg-white">
+    <div class="card card-transparent">
+      <div class="card-header">
+        <div class="card-controls">
+          <ul>
+            <li><a href="#" class="card-refresh" @click="refreshData"><i class="card-icon card-icon-refresh"></i></a>
+            </li>
+            <li v-if="canAdd"><a href="#" class="card-close" @click="insertModel"><i class="card-icon pg-plus"></i></a>
+            </li>
+          </ul>
+        </div>
+        <form class="col-lg-4">
+          <div class="form-group form-group-default required" ref="filters">
+            <label>Search</label>
+            <input class="form-control input-sm" type="text" v-model="filterString"
+              @focus="$refs.filters.className = 'form-group form-group-default required focused'"
+              @blur="$refs.filters.className = 'form-group form-group-default required'">
+          </div>
+        </form>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <select @change="loadCity" v-model="zoneId" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.zoneId" v-for="(model,index) in zoneList">{{model.fullName}}
+                </option>
+              </select>
+              <label>Zone</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select @change="loadSubCity" v-model="cityId" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.cityId" v-for="(model,index) in cityList">{{model.fullName}}
+                </option>
+              </select>
+              <label>City</label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <select @change="refreshData" v-model="subcityId" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.subCityId" v-for="(model,index) in subcityList">{{model.name}}
+                </option>
+              </select>
+              <label>SubCity</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-body no-padding">
+          <div class="table-responsive" v-if="canRead">
+            <div class="dataTables_wrapper no-footer">
+              <table class="table table-hover table-condensed dataTable no-footer" role="grid">
+                <thead>
+                  <tr role="row">
+                    <th>RouteStopLinkIId</th>
+                    <th>RouteId</th>
+                    <th>VehicleId</th>
+                    <th>StatusId</th>
+                    <th>LoggerId</th>
+
+                    <th>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in data">
+                    <td class="align-middle">{{item.routeStopLinkIId}}</td>
+                    <td class="align-middle">{{item.routeId}}</td>
+                    <td class="align-middle">{{item.vehicleId}}</td>
+                    <td class="align-middle">{{item.statusId}}</td>
+                    <td class="align-middle">{{item.loggerId}}</td>
+
+                    <td>
+                      <a href="#" class="card-refresh" @click="editModel(item)" v-if="canEdit"><i
+                          class="card-icon pg-form"></i></a>
+                      <a href="#" class="card-close" @click="deleteModel(item)" v-if="canDelete"><i
+                          class="card-icon pg-trash"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <add-edit-model v-on:submit="refreshData"></add-edit-model>
+    <delete-model v-on:submit="refreshData"></delete-model>
+  </div>
+</div>

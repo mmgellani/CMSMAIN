@@ -1,0 +1,129 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="add-edit-single-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.feeFeeStructure.feeGeneration')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+
+           
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                       <label>FeeAmount</label>
+                        <input type="number" class="form-control form-control-sm"
+                            v-model.trim="data.feeAmount"
+                        >
+                        
+                        <!-- <input type="text" class="form-control form-control-sm" :maxlength="50"
+                                v-model="data.fullName" required> -->
+                        <!-- <label :class="!$v.model.fullName.required">Full Name<span style="color:red">
+                                    *</span></label> -->
+                    </div>
+
+                </div>
+              
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <modal name="Country-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                         Country&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="50" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="15" v-model="data.nationality" required>
+                            <label :class="!$v.model.nationality.required">Nationality<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->

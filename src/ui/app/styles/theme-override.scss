@@ -1,0 +1,1141 @@
+// ═══════════════════════════════════════════════════════════════
+//  EMS Theme Override  —  Steel Blue #597894  +  Gold #F5C518
+//  Sidebar & Header: steel-blue slate palette
+//  Gold accent throughout — corporate, modern, elegant.
+//  Loaded last in index.scss so every rule wins via !important.
+// ═══════════════════════════════════════════════════════════════
+
+// ── Primary brand color ───────────────────────────────────────
+$brand:         #597894;   // steel-blue slate (user defined)
+$brand-deep:    #3f5a72;   // darker shade for brand bar / hover
+$brand-mid:     #6d8fa8;   // lighter shade for hover states
+$brand-light:   #8aaec4;   // lightest tint for subtle accents
+
+// ── Sidebar / Header use brand ────────────────────────────────
+$sidebar-bg:    $brand;
+$sidebar-deep:  $brand-deep;
+$sidebar-mid:   $brand-mid;
+$header-bg:     $brand;
+$header-deep:   $brand-deep;
+
+// ── Gold accent ───────────────────────────────────────────────
+$gold:          #F5C518;
+$gold-deep:     #E8A800;
+$gold-light:    #FCD94B;
+
+// ── Content area accents (navy for buttons/links/tables) ──────
+$navy:      #597894;
+$navy-deep: #3f5a72;
+$navy-mid:  #6d8fa8;
+
+$white:     #ffffff;
+$page-bg:   #EEF3F7;   // soft blue-tinted page background
+
+// ════════════════════════════════════════════════
+//  PAGE BACKGROUND  (inner pages only)
+//  Login page uses its own full-screen layout,
+//  so we scope this to the kt-wrapper area only.
+// ════════════════════════════════════════════════
+body:not(.ems-login-page) { background-color: $page-bg !important; }
+.kt-wrapper,
+.kt-content,
+.kt-container { background-color: $page-bg !important; }
+
+// ════════════════════════════════════════════════
+//  SIDEBAR BRAND BAR — Logo Area
+// ════════════════════════════════════════════════
+.ems-brand-bar {
+    padding: 0 12px !important;
+    height: 65px !important;
+    display: flex !important;
+    align-items: center !important;
+    background-color: $sidebar-deep !important;
+    border-bottom: 2px solid rgba($gold, 0.30) !important;
+}
+
+.ems-sidebar-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none !important;
+    overflow: hidden;
+}
+
+.ems-logo-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba($gold, 0.40);
+    transition: box-shadow 0.2s;
+
+    &:hover { box-shadow: 0 5px 18px rgba($gold, 0.60); }
+}
+
+.ems-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.25s, width 0.25s;
+}
+
+.ems-logo-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: $white !important;
+    letter-spacing: 1.5px;
+    line-height: 1;
+}
+
+.ems-logo-tagline {
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba($gold, 0.85) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+// When sidebar is minimized — hide text, keep icon centered
+.kt-aside--minimize .ems-logo-text {
+    opacity: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}
+.kt-aside--minimize .ems-sidebar-logo-link {
+    justify-content: center;
+}
+.kt-aside--minimize .ems-brand-bar {
+    padding: 0 8px !important;
+    justify-content: center !important;
+}
+
+// ════════════════════════════════════════════════
+//  SIDEBAR — background + brand bar (Charcoal)
+// ════════════════════════════════════════════════
+.kt-aside {
+    background-color: $sidebar-bg !important;
+    box-shadow: 4px 0 28px rgba(0, 0, 0, 0.35) !important;
+}
+
+.kt-aside__brand {
+    background-color: $sidebar-deep !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgba($gold, 0.30) !important;
+}
+.kt-aside__brand-aside-toggler svg g [fill] { fill: rgba($white, 0.45) !important; }
+.kt-aside__brand-aside-toggler:hover svg g [fill] { fill: $gold !important; }
+
+// Sidebar scrollbar thumb
+.kt-aside .ps__thumb-y { background-color: rgba($gold, 0.35) !important; }
+
+// ════════════════════════════════════════════════
+//  SIDEBAR MENU — normal items
+// ════════════════════════════════════════════════
+.kt-aside-menu,
+.kt-aside-menu .kt-menu__nav {
+    background-color: $sidebar-bg !important;
+}
+
+// Every menu link — default state
+.kt-aside-menu .kt-menu__nav .kt-menu__item > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item > .kt-menu__link {
+    background-color: transparent !important;
+    border-radius: 8px !important;
+    margin: 1px 8px !important;
+    transition: background 0.18s, box-shadow 0.18s !important;
+}
+
+// Link text — default
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__link .kt-menu__link-text {
+    color: rgba($white, 0.68) !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+}
+
+// Bullet dot — default
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span {
+    background-color: rgba($white, 0.25) !important;
+}
+
+// Arrow — default
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__link .kt-menu__ver-arrow {
+    color: rgba($white, 0.25) !important;
+}
+
+// Section label text
+.kt-aside-menu .kt-menu__nav .kt-menu__section .kt-menu__section-text {
+    color: rgba($gold, 0.5) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__section .kt-menu__section-icon { color: rgba($white, 0.2) !important; }
+
+// Separator
+.kt-aside-menu .kt-menu__nav .kt-menu__separator { border-color: rgba($white, 0.07) !important; }
+
+// ════════════════════════════════════════════════
+//  SIDEBAR MENU — hover
+// ════════════════════════════════════════════════
+.kt-aside-menu .kt-menu__nav .kt-menu__item:hover > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--hover > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item:hover > .kt-menu__link {
+    background-color: rgba($white, 0.06) !important;
+    box-shadow: none !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item:hover > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--hover > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item:hover > .kt-menu__link .kt-menu__link-text {
+    color: $white !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item:hover > .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--hover > .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span {
+    background-color: $gold !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item:hover > .kt-menu__link .kt-menu__ver-arrow,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--hover > .kt-menu__link .kt-menu__ver-arrow {
+    color: $gold !important;
+}
+
+// ════════════════════════════════════════════════
+//  SIDEBAR MENU — active / here (current page)
+// ════════════════════════════════════════════════
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--active > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--here > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--open > .kt-menu__link,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item.kt-menu__item--active > .kt-menu__link {
+    background: rgba($gold, 0.12) !important;
+    box-shadow: inset 3px 0 0 $gold !important;
+    border-radius: 8px !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--here > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--open > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-text {
+    color: $gold !important;
+    font-weight: 700 !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span,
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--here > .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span,
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-bullet.kt-menu__link-bullet--dot > span {
+    background-color: $gold !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__ver-arrow,
+.kt-aside-menu .kt-menu__nav .kt-menu__item.kt-menu__item--here > .kt-menu__link .kt-menu__ver-arrow,
+.kt-aside-menu .kt-menu__nav .kt-menu__item--open > .kt-menu__link .kt-menu__ver-arrow {
+    color: $gold !important;
+}
+
+// ════════════════════════════════════════════════
+//  SIDEBAR MENU ICONS — all SVG fills
+// ════════════════════════════════════════════════
+
+// Default — soft white
+#kt_aside_menu .kt-menu__link-icon svg g [fill],
+#kt_aside_menu .kt-menu__link-icon svg [fill]:not([fill="none"]) {
+    fill: rgba($white, 0.45) !important;
+    transition: fill 0.2s !important;
+}
+
+// Hover, active, here, open — gold
+#kt_aside_menu .kt-menu__item:hover .kt-menu__link-icon svg g [fill],
+#kt_aside_menu .kt-menu__item:hover .kt-menu__link-icon svg [fill]:not([fill="none"]),
+#kt_aside_menu .kt-menu__item--active .kt-menu__link-icon svg g [fill],
+#kt_aside_menu .kt-menu__item--active .kt-menu__link-icon svg [fill]:not([fill="none"]),
+#kt_aside_menu .kt-menu__item--here .kt-menu__link-icon svg g [fill],
+#kt_aside_menu .kt-menu__item--here .kt-menu__link-icon svg [fill]:not([fill="none"]),
+#kt_aside_menu .kt-menu__item--open .kt-menu__link-icon svg g [fill],
+#kt_aside_menu .kt-menu__item--open .kt-menu__link-icon svg [fill]:not([fill="none"]) {
+    fill: $gold !important;
+}
+
+// Flaticon icons in sidebar
+.kt-aside-menu .kt-menu__nav .kt-menu__item > .kt-menu__link [class^="flaticon2-"],
+.kt-aside-menu .kt-menu__nav .kt-menu__item > .kt-menu__link [class*=" flaticon2-"] {
+    color: rgba($white, 0.45) !important;
+}
+.kt-aside-menu .kt-menu__nav .kt-menu__item:hover > .kt-menu__link [class^="flaticon2-"],
+.kt-aside-menu .kt-menu__nav .kt-menu__item--active > .kt-menu__link [class^="flaticon2-"],
+.kt-aside-menu .kt-menu__nav .kt-menu__item--here > .kt-menu__link [class^="flaticon2-"] {
+    color: $gold !important;
+}
+
+// ════════════════════════════════════════════════
+//  SIDEBAR MENU — sub-menu panel
+// ════════════════════════════════════════════════
+.kt-aside-menu .kt-menu__nav .kt-menu__item .kt-menu__submenu {
+    background-color: $sidebar-mid !important;
+}
+
+// ════════════════════════════════════════════════
+//  TOP HEADER  (Charcoal)
+// ════════════════════════════════════════════════
+.kt-header {
+    background-color: $header-bg !important;
+    border-bottom: 2px solid rgba($gold, 0.25) !important;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.30) !important;
+}
+
+// Header title / nav text
+.kt-header .kt-header-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link .kt-menu__link-text {
+    color: rgba($white, 0.85) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: -0.2px !important;
+}
+
+// Topbar icon background on hover
+.kt-header .kt-header__topbar-item:hover .kt-header__topbar-icon,
+.kt-header .kt-header__topbar-item.show .kt-header__topbar-icon {
+    background-color: rgba($white, 0.1) !important;
+}
+
+// Topbar icons — default
+.kt-header .kt-header__topbar-icon i { color: rgba($white, 0.65) !important; }
+.kt-header .kt-header__topbar-icon svg g [fill] { fill: rgba($white, 0.65) !important; }
+
+// Topbar icons — hover/active  → gold
+.kt-header .kt-header__topbar-item:hover .kt-header__topbar-icon i,
+.kt-header .kt-header__topbar-item.show .kt-header__topbar-icon i { color: $gold !important; }
+.kt-header .kt-header__topbar-item:hover .kt-header__topbar-icon svg g [fill],
+.kt-header .kt-header__topbar-item.show .kt-header__topbar-icon svg g [fill] { fill: $gold !important; }
+
+// User welcome / name text
+.kt-header .kt-header__topbar-welcome { color: rgba($white, 0.45) !important; }
+.kt-header .kt-header__topbar-username { color: $white !important; font-weight: 600 !important; }
+
+// User initials badge → gold pill
+.kt-header .kt-badge--username,
+.kt-header__topbar .kt-badge--username {
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%) !important;
+    color: $sidebar-bg !important;
+    font-weight: 900 !important;
+    box-shadow: 0 2px 10px rgba($gold, 0.45) !important;
+}
+
+// Mobile header
+.kt-header-mobile {
+    background-color: $header-deep !important;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4) !important;
+}
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span,
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span::before,
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span::after {
+    background: rgba($white, 0.75) !important;
+}
+
+// ════════════════════════════════════════════════
+//  HEADER TOPBAR  -  topbar SVGs (white override)
+//  The light skin compiles them as brand-colored
+// ════════════════════════════════════════════════
+.kt-header__topbar svg g [fill] {
+    fill: rgba($white, 0.65) !important;
+}
+.kt-header__topbar-item:hover svg g [fill],
+.kt-header__topbar-item.show svg g [fill] {
+    fill: $gold !important;
+}
+.login-background,
+.kt-head.kt-head--skin-dark.login-background,
+.kt-head.kt-head--skin-dark {
+    background: linear-gradient(135deg, $sidebar-mid 0%, $sidebar-deep 100%) !important;
+    border-bottom: 2px solid rgba($gold, 0.3) !important;
+}
+.kt-head__title { color: $white !important; }
+
+.BG-color,
+.kt-user-card.BG-color {
+    background: linear-gradient(135deg, $sidebar-mid 0%, $sidebar-deep 100%) !important;
+}
+.kt-user-card__name { color: $white !important; font-weight: 700 !important; }
+.kt-user-card .kt-badge {
+    background: linear-gradient(135deg, $gold, $gold-deep) !important;
+    color: $sidebar-bg !important;
+    font-weight: 900 !important;
+}
+
+// ════════════════════════════════════════════════
+//  SUBHEADER (breadcrumb bar)
+// ════════════════════════════════════════════════
+.kt-subheader {
+    background-color: $white !important;
+    border-top: none !important;
+    border-bottom: 1px solid rgba($navy, 0.09) !important;
+    box-shadow: 0 1px 10px rgba($navy, 0.07) !important;
+}
+.kt-subheader__title { color: $navy !important; font-weight: 700 !important; }
+.kt-subheader__breadcrumbs-link { color: rgba($navy, 0.6) !important; }
+.kt-subheader__breadcrumbs-link:hover { color: $navy !important; }
+.kt-subheader__breadcrumbs-home i { color: rgba($navy, 0.5) !important; }
+.kt-subheader__separator { background-color: rgba($navy, 0.12) !important; }
+
+// ════════════════════════════════════════════════
+//  DASHBOARD WIDGET CARDS
+//  (hardcoded inline styles — override with attr selector)
+// ════════════════════════════════════════════════
+.card-box {
+    border-radius: 14px !important;
+    box-shadow: 0 4px 18px rgba($navy, 0.18) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border: none !important;
+    color: $white !important;
+}
+
+// Welcome card  (grey #797374)
+.card-box[style*="797"] {
+    background: linear-gradient(135deg, $navy-mid 0%, $navy 100%) !important;
+}
+// Blue stat cards  (#3a4a7d)
+.card-box[style*="3a4a7d"],
+.card-box[style*="3A4A7D"] {
+    background: linear-gradient(135deg, $navy 0%, $navy-deep 100%) !important;
+    border-left: 4px solid $gold !important;
+}
+// Red date card  (#ff8590)
+.card-box[style*="ff8590"],
+.card-box[style*="FF8590"] {
+    background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%) !important;
+}
+// Blue weather card  (#6689f2)
+.card-box[style*="6689f2"],
+.card-box[style*="6689F2"] {
+    background: linear-gradient(135deg, $navy-mid 0%, $navy 100%) !important;
+}
+
+.card-box .kt-portlet__head-title,
+.card-box h5.kt-portlet__head-title {
+    color: rgba($white, 0.82) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+.card-box .inner h6 { color: rgba($white, 0.7) !important; }
+.card-box .inner h5 { color: $white !important; font-weight: 700 !important; }
+.card-box .clock small { color: rgba($white, 0.9) !important; }
+
+// ════════════════════════════════════════════════
+//  PORTLETS / CONTENT CARDS
+// ════════════════════════════════════════════════
+.kt-portlet {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 16px rgba($navy, 0.08) !important;
+    border: 1px solid rgba($navy, 0.07) !important;
+}
+.kt-portlet .kt-portlet__head {
+    border-bottom: 1px solid rgba($navy, 0.07) !important;
+}
+.kt-portlet .kt-portlet__head .kt-portlet__head-title { color: $navy !important; font-weight: 700 !important; }
+
+// Collapsible portlet header (used in dashboard widgets)
+.kt-portlet .kt-portlet__head[class*="kt-bg"],
+.kt-portlet .collapsible-widget-header {
+    background-color: $navy !important;
+    color: $white !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+// ════════════════════════════════════════════════
+//  BUTTONS
+// ════════════════════════════════════════════════
+// Primary → navy
+.btn-primary, .btn.btn-primary {
+    background: linear-gradient(135deg, $navy 0%, $navy-deep 100%) !important;
+    border-color: $navy !important;
+    color: $white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 3px 10px rgba($navy, 0.28) !important;
+    &:hover, &:focus {
+        background: linear-gradient(135deg, $navy-mid 0%, $navy 100%) !important;
+        border-color: $navy-mid !important;
+        box-shadow: 0 5px 16px rgba($navy, 0.4) !important;
+        color: $white !important;
+    }
+}
+
+// Outline-primary → navy border
+.btn-outline-primary {
+    border-color: rgba($navy, 0.45) !important;
+    color: $navy !important;
+    &:hover { background-color: $navy !important; color: $white !important; border-color: $navy !important; }
+}
+
+// Brand-color buttons (compiled from kt-brand-color())
+.btn-brand, .btn.btn-brand {
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%) !important;
+    border-color: $gold-deep !important;
+    color: $navy !important;
+    font-weight: 700 !important;
+    &:hover, &:focus {
+        filter: brightness(1.06) !important;
+        box-shadow: 0 4px 14px rgba($gold, 0.45) !important;
+        color: $navy !important;
+    }
+}
+
+// Customize + sticky button
+.kt-sticky-toolbar .kt-sticky-toolbar__item a,
+a.customize-btn, .btn-hover.btn-primary.btn-font {
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%) !important;
+    color: $navy !important;
+    border: none !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 14px rgba($gold, 0.4) !important;
+    border-radius: 8px !important;
+    &:hover { filter: brightness(1.08) !important; }
+}
+
+// Active state helper
+.activated {
+    color: $navy !important;
+    background-color: $gold !important;
+    border-color: $gold-deep !important;
+}
+
+// ════════════════════════════════════════════════
+//  TABLES
+// ════════════════════════════════════════════════
+.table thead th {
+    background-color: rgba($navy, 0.05) !important;
+    color: $navy !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 2px solid rgba($navy, 0.12) !important;
+}
+.table-striped tbody tr:nth-of-type(odd) { background-color: rgba($navy, 0.025) !important; }
+.table-hover tbody tr:hover { background-color: rgba($gold, 0.07) !important; }
+
+// ════════════════════════════════════════════════
+//  FORMS
+// ════════════════════════════════════════════════
+.form-control:focus {
+    border-color: $gold !important;
+    box-shadow: 0 0 0 3px rgba($gold, 0.2) !important;
+}
+
+// ════════════════════════════════════════════════
+//  LINKS — global brand color
+// ════════════════════════════════════════════════
+a.kt-link, .kt-font-primary { color: $navy !important; }
+a.kt-link:hover, .kt-font-primary:hover { color: $navy-mid !important; }
+
+// kt-font-brand used throughout
+.kt-font-brand { color: $gold-deep !important; }
+
+// ════════════════════════════════════════════════
+//  BADGES  (success, brand)
+// ════════════════════════════════════════════════
+.kt-badge--brand, .kt-badge.kt-badge--brand {
+    background-color: $gold !important;
+    color: $navy !important;
+    font-weight: 800 !important;
+}
+.kt-badge--primary, .kt-badge.kt-badge--primary {
+    background-color: $navy !important;
+    color: $white !important;
+}
+.kt-badge--unified-success,
+.kt-badge.kt-badge--unified-success {
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%) !important;
+    color: $navy !important;
+    font-weight: 900 !important;
+}
+
+// ════════════════════════════════════════════════
+//  FOOTER
+// ════════════════════════════════════════════════
+.kt-footer {
+    background-color: $white !important;
+    border-top: 1px solid rgba($navy, 0.08) !important;
+}
+.kt-footer .kt-footer__copyright { color: rgba($navy, 0.45) !important; }
+
+// ════════════════════════════════════════════════
+//  SCROLLBARS
+// ════════════════════════════════════════════════
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: rgba($navy, 0.04); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba($navy, 0.22); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba($navy, 0.5); }
+
+// Perfect-scrollbar (sidebar)
+.ps__thumb-y { background-color: rgba($gold, 0.4) !important; }
+.ps__rail-y:hover .ps__thumb-y { background-color: $gold !important; }
+
+// ════════════════════════════════════════════════
+//  INFO COLOR — was #5578eb blue, now navy
+// ════════════════════════════════════════════════
+.kt-badge--info, .kt-badge.kt-badge--info,
+.kt-font-info { color: $navy !important; }
+.kt-badge--info, .kt-badge.kt-badge--info {
+    background-color: rgba($navy, 0.12) !important;
+    color: $navy !important;
+}
+.btn-info, .btn.btn-info {
+    background-color: $navy !important;
+    border-color: $navy !important;
+    color: $white !important;
+    &:hover { background-color: $navy-mid !important; border-color: $navy-mid !important; }
+}
+
+// ════════════════════════════════════════════════
+//  KT BACKGROUND UTILITIES  (kt-bg-brand etc.)
+// ════════════════════════════════════════════════
+.kt-bg-brand { background-color: $gold !important; }
+.kt-bg-primary { background-color: $navy !important; }
+
+// Pulse ring on brand icons
+.kt-pulse--brand .kt-pulse__ring {
+    border-color: $gold !important;
+}
+
+// ════════════════════════════════════════════════
+//  GRID NAV (Quick-action dropdown items)
+// ════════════════════════════════════════════════
+.kt-grid-nav .kt-grid-nav__item:hover {
+    background-color: rgba($gold, 0.08) !important;
+}
+.kt-grid-nav .kt-grid-nav__item .kt-grid-nav__title { color: $navy !important; font-weight: 600 !important; }
+.kt-grid-nav .kt-grid-nav__item .kt-grid-nav__desc  { color: rgba($navy, 0.55) !important; }
+.kt-grid-nav .kt-grid-nav__item .kt-grid-nav__icon svg g [fill] { fill: $navy !important; }
+
+// ════════════════════════════════════════════════
+//  NOTIFICATION ITEMS (dropdown)
+// ════════════════════════════════════════════════
+.kt-notification .kt-notification__item:hover { background-color: rgba($gold, 0.06) !important; }
+.kt-notification .kt-notification__item-title   { color: $navy !important; font-weight: 600 !important; }
+.kt-notification .kt-notification__item-time    { color: rgba($navy, 0.45) !important; }
+.kt-notification .kt-notification__custom .btn-clean { color: $navy !important; font-weight: 700 !important; }
+.kt-notification .kt-notification__custom .btn-clean:hover {
+    background-color: rgba($navy, 0.07) !important;
+    color: $navy-mid !important;
+}
+.kt-notification .kt-notification__custom .btn-label-brand {
+    background-color: rgba($gold, 0.15) !important;
+    border-color: transparent !important;
+    color: darken($gold-deep, 12%) !important;
+    font-weight: 700 !important;
+}
+
+// ════════════════════════════════════════════════
+//  USER CARD dropdown
+// ════════════════════════════════════════════════
+.kt-user-card .kt-user-card__name { color: $white !important; }
+.dropdown-menu.show { box-shadow: 0 8px 40px rgba($navy, 0.22) !important; }
+
+// ════════════════════════════════════════════════
+//  XLSX / export button (root.scss also patched)
+// ════════════════════════════════════════════════
+.xlsx-button {
+    background: linear-gradient(135deg, $navy 0%, $navy-deep 100%) !important;
+    color: $white !important;
+    font-weight: 700 !important;
+    border-radius: 6px !important;
+    border: none !important;
+    transition: filter 0.2s !important;
+}
+.xlsx-button:hover { filter: brightness(1.18) !important; }
+
+// ════════════════════════════════════════════════
+//  DASHBOARD — clock widget text
+// ════════════════════════════════════════════════
+.clock small       { color: rgba($white, 0.9) !important; }
+.colon             { color: $gold !important; font-weight: 700 !important; }
+.weather-div h2    { color: $gold !important; font-weight: 900 !important; }
+
+// ════════════════════════════════════════════════
+//  STICKY TOOLBAR (customize button)
+// ════════════════════════════════════════════════
+.kt-sticky-toolbar__item--info {
+    background-color: $gold !important;
+    &:hover { background-color: $gold-deep !important; }
+    a { color: $navy !important; font-weight: 800 !important; }
+}
+
+// ════════════════════════════════════════════════
+//  CHECK-BOX STYLED (todo list)
+// ════════════════════════════════════════════════
+.check-box-completed input[type="radio"]:checked + label { color: $gold-deep !important; font-weight: 700 !important; }
+input[type="checkbox"], input[type="radio"] { accent-color: $gold !important; }
+
+// ════════════════════════════════════════════════
+//  PAGINATION
+// ════════════════════════════════════════════════
+.page-item.active .page-link {
+    background-color: $navy !important;
+    border-color: $navy !important;
+    color: $white !important;
+}
+.page-link { color: $navy !important; }
+.page-link:hover { background-color: rgba($gold, 0.12) !important; color: $navy !important; }
+
+// ════════════════════════════════════════════════
+//  SELECT / DROPDOWN INPUTS
+// ════════════════════════════════════════════════
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: $navy !important;
+}
+.select2-container--default .select2-selection--single:focus,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: $gold !important;
+    box-shadow: 0 0 0 3px rgba($gold, 0.2) !important;
+}
+
+// ════════════════════════════════════════════════
+//  VUE-MULTISELECT / MX-DATEPICKER accents
+// ════════════════════════════════════════════════
+.multiselect__option--highlight,
+.multiselect__option--highlight:after {
+    background: $navy !important;
+    color: $white !important;
+}
+.multiselect__tag { background: $navy !important; color: $white !important; }
+.multiselect__tag-icon:hover { background: $navy-deep !important; }
+.mx-datepicker-popup .cell.active,
+.mx-calendar-content .cell.active { background: $gold !important; color: $navy !important; font-weight: 700 !important; }
+.mx-calendar-content .cell:hover { background: rgba($gold, 0.15) !important; }
+
+// ════════════════════════════════════════════════
+//  TOAST / ALERT  (status bar)
+// ════════════════════════════════════════════════
+.kt-alert--brand, .alert-brand {
+    background-color: rgba($gold, 0.15) !important;
+    border-color: $gold !important;
+    color: darken($gold-deep, 15%) !important;
+}
+
+
+// ════════════════════════════════════════════════
+//  DASHBOARD — Modern Redesign
+//  Palette: charcoal sidebar + gold accent
+// ════════════════════════════════════════════════
+
+.ems-dashboard {
+    padding: 20px 24px 40px;
+    background: $page-bg;
+    min-height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+// ── Welcome Banner ──────────────────────────────
+.ems-dash-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(120deg, $sidebar-bg 0%, $sidebar-mid 60%, #2B2B50 100%);
+    border-radius: 14px;
+    padding: 22px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    border-left: 5px solid $gold;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    &__icon {
+        width: 52px;
+        height: 52px;
+        background: rgba($gold, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $gold;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        color: $white;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 4px;
+    }
+
+    &__sub {
+        color: rgba($white, 0.55);
+        font-size: 13px;
+        margin: 0;
+    }
+
+    &__badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba($gold, 0.12);
+        border: 1px solid rgba($gold, 0.30);
+        color: $gold;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+}
+
+.ems-live-dot {
+    width: 8px;
+    height: 8px;
+    background: #0abb87;
+    border-radius: 50%;
+    display: inline-block;
+    animation: emsPulse 1.6s infinite;
+}
+@keyframes emsPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+// ── KPI Stat Cards ──────────────────────────────
+.ems-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+
+    @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.ems-stat-card {
+    background: $white;
+    border-radius: 14px;
+    padding: 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0 2px 16px rgba($navy, 0.08);
+    border: 1px solid rgba($navy, 0.06);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba($navy, 0.14);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+    }
+
+    &--gold::before  { background: linear-gradient(90deg, $gold, $gold-light); }
+    &--teal::before  { background: linear-gradient(90deg, #0abb87, #00d9a6); }
+    &--purple::before { background: linear-gradient(90deg, $navy, $navy-mid); }
+    &--red::before   { background: linear-gradient(90deg, #fd397a, #ff7bac); }
+
+    &__icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &--gold .ems-stat-card__icon  { background: rgba($gold, 0.12); color: $gold-deep; }
+    &--teal .ems-stat-card__icon  { background: rgba(10,187,135,0.12); color: #0abb87; }
+    &--purple .ems-stat-card__icon { background: rgba($navy, 0.10); color: $navy; }
+    &--red .ems-stat-card__icon   { background: rgba(253,57,122,0.10); color: #fd397a; }
+
+    &__value {
+        font-size: 28px;
+        font-weight: 800;
+        color: $sidebar-bg;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    &__label {
+        font-size: 12.5px;
+        color: rgba($sidebar-bg, 0.55);
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    &__trend {
+        font-size: 11.5px;
+        font-weight: 600;
+    }
+}
+
+.ems-trend--up  { color: #0abb87; }
+.ems-trend--down { color: #fd397a; }
+
+// ── Middle Row ──────────────────────────────────
+.ems-dash-mid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 20px;
+    margin-bottom: 24px;
+
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+// ── Shared Card Shell ───────────────────────────
+.ems-quick-access,
+.ems-activity,
+.ems-enroll-card,
+.ems-events-card {
+    background: $white;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 16px rgba($navy, 0.07);
+    border: 1px solid rgba($navy, 0.06);
+}
+
+.ems-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.ems-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: $sidebar-bg;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i { color: $gold-deep; font-size: 15px; }
+}
+
+.ems-section-link {
+    font-size: 12px;
+    color: $navy;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover { color: $gold-deep; }
+}
+
+// ── Quick Access Grid ───────────────────────────
+.ems-qa-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.ems-qa-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 14px 8px;
+    border-radius: 10px;
+    transition: background 0.18s, transform 0.18s;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba($gold, 0.06);
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba($sidebar-bg, 0.65);
+        text-align: center;
+    }
+}
+
+.ems-qa-tile__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i { font-size: 18px; }
+}
+
+.ems-qa--gold   { background: rgba($gold, 0.14); i { color: $gold-deep; } }
+.ems-qa--teal   { background: rgba(10,187,135,0.13); i { color: #0abb87; } }
+.ems-qa--purple { background: rgba($navy, 0.10); i { color: $navy; } }
+.ems-qa--navy   { background: rgba($sidebar-bg, 0.10); i { color: $sidebar-bg; } }
+.ems-qa--orange { background: rgba(255,138,0,0.13); i { color: #e07b00; } }
+.ems-qa--red    { background: rgba(253,57,122,0.11); i { color: #fd397a; } }
+.ems-qa--green  { background: rgba(30,190,100,0.11); i { color: #1AAA55; } }
+.ems-qa--slate  { background: rgba(100,108,154,0.11); i { color: #646c9a; } }
+
+// ── Activity Feed ───────────────────────────────
+.ems-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.ems-activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba($navy, 0.06);
+
+    &:last-child { border-bottom: none; }
+}
+
+.ems-activity-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+.ems-dot--gold   { background: $gold; }
+.ems-dot--teal   { background: #0abb87; }
+.ems-dot--purple { background: $navy; }
+.ems-dot--red    { background: #fd397a; }
+
+.ems-activity-content { flex: 1; }
+
+.ems-activity-text {
+    font-size: 13px;
+    color: rgba($sidebar-bg, 0.8);
+    margin-bottom: 3px;
+    line-height: 1.4;
+    strong { color: $sidebar-bg; }
+}
+
+.ems-activity-time {
+    font-size: 11px;
+    color: rgba($sidebar-bg, 0.4);
+    i { margin-right: 4px; }
+}
+
+// ── Bottom Row ──────────────────────────────────
+.ems-dash-bottom {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+// ── Enrollment Bars ─────────────────────────────
+.ems-enroll-bars { display: flex; flex-direction: column; gap: 14px; }
+
+.ems-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ems-bar-label {
+    font-size: 12.5px;
+    color: rgba($sidebar-bg, 0.65);
+    font-weight: 500;
+    width: 72px;
+    flex-shrink: 0;
+}
+
+.ems-bar-track {
+    flex: 1;
+    height: 8px;
+    background: rgba($navy, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.ems-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $gold, $gold-light);
+    border-radius: 4px;
+    transition: width 0.7s ease;
+
+    &.ems-bar--teal   { background: linear-gradient(90deg, #0abb87, #00d9a6); }
+    &.ems-bar--purple { background: linear-gradient(90deg, $navy, $navy-mid); }
+    &.ems-bar--red    { background: linear-gradient(90deg, #fd397a, #ff7bac); }
+}
+
+.ems-bar-val {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: $sidebar-bg;
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.ems-badge-gold {
+    background: rgba($gold, 0.14);
+    color: $gold-deep;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+// ── Events List ─────────────────────────────────
+.ems-events-list { display: flex; flex-direction: column; gap: 0; }
+
+.ems-event-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba($navy, 0.06);
+
+    &:last-child { border-bottom: none; }
+}
+
+.ems-event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 48px;
+    background: rgba($gold, 0.10);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.ems-event-day   { font-size: 17px; font-weight: 800; color: $gold-deep; line-height: 1; }
+.ems-event-month { font-size: 10px; font-weight: 600; color: rgba($sidebar-bg, 0.5); text-transform: uppercase; }
+
+.ems-event-info { flex: 1; }
+
+.ems-event-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: $sidebar-bg;
+    margin-bottom: 3px;
+}
+
+.ems-event-meta {
+    font-size: 11.5px;
+    color: rgba($sidebar-bg, 0.45);
+    i { margin-right: 4px; }
+}
+
+.ems-event-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+.ems-tag--gold   { background: rgba($gold, 0.14); color: $gold-deep; }
+.ems-tag--teal   { background: rgba(10,187,135,0.12); color: #0abb87; }
+.ems-tag--purple { background: rgba($navy, 0.10); color: $navy; }
+.ems-tag--red    { background: rgba(253,57,122,0.10); color: #fd397a; }

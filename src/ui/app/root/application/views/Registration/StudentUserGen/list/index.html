@@ -1,0 +1,266 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Student User Generate
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="loadClass">
+            </drop-down>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadProgramSection" class="form-control" v-model="classId" required>
+                <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+              </select>
+              <label>Class</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="refreshData" v-model="sectionCourseLinkId" class="form-control" required>
+                <option :key="index" :value="model.sectionCourseLinkId" v-for="(model,index) in sectionCourseLinkList">
+                  {{model.sectionName}}
+                </option>
+              </select>
+              <label>Section</label>
+            </div>
+          </div>
+        
+          <div class="col-md-3 ">
+            <button v-if="canAdd" data-toggle="modal" data-target="#myModal" class="b-add">
+              <feather icon="save"></feather>
+            </button>
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>Sr #</th>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Select All
+                    <input type="checkbox" @change="checkAll" class="mt-2" v-model="selectAll"></input>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr v-for="(item,index) in StudentList">
+                  <td class="v-align-middle">{{index + 1}}</td>
+                  <td class="v-align-middle">{{item.rollNo}}</td>
+                  <td class="v-align-middle">{{item.fullName}}</td>
+                  <td> <input type="checkbox" class="mt-2" v-model="item.isSelected"></input>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to create User?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" :disabled="StudentList.length==0" @click="insertModel" class="btn btn-primary"
+            data-dismiss="modal">Yes</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <report-engine :data="reportData" :path="report"></report-engine>
+</div> -->
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.role')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.createStudentUser')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.createStudentUser')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.createStudentUser.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId"
+              @input="loadCityCampus">
+            </select-ex>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.createStudentUser.campus')}}</label>
+            <select-ex :options="campusCityList" keyValue="campusId" groupBy="cityName" displayValue="campusName"
+              v-model.trim="campusId" @input="loadProgramsOfCampus"></select-ex>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.createStudentUser.program')}}</label>
+            <select-ex :options="campusProgramLinkList" keyValue="programDetailId" groupBy="programName"
+              displayValue="description" v-model.trim="programDetailId" @input="loadClass">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.createStudentUser.class')}}</label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId"
+              @input="loadProgramSection">
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.createStudentUser.section')}}</label>
+            <select-ex :options="sectionCourseLinkList" @input="refreshData" keyValue="sectionCourseLinkId"
+              displayValue="sectionName" v-model.trim="sectionCourseLinkId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-9 text-right" style="margin-top: 24px;">
+          <button v-if="canAdd" data-toggle="modal" data-target="#myModal"
+            class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i>{{$t('button.save')}}
+          </button>
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </div>
+      </div>
+      <grid :data="StudentList" :columns="columns" pre="modal.createStudentUser.">
+        <template slot="isSelected-header" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand mb-0">
+             <input type="checkbox" @change="checkAll" v-model="selectAll" class="mb-0">{{$t('modal.createStudentUser.grid.selectAll')}}
+            <span></span>
+          </label>
+        </template>
+        <template slot="isSelected" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 14px !important;">
+            <input type="checkbox" v-model="item.row.isSelected">
+            <span></span>
+          </label>
+        </template>
+      </grid>
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="kt-datatable__cell--center kt-datatable__cell kt-datatable__cell--check">
+                  <span style="width: 20px;">
+                    <label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"
+                      style="margin-bottom: 0px;">
+                      <input type="checkbox" @change="checkAll" v-model.trim="selectAll">&nbsp;<span></span>
+                    </label>
+                  </span>
+                </th>
+                <th>{{$t('modal.createStudentUser.srNo')}}</th>
+                <th>{{$t('modal.createStudentUser.rollNo')}}</th>
+                <th>{{$t('modal.createStudentUser.name')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item,index) in StudentList">
+                <td class="kt-datatable__cell--center kt-datatable__cell kt-datatable__cell--check">
+                  <span style="width: 20px;">
+                    <label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid">
+                      <input type="checkbox" v-model="item.isSelected">&nbsp;<span></span>
+                    </label>
+                  </span>
+                </td>
+                <td class="v-align-middle">{{index + 1}}</td>
+                <td class="v-align-middle">{{item.rollNo}}</td>
+                <td class="v-align-middle">{{item.fullName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.createStudentUser')}}</h3>
+            <p>{{ title }}</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to create User?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            :disabled="StudentList.length==0" @click="insertModel"><i class="la la-save"></i>
+            {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

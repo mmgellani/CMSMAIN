@@ -1,0 +1,180 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.leaveManagement.Enter')}}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" v-model="filterString"
+            v-on:keydown.enter="getstudent">
+          <div class="input-group-append">
+            <button class="input-group-text" @click="getstudent"><i class="la la-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.leaveManagement.EnterRefNo/RollNo/StudentName')}}</label>
+        <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Here "
+          v-on:keydown.enter="getstudent">
+      </div>
+    </div> -->
+  <!-- <div class="col-md-3">
+      <label>{{$t('modal.reports.feeReports.students')}}</label>
+      <select @change="GetLeaveInfo()" v-model="admissionformid" class="form-control form-control-sm" required>
+        <option :key="index" :value="model.admissionFormId" v-for="(model,index) in attendanceBulkList">
+          {{model.rollNo}}--{{model.fullName}}
+        </option>
+      </select>
+    </div> -->
+  <!-- <div class="col-md-9 text-right">
+      <label style="height: 38px;"></label>
+      <button v-if="canAdd" @click="AddModel(admissionformid)" title="Add Record"
+        class="btn btn-light btn-hover btn-sm btn-outline-primary">
+        <i class="la la-plus"></i> {{$t('button.insert')}}
+      </button>
+      <button @click="GetLeaveInfo" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+        <i class="la la-refresh"></i> {{$t('button.reload')}}
+      </button>
+    </div> -->
+  <!-- </div> -->
+  <div v-if="canRead">
+    <!-- <grid :data="Leaveinfolist" :columns="columns" pre="modal.leaveManagement.">
+      <template slot="fromDate" slot-scope="item">
+        {{item.row.fromDate | formatDMY}}
+      </template>
+      <template slot="toDate" slot-scope="item">
+        {{item.row.toDate | formatDMY}}
+      </template>
+      <template slot="days" slot-scope="item">
+        {{getDays(item.row.fromDate,item.row.toDate)}}
+
+      </template>
+      <template slot="action" slot-scope="item">
+        <button @click="EditModel(item.row)" v-if="canEdit" title="Edit" type="button"
+          class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+          <i class="la la-edit"></i>
+        </button>
+      </template>
+    </grid> -->
+    <grid :data="attendanceBulkList" :columns="columns" pre="modal.leaveManagement.">
+      <template slot="action" slot-scope="item">
+        <!-- <button @click="EditModel(item.row)" v-if="canEdit" title="Edit" type="button"
+          class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+          <i class="la la-edit"></i>
+        </button> -->
+        <button v-if="canAdd" @click="AddModel(item.row)" title="Add a leave" type="button"
+          class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+          <i class="la la-plus"></i>
+        </button>
+        <button @click="viewLeave(item.row)" title="view leave" type="button"
+          class="btn btn-outline-success btn-icon btn-sm btn-circle">
+          <i class="la la-eye"></i>
+        </button>
+      </template>
+    </grid>
+  </div>
+</div>
+
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Leave Management  Search
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-4">
+
+              <div class="form-group">
+                  <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Here "
+                    v-on:keydown.enter="getstudent">
+                  <label>Enter Ref No/ Roll No/ Student Name </label>
+                </div>
+          </div>
+          <div class="col-md-3">
+              <select  v-model="admissionformid" class="form-control form-control-sm"  @change="GetLeaveInfo()"required>
+                  <option :key="index" :value="model.admissionFormId" v-for="(model,index) in attendanceBulkList">
+                    {{model.rollNo}}--{{model.fullName}}
+                  </option>
+                </select>
+
+          </div>
+          <div class="col-md-3 text-right">
+              <button  @click="AddModel(admissionformid)" class="b-add">
+                  <feather icon="plus-circle"></feather>
+                </button>
+
+            
+            <button @click="GetLeaveInfo" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>From Date</th>
+                  <th>To Date</th>
+                  <th>Days</th>
+                  <th>Is Partial</th>
+                  <th>Approved</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Leaveinfolist">
+
+                  <td class="v-align-middle">{{item.fromDate|formatDMY}}</td>
+                  <td class="v-align-middle">{{item.toDate|formatDMY}}</td>
+                  <td class="v-align-middle">{{getDays(item.fromDate,item.toDate)}}</td>
+                  <td class="v-align-middle"> {{item.isPartial}}</td>
+                  <td class="v-align-middle">{{item.isApproved}}</td>
+                   <button  @click="EditModel(item)" class="b-edit">
+                    <feather icon="edit" ></feather>
+                  </button> 
+                
+                
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Confirm Attendance?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" @click="AddModel" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <leave-manage></leave-manage>
+</div> -->

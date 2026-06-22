@@ -1,0 +1,45 @@
+{
+    "actions": [
+        {
+            "parameters": {
+            },
+            "target": "https://localhost:5001/",
+            "timeout": 20000,
+            "type": "navigate"
+        },
+        {
+            "parameters": {
+                "friendly": "INPUT named username",
+                "value": "muhammad.kamran@cms.edu.pk"
+            },
+            "target": "//FORM[@id=\"kt_login_form\"]/DIV[1]/INPUT",
+            "timeout": 20000,
+            "type": "change"
+        },
+        {
+            "parameters": {
+                "friendly": "INPUT named password",
+                "password": true,
+                "value": "P@kist0n"
+            },
+            "target": "//FORM[@id=\"kt_login_form\"]/DIV[2]/INPUT",
+            "timeout": 20000,
+            "type": "change"
+        },
+        {
+            "parameters": {
+                "friendly": "BUTTON with text \"LOGIN\""
+            },
+            "target": "//BUTTON[@id=\"kt_login_signin_submit\"]",
+            "timeout": 20000,
+            "type": "click"
+        }
+    ],
+    "detection": {
+        "pattern": "200",
+        "request": "GET https://localhost:5001/api/culture/SupportedCultures HTTP/1.1\n\n",
+        "type": "statusis"
+    },
+    "restrictions": [
+    ]
+}

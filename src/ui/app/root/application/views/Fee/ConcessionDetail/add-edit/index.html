@@ -1,0 +1,119 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.feeConcessionDetail')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>{{$t('modal.feeConcessionDetail.concession')}}<span
+                            style="color:red"></label>
+                        <select-ex :options="concessionList" keyValue="concessionId" displayValue="fullName"
+                            v-model="data.concessionId" @input="$v.data.concessionId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.concessionId.$error">
+                            <span v-if="!$v.data.concessionId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>Fee Head<span
+                            style="color:red"></label>
+                        <select-ex :options="feeHeadList" keyValue="feeHeadId" displayValue="feeHeadName"
+                            v-model="data.feeHeadId" @input="loadAmount">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.feeHeadId.$error">
+                            <span v-if="!$v.data.feeHeadId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcessionDetail.feeAmount')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <the-mask :mask="'#######'" v-restrict.number v-model.trim="feeAmount" class="form-control form-control-sm" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcessionDetail.percentage')}}<span
+                                style="color:red">
+                                *</span></label>
+
+                        <input type="number" @blur="calculateTotalAmount" class="form-control form-control-sm"
+                            v-model="data.percentage" v-restrict.number v-mask="'###'" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.feeConcessionDetail.discountAmount')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="number" @blur="calculatePercentage" class="form-control form-control-sm"
+                            v-mask="'#######'" v-model="data.feeAmount" required>
+                        <div class="invalid-feedback" v-show="$v.data.feeAmount.$error">
+                            <span v-if="!$v.data.feeAmount.required">{{$t('validation.required')}}</span>
+                        </div>
+                        
+<div class="text-danger mt-1" v-if="discountError">
+    {{ discountError }}
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" :disabled="!allowsubmit()" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+</modal>

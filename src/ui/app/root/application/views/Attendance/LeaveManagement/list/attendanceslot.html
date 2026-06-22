@@ -1,0 +1,13 @@
+<div class="row" v-if="processedData">
+    <div class="col-md-12">
+        {{getslot}}
+    </div>
+    <div class="col-md-12">
+        {{courseName}}
+    </div>
+    <div class="col-md-12" v-for="entity in processedData">
+        <select class="form-control form-control-sm" v-model="entity.attendenceStatusId">
+            <option v-for="(model,index) in astatus" :value="model.attendenceStatusId">{{model.fullName}}</option>
+        </select>
+    </div>
+</div>

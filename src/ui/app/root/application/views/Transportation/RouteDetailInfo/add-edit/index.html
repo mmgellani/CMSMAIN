@@ -1,0 +1,202 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<!-- 
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+            <h5>Model <span class="semi-bold">{{title}}</span></h5>
+            <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                v-if="!IsNewRecord">
+                <input class="switch" type="checkbox" v-model="isActive">
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="form-group col-md-12">
+                    <div class="col-md-12 row">
+                        <select class="form-control form-control-sm" v-model="data.routeId">
+                            <option v-for="item in routeModel" :value="item.routeId">{{item.routeTitle}}</option>
+                        </select>
+                        <label style="margin-left:15px;">Route</label>
+                    </div>
+                    <br>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" v-model="data.stopName">
+                            <label>Stop Name <span style="color:red">*</span></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" v-model="data.startingPoint">
+                            <label>Starting Point <span style="color:red">*</span></label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-12 row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" v-model="data.endingPoint">
+                            <label>Ending Point <span style="color:red">*</span></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" v-restrict.number class="form-control form-control-sm"
+                                v-model="data.fare">
+                            <label>Fare <span style="color:red">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-danger btn-block m-t-5" @click="cancel">
+                                    <i class="card-icon card-icon-close"></i> Close</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-primary btn-block m-t-5" @click="saveModel">
+                                    <i class="fa fa-save"></i> Save</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto" 
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.routeDetailInfo')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.transportDetailInfo.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-option__control">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="isActive">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>{{$t('modal.transportDetailInfo.route')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="routeModel" keyValue="routeId" displayValue="routeTitle"
+                            v-model.trim="data.routeId" @input="$v.data.routeId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.routeId.$error">
+                            <span v-if="!$v.data.routeId.required">{{$t('validation.required')}}</span>
+                        </div>
+                        <!-- <select class="form-control form-control-sm" v-model="data.routeId">
+                                <option v-for="item in routeModel" :value="item.routeId">{{item.routeTitle}}</option>
+                            </select> -->
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label> {{$t('modal.transportDetailInfo.stopName')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.stopName"
+                            :class="{'is-invalid': $v.data.stopName.$error}" @input="$v.data.stopName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.stopName.$error">
+                            <span v-if="!$v.data.stopName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.stopName.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>
+                            {{$t('modal.transportDetailInfo.fare')}}<span style="color:red">
+                                *</span></label>
+                        <input type="number" class="form-control  " v-model.trim="data.fare"
+                            :class="{'is-invalid': $v.data.fare.$error}" @input="$v.data.fare.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fare.$error">
+                            <span v-if="!$v.data.fare.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fare.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>
+                            {{$t('modal.transportDetailInfo.startingPoint')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model="data.startingPoint"
+                            :class="{'is-invalid': $v.data.startingPoint.$error}"
+                            @input="$v.data.startingPoint.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.startingPoint.$error">
+                            <span v-if="!$v.data.startingPoint.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.startingPoint.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label>
+                            {{$t('modal.transportDetailInfo.endingPoint')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model="data.endingPoint"
+                            :class="{'is-invalid': $v.data.endingPoint.$error}" @input="$v.data.endingPoint.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.endingPoint.$error">
+                            <span v-if="!$v.data.endingPoint.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.endingPoint.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                    <!-- <button class="btn btn-light btn-hover btn-sm btn-primary" v-else disabled><i
+                            class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

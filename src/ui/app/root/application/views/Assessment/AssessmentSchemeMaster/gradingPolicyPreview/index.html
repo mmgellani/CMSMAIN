@@ -1,0 +1,104 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="grading-olicy-preview" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.gradingPolicyBulk')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel2">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="container">
+                <div class="row" v-if="!IsNewRecord">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="kt-option kt-option-custom">
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title mt-1">
+                                            {{$t('modal.setupClass.recordStatus')}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input disabled type="checkbox" checked="checked" v-model="isActive">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.examinationGradingPolicyBulk.name')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <input disabled type="text" class="form-control form-control-sm"
+                                :class="{'is-invalid': $v.data.name.$error}" v-model.trim="fullName"
+                                @input="$v.data.name.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.name.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                            <!-- <input type="text" class="form-control form-control-sm" v-model="data.name" required
+                                        <label
+                                            :class="!$v.model.name.required">{{$t('modal.examinationGradingPolicyBulk.name')}}<span
+                                                style="color:red">
+                                                *</span></label> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="form-control-label">{{$t('modal.examinationGradingPolicyBulk.gradingDetail')}}</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Maximum Percentage <span style="color:red"> *</span> </div>
+                    <div class="col-md-6">{{$t('modal.examinationGradingPolicyBulk.gradeLetter')}}<span
+                            style="color:red"> *</span> </div>
+                </div>
+                <div class="row mt-3" v-for="model in gradingInfo">
+                    <div class="col-md-6 input-group">
+                        <input disabled v-restrict.number type="text" size=50 v-model="model.maxMarks"
+                            class="form-control form-control-sm" />
+
+                    </div>
+                    <div class="col-md-6 input-group">
+                        <input disabled type="text" size=50 v-model="model.gradeLetter" class="form-control form-control-sm" />
+                       
+
+                    </div>
+                </div>
+             
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel2"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+               
+            </div>
+        </div>
+    </div>
+
+</modal>

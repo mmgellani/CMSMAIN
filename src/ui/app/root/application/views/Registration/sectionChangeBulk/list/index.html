@@ -1,0 +1,256 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Section Change
+      </div>
+      <div class="card-body" v-if="canRead">
+        <grid :data="datas" :columns="columns">
+          <template slot="operation-links">
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </template>
+          <template slot="operation-actions">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select @change="loadCityCampus" class="form-control form-control-sm" v-model="sessionId" required>
+                    <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+                  </select>
+                  <label>Session</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                  display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                </drop-down>
+              </div>
+              <div class="col-md-3">
+                <drop-down @change="refreshData()" v-model="campusProgramId" :data="campusProgramLinkList"
+                  group-by="programName" key-value="campusProgramId" display-value="description" placeholder="Programs">
+                </drop-down>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select @change="loadSections()" v-model="classid" class="form-control form-control-sm" required>
+                    <option :key="index" :value="model.classId" v-for="(model,index) in classList">{{model.fullName}}
+                    </option>
+                  </select>
+                  <label>Class</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select @change="refreshData()" v-model="sectionCourseLinkId" class="form-control form-control-sm" required>
+                    <option :key="index" :value="model.sectionCourseLinkId" v-for="(model,index) in sectionList">
+                      {{model.sectionName}}
+                    </option>
+                  </select>
+                  <label>Section</label>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template slot="sectionId" slot-scope="item">
+            <select  v-model="item.row.sectionCourseLinkId" class="form-control form-control-sm">
+              <option v-for="(model,index) in sectionList" :value="model.sectionCourseLinkId">{{model.sectionName}}
+              </option>
+            </select>
+          </template>
+
+          <template slot="rollNo" slot-scope="item">
+            <input @blur="enableCheckBox(item.row)" class="form-control form-control-sm" v-model="item.row.rollNo"
+              type="text" placeholder="RollNo" />
+            <div v-if="item.isDisabled" class="input-group-append">
+              <span class="input-group-text" style="color:red;" id="basic-addon2">!</span>
+            </div>
+          </template>
+
+          <template slot="isSelected" slot-scope="item">
+            <input type="checkbox" @change="check(item.row)" class="form-control form-control-sm" :disabled="item.row.isDisabled"
+              v-model="item.row.isSelected" />
+          </template>
+          <template slot="action" slot-scope="item">
+            <a @click="insertModel(item.row)" v-if="canEdit">
+              <feather icon="edit" xclass="b-edit"></feather>
+            </a>
+          </template>
+        </grid>
+      </div>
+    </div>
+  </div>
+
+</div> -->
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.registration')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+       Bulk Section Change </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.sectionChange')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+            <!-- <select @change="loadCityCampus" class="form-control form-control-sm" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.campus')}}</label>
+            <select-ex :options="campusCityList" groupBy="cityName" keyValue="campusId" displayValue="campusName"
+              v-model.trim="campusId"></select-ex>
+
+            <!-- <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down> -->
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.program')}}</label>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" keyValue="campusProgramId"
+              displayValue="description" v-model.trim="campusProgramId" @input="loadClass"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.class')}}</label>
+            <select-ex :options="classList" groupBy="cityName" keyValue="classId" displayValue="fullName"
+              v-model.trim="classid"></select-ex>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.section')}}</label>
+            <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+              v-model.trim="sectionCourseLinkId"></select-ex>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>To Section</label>
+            <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+              v-model.trim="ToSection"></select-ex>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3 mt-4">
+
+          <!-- <label>Select All</label>
+
+          <input type="checkbox" v-model="chkall" @change="updall"> -->
+
+          <label class="kt-option kt-option-custom m-0" style="border: none !important;">
+            <span class="kt-option__label">
+              <span class="kt-option__head">
+                <span class="kt-option__title mt-1">
+                  Select All
+                </span>
+              </span>
+            </span>
+            <span class="kt-switch kt-switch--sm kt-switch--icon">
+              <label class="m-0">
+                <input type="checkbox" v-model="chkall"  @change="updall">
+                <span></span>
+              </label>
+            </span>
+          </label>
+
+
+
+        </div>
+     
+      </div>
+      <grid :data="datas" :columns="columns" pre="modal.sectionChange.">
+        <template slot="action-area">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+          <button v-if="canAdd" @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i>{{$t('button.save')}}
+          </button>
+        </template>
+        
+        <template slot="isSelected" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand">
+            <input type="checkbox" 
+              v-model="item.row.isSelected">
+            <span></span>
+          </label>
+        </template>
+
+        <template slot="action" slot-scope="item">
+          <button v-if="canEdit" title="Save" type="button"
+            class="btn btn-outline-success btn-icon btn-sm btn-circle" @click="saveModal(item.row)" data-toggle="modal" data-target="#myModal">
+            <i class="la la-save"></i>
+            <!-- @click="insertModel(item.row)" -->
+          </button>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.sectionChange')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure to Change Section of this student?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="insertModel(saveDatasList)"
+            data-dismiss="modal" type="submit">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

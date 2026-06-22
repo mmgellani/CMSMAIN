@@ -1,0 +1,123 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<section>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.attendanceTeacherUser.class')}}</label>
+        <select-ex @input="loadClassData" :options="classList" keyValue="classId" displayValue="fullName"
+          v-model="classId">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.helper.Exemption.selectChallanType')}}</label>
+        <select-ex :options="ChallanTypeList" keyValue="challanTypeId" displayValue="fullName" v-model="challanType">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.helper.Exemption.selectInstallment')}}</label>
+        <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installNo"
+          @input="hasExecumption">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.helper.Exemption.exemptionAmount')}}</label>
+        <input type="number" class="form-control" v-restrict.number v-model="exemptionAmount" @input="updateFeeAmount"
+          :disabled="applyExemption" style="height:28px;" required>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.helper.Exemption.exemptionRemarks')}}</label>
+        <select-ex :options="concessionremarksmarkslist" keyValue="remarks" displayValue="remarks"
+          v-model="remarksconcess" required v-if="data">
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr role="row">
+            <th>{{$t('modal.helper.Exemption.feeHeads')}}</th>
+            <th>{{$t('modal.helper.Exemption.feeAmount')}}</th>
+            <th>{{$t('modal.helper.Exemption.concession')}}</th>
+            <th>{{$t('modal.helper.Exemption.payableAmount')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in feeHeadData">
+            <td class="align-middle">{{item.feeHead}}</td>
+            <td class="align-middle">{{item.feeAmount | amount}}</td>
+            <td class="align-middle" v-if="item.feeHeadId='00000000-0000-0000-0000-000000000000'"> {{item.remarks}}
+            </td>
+            <td class="align-middle">{{item.payableAmount | amount}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="align-middle"><strong>{{$t('modal.helper.Exemption.totalAmount')}}</strong></td>
+            <td class="align-middle"><strong>{{sumFeeHead('feeAmount') | amount}}</strong></td>
+            <td></td>
+            <td class="align-middle"><strong>{{sumFeeHead('payableAmount') | amount}}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr role="row">
+            <th>{{$t('modal.helper.Exemption.challanNo')}}</th>
+            <th>{{$t('modal.helper.Exemption.dueDate')}}</th>
+            <th>{{$t('modal.helper.Exemption.challanAmount')}}</th>
+            <th>{{$t('modal.helper.Exemption.paidDate')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in feeDetail">
+            <td class="align-middle"> {{item.challanNo}} </td>
+            <td class="align-middle"> {{item.dueDate | formatDMY}} </td>
+            <td class="align-middle"> {{item.feeAmount | amount}} </td>
+            <td class="align-middle"> {{item.paidDate | formatDMY}} </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="align-middle"><strong>Total Amount</strong></td>
+            <td></td>
+            <td class="align-middle"><strong>{{sumFee('feeAmount') | amount}}</strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button class="btn btn-light btn-hover btn-sm btn-primary la la-floppy-o" v-if="exemptionAmount>0"
+        @click="SaveFeeExemption" :disabled="isSaving" v-show="shouldSave">{{$t('modal.helper.Exemption.save')}}</button>
+
+      <div v-if="showRevertExumption">
+        <button class="btn btn-light btn-hover btn-sm btn-primary"
+          @click="RevertExemption">{{$t('modal.helper.Exemption.revertExemption')}}</button>
+      </div>
+    </div>
+  </div>
+
+</section>

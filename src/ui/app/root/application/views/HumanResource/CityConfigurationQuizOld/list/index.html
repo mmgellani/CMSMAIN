@@ -1,0 +1,114 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.cityConfigurationQuiz')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.cityConfigurationQuiz')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.cityConfigurationQuiz')">
+
+
+    <template slot="portlet-body">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('modal.reports.feeReports.session')}}<span style="color:red">
+                *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.setupCampus.city')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId">
+          </select-ex>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.class')}}</label><span style="color:red">
+              *</span>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName"
+              v-model.trim="classId"></select-ex>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Quiz Name</label><span style="color:red">
+              *</span>
+            <input v-model="quizName" type="text" class="form-control form-control-sm p-4">
+          </div>
+        </div>
+
+      </div>
+      <div class="row"> 
+
+        <div class="col-md-3" style="margin-top: 8px;">
+          <div class="form-group">
+            <label class="form-control-label">From Date</label>
+            <span style="color:red">*</span>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromdate" format="DD/MM/YYYY HH:mm"
+              lang="en" v-mask="'##/##/####'"  type="datetime" :not-before="currDate"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3" style="margin-top: 8px;">
+          <div class="form-group">
+            <label class="form-control-label">To Date</label>
+            <span style="color:red">*</span>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="todate" format="DD/MM/YYYY HH:mm"
+              lang="en" v-mask="'##/##/####'"  type="datetime" :not-before="fromdate"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3" style="margin-top: 8px;">
+          <div class="form-group">
+            <label class="form-control-label">Calendar From Date</label>
+            <span style="color:red">*</span>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="calendarfromdate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" ></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3" style="margin-top: 8px;">
+          <div class="form-group">
+            <label class="form-control-label">Calendar To Date</label>
+            <span style="color:red">*</span>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="calendartodate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" :not-before="calendarfromdate"></date-picker>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Test Frequency</label><span style="color:red">
+              *</span>
+            <input v-model="testFrequency" type="text" class="form-control form-control-sm p-4">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                        class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="save"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+            </div>
+        </div>
+    </div>
+    </template>
+  </portlet-area>
+</page-area>

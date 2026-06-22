@@ -1,0 +1,194 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="student-password-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+  :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="60%" height="auto"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+
+    <div class="modal-header clearfix text-left">
+
+      <div class="row">
+        <div class="col-md-8">
+          <h5>
+            <span class="semi-bold">{{title}}</span>
+          </h5>
+
+
+        </div>
+        <div class="col-md-4 text-right">
+          <a href="#" @click="cancel" class="cancel">
+            <i class="fa fa-close"></i>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="table-responsive">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>RollNo</th>
+                  <th>RefferenceNo</th>
+                  <th>Password</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+
+                  <td class="v-align-middle"> {{data.rollNo}}</td>
+                  <td class="v-align-middle">{{data.refferenceNo}}</td>
+                  <td class="v-align-middle">{{data.password}} </td>
+                  <button class="btn btn-primary btn-block" @click="sendMessage">Send Message</button>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary btn-block" type="submit" @click="cancel()">Close</button>
+    </div>
+  </div>
+</modal> -->
+
+
+
+
+<modal name="el-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-md-6 modal_heading">
+        <h5 class="modal-title">Concession Student</h5>
+        <p> Insert Record </p>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-3">
+          <h6>RefferenceNo:</h6>
+        </div>
+        <div class="col-md-4">
+          <label>{{rollno}}</label>
+        </div>
+
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Refference RollNo</h6> {{rolteachid}}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Refference Name</h6> {{name}}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Refference Father Name:</h6>{{fathername}}
+            </label>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>City</h6> {{city}}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Session</h6> {{session}}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Program</h6>{{program}}
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Section</h6> {{section}}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              <h6>Concession Type</h6> {{type}}
+            </label>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Kinship</label>
+            <select-ex :options="list" keyValue="scholarshipCriteriaId" displayValue="concessionName"
+              v-model="scholarshipid"></select-ex>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="UpdateEldata"><i class="la la-save"></i>
+            Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal>

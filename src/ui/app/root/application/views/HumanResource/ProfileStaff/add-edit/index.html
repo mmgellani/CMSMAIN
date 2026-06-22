@@ -1,0 +1,57 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="20%" height="auto"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12 text-centre">
+                    <div class="modal-title">
+                        Change Password
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" v-model="oldPassword" required>
+                        <label>Current Password</label>
+                    </div>
+                    <!-- <vs-input type="password" v-model="oldPassword" placeholder="Current Password" /> -->
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" v-model="newPassword" required>
+                        <label>New Password</label>
+                    </div>
+                    <!-- <vs-input type="password" v-model="newPassword" placeholder="New Password" /> -->
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" v-model="reEnterPassword" required>
+                        <label>Re-Enter Password</label>
+                    </div>
+                    <!-- <vs-input type="password" v-model="reEnterPassword" placeholder="Re-Enter Password" /> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-danger" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</modal>

@@ -1,0 +1,541 @@
+<modal name="edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.studentDetails.studentDetails')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row roleModel">
+                <div class="col-md-12">
+                    <tabs  >
+                        <tab :name="$t('modal.studentDetails.personal')" :selected="true"> <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label>{{$t('modal.studentDetails.fullName')}}</label><span style="color:red">
+                                            *</span>
+                                        <input type="text" class="form-control form-control-sm"
+                                            :class="{'is-invalid': $v.data.fullName.$error}"
+                                            v-model.trim="data.fullName" v-uppercase @input="$v.data.fullName.$touch()">
+                                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                                            {{$t('validation.required')}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.studentCnic')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <the-mask :mask="'#####-#######-#'" class="form-control form-control-sm"
+                                            v-model.trim="data.studentCNIC" @input="$v.data.studentCNIC.$touch()"
+                                            :class="{'is-invalid': $v.data.studentCNIC.$error}" />
+                                        <div class="invalid-feedback" v-show="$v.data.studentCNIC.$error">
+                                            <span
+                                                v-if="!$v.data.studentCNIC.required">{{$t('validation.required')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.dateOfBirth')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <div class="form-group validated">
+                                            <date-picker class="input-28" id="change-width" ref="changeWidth"
+                                                format="DD/MM/YYYY" lang="en"
+                                                :value="data.dateOfBirth && data.dateOfBirth.toString().split('T')[0]"
+                                                @input="data.dateOfBirth = $event.target.value"></date-picker>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.fatherName')}}</label><span
+                                            style="color:red">
+                                            *</span>
+                                        <input type="text" class="form-control form-control-sm"
+                                            :class="{'is-invalid': $v.data.fatherName.$error}"
+                                            v-model.trim="data.fatherName" v-uppercase
+                                            @input="$v.data.fatherName.$touch()">
+                                        <div class="invalid-feedback" v-show="$v.data.fatherName.$error">
+                                            {{$t('validation.required')}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.guardianCnic')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <the-mask :mask="'#####-#######-#'" class="form-control form-control-sm"
+                                            v-model.trim="data.parentCNIC" @input="$v.data.parentCNIC.$touch()" />
+                                        <div class="invalid-feedback" v-show="$v.data.parentCNIC.$error">
+                                            {{$t('validation.required')}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.bloodGroup')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <select-ex :options="bloodGroupList" keyValue="bloodGroupId"
+                                            displayValue="fullName" v-model.trim="data.bloodGroupId">
+                                        </select-ex>
+                                        <div class="invalid-feedback" v-show="$v.data.bloodGroupId.$error">
+                                            <span
+                                                v-if="!$v.data.bloodGroupId.required">{{$t('validation.required')}}</span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.religion')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <select-ex :options="religionList" keyValue="religionId" displayValue="fullName"
+                                            v-model.trim="data.religionId">
+                                        </select-ex>
+                                        <div class="invalid-feedback" v-show="$v.data.religionId.$error">
+                                            <span
+                                                v-if="!$v.data.religionId.required">{{$t('validation.required')}}</span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label class="form-control-label">{{$t('modal.studentDetails.gender')}}</label>
+                                        <span style="color:red"> *</span>
+                                        <select-ex :options="genderList" keyValue="genderId" displayValue="description"
+                                            v-model.trim="data.genderId">
+                                        </select-ex>
+                                        <div class="invalid-feedback" v-show="$v.data.genderId.$error">
+                                            <span v-if="!$v.data.genderId.required">{{$t('validation.required')}}</span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-control-label mb-3">
+                                        {{$t('modal.studentDetails.studentImage')}}
+                                    </label>
+                                    <div v-if="!data.image" class="dropzone-panel">
+                                        <div class="img-wrapper">
+                                            <div class="img-icon">
+                                                <label for="AttachFile" class="btn btn-primary">Attach File</label>
+                                                <input type="file" class="dropzone-select" style="display: none;"
+                                                    id="AttachFile" @input="onFileChange($event)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" v-else>
+                                        <div class="group-logo-img">
+                                            <img :src="data.image" />
+                                            <tooltip text="Delete image">
+                                                <button class="group-logo-del" vs-type="border" vs-icon="close"
+                                                    @click="removeImage">
+                                                    <i class="la la-trash"></i>
+                                                </button>
+                                            </tooltip>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab :name="$t('modal.studentDetails.contact')"> <br>
+                            <div class="row">
+                                <div class="col-md-6" style="margin-top: 24px;">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.studentContact')}}</label><span
+                                            style="color:red">
+                                            *</span>
+                                        <the-mask :mask="'(####) ### ####'" v-model.trim="data.studentContactNo"
+                                            class="form-control form-control-sm" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div v-for="(data ,index) in IAddressList">
+                                        <div class="form-group validated">
+                                            <label class="form-control-label"
+                                                v-if="index==1">{{$t('modal.studentDetails.temporary')}} </label>
+                                            <input v-if="index==1" v-model.trim="data.address"
+                                                class="form-control form-control-sm" />
+                                            <div v-if="index==1" class="invalid-feedback"
+                                                v-show="$v.data.address.$error">
+                                                <span
+                                                    v-if="!$v.data.address.required">{{$t('validation.required')}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group validated">
+                                        <label
+                                            class="form-control-label">{{$t('modal.studentDetails.parentContact')}}</label><span
+                                            style="color:red">
+                                            *</span>
+                                        <the-mask :mask="'(####) ### ####'" v-model.trim="data.parentContactNo"
+                                            class="form-control form-control-sm" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group validated">
+                                        <div v-for="(data ,index) in IAddressList">
+                                            <div class="form-group validated">
+                                                <label class="form-control-label"
+                                                    v-if="index==0">{{$t('modal.studentDetails.permanent')}} </label>
+                                                <input v-if="index==0" :class="{'is-invalid': $v.data.address.$error}"
+                                                    v-model.trim="data.address" class="form-control form-control-sm"
+                                                    @input="$v.data.address.$touch()" />
+
+                                                <div v-if="index==0" class="invalid-feedback"
+                                                    v-show="$v.data.address.$error">
+                                                    <span
+                                                        v-if="!$v.data.address.required">{{$t('validation.required')}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab :name="$t('modal.studentDetails.academics')"> <br>
+                            <div v-for="(item,index) in academicsArray">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                            v-if="index==academicsArray.length-1" @click="addAcademics"><i
+                                                class="fa fa-plus"></i></button>
+                                        <button class="btn btn-outline-danger btn-icon btn-sm btn-circle"
+                                            @click="deleteAcademics(index)" v-if="academicsArray.length>1"><i
+                                                class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.degree')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <select-ex :options="degreeList" keyValue="degreeId" displayValue="fullName"
+                                                v-model.trim="item.degreeId">
+                                            </select-ex>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.group')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <select-ex :options="groupList" keyValue="groupId" displayValue="fullName"
+                                                v-model.trim="item.groupId">
+                                            </select-ex>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">Board RollNo</label>
+                                            <span style="color:red"> *</span>
+                                            <input type="text" class="form-control form-control-sm"
+                                                v-model.trim="item.rollNo" v-restrict.number maxlength="10">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.obtainedMarks')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <!-- <input type="text" class="form-control form-control-sm"
+                                                v-model.trim="data.obtainMarks" v-restrict.number> -->
+                                            <the-mask :mask="'#####'" class="form-control form-control-sm"
+                                                v-model="item.obtainMarks" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.totalMarks')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <!-- <input type="text" class="form-control form-control-sm"
+                                                v-model="data.totalMarks" v-restrict.number> -->
+                                            <the-mask :mask="'#####'" class="form-control form-control-sm"
+                                                v-model="item.totalMarks" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.passingYear')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <the-mask :mask="'####'" v-model="item.year"
+                                                class="form-control form-control-sm" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.boardName')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <select-ex :options="BoardList" keyValue="fullName" displayValue="fullName"
+                                                v-model.trim="item.board">
+                                            </select-ex>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.institute')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <input type="text" class="form-control form-control-sm"
+                                                v-model="item.institute">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group validated">
+                                            <label
+                                                class="form-control-label">{{$t('modal.studentDetails.registration')}}</label>
+                                            <span style="color:red"> *</span>
+                                            <input type="text" class="form-control form-control-sm"
+                                                v-model="item.registrationNo" v-restrict.number>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </tab>
+
+  <tab name="Attachments">
+  <br>
+<div><u>Concession Supportings</u></div>
+  <br>
+
+  <div v-for="(item,index) in attachmentsArray"
+       :key="'attach-'+index"
+       class="mb-3 border p-2">
+    <!-- ACTION BUTTONS -->
+    <div class="row mb-2">
+      <div class="col-md-12 text-right">
+
+        <!-- SAVE (ONLY NEW ROW) -->
+        <button v-if="!item.saved"
+                class="btn btn-primary btn-sm mr-1"
+                :disabled="item.uploading"
+                @click="saveAttachmentRow(item)">
+          Upload
+        </button>
+
+        <!-- DELETE (ONLY SAVED ROW) -->
+        <!-- <button v-if="item.saved"
+                class="btn btn-outline-danger btn-sm"
+                @click="removeAttachmentRow(index)">
+          <i class="la la-trash"></i>
+        </button> -->
+
+      </div>
+    </div>
+
+    <div class="row align-items-center"> <!-- changed from align-items-end -->
+
+  <!-- CLASS -->
+  <div class="col-md-3">
+    <label>Class <span style="color:red">*</span></label>
+    <select-ex
+      :options="classList"
+      keyValue="classId"
+      displayValue="fullName"
+      v-model="item.classId"
+      :disabled="item.saved">
+    </select-ex>
+  </div>
+
+  <!-- INSTALLMENT -->
+  <div class="col-md-3">
+    <label>Installment No<span style="color:red">*</span></label>
+    <select-ex
+      :options="maxInstallments"
+      keyValue="item"
+      displayValue="item"
+      v-model="item.installNo"
+      :disabled="item.saved">
+    </select-ex>
+  </div>
+
+  <!-- FILE -->
+
+  <div class="col-md-4 d-flex align-items-center">
+
+    <!-- Upload / Preview -->
+    <div v-if="!item.uploaded" style="display:flex;align-items:center;gap:8px; margin-top: 22px;">
+      <label class="btn btn-primary mb-0"
+             style="height:38px; line-height:38px; padding:0 16px; display:inline-flex; align-items:center ;cursor:pointer;">
+        Attachment
+        <input type="file" hidden accept="application/pdf,image/*"
+               @change="onAttachmentChange($event,index)">
+      </label>
+      <div style="font-size:12px;color:#dc3545;">
+        Type : PDF, PNG, JPG Max size : 250KB
+      </div>
+    </div>
+
+    <div v-else style="display:flex; align-items:center; margin-top: 29px ;">
+      <!-- Image container with cross -->
+      <div style="position:relative; display:inline-block;">
+        <!-- <img v-if="!item.pdfFile" :src="item.base64 || item.fileUrl" style="max-width:80px; display:block;"> -->
+ <div style="position: relative; display: inline-block;">
+  <img v-if="!item.pdfFile"
+       :src="item.base64 || item.fileUrl"
+       style="max-width:80px; transition: all 0.2s ease; cursor: pointer; display:block;"
+       @mouseover="hoverZoom($event)"
+       @mouseout="hoverReset($event)">
+</div>
+
+
+
+
+        <img v-else src="../../../../../../assets/images/pdf .png" style="width:40px; display:block;">
+
+
+        <button v-if="!item.saved"
+                title="Remove attachment"
+                @click="removeAttachmentImage(index)"
+                style="position:absolute; top:0; right:0; border:none; background:transparent; padding:0; cursor:pointer;">
+          <i class="la la-times-circle" style="font-size:18px; color:#000; cursor:pointer;"></i>
+        </button>
+
+         <button v-if="item.saved"
+                title="Remove attachment"
+                @click="openDeleteModal(index)"
+                style="position:absolute; top:0; right:0; border:none; background:transparent; padding:0; cursor:pointer; cursor:pointer; ">
+          <i class="la la-times-circle" style="font-size:18px; color:#000;"></i>
+        </button>
+      </div>
+
+    <div style="font-size:14px;     margin-left: 15px;
+    margin-top: 27px ;max-width:200px; word-break: break-word;">
+    {{ item.fileName }}
+  </div>
+
+      <!-- CONFIRM DELETE (INLINE CSS) -->
+<div v-if="showDeleteConfirm"
+     style="position:fixed;
+            top:0; left:0; right:0; bottom:0;
+            background:rgba(0,0,0,0.4);
+            z-index:99999;
+            display:flex;
+            align-items:center;
+            justify-content:center;">
+
+  <div style="background:#fff;
+              width:380px;
+              padding:20px;
+              border-radius:6px;
+              box-shadow:0 5px 20px rgba(0,0,0,0.3);">
+
+    <h5 style="margin-top:0;">Confirm Delete</h5>
+
+    <p style="margin:15px 0;">
+      Are you sure you want to delete this attachment?
+    </p>
+
+    <div style="text-align:right;">
+      <button @click="closeDeleteConfirm"
+              style="padding:6px 12px;
+                     border:1px solid #ccc;
+                     background:#f8f9fa;
+                     border-radius:4px;
+                     cursor:pointer;">
+        Cancel
+      </button>
+
+      <button @click="removeAttachmentRow(index)"
+              style="padding:6px 12px;
+                     margin-left:8px;
+                     border:none;
+                     background:#dc3545;
+                     color:#fff;
+                     border-radius:4px;
+                     cursor:pointer;">
+        Delete
+      </button>
+    </div>
+
+  </div>
+</div>
+
+      <!-- <small style="margin-left:8px;">{{ item.fileName }}</small> -->
+    </div>
+  </div>
+
+</div>
+
+  </div>
+</tab>
+
+
+
+
+                    </tabs>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-hover btn-sm btn-primary" :disabled="!allowSubmitnew" @click="saveModel"><i class="la la-floppy-o"></i>
+                    {{$t('button.save')}}</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</modal>
+
+

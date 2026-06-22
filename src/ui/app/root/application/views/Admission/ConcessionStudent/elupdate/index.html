@@ -1,0 +1,182 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<modal name="el-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-md-6 modal_heading">
+        <h5 class="modal-title">Concession Student</h5>
+
+        <p> View Record </p>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+
+    <tabs>
+      <tab name='Profile' :selected="true">
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Refference No</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.refferenceNo}}</label>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Student's Name</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.fullname}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Father's Name</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.fathername}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Father's/ Guardian CNIC</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.parentcnic}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Date of Birth</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.dob|formatDMY}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Gender</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{Getgender()}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Mobile No.</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.parentcontactno}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Email</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.email}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Address</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.data.address}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Last Exam Passed</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{GetDegree()}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Passing Year</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.year}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Board</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.board}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Group</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{Getgroup()}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Obtained Marks</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.obtainMarks}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Total Marks</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.totalMarks}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Board Roll No.</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.rollNo}}</label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label><strong>Institute</strong></label>
+          </div>
+          <div class="col-md-3 pb-0 pt-0">
+            <label>{{this.academicdata.institute}}</label>
+          </div>
+        </div>
+      </tab>
+
+      <tab name='Documents'>
+        <div class="preview-image-open" v-if="imagePreview != ''">
+          <button @click="imagePreview = ''" class="btn-img-close">
+            <i class="la la-times"></i>
+          </button>
+          <button @click="imagedownload(imagePreview)" class="btn-img-download">
+            <i class="la la-download"></i>
+          </button>
+         <!-- <button @click="imagePreview = ''">download</button> -->
+          <img :src="'data:image/jpeg;base64,'+ imagePreview" alt="">
+        </div>
+        
+       <div class="row">
+         <div class="col-md-3" v-for="(item,index) in imageListResonse">
+          <div class="preview-image">
+            <div class="preview" @click="preview(item)">
+              <img :src="item ? ('data:image/jpeg;base64,'+item) : './assets/placeholder.png'" />
+            </div>
+          </div>
+         </div>
+       </div>
+      </tab>
+    </tabs>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</modal>

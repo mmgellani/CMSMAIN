@@ -1,0 +1,192 @@
+<!-- <div class="row">
+    <div class="card">
+        <div class="card-title">
+            <div class="row">
+                <div class="col-md-12">Sms To Studnets</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mt-5 ModeColor">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="margin-left:15px;">SMS Mask</label>
+                            <select class="form-control " v-model="smsapid" required>
+                                <option v-for="option in smsapilist" :value="option.smsApId">
+                                    {{option.mask}}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6" v-if="useTemplate">
+                            <label style="margin-left:15px;">SMS Templates</label>
+                            <select @change="showTemplateMessage()" class="form-control" v-model="templateId">
+                                <option v-for="(model,index) in templateList" :value="model.templateId">
+                                    {{model.type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <input @change="loadTemplates" type="radio" id="outsider" value="Outsider" v-model="picked">
+                            <label for="outsider">Outsider</label>
+                            <input  @change="loadTemplates" type="radio" id="onStudent" value="OnStudents" v-model="picked">
+                            <label for="onStudent">On Students</label>
+                        </div>
+                        <div class="col-md-6" v-if = "picked == 'Outsider' && templateId.length>0">
+                            <vue-xlsx-table @on-select-file="uploadExcel"> Click to Upload Excel File
+                            </vue-xlsx-table>
+                        </div>
+                        <div class="col-md-6" v-if = "picked == 'OnStudents' && templateId.length>0">
+                            <vue-xlsx-table @on-select-file="uploadStudentExcel"> Click to Upload Excel File
+                            </vue-xlsx-table>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="col-md-12 mt-4 mb-3">
+                                Mobile Number List (Total Number Of Contacts are {{smsNumbers.length}})
+                                <select class="form-control m-input m-input--air" multiple="">
+                                    <option v-for="number of smsNumbers">{{number}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <label style="margin-left:15px;">Message to Send</label>
+                                    <textarea :disabled="useTemplate" class="form-control m-input m-input--air"
+                                        v-model="messageText"></textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group m-input-group m-input-group--air">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Country Code</span>
+                                        </div>
+                                        <input class="form-control m-input" placeholder="Country Code" type="number"
+                                            v-model="countryCode" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group m-input-group m-input-group--air">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Number Length</span>
+                                        </div>
+                                        <input class="form-control m-input" placeholder="Number Length" type="number"
+                                            v-model="numberLength" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary" style="width: 100%" @click="sendMessage()">Send
+                                        Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- ----------------------------------------------------------------------------------------- -->
+
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title"> {{$t('navigation.bsetup')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                SmsToStudent </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.customSms')">
+        <template slot="portlet-body">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label style="margin-left:15px;">SMS Mask</label>
+                        <select class="form-control " v-model="smsapid" required>
+                            <option v-for="option in smsapilist" :value="option.smsApId">
+                                {{option.mask}}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6" v-if="useTemplate">
+                        <label style="margin-left:15px;">SMS Templates</label>
+                        <select @change="showTemplateMessage()" class="form-control" v-model="templateId">
+                            <option v-for="(model,index) in templateList" :value="model.templateId">
+                                {{model.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <!-- <div class="col-md-6">
+                        <input @change="loadTemplates" type="radio" id="outsider" value="Outsider" v-model="picked">
+                        <label for="outsider">Outsider</label>
+                        <input  @change="loadTemplates" type="radio" id="onStudent" value="OnStudents" v-model="picked">
+                        <label for="onStudent">On Students</label>
+                    </div> -->
+                    <div class="col-md-6" v-if = "picked == 'Outsider' && templateId.length>0">
+                        <vue-xlsx-table @on-select-file="uploadExcel"> Click to Upload Excel File
+                        </vue-xlsx-table>
+                    </div>
+                    <div class="col-md-6" v-if = "picked == 'OnStudents' && templateId.length>0">
+                        <vue-xlsx-table @on-select-file="uploadStudentExcel"> Click to Upload Excel File
+                        </vue-xlsx-table>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="col-md-12 mt-4 mb-3">
+                            Mobile Number List (Total Number Of Recipients are {{smsNumbers.length}})
+                            <select class="form-control m-input m-input--air" multiple="" style="overflow: auto;">
+                                <option v-for="number of smsNumbers">{{number}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <label style="margin-left:15px;">Message to Send</label>
+                                <textarea :disabled="useTemplate" class="form-control m-input m-input--air mt-3"
+                                    v-model="messageText"></textarea>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="input-group m-input-group m-input-group--air">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Country Code</span>
+                                    </div>
+                                    <input class="form-control m-input" placeholder="Country Code" type="number"
+                                        v-model="countryCode" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group m-input-group m-input-group--air">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Number Length</span>
+                                    </div>
+                                    <input class="form-control m-input" placeholder="Number Length" type="number"
+                                        v-model="numberLength" readonly>
+                                </div>
+                            </div> -->
+                            <div class="col-md-4 offset-md-8 mt-5">
+                                <button class="btn btn-primary" style="width: 100%" @click="sendMessage()">Send
+                                    Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </template>
+
+    </portlet-area>
+
+</page-area>
+
+

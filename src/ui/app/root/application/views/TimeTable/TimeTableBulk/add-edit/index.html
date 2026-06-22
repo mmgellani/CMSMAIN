@@ -1,0 +1,103 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-modelBulk" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.timetable')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.timetable.staffName')}}</label>
+                        <select-ex :options="staffList" keyValue="staffId" displayValue="fullName"
+                            v-model.trim="data.staffId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.timetable.course')}}</label>
+                        <select-ex :options="CourseList" keyValue="programCourseLinkId" displayValue="courseName"
+                            v-model.trim="data.programCourseLinkId">
+                        </select-ex>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" v-if="datas">
+                        <label class="form-control-label">{{$t('modal.timetable.room')}}</label>
+                        <select-ex :options="datas" keyValue="roomId" displayValue="fullName"
+                            v-model.trim="data.roomId">
+                        </select-ex>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <b> Days</b>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <b>Slot</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tbody>
+                                <tr v-for="item in weekDay">
+                                    <td style="width: 200px !important;">{{item.dayName}}</td>
+                                    <td style="width: 30px !important;">
+                                        <label class="kt-checkbox kt-checkbox--brand">
+                                            <input type="checkbox" @change="loadSlots" v-bind:id="item.dayName"
+                                                v-model="item.isChecked">
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <select-ex :options="SlotTimingList" keyValue="slotTimingId"
+                                            displayValue="startTime" v-model.trim="item.slotId" v-if="item.isChecked">
+                                        </select-ex>
+                                        <div v-if="item.slotId=='' && item.isChecked== true">Please select Slot Timing
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" :disabled="!allowsubmit()"
+                    @click="saveModel"><i class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <Staff v-on:submit="loadStaff"></Staff>
+    <Room v-on:submit="loadRoom"></Room>
+    <Slots v-on:submit="loadSlots"></Slots>
+</modal>

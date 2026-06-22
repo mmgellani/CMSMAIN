@@ -1,0 +1,78 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Section Rights
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+          </div>
+          <grid :data="UserList" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+              </div>
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+               <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+          
+            </template>
+          </grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  
+</div>
+ -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.role')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.SectionRightLink')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.SectionRightLink')">
+    <template slot="portlet-body">
+      <grid :data="UserList" :columns="columns" pre="modal.SectionRightLink.">
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-edit"></i>
+          </button>
+          <!-- <button @click="deleteModel(item.row)" v-if="canDelete" title="Delete" type="button"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+            <i class="la la-trash"></i>
+          </button> -->
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+</page-area>

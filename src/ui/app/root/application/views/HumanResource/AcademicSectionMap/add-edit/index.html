@@ -1,0 +1,130 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h3 class="modal-title">Academic Section Map</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+                <div class="row" v-if="!IsNewRecord">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="kt-option kt-option-custom">
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title mt-1">
+                                            {{$t('modal.setupClass.recordStatus')}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="isActive">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                
+                <div v-if="!IsNewRecord" class="row">
+                    <div class="col-md-5" >
+                        <div class="form-group">
+                          <label>{{$t('modal.reports.examinationReports.section')}}<span style="color:red">
+                              *</span></label>
+                          <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+                            v-model="data.sectionCourseLinkId">
+                          </select-ex>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Academic Calendar Master<span style="color:red">
+                              *</span>
+              
+                          </label>
+                          <select-ex :options="academicCalendarMasterList" keyValue="academicCalendarMasterId" displayValue="fullName"
+                            v-model="data.academicCalendarMasterId">
+                          </select-ex>
+                        </div>
+                      </div>
+            
+                </div>
+
+
+                <div v-if="IsNewRecord">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Academic Calendar Master<span style="color:red">
+                          *</span>
+          
+                      </label>
+                      <select-ex :options="academicCalendarMasterList" keyValue="academicCalendarMasterId" displayValue="fullName"
+                        v-model="academicCalendarMasterId">
+                      </select-ex>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-left:5px">
+                    <div class="form-group col-md-12" style="font-weight: 600;">
+                    
+                     
+                      <input type="checkbox" v-model="isCheckedAll" @change="checkAll" /> Check All
+
+                    </div>
+              </div>
+                  <div class="row" style="margin-left:5px">
+                        <div class="form-group col-md-6"  v-for= "item in sectionListCB" style="border: 1px solid lightgray;padding: 10px;">
+                        <div class="row">
+                          <span class="col-md-6">{{ item.sectionName }}</span>
+                           
+                          <span class="col-md-6" style="text-align: right;"> <input type="checkbox" v-model="item.isChecked" /></span>
+                           
+                        </div>
+                         
+
+                        </div>
+                  </div>
+
+                
+                     
+                 
+            
+                </div>
+
+
+            
+
+
+
+            
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button :disabled="isDisable" class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

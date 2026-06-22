@@ -1,0 +1,434 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Attendence Dashboard
+      </div>
+      <div class="card-body" v-if="canRead">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="form-control" @change="refreshData" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <input class="form-control" @change="refreshData" v-model="dated" type="date" required>
+              <label>Date</label>
+            </div>
+          </div>
+          <div class="col-md-3 offset-md-3">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-sm tbl-btn" :disabled="Id==0 || Id == 1"
+                @click="loadStack">Go Back</button>
+
+            </div>
+          </div>
+        </div>
+        <template v-if="data">
+          <template v-if="checkIt != 'NON'">
+            <div class="row text-center" style="margin-left: 0px !important;">
+              <div class="col-md-2 title-std">
+                <strong>Description</strong>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Scheduled</strong></div>
+                  <div :class="'col-md-' + (12 / classes.length) + ' title-std'" v-for="cls in classes">
+                    <strong>{{cls}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Held</strong></div>
+                  <div :class="'col-md-' + (12 / classes.length) + ' title-std'" v-for="cls in classes">
+                    <strong>{{cls}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Approved</strong></div>
+                  <div :class="'col-md-' + (12 / classes.length) + ' title-std'" v-for="cls in classes">
+                    <strong>{{cls}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Un-Approved</strong></div>
+                  <div :class="'col-md-' + (12 / classes.length) + ' title-std'" v-for="cls in classes">
+                    <strong>{{cls}}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Percentage</strong></div>
+                  <div :class="'col-md-' + (12 / classes.length) + ' title-std'" v-for="cls in classes">
+                    <strong>{{cls}}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row text-center color-divider" v-for="item in records"
+              style="height: 90px; display: flex; align-items: center">
+              <div class="col-md-2" style="cursor: pointer;" @click="loadNextData(item.id)">
+                <span v-html="item.displayName"></span>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div :class="'col-md-' + (12 / classes.length) + ''" v-for="cls in classes">
+                    <strong>{{getData(item.id, cls, 'S')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div :class="'col-md-' + (12 / classes.length) + ''" v-for="cls in classes">
+                    <strong>{{getData(item.id, cls, 'H')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div :class="'col-md-' + (12 / classes.length) + ''" v-for="cls in classes">
+                    <strong>{{getData(item.id, cls, 'A')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div :class="'col-md-' + (12 / classes.length) + ''" v-for="cls in classes">
+                    <strong>{{getData(item.id, cls, 'U')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div :class="'col-md-' + (12 / classes.length) + ''" v-for="cls in classes">
+                    <strong>{{getData(item.id, cls, 'P')}}%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <div class="row text-center" style="margin-left: 0px !important;">
+              <div class="col-md-2 title-std">
+                <strong>Description</strong>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Total</strong></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Present</strong></div>
+
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Absent</strong></div>
+
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Leave</strong></div>
+
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 title-std"><strong>Percentage</strong></div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row text-center color-divider" v-for="item in records"
+              style="height: 90px; display: flex; align-items: center">
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12" style="cursor: pointer;" @click="loadStudentList(item.id)">
+                    <span v-html="item.displayName"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{getDataEx('S')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{getDataEx('H')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{getDataEx('A')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{getDataEx('U')}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong>{{getDataEx('P')}}%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
+  </div>
+  <add-edit-model></add-edit-model>
+
+</div> -->
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceAttendenceDashboard')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.attendanceAttendenceDashboard')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.session')}}<span style="color:red"> *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId"
+              @input="loadClass">
+            </select-ex>
+
+            <!-- <select class="form-control" @change="refreshData" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select> -->
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.date')}}<span style="color:red"> *</span></label>
+            <!-- <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="dated" format="DD/MM/YYYY"
+                lang="en" @input="refreshData"></date-picker> -->
+
+            <date-picker @input="refreshData" class="input-28" id="change-width" ref="changeWidth" v-model="dated"
+              format="DD/MM/YYYY" lang="en"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.class')}}<span style="color:red"> *</span></label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model="classId"
+              @input="refreshData"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Approved Vs Un-Approved
+            </template>
+            <template slot="content">
+              <Highcharts :options="options" />
+
+            </template>
+          </collapsible-widget>
+        </div>
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Held Vs Un-Held
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsH" />
+            </template>
+          </collapsible-widget>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button type="button" class="btn btn-hover btn-sm btn-outline-primary" :disabled="Id==0 || Id == 1"
+            @click="loadStack">
+            <i class="la la-arrow-left"></i> Go Back</button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-12">
+
+          <div class="table-responsive">
+            <template v-if="data">
+              <template v-if="checkIt != 'NON'">
+                <div class="fixed-header-table">
+                  <table style="width:100%;" class="customTable">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">
+                          {{$t('modal.attendanceAttendenceDashboard.description')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.scheduled')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.held')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.approved')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.unApproved')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.percentage')}}
+                        </th>
+                      </tr>
+                      <tr>
+                        <th v-for="cls in classes">
+                          {{cls}}
+                        </th>
+                        <th v-for="cls in classes">
+                          {{cls}}
+                        </th>
+                        <th v-for="cls in classes">
+                          {{cls}}
+                        </th>
+                        <th v-for="cls in classes">
+                          {{cls}}
+                        </th>
+                        <th v-for="cls in classes">
+                          {{cls}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in records" class="rowHover" style="cursor: pointer;"
+                        @click="loadNextData(item.id)">
+                        <td @click="loadNextData(item.id)">
+                          <span v-html="item.displayName"></span>
+                        </td>
+                        <td v-for="cls in classes">
+                          {{getData(item.id, cls, 'S')}}
+                          <!-- {{getDataEx('S')}} -->
+                        </td>
+                        <td v-for="cls in classes">
+                          {{getData(item.id, cls, 'H')}}
+                        </td>
+                        <td v-for="cls in classes">
+                          {{getData(item.id, cls, 'A')}}
+                        </td>
+                        <td v-for="cls in classes">
+                          {{getData(item.id, cls, 'U')}}
+                        </td>
+                        <td v-for="cls in classes">
+                          {{getData(item.id, cls, 'P')}}%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </template>
+              <template v-else>
+                <div class="fixed-header-table">
+                  <table style="width:100%;" class="customTable">
+                    <thead>
+                      <tr>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.description')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.total')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.present')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.absent')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.leave')}}
+                        </th>
+                        <th>
+                          {{$t('modal.attendanceAttendenceDashboard.percentage')}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in records" class="rowHover" @click="loadStudentList(item.id)">
+                        <td @click="loadStudentList(item.id)">
+                          <span v-html="item.displayName"></span>
+                        </td>
+                        <td>
+                          {{getDataEx('S')}}
+                        </td>
+                        <td>
+                          {{getDataEx('H')}}
+                        </td>
+                        <td>
+                          {{getDataEx('A')}}
+                        </td>
+                        <td>
+                          {{getDataEx('U')}}
+                        </td>
+                        <td>
+                          {{getDataEx('P')}}%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </template>
+            </template>
+          </div>
+          <div v-if="data.length == 0" class="error-message mt-3 pl-2">
+            <h6>Record doesn't exist</h6>
+          </div>
+
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+  <add-edit-model></add-edit-model>
+</page-area>

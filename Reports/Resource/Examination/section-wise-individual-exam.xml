@@ -1,0 +1,1674 @@
+{
+  "ReportVersion": "2022.2.4.0",
+  "ReportGuid": "d4a35c61ca3249b291ea0c08eb781355",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(1634104645000+0500)/",
+  "ReportChanged": "/Date(1674543162730+0500)/",
+  "EngineVersion": "EngineV2",
+  "CacheAllData": true,
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "Resources": {
+      "0": {
+        "Name": "db (2)",
+        "Alias": "db (2)",
+        "Type": "Json",
+        "Image": "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"
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiDataTableSource",
+        "Name": "root",
+        "Alias": "root",
+        "Key": "da0c0dfaebd54ad88263f03e4866f194",
+        "Columns": {
+          "0": {
+            "Name": "lazyLoader",
+            "Index": -1,
+            "NameInSource": "lazyLoader",
+            "Alias": "lazyLoader",
+            "Type": "System.Double"
+          },
+          "1": {
+            "Name": "newID",
+            "Index": -1,
+            "NameInSource": "newID",
+            "Alias": "newID",
+            "Type": "System.Guid"
+          },
+          "2": {
+            "Name": "admissionFormId",
+            "Index": -1,
+            "NameInSource": "admissionFormId",
+            "Alias": "admissionFormId",
+            "Type": "System.Guid"
+          },
+          "3": {
+            "Name": "attendanceStatus",
+            "Index": -1,
+            "NameInSource": "attendanceStatus",
+            "Alias": "attendanceStatus",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "examType",
+            "Index": -1,
+            "NameInSource": "examType",
+            "Alias": "examType",
+            "Type": "System.String"
+          },
+          "5": {
+            "Name": "shift",
+            "Index": -1,
+            "NameInSource": "shift",
+            "Alias": "shift",
+            "Type": "System.String"
+          },
+          "6": {
+            "Name": "gradingMasterId",
+            "Index": -1,
+            "NameInSource": "gradingMasterId",
+            "Alias": "gradingMasterId",
+            "Type": "System.Guid"
+          },
+          "7": {
+            "Name": "overAllRemark",
+            "Index": -1,
+            "NameInSource": "overAllRemark",
+            "Alias": "overAllRemark",
+            "Type": "System.String"
+          },
+          "8": {
+            "Name": "matricPerc",
+            "Index": -1,
+            "NameInSource": "matricPerc",
+            "Alias": "matricPerc",
+            "Type": "System.Double"
+          },
+          "9": {
+            "Name": "remarks",
+            "Index": -1,
+            "NameInSource": "remarks",
+            "Alias": "remarks",
+            "Type": "System.String"
+          },
+          "10": {
+            "Name": "grade",
+            "Index": -1,
+            "NameInSource": "grade",
+            "Alias": "grade",
+            "Type": "System.String"
+          },
+          "11": {
+            "Name": "totalObtained",
+            "Index": -1,
+            "NameInSource": "totalObtained",
+            "Alias": "totalObtained",
+            "Type": "System.Double"
+          },
+          "12": {
+            "Name": "studentName",
+            "Index": -1,
+            "NameInSource": "studentName",
+            "Alias": "studentName",
+            "Type": "System.String"
+          },
+          "13": {
+            "Name": "subjectPerc",
+            "Index": -1,
+            "NameInSource": "subjectPerc",
+            "Alias": "subjectPerc",
+            "Type": "System.Double"
+          },
+          "14": {
+            "Name": "fatherName",
+            "Index": -1,
+            "NameInSource": "fatherName",
+            "Alias": "fatherName",
+            "Type": "System.String"
+          },
+          "15": {
+            "Name": "address",
+            "Index": -1,
+            "NameInSource": "address",
+            "Alias": "address",
+            "Type": "System.String"
+          },
+          "16": {
+            "Name": "campusName",
+            "Index": -1,
+            "NameInSource": "campusName",
+            "Alias": "campusName",
+            "Type": "System.String"
+          },
+          "17": {
+            "Name": "sessionName",
+            "Index": -1,
+            "NameInSource": "sessionName",
+            "Alias": "sessionName",
+            "Type": "System.Double"
+          },
+          "18": {
+            "Name": "examSchedule",
+            "Index": -1,
+            "NameInSource": "examSchedule",
+            "Alias": "examSchedule",
+            "Type": "System.String"
+          },
+          "19": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          },
+          "20": {
+            "Name": "totalMarks",
+            "Index": -1,
+            "NameInSource": "totalMarks",
+            "Alias": "totalMarks",
+            "Type": "System.Double"
+          },
+          "21": {
+            "Name": "obtainMarks",
+            "Index": -1,
+            "NameInSource": "obtainMarks",
+            "Alias": "obtainMarks",
+            "Type": "System.Double"
+          },
+          "22": {
+            "Name": "description",
+            "Index": -1,
+            "NameInSource": "description",
+            "Alias": "description",
+            "Type": "System.String"
+          },
+          "23": {
+            "Name": "className",
+            "Index": -1,
+            "NameInSource": "className",
+            "Alias": "className",
+            "Type": "System.String"
+          },
+          "24": {
+            "Name": "sectionName",
+            "Index": -1,
+            "NameInSource": "sectionName",
+            "Alias": "sectionName",
+            "Type": "System.String"
+          },
+          "25": {
+            "Name": "courseName",
+            "Index": -1,
+            "NameInSource": "courseName",
+            "Alias": "courseName",
+            "Type": "System.String"
+          },
+          "26": {
+            "Name": "TotalPercentage",
+            "Index": -1,
+            "NameInSource": "TotalPercentage",
+            "Alias": "TotalPercentage",
+            "Type": "System.Double"
+          },
+          "27": {
+            "Name": "month",
+            "Index": -1,
+            "NameInSource": "month",
+            "Alias": "month",
+            "Type": "System.DateTime"
+          },
+          "28": {
+            "Name": "na",
+            "Index": -1,
+            "NameInSource": "na",
+            "Alias": "na",
+            "Type": "System.String"
+          },
+          "29": {
+            "Name": "overAllTotal",
+            "Index": -1,
+            "NameInSource": "overAllTotal",
+            "Alias": "overAllTotal",
+            "Type": "System.Double"
+          },
+          "30": {
+            "Name": "overAllPerc",
+            "Index": -1,
+            "NameInSource": "overAllPerc",
+            "Alias": "overAllPerc",
+            "Type": "System.Double"
+          }
+        },
+        "NameInSource": "root.root"
+      },
+      "1": {
+        "Ident": "StiDataTableSource",
+        "Name": "root_lazyLoader",
+        "Alias": "root_lazyLoader",
+        "Key": "253623f65e324d4da4611dc7a54ec9d5",
+        "NameInSource": "root.root_lazyLoader"
+      },
+      "2": {
+        "Ident": "StiVirtualSource",
+        "Name": "root2",
+        "Alias": "root2",
+        "Key": "47738c50de474819ab03855139e492ee",
+        "Columns": {
+          "0": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "studentName",
+            "Index": -1,
+            "NameInSource": "studentName",
+            "Alias": "studentName",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "root",
+        "GroupColumns": {
+          "0": "rollNo",
+          "1": "studentName"
+        },
+        "Sort": {
+          "0": "ASC",
+          "1": "rollNo"
+        }
+      },
+      "3": {
+        "Ident": "StiDataTableSource",
+        "Name": "root3",
+        "Alias": "root3",
+        "Key": "c342a3ac97a1455588dc909b797bdb37",
+        "Columns": {
+          "0": {
+            "Name": "lazyLoader",
+            "Index": -1,
+            "NameInSource": "lazyLoader",
+            "Alias": "lazyLoader",
+            "Type": "System.Double"
+          },
+          "1": {
+            "Name": "newID",
+            "Index": -1,
+            "NameInSource": "newID",
+            "Alias": "newID",
+            "Type": "System.Guid"
+          },
+          "2": {
+            "Name": "admissionFormId",
+            "Index": -1,
+            "NameInSource": "admissionFormId",
+            "Alias": "admissionFormId",
+            "Type": "System.Guid"
+          },
+          "3": {
+            "Name": "attendanceStatus",
+            "Index": -1,
+            "NameInSource": "attendanceStatus",
+            "Alias": "attendanceStatus",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "gradingMasterId",
+            "Index": -1,
+            "NameInSource": "gradingMasterId",
+            "Alias": "gradingMasterId",
+            "Type": "System.Guid"
+          },
+          "5": {
+            "Name": "examType",
+            "Index": -1,
+            "NameInSource": "examType",
+            "Alias": "examType",
+            "Type": "System.String"
+          },
+          "6": {
+            "Name": "shift",
+            "Index": -1,
+            "NameInSource": "shift",
+            "Alias": "shift",
+            "Type": "System.String"
+          },
+          "7": {
+            "Name": "overAllRemark",
+            "Index": -1,
+            "NameInSource": "overAllRemark",
+            "Alias": "overAllRemark",
+            "Type": "System.String"
+          },
+          "8": {
+            "Name": "matricPerc",
+            "Index": -1,
+            "NameInSource": "matricPerc",
+            "Alias": "matricPerc",
+            "Type": "System.Double"
+          },
+          "9": {
+            "Name": "subjectPerc",
+            "Index": -1,
+            "NameInSource": "subjectPerc",
+            "Alias": "subjectPerc",
+            "Type": "System.Double"
+          },
+          "10": {
+            "Name": "remarks",
+            "Index": -1,
+            "NameInSource": "remarks",
+            "Alias": "remarks",
+            "Type": "System.String"
+          },
+          "11": {
+            "Name": "grade",
+            "Index": -1,
+            "NameInSource": "grade",
+            "Alias": "grade",
+            "Type": "System.String"
+          },
+          "12": {
+            "Name": "totalObtained",
+            "Index": -1,
+            "NameInSource": "totalObtained",
+            "Alias": "totalObtained",
+            "Type": "System.Double"
+          },
+          "13": {
+            "Name": "studentName",
+            "Index": -1,
+            "NameInSource": "studentName",
+            "Alias": "studentName",
+            "Type": "System.String"
+          },
+          "14": {
+            "Name": "fatherName",
+            "Index": -1,
+            "NameInSource": "fatherName",
+            "Alias": "fatherName",
+            "Type": "System.String"
+          },
+          "15": {
+            "Name": "address",
+            "Index": -1,
+            "NameInSource": "address",
+            "Alias": "address",
+            "Type": "System.String"
+          },
+          "16": {
+            "Name": "campusName",
+            "Index": -1,
+            "NameInSource": "campusName",
+            "Alias": "campusName",
+            "Type": "System.String"
+          },
+          "17": {
+            "Name": "sessionName",
+            "Index": -1,
+            "NameInSource": "sessionName",
+            "Alias": "sessionName",
+            "Type": "System.Double"
+          },
+          "18": {
+            "Name": "examSchedule",
+            "Index": -1,
+            "NameInSource": "examSchedule",
+            "Alias": "examSchedule",
+            "Type": "System.String"
+          },
+          "19": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          },
+          "20": {
+            "Name": "totalMarks",
+            "Index": -1,
+            "NameInSource": "totalMarks",
+            "Alias": "totalMarks",
+            "Type": "System.Double"
+          },
+          "21": {
+            "Name": "obtainMarks",
+            "Index": -1,
+            "NameInSource": "obtainMarks",
+            "Alias": "obtainMarks",
+            "Type": "System.Double"
+          },
+          "22": {
+            "Name": "description",
+            "Index": -1,
+            "NameInSource": "description",
+            "Alias": "description",
+            "Type": "System.String"
+          },
+          "23": {
+            "Name": "className",
+            "Index": -1,
+            "NameInSource": "className",
+            "Alias": "className",
+            "Type": "System.String"
+          },
+          "24": {
+            "Name": "sectionName",
+            "Index": -1,
+            "NameInSource": "sectionName",
+            "Alias": "sectionName",
+            "Type": "System.String"
+          },
+          "25": {
+            "Name": "courseName",
+            "Index": -1,
+            "NameInSource": "courseName",
+            "Alias": "courseName",
+            "Type": "System.String"
+          },
+          "26": {
+            "Name": "month",
+            "Index": -1,
+            "NameInSource": "month",
+            "Alias": "month",
+            "Type": "System.DateTime"
+          }
+        },
+        "NameInSource": "db (3).root"
+      },
+      "4": {
+        "Ident": "StiDataTableSource",
+        "Name": "root_lazyLoader2",
+        "Alias": "root_lazyLoader2",
+        "Key": "d3dcfbbc0e8c4df79037b1bf99e30926",
+        "NameInSource": "db (3).root_lazyLoader"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiJsonDatabase",
+        "Name": "root",
+        "Alias": "root",
+        "PathData": "C:\\Users\\ahmad.raza\\Documents\\sec.json"
+      },
+      "1": {
+        "Ident": "StiJsonDatabase",
+        "Name": "db (3)",
+        "Alias": "db (3)",
+        "PathData": "C:\\Users\\ahmad.raza.PG\\OneDrive - Campus Managment System\\Pictures\\sectionwise.json"
+      }
+    },
+    "Relations": {
+      "0": {
+        "Name": "Name",
+        "ChildColumns": {
+          "0": "rollNo"
+        },
+        "ParentColumns": {
+          "0": "rollNo"
+        },
+        "NameInSource": "Relation",
+        "Alias": "Name",
+        "ParentSource": "root2",
+        "ChildSource": "root"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "74ca729e58cc439891be21ec3903a6bc",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeaderBand1",
+          "Guid": "836e39e26ec04660bd8ad3a7f6bc6972",
+          "ClientRectangle": "0,0.4,27.7,6.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text3",
+              "Guid": "be9e8060827a4429bc5dea6e88f77e4c",
+              "ClientRectangle": "9.05,1.2,10.6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Section Wise Individual Exam Report"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Microsoft Sans Serif;12;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text5",
+              "Guid": "fb9215389bbb49588acf9c9be2d44880",
+              "CanGrow": true,
+              "ClientRectangle": "8.25,4.4,11.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Exam: {root.examType}({root.examSchedule} / {root.month})"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "TextQuality": "Wysiwyg",
+              "AllowHtmlTags": true,
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text29",
+              "Guid": "6ef4976b230743919fedae48d2bdbe61",
+              "ClientRectangle": "24,3.6,1.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Class :"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text30",
+              "Guid": "897775f08ee94559a588f492fc56af0d",
+              "ClientRectangle": "25.4,3.6,2.2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.className}"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "DataColumn"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text31",
+              "Guid": "03cb3794e8e9433d8fa829b9d494b77a",
+              "ClientRectangle": "0.2,2.8,1.6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Program :"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text33",
+              "Guid": "a47a4667e3e947669e8411c06d2f3080",
+              "ClientRectangle": "1.8,2.8,6.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.description} {root.shift}"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text8",
+              "Guid": "2a84edfd7d914455ba0cbe7ffcdfe6ad",
+              "ClientRectangle": "0.2,3.6,1.6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Session: "
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text34",
+              "Guid": "b231e3ed645e4372981300d025e5c4f5",
+              "ClientRectangle": "1.8,3.6,2.6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.sessionName}"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "DataColumn"
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "e5cd0b73f20e4bf382373086f7d0f205",
+              "CanGrow": true,
+              "ClientRectangle": "3.75,0.2,21.2,0.8",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.campusName}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;14;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "TextOptions": {
+                "WordWrap": true
+              },
+              "Type": "Expression"
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text35",
+              "Guid": "2990361f2fb04840bc8ac079ca3c9823",
+              "ClientRectangle": "24,2.8,1.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Section :"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "Expression"
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "68324a0a3246435c982f844c8a1debed",
+              "ClientRectangle": "25.4,2.8,2.2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.sectionName}"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "TextQuality": "Wysiwyg",
+              "Type": "DataColumn"
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiHeaderBand",
+          "Name": "HeaderBand1",
+          "Guid": "1d4f65d2566f4e609b0352f06c35264f",
+          "ClientRectangle": "0,7.4,27.7,2.28",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;Dot;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiCrossHeaderBand",
+              "Name": "CrossHeaderBand1",
+              "Guid": "a18b002e8f0d4891a82ca85794ca0f65",
+              "ClientRectangle": "0,0,6.95,2.28",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text1",
+                  "Guid": "229b3806b35946738d3eadfde7228903",
+                  "ClientRectangle": "0,0,6.95,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Subject"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text13",
+                  "Guid": "d81b8be5cc884b59bdc0ea5330e5965c",
+                  "ClientRectangle": "0,0.76,6.95,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total Marks"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text14",
+                  "Guid": "72cdd7d3c6d34e19ae8016cfc1293f17",
+                  "ClientRectangle": "0,1.52,0.76,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Sr. #"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text15",
+                  "Guid": "f40157b079fb4ea48cebca88d8042efb",
+                  "ClientRectangle": "0.76,1.52,2.43,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Student Id"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "4": {
+                  "Ident": "StiText",
+                  "Name": "Text19",
+                  "Guid": "87b50514b3b34c16899545977e437adc",
+                  "ClientRectangle": "3.19,1.52,2.74,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Student Name"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "5": {
+                  "Ident": "StiText",
+                  "Name": "Text22",
+                  "Guid": "6519a9b5e2a74b9281d2a440b75b5c6a",
+                  "ClientRectangle": "5.93,1.52,1.02,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Matric %"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;7;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                }
+              }
+            },
+            "1": {
+              "Ident": "StiCrossDataBand",
+              "Name": "CrossDataBand1",
+              "Guid": "188e31ad57f249f1b6a2e203a23e1173",
+              "ClientRectangle": "6.95,0,2.12,2.28",
+              "Interaction": {
+                "Ident": "StiBandInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text9",
+                  "Guid": "bee0197cd78e4cbb903d2378d5dadd6d",
+                  "ClientRectangle": "0,1.52,1.16,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "O.M"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text10",
+                  "Guid": "010a518736344551a912e06d181c55b5",
+                  "ClientRectangle": "1.16,1.52,0.96,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "%age"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text11",
+                  "ClientRectangle": "0,0,2.12,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.courseName}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black"
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text12",
+                  "ClientRectangle": "0,0.76,2.12,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.totalMarks}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              },
+              "DataSourceName": "root",
+              "DataRelationName": "Relation",
+              "MasterComponent": "DataBand1",
+              "Sort": {
+                "0": "ASC",
+                "1": "courseName"
+              }
+            },
+            "2": {
+              "Ident": "StiCrossFooterBand",
+              "Name": "CrossFooterBand1",
+              "Guid": "9006b12039da445f9809f020a7697141",
+              "ClientRectangle": "9.07,0,5.72,2.28",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text17",
+                  "Guid": "f5ae2d37035d4982a57a5af3d197c9d5",
+                  "ClientRectangle": "0,1.52,1.67,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Obtained"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text18",
+                  "Guid": "d4a6a77de14047089d9eefec6b9cdac5",
+                  "ClientRectangle": "1.67,1.52,1.27,0.77",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "%age"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text20",
+                  "Guid": "993bec53b3d84212ad68b9b7876e9ae3",
+                  "ClientRectangle": "2.94,0,2.78,2.29",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Result"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text16",
+                  "Guid": "c1da03caaa8b4a31910ad97a2e4c3a98",
+                  "ClientRectangle": "0,0,2.94,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "4": {
+                  "Ident": "StiText",
+                  "Name": "Text28",
+                  "ShiftMode": "None",
+                  "ClientRectangle": "0.03,0.76,2.74,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Sum(root.totalMarks)}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";;Bold;",
+                  "Border": ";;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand1",
+          "Guid": "8063b67608ad42cb92fba0454c8635e2",
+          "ClientRectangle": "0,10.48,27.7,0.76",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiCrossHeaderBand",
+              "Name": "CrossHeaderBand2",
+              "Guid": "5f19a3f04b9244c09835c2b049a694d5",
+              "ClientRectangle": "0,0,6.95,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text25",
+                  "Guid": "bd4960421f744a36b7a3b943e44e5482",
+                  "CanGrow": true,
+                  "ClientRectangle": "0,0,0.76,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Line}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Microsoft Sans Serif;7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text21",
+                  "ClientRectangle": "0.76,0,2.43,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.rollNo}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text23",
+                  "CanGrow": true,
+                  "ClientRectangle": "3.19,0,2.74,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.studentName}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  }
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text24",
+                  "ClientRectangle": "5.93,0,1.02,0.76",
+                  "Conditions": {
+                    "0": {
+                      "Ident": "StiCondition",
+                      "Column": "root.matricPerc",
+                      "Value1": "0",
+                      "TextColor": "Black",
+                      "CanAssignExpression": true,
+                      "AssignExpression": "root.na",
+                      "BorderSides": "All"
+                    }
+                  },
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{(root.matricPerc == 0)?\"N/A\":root.matricPerc+\"%\"}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              }
+            },
+            "1": {
+              "Ident": "StiCrossDataBand",
+              "Name": "CrossDataBand2",
+              "Guid": "ef906101a0774759b635bc4e8ed275ec",
+              "ClientRectangle": "6.95,0,2.12,0.76",
+              "Interaction": {
+                "Ident": "StiBandInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text26",
+                  "ClientRectangle": "0,0,1.16,0.76",
+                  "Conditions": {
+                    "0": {
+                      "Ident": "StiCondition",
+                      "Column": "root.attendanceStatus",
+                      "Value1": "Absent",
+                      "TextColor": "Black",
+                      "CanAssignExpression": true,
+                      "AssignExpression": "root.attendanceStatus",
+                      "BorderSides": "None"
+                    },
+                    "1": {
+                      "Ident": "StiCondition",
+                      "Column": "root.remarks",
+                      "Value1": "Fail",
+                      "TextColor": "Black",
+                      "BackColor": "Gainsboro",
+                      "BorderSides": "All"
+                    }
+                  },
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.obtainMarks}\r\n"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text6",
+                  "ClientRectangle": "1.16,0,0.96,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.subjectPerc}%"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              },
+              "DataSourceName": "root",
+              "DataRelationName": "Relation",
+              "MasterComponent": "DataBand1",
+              "Sort": {
+                "0": "ASC",
+                "1": "courseName"
+              }
+            },
+            "2": {
+              "Ident": "StiCrossFooterBand",
+              "Name": "CrossFooterBand2",
+              "Guid": "8e158703132549f7b4f4559ca6b6ff2e",
+              "ClientRectangle": "9.07,0,5.72,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text27",
+                  "ClientRectangle": "0,0,1.67,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.totalObtained}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text7",
+                  "ClientRectangle": "2.94,0,2.78,0.76",
+                  "Conditions": {
+                    "0": {
+                      "Ident": "StiCondition",
+                      "Column": "root.overAllRemark",
+                      "Value1": "Fail",
+                      "TextColor": "Black",
+                      "BackColor": "Gainsboro",
+                      "BorderSides": "All"
+                    }
+                  },
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.overAllRemark}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text32",
+                  "ClientRectangle": "1.67,0,1.27,0.76",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.overAllPerc}%"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": ";7;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              }
+            }
+          },
+          "DataSourceName": "root2"
+        },
+        "3": {
+          "Ident": "StiReportSummaryBand",
+          "Name": "ReportSummaryBand1",
+          "ClientRectangle": "0,12.04,27.7,6.6",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text44",
+              "ClientRectangle": "2.6,-0.04,1.53,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Font": ";;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text46",
+              "Guid": "89245e1e83084377aa9453825041172a",
+              "ClientRectangle": "0,0.78,9.15,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Result Summary"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text43",
+              "Guid": "c8a161c195304690ab91eb4a92ff388f",
+              "ClientRectangle": "0,1.56,6.95,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Total Students:"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text47",
+              "Guid": "38207c01e8bf4073ad07d20a69d527d2",
+              "ClientRectangle": "0,2.32,6.95,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Pass"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text51",
+              "Guid": "117bfebb79044bf088f25e5418f73dbd",
+              "ClientRectangle": "6.95,3.08,2.2,0.77",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark==\"Fail\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text58",
+              "ClientRectangle": "6.95,1.56,2.2,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark!=\"\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text59",
+              "ClientRectangle": "6.95,2.32,2.2,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark==\"Pass\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text50",
+              "Guid": "7de2e68b5b8e432e857d8bc9c36cb723",
+              "ClientRectangle": "0,3.08,6.95,0.77",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Fail"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text36",
+              "Guid": "a2cf0dcb7b544306b2e7ab2d9d3a8e22",
+              "ClientRectangle": "0,3.85,6.95,0.77",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Total Provisional (with 1 S.P.P)"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text37",
+              "Guid": "e8a2b2673c2c45fa9f345f976ed9ca74",
+              "ClientRectangle": "0,4.61,6.95,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Total Provisional (with 2 S.P.P)"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text38",
+              "Guid": "d497655d16c443629e918f5fe47fa019",
+              "ClientRectangle": "6.95,5.35,2.2,0.77",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark==\"Provisional Pass (with 3 S.P.P)\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "11": {
+              "Ident": "StiText",
+              "Name": "Text39",
+              "ClientRectangle": "6.95,3.85,2.2,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark==\"Provisional Pass (with 1 S.P.P)\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "12": {
+              "Ident": "StiText",
+              "Name": "Text40",
+              "ClientRectangle": "6.95,4.61,2.2,0.76",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(root.overAllRemark==\"Provisional Pass (with 2 S.P.P)\")}\r\n"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "13": {
+              "Ident": "StiText",
+              "Name": "Text41",
+              "Guid": "a5ef43c59d4847be991ef9758c442f9f",
+              "ClientRectangle": "0,5.35,6.95,0.77",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Total Provisional (with 3 S.P.P)"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        }
+      },
+      "PaperSize": "A4",
+      "Orientation": "Landscape",
+      "PageWidth": 29.7,
+      "PageHeight": 21.0,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 1.0,
+        "Right": 1.0,
+        "Top": 1.0,
+        "Bottom": 1.0
+      },
+      "ReportUnit": {
+        "Ident": "StiCentimetersUnit"
+      }
+    }
+  }
+}

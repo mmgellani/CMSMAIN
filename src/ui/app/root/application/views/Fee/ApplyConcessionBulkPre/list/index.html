@@ -1,0 +1,353 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Apply Concession Bulk
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="form-control form-control-sm" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="refreshData">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="form-control form-control-sm" v-model="shiftId" required>
+                <option v-for="(model,index) in shiftList" :value="model.shiftId">{{model.fullName}}</option>
+              </select>
+              <label>Shift</label>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadScholarship" class="form-control form-control-sm" v-model="admissionTypeId" required>
+                <option v-for="(model,index) in admissionTypeList" :value="model.admissionTypeId">{{model.fullName}}
+                </option>
+              </select>
+              <label>AdmissionType</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="refreshData" class="form-control form-control-sm" v-model="scholarshipCriteriaId"
+                required>
+                <option v-for="(model,index) in scholarshipCriteriaList" :value="model.scholarshipCriteriaId">
+                  {{model.fullName}}
+                </option>
+
+              </select>
+              <label>ConcessionCriteriaList</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <input @change="refreshData" class="form-control form-control-sm" type="number" v-model="percentageFrom"
+                required>
+              <label>Percentage From</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <input @change="refreshData" class="form-control form-control-sm" type="number" v-model="percentageTo"
+                required>
+              <label>Percentage To</label>
+            </div>
+          </div>
+          <div class="col-md-2" align="right">
+            <button data-toggle="modal" data-target="#myModal" :disabled="selected.length==0" href="#"
+              class="btn btn-primary rounded-circle btn-save">
+              <i class="fa fa-save"></i>
+            </button>
+            <a href="#" @click="refreshData" class="b-refresh" style="font-size: 22px">
+              <i class="fa fa-refresh"></i>
+            </a>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div v-if="canRead">
+              <button @click="getListReport" class="btn btn-primary btn-sm tbl-btn">Generate List</button>
+              <div class="dataTables_wrapper no-footer table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr role="row">
+                      <th>
+                        <label class="form-checkbox">
+                        </label>
+                      </th>
+                      <th>Ref #</th>
+                      <th>Name</th>
+                      <th>Father Name</th>
+                      <th>Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in selected">
+                      <td>
+                        <label class="form-checkbox">
+                          <input type="checkbox" v-model="item.isChecked">
+                          <i class="form-icon"></i>
+                        </label>
+                      </td>
+                      <td class="v-align-middle">{{item.referrenceNo}}</td>
+                      <td class="v-align-middle">{{item.fullName}}</td>
+                      <td class="v-align-middle">{{item.fatherName}}</td>
+                      <td class="v-align-middle">{{item.percentage}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Confirm Concession?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" @click="insertModel" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.applyBulkChallanPre')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.applyBulkChallanPre')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+            <!-- <select class="form-control form-control-sm" v-model="sessionId" required>
+              <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+            </select> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.campus')}}</label>
+            <select-ex :options="campusCityList" v-model.trim="campusId" keyValue="campusId" displayValue="campusName"
+              groupBy="cityName" @input="loadProgramsOfCampus"></select-ex>
+            </select>
+            <!-- <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+            display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+          </drop-down> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.program')}}</label>
+            <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+              groupBy="programName" v-model.trim="programDetailId" @input="refreshData"></select-ex>
+            </select>
+            <!-- <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="refreshData">
+            </drop-down> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.shift')}}</label>
+            <select-ex @input="refreshData" :options="shiftList" keyValue="shiftId" displayValue="fullName" v-model.trim="shiftId">
+            </select-ex>
+            <!-- <select class="form-control form-control-sm" v-model="shiftId" required>
+                <option v-for="(model,index) in shiftList" :value="model.shiftId">{{model.fullName}}</option>
+              </select> -->
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group mb-0">
+            <label>Gender</label>
+            <select-ex  :options="genderlist" keyValue="description" displayValue="description"
+              v-model="gendr">
+            </select-ex>
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.admissionType')}}</label>
+            <select-ex @input="loadScholarship" :options="admissionTypeList" keyValue="admissionTypeId"
+              displayValue="fullName" v-model.trim="admissionTypeId"></select-ex>
+            
+          </div>
+        </div> -->
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.concessionCriteriaList')}}</label>
+            <select-ex @input="refreshData" :options="scholarshipCriteriaList" keyValue="scholarshipCriteriaId"
+              displayValue="fullName" v-model.trim="scholarshipCriteriaId"></select-ex>
+          </div>
+        </div> -->
+        <div class="col-md-3">
+          <label>Pre Fee</label>
+          <select-ex :options="maxsubInstallment" keyValue="item" displayValue="item" v-model="installmentAmount">
+          </select-ex>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.precentageFrom')}}</label>
+            <input v-digitsonly type="text" class="form-control " v-model.trim="percentageFrom">
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.ApplyConcessionBulk.precentageTo')}}</label>
+            <input v-digitsonly type="text" class="form-control  " v-model.trim="percentageTo">
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.feeReverseConcessionList.installment')}}</label>
+            <select-ex  disabled :options="maxInstallments" keyValue="item" displayValue="item" v-model="installmentNo">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-12 text-right" style="margin-bottom:15px;">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary"> <i
+              class="la la-refresh"></i>
+            {{$t('button.reload')}}</button>
+        </div>
+      </div>
+      <!-- 
+      <div v-if="canRead"> -->
+
+      <grid :data="selected" :columns="columns" pre="modal.ApplyConcessionBulk.">
+        <template slot="action-area">
+          <button data-toggle="modal" data-target="#myModal" :disabled="saveValidation()"
+            class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="fa fa-save"></i> Save
+          </button>
+          <!-- <button type="button" class="btn btn-light btn-hover btn-sm btn-outline-primary" v-if="canRead"
+            @click="getListReport"><i class="la la-print"></i>{{$t('modal.ApplyConcessionBulk.generateList')}}</button> -->
+        </template>
+        <template slot="isChecked-header" slot-scope="item">
+          {{$t('modal.sectionFine.checkAll')}} &nbsp;&nbsp;
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+            <input v-model="selectAll" type="checkbox">
+            <span></span>
+          </label>
+        </template>
+
+        <template slot="isChecked" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+            <input type="checkbox" v-model="item.row.isChecked">
+            <span></span>
+          </label>
+        </template>
+      </grid>
+
+      <!-- <grid :datas="selected" :columns="columns" pre="modal.ApplyConcessionBulk.">
+        <template slot="action-area">
+          <button data-toggle="modal" data-target="#myModal" :disabled="selected.length==0"
+            class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="fa fa-save"></i> Save
+          </button>
+          <button type="button" class="btn btn-light btn-hover btn-sm btn-outline-primary" v-if="canRead"
+            @click="getListReport"><i class="la la-print"></i>{{$t('modal.ApplyConcessionBulk.generateList')}}</button>
+        </template>
+        <template slot="isChecked-header" slot-scope="item">
+          {{$t('modal.sectionFine.checkAll')}} &nbsp;&nbsp;
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+            <input type="checkbox">
+            <span></span>
+          </label>
+        </template>
+        <template slot="isChecked" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+            <input type="checkbox" v-model="item.row.isChecked">
+            <span></span>
+          </label>
+        </template>
+      </grid> -->
+
+
+    </template>
+  </portlet-area>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.applyBulkChallanPre')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to confirm Sub Installment of these students?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            @click="insertModel">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

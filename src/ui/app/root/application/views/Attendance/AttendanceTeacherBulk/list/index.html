@@ -1,0 +1,228 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Teacher Course Attendance
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-1 offset-11">
+            <button @click="loadTimeTableData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+        </div>
+
+        <div class="row ModeColor">
+
+
+
+          <div class="col-md-4" v-for="item in timeTableDataList">
+            <div class="card" @click="attendanceModel(item)">
+              <div class="card-body">
+                <div class="ribbon-wrapper">
+                  <div class="ribbon-un-marked" v-if="item.ribbon == 0">Un-Marked</div>
+                  <div class="ribbon-marked" v-if="item.ribbon == 1">Marked</div>
+                  <div class="ribbon-approved" v-if="item.ribbon == 2">Approved</div>
+                </div>
+                <div class="row color-divider">
+                  <div class="col-md-12 text-center"> <strong><i>{{item.campusName}}</i> </strong></div><br>
+                  <div class="col-md-12 text-center">
+                    {{item.startTime}} to {{item.endTime}}
+                  </div>
+                  <div class="col-md-12 text-center">{{item.roomName}}</div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-8">
+                    <h3>{{item.fullName}}</h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>{{item.sectionName}}</h4>
+                  </div>
+                  <div class="col-md-12"> <i>{{item.description}}-{{item.className}}</i> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <attendance-student v-on:submit=""></attendance-student>
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.teachermng')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceTeacherBulk')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.attendanceTeacherBulk')">
+    <template slot="portlet-body">
+      <div class="row">
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceTeacherUser.date')}}</label>
+            <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth" v-model="datestring" format="DD/MM/YYYY"
+              lang="en"></date-picker>
+          </div>
+        </div> -->
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.attendanceBulk.session')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkSession"
+                      @change="addParam(checkSession,'SessionId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :disabled="!checkSession" @input="addParam(checkSession,'SessionId')" :options="sessionList"
+              keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.attendanceTeacherUser.campus')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkCampus"
+                      @change="addParam(checkCampus,'CampusId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :disabled="!checkCampus" @input="addParam(checkCampus,'CampusId')" :options="campusCityList"
+              keyValue="campusId" groupBy="cityName" displayValue="campusName" v-model.trim="campusId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.attendanceTeacherUser.program')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkProgram"
+                      @change="addParam(checkProgram,'ProgramDetailId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :disabled="!checkProgram" @input="addParam(checkProgram,'ProgramDetailId')"
+              :options="campusProgramLinkList" keyValue="programDetailId" groupBy="programName"
+              displayValue="description" v-model.trim="programDetailId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.attendanceTeacherUser.class')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkClass"
+                      @change="addParam(checkClass,'ClassId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :disabled="!checkClass" @input="addParam(checkClass,'ClassId')" :options="classList"
+              keyValue="classId" displayValue="fullName" v-model.trim="classId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.attendanceTeacherUser.attendanceStatus')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkRibbon">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <!-- <select-ex> -->
+            <select :disabled="!checkRibbon" @change="addParam(checkRibbon,'Ribbon')"
+              class="form-control " v-model="attndanceId" required>
+              <option value="0">UN-MARKED</option>
+              <option value="1">MARKED</option>
+              <option value="2">APPROVED</option>
+
+            </select>
+            <!-- </select-ex> -->
+          </div>
+        </div>
+        <div class="col-md-9 text-right" style="margin-top: 26px;">
+          <button @click="loadTimeTableData" class="btn  btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </div>
+      </div>
+      <grid :data="timeTableDataList" :columns="columns" pre="modal.userAttendance.">
+  
+        <template slot="startTime" slot-scope="item">
+          {{item.row.startTime}} - {{item.row.endTime}}
+        </template>
+        <template slot="status" slot-scope="item">
+          <span v-if="item.row.ribbon == '0'"
+            class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill" style="width: 80px !important;">Un-Marked</span>
+          <span v-if="item.row.ribbon == '1'"
+            class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Marked</span>
+          <span v-if="item.row.ribbon == '2'"
+            class="kt-badge  kt-badge--warning kt-badge--inline kt-badge--pill">Approved</span>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button @click="attendanceModel(item.row)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-edit"></i>
+          </button>
+
+        </template>
+
+      </grid>
+    
+    </template>
+  </portlet-area>
+  <attendance-student ></attendance-student>
+
+</page-area>

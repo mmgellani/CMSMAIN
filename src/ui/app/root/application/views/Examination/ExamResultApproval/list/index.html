@@ -1,0 +1,125 @@
+<!-- 
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-title">
+          Exam Result Approval
+        </div>
+        <div class="card-body">
+          <div v-if="canRead">
+  
+            <grid :data="data" :columns="columns">
+              <template slot="isApproved" slot-scope="item">
+                <input type="checkbox" v-model="item.row.isApproved">
+              </template>
+              <template slot="operation-links">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <select v-model="sessionId" class="form-control form-control-sm" required>
+                        <option v-for="item in sessionList" :value="item.sessionId">{{item.fullName}}</option>
+                      </select>
+                      <label>Session</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <select @change="loadProgramsOfCampus" Placeholder="Campus" v-model="campusId"
+                        class="form-control form-control-sm" required>
+                        <template v-for="(item,index) in cityDDL">
+                          <template v-if="item.group">
+                            <option value="item.id" class="bold-option" disabled>
+                              <strong>{{item.title}}</strong>
+                            </option>
+                            <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                              <span v-html="'&#8680; ' + chItem.text"></span>
+                            </option>
+                          </template>
+                        </template>
+                      </select>
+                      <label>Campus</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <select @change="loadClass" Placeholder="Program" v-model="programDetailId" class="form-control form-control-sm"
+                        required>
+                        <template v-for="(item,index) in programDDL">
+                          <template v-if="item.group">
+                            <option value="item.id" class="bold-option" disabled>
+                              <strong>{{item.title}}</strong>
+                            </option>
+                            <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                              <span v-html="'&#8680; ' + chItem.text"></span>
+                            </option>
+                          </template>
+                        </template>
+                      </select>
+                      <label>Program</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <select @change="loadSection" class="form-control form-control-sm" v-model="classId" required>
+                        <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+                      </select>
+                      <label>Class</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <select @change="refreshData" v-model="sectionId" class="form-control form-control-sm" required>
+                        <option :value="item.sectionId" v-for="item in sectionCourseLinkList">{{item.sectionName}}
+                        </option>
+                      </select>
+                      <label>Section</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <button v-if="canAdd" @click="insertModel" class="b-add">
+                      <feather icon="plus-circle"></feather>
+                    </button>
+                    <button @click="refreshData" class="b-refresh">
+                      <feather icon="refresh-ccw"></feather>
+                    </button>
+                  </div>
+                </div>
+              </template>
+              <template slot="dated" slot-scope="item">
+                {{item.row.dated && item.row.dated.toString().split('T')[0]}}
+              </template>
+  
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+  
+  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to mark result ?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" :disabled="data.length==0" @click="insertModel" class="btn btn-primary"
+                        data-dismiss="modal">Yes</button>
+  
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+            </grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

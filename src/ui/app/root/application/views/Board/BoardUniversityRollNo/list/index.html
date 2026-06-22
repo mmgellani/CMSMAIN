@@ -1,0 +1,254 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Student Board Link
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="loadClass">
+            </drop-down>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadProgramSection" class="form-control" v-model="classId" required>
+                <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+              
+              <label>Class</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select  v-model="sectionId" class="form-control" @change="refreshData">
+                <option :key="index" :value="model.sectionId" v-for="(model,index) in sectionCourseLinkList">
+                  {{model.sectionName}}
+                </option>
+              
+              <label>Section</label>
+            </div>
+          </div>
+
+          <div class="col-md-3 offset-6">
+            <button v-if="canAdd" @click="insertModel" class="b-add">
+              <feather icon="plus-circle"></feather>
+            </button>
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>No.</th>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Board</th>
+                  <th>Amount</th>
+                  <th>BoardRegistrationNo</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr v-for="(item,index) in StudentBoardLinkData">
+                  <td> {{ index+1 }} </td>
+                  <td class="v-align-middle">{{item.rollNo}}</td>
+                  <td class="v-align-middle">{{item.fullName}}</td>
+                  <td class="v-align-middle">{{item.boardName}}</td>
+                  <td class="v-align-middle">{{item.amount}}</td>
+                  <td class="v-align-middle">{{item.boardRollNo}}</td>
+                  <td>
+                    <a @click="editModel(item)" >
+                      <feather icon="edit" xclass="b-edit"></feather>
+                    </a>
+                  </td>
+
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <CampusStudentLink-add-edit-model></CampusStudentLink-add-edit-model>
+  <EditCampusStudentLink></EditCampusStudentLink>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.board')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+       Board/University Roll No Slip</a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t(' Board/University Roll No Slip')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.boardStudentRegistrationNo.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId"
+              @input="loadCityCampus">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.boardStudentRegistrationNo.campus')}}</label>
+            <select-ex :options="campusCityList" v-model.trim="campusId" keyValue="campusId" displayValue="campusName"
+              groupBy="cityName" @input="loadPrograms"></select-ex>
+            
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.boardStudentRegistrationNo.program')}}</label>
+            <select-ex :options="programList" keyValue="programId" displayValue="programName"
+              v-model.trim="programId" @input="loadRegistrationCode" ></select-ex>
+            
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="form-group">
+           
+                <label>{{$t('modal.reports.feeReports.programDetail')}}</label>
+              
+            <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+              v-model="programDetailId" groupBy="programName"  multiple >
+            </select-ex>
+          </div>
+       
+      </div>
+      <div class="row">
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>{{$t('modal.boardStudentRegistrationNo.class')}}</label>
+          <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId"
+          ></select-ex>
+          
+        </div>
+      </div>
+     
+    
+      <div class="col-md-3">
+        <div class="form-group ">
+            <label>Exam Type </label>
+            <select-ex :options="ExamTypedata" keyValue="examTypeId" displayValue="fullName"
+                v-model.trim="examtypeid" >
+            </select-ex>
+        </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group ">
+          <label>Exam Year </label>
+          <select-ex :options="Years" keyValue="Year" displayValue="Year"
+              v-model.trim="year" @input="refreshData" >
+          </select-ex>
+      </div>
+  </div>
+
+      </div>
+      <grid :data="datalist" :columns="columns" pre="modal.boardStudentRegistrationNo.">
+        <template slot="action-area">
+          <button v-if="canAdd" @click="insertModel" class="btn btn-hover btn-sm btn-outline-primary">
+            <i class="la la-plus"></i> {{$t('button.insert')}}
+          </button>
+          <button @click="refreshData" class="btn btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="returnDate" slot-scope="item">
+          {{item.row.returnDate && item.row.returnDate.toString().split('T')[0]}}
+        </template>
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-edit"></i>
+          </button>
+          <button  data-target="#myModal" @click="deletemodal(item.row)" data-toggle="modal" title="Delete" type="button"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+            <i class="la la-trash"></i>
+          </button>
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="col-md-6 modal_heading">
+                    <h3 class="modal-title">Delete Student Board Registration No</h3>
+                    
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <button type="button" class="close " data-dismiss="modal">
+                    </button>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to Delete Student Board Registration No?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-outline-secondary btn-hover btn-sm" type="button" data-dismiss="modal">
+                    <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                  <button class="btn btn-light btn-hover btn-sm btn-primary" @click="deleteconfirmation()"data-dismiss="modal" 
+                    ><i class="la la-save"></i> {{$t('button.save')}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </template> 
+       
+      </grid>
+    </template>
+  </portlet-area>
+  <StudentRegistration-add-edit-model v-on:submit="refreshData()"></StudentRegistration-add-edit-model>
+  <EditCampusStudentLink v-on:submit="refreshData()"></EditCampusStudentLink>
+</page-area>

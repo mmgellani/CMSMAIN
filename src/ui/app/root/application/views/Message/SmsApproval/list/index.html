@@ -1,0 +1,165 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.bsetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.approvesms')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.approvesms')">
+    <template slot="portlet-body">
+      <div class="row" v-if="!showmodel">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>From Date</label>
+            <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth" v-model="datestring"
+              format="DD/MM/YYYY" @input="Getdata"  @change="changedate" lang="en" ></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>To Date</label>
+            <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth" v-model="todatestring"
+              format="DD/MM/YYYY" @input="Getdata" lang="en" :not-before="datestring"></date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-9" style="float:right; margin-top: 29px;">
+          <button class="btn btn-primary btn-light btn-hover btn-sm" @click="generate()">Summary Report</button>
+          <button @click="Getdata()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button></div>-->
+      </div>
+
+      <div v-if="!showmodel">
+        <grid :data="apprvoelist" :columns="columns" pre="modal.approvesms.">
+          <template slot="action-area">
+            <button class="btn btn-primary btn-light btn-hover btn-sm" :disabled="!isDisabled"
+              @click="toggle()">Approve</button>
+            <button class="btn btn-primary btn-light btn-hover btn-sm" @click="generate()">Summary Report</button>
+            <button @click="Getdata()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+              <i class="la la-refresh"></i> {{$t('button.reload')}}
+            </button>
+          </template>
+
+          <template slot="action" slot-scope="item">
+            <button @click="edit(item.row)" class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+              data-toggle="tooltip" data-placement="top" title="Edit Text">
+              <i class="la la-edit"></i>
+            </button>
+            <!-- <button @click="approve(item.row)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+            data-toggle="tooltip" data-placement="top" title="approve">
+            <i class="la la-check"></i>
+          </button> -->
+            <button @click="unapprove(item.row)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+              data-toggle="tooltip" data-placement="top" title="unapprove">
+              <i class="la la-rotate-right"></i>
+            </button>
+          </template>
+          <template slot="isChecked-header" slot-scope="item">
+            <label class="kt-checkbox kt-checkbox--brand mb-0">All <input type="checkbox" @change="updall"
+                v-model="chkall" class="mb-0">
+              <span></span>
+            </label>
+          </template>
+          <template slot="isChecked" slot-scope="item">
+            <label class="kt-checkbox kt-checkbox--brand">
+              <input type="checkbox" v-model="item.row.isChecked" @change="updatechek()">
+              <span></span>
+            </label>
+            <!-- <input type="checkbox" v-model="item.row.isChecked"> -->
+          </template>
+          <template slot="messageText" slot-scope="item">
+
+            <span v-if="isUnicode(item.row.messageText)" class="bg-yellow">{{item.row.messageText}}</span>
+            <span v-else>{{item.row.messageText}}</span>
+
+          </template>
+        </grid>
+      </div>
+      <div v-if="showmodel" height="auto" class="w-50" style="position: absolute;
+top: 30%;
+left: 35%;
+z-index: 111;">
+
+        <div class="modal-content" b-alert :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+          :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%">
+          <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+              <h5 class="modal-title">Approve Message</h5>
+              <p>Confirmation</p>
+            </div>
+            <div class="col-md-6 text-right">
+              <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel()">
+                <i class="la la-close"></i>
+              </button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <p>Are you sure you want to approve message?</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel()"> <i
+                    class="la la-close"></i>
+                  {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="updatedata()">
+                  Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <table class="table">
+          <thead>
+            <tr role="row">
+              <th> Message Text </th>
+              <th>Message Count</th>
+              <th>Mask</th>
+              <th> Recipients </th>
+              <th> Display Name </th>
+              <th> User Name </th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in apprvoelist ">
+              <td> {{item.messageText}} </td>
+              <td> {{item.messageCount}} </td>
+              <td> {{item.mask}} </td>
+              <td> {{item.recipients}} </td>
+              <td> {{item.displayName}} </td>
+              <td> {{item.username}} </td>
+              <button @click="edit(item)" class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                data-toggle="tooltip" data-placement="top" title="Edit Text">
+                <i class="la la-edit"></i>
+              </button>
+              <button @click="approve(item)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+                data-toggle="tooltip" data-placement="top" title="approve">
+                <i class="la la-user"></i>
+              </button>
+              <button @click="unapprove(item)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+                data-toggle="tooltip" data-placement="top" title="unapprove">
+                <i class="la la-rotate-right"></i>
+              </button>
+
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+
+    </template>
+  </portlet-area>
+  <edit v-on:submit="Getdata()"></edit>
+  <approve v-on:submit="Getdata()"></approve>
+  <unapprove v-on:submit="Getdata()"></unapprove>
+</page-area>

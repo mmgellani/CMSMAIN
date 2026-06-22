@@ -1,0 +1,43 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+            <h5>Model <span class="semi-bold">{{title}}</span></h5>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group-attached">
+                    <div class="row">
+                        <vs-input label-placeholder="Campus Grading Policy Link Id" v-model="data.campusGradingPolicyLinkId" />
+                        <vs-input label-placeholder="Campus Program Link Id" v-model="data.campusProgramLinkId" />
+                        <vs-input label-placeholder="Grading Policy Id" v-model="data.gradingPolicyId" />
+                        <vs-input label-placeholder="Status Id" v-model="data.statusId" />
+                        <vs-input label-placeholder="Logger Id" v-model="data.loggerId" />
+
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-8"> </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-danger btn-block m-t-5" @click="cancel">
+                                <i class="card-icon card-icon-close"></i> Close</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-primary btn-block m-t-5" @click="saveModel">
+                                <i class="fa fa-save"></i> Save</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

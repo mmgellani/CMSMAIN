@@ -1,0 +1,84 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-bulk-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5>
+                <span class="semi-bold">{{title}}</span>
+            </h5>
+                </div>
+                <div class="col-md-4">
+                    <div class="close" v-if="IsNewRecord==false">
+                <input class="switch" type="checkbox" v-model="isActive">
+            </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="modal-body">
+            <span class="alert-danger" v-if="allowSubmit != true">Please fill all the required fields</span>
+
+            <form role="form">
+                <div class="form-group-attached">
+                    <div class="row" style="padding-top: 5px">
+                        <div class="col-lg-6">
+
+                            <!-- <vs-select autocomplete class="selectExample" placeholder="Choose Section" v-model="data.sectionId">
+                                <vs-select-item :key="index" :value="model.sectionId" :text="model.fullName"
+                                    v-for="(model,index) in sectionList" />
+                            </vs-select> -->
+
+                            <select v-model="data.sectionId" class="form-control form-control-sm">
+                                <option value="" disabled selected>Choose Section</option>
+                                <option :key="index" :value="model.sectionId" v-for="(model,index) in sectionList">{{model.fullName}}
+                                </option>
+                              </select>
+                            <br>
+                            <vs-input label-placeholder="From Serial" v-model="data.fromSerial" /><br>
+                            <vs-input label-placeholder="To Serial" v-model="data.toSerial" />
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="m-checkbox-list">
+                                <label class="m-checkbox m-checkbox--state-brand" v-for="item in CourseSelectedList">
+                                    <input type="checkbox" v-model="item.isChecked"> {{item.fullName}}
+                                    <span></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+            <div class="row">
+                <div class="col-md-6"><br>
+                    <button style="padding-left:42%; padding-right:42%" class="btn btn-danger" @click="cancel">Close</button>
+                </div>
+                <div class="col-md-6"><br>
+                    <button style="padding-left:42%; padding-right:42%" class="btn btn-primary" :disabled="!allowSubmit"
+                        @click="saveModel">Save</button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</modal>

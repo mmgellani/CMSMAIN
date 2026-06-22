@@ -1,0 +1,208 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Apply Concession
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control form-control-sm" v-model="sessionId" required>
+                  <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+                </select>
+                <label>Session</label>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+              </drop-down>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control form-control-sm" v-model="shiftId" required>
+                  <option v-for="(model,index) in shiftList" :value="model.shiftId">{{model.fullName}}</option>
+                </select>
+                <label>Shift</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+                key-value="programDetailId" display-value="description" placeholder="Programs"
+                @change="refreshData"></drop-down>
+              <!-- <div class="form-group">
+                <select @change="refreshData" Placeholder="Program" v-model="programDetailId" class="form-control form-control-sm"
+                  required>
+                  <template v-for="(item,index) in programDDL">
+                    <template v-if="item.group">
+                      <option value="item.id" class="bold-option" disabled>
+                        <strong>{{item.title}}</strong>
+                      </option>
+                      <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                        <span v-html="'&#8680; ' + chItem.text"></span>
+                      </option>
+                    </template>
+                  </template>
+                </select>
+                <label>Program</label>
+              </div> -->
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select @change="loadScholarship" class="form-control form-control-sm" v-model="admissionTypeId" required>
+                  <option v-for="(model,index) in admissionTypeList" :value="model.admissionTypeId">{{model.fullName}}
+                  </option>
+                </select>
+                <label>AdmissionType</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select @change="loadScholarship" class="form-control form-control-sm" v-model="continuationPolicyId" required>
+                  <option v-for="(model,index) in continuationPolicyList" :value="model.continuationPolicyId">
+                    {{model.fullName}}
+                  </option>
+                </select>
+                <label>Continuation Policy</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <input @change="refreshData" class="form-control form-control-sm" type="number" v-model="percentageFrom" required>
+                <label>Percentage From</label>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!--<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+                data-dropdown-toggle="hover" aria-expanded="true">
+               
+                  <a href="#" @click="insertModel" v-if="canAdd" class="btn m-btn--pill m-btn--air btn-outline-primary m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+                    <i class="fa fa-plus m--hide"></i>
+                    <feather icon="plus-circle"></feather>
+                  </a>  -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <input @change="refreshData" class="form-control form-control-sm" type="number" v-model="percentageTo" required>
+                <label>Percentage To</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select @change="refreshData" class="form-control form-control-sm" v-model="scholarshipCriteriaId" required>
+                  <option v-for="(model,index) in scholarshipCriteriaList" :value="model.scholarshipCriteriaId">
+                    {{model.fullName}}
+                  </option>
+
+                </select>
+                <label>ConcessionCriteriaList</label>
+              </div>
+            </div>
+            <div class="col-md-3 mt-2">
+              <div class="row">
+                <div class="col-md-7 pr-0">
+                  <label class="ModeColor">Revert Concession</label>
+                </div>
+                <div class="col-md-5 pl-0">
+                  <input type="checkbox" class="switch" v-model="showApplied">
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="col-md-1 mt-1">
+              <a href="#" @click="refreshData" class="b-refresh">
+                <feather icon="refresh-ccw"></feather>
+              </a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive" v-if="canRead ">
+                <div class="dataTables_wrapper no-footer">
+                  <table class="table">
+                    <thead>
+                      <tr role="row">
+                        <th>Ref #</th>
+                        <th>Name</th>
+                        <th>Father Name</th>
+                        <th>Percentage</th>
+                        <th>Operation</th>
+                      </tr>
+                    </thead>
+                    <tbody v-if="showApplied">
+                      <tr v-for="item in newDatas" v-if="item.concessionDetailId!=null">
+                        <td class="v-align-middle">{{item.referrenceNo}}</td>
+                        <td class="v-align-middle">{{item.fullName}}</td>
+                        <td class="v-align-middle">{{item.fatherName}}</td>
+                        <td class="v-align-middle">{{item.percentage}}</td>
+                        <td>
+                          <button @click="revertPass(item)" :disabled="newDatas.length==0" href="#"
+                            class="btn btn-primary rounded-circle">
+                            <i class="fa fa-repeat"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody v-else>
+                      <tr v-for="item in newDatas" v-if="item.concessionDetailId==null">
+                        <td class="v-align-middle">{{item.referrenceNo}}</td>
+                        <td class="v-align-middle">{{item.fullName}}</td>
+                        <td class="v-align-middle">{{item.fatherName}}</td>
+                        <td class="v-align-middle">{{item.percentage}}</td>
+                        <td>
+                          <button @click="modelToPass(item)" :disabled="newDatas.length==0" href="#"
+                            class="btn btn-primary rounded-circle">
+                            <i class="fa fa-save"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Confirmation</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Confirm Concession.?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" @click="insertModel" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <report-engine :data="reportData" :path="report"></report-engine> -->
+</div>

@@ -1,0 +1,53 @@
+ <page-area>
+   <template slot="breadcrumbs-area">
+     <h3 class="kt-subheader__title">{{$t('navigation.role')}}</h3>
+     <span class="kt-subheader__separator kt-hidden"></span>
+     <div class="kt-subheader__breadcrumbs">
+       <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+       <span class="kt-subheader__breadcrumbs-separator"></span>
+       <a href="" class="kt-subheader__breadcrumbs-link">
+         {{$t('navigation.userList')}} </a>
+     </div>
+   </template>
+   <portlet-area action="1" :title="$t('navigation.userList')">
+     <template slot="portlet-body">
+       <div class="row">
+         <div class="col-md-12">
+           <grid :data="searchResults.items" :columns="columns" pre="modal.userList." v-if="searchResults">
+             <template slot="action-area">
+               <button @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                 <i class="la la-plus"></i> {{$t('button.insert')}}
+               </button>
+               <button @click="search" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                 <i class="la la-refresh"></i> {{$t('button.reload')}}
+               </button>
+             </template>
+             <template slot="action" slot-scope="item">
+               <button @click="$router.push({ name: 'manageUserEx', params: { id: item.row.userId }})" title="Edit"
+                 type="button" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                 <i class="la la-edit"></i>
+               </button>
+               <toggle v-model="item.row.enabled" :on-text="onText" :off-text="offText"
+                 v-on:input="updateUserStatus(item.row)"></toggle>
+             </template>
+             <!-- <template slot="operation-links">
+               <button @click="search" class="btn btn-primary btn-sm tbl-btn">
+                 Refresh
+               </button>
+               <button @click="insertModel" class="btn btn-primary btn-sm tbl-btn">
+                 Insert
+               </button>
+             </template> -->
+             <!-- <template slot="action" slot-scope="item">
+               <button class="btn btn-primary"
+                 @click="$router.push({ name: 'manageUser', params: { id: item.row.userId }})">Edit</button>
+               <toggle v-model="item.row.enabled" :on-text="onText" :off-text="offText"
+                 v-on:input="updateUserStatus(item.row)"></toggle>
+             </template> -->
+           </grid>
+         </div>
+         <signup></signup>
+       </div>
+     </template>
+   </portlet-area>
+ </page-area>

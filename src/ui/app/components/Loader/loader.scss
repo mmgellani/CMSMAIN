@@ -1,0 +1,340 @@
+@import '../../styles/fonts';
+
+// .loader {
+//   font-size: 10px;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   margin: -20px 0 0 -20px;
+//   text-indent: -9999em;
+//   border-top: 5px solid rgba(0, 2, 143, 0.904);
+//   border-right: 5px solid rgba(0, 2, 143, 0.604);
+//   border-bottom: 5px solid rgba(0, 2, 143, 0.404);
+//   border-left: 5px solid rgba(0, 2, 143, 0.104);
+//   -webkit-transform: translateZ(0);
+//   -ms-transform: translateZ(0);
+//   transform: translateZ(0);
+//   -webkit-animation: loaderSpinner 1.6s infinite linear;
+//   animation: loaderSpinner 1.6s infinite linear;
+
+//   &,
+//   &:after {
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px
+//   }
+// }
+
+// @-webkit-keyframes loaderSpinner {
+//   0% {
+//     -webkit-transform: rotate(0deg);
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     -webkit-transform: rotate(360deg);
+//     transform: rotate(360deg);
+//   }
+// }
+
+// @keyframes loaderSpinner {
+//   0% {
+//     -webkit-transform: rotate(0deg);
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     -webkit-transform: rotate(360deg);
+//     transform: rotate(360deg);
+//   }
+// }
+
+// .loader-status {
+//   color: rgba(45, 32, 143, 0.904);
+//   position: absolute;
+//   top: 50%;
+//   text-align: center;
+//   width:100%;
+//   padding-top: 2em;
+//   font-size: 1.5em;
+// }
+
+// .loader-progress {
+//   font-size: 0.75em;
+// }
+
+// $Var
+$bg-color: #FFFF33;
+$bg-color-1: #fafafa;
+$bg-color-2: #FC4532;
+$bg-color-3: #FF29C8;
+$bg-color-4: #0000FF;
+$color: #ffffff;
+
+// Attractive gradient for the "Loading..." box background (light greenish shade)
+$loader-gradient-start: #11998e;
+$loader-gradient-end: #38ef7d;
+
+// $Mixin
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin fontsize($size: 24, $base: 16) {
+  font-size: $size + px;
+  font-size: ($size / $base) * 1rem;
+}
+
+@mixin absPosition ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+
+@mixin animation($animation...) {
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+.loaders {
+  height: 120px;
+  line-height: 48px;
+  width: 150px;
+  background: linear-gradient(135deg, $loader-gradient-start 0%, $loader-gradient-end 100%);
+  box-shadow: rgba(56, 239, 125, 0.35) 0px 15px 30px 0px, rgba(17, 153, 142, 0.25) 0px 5px 15px 0px;
+  border-radius: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -75px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+ 
+
+  @include fontsize(20);
+  text-align: center;
+  color: $color;
+}
+
+.loaders-bg-2 {
+  background-color: $bg-color-2;
+}
+
+.loaders-bg-3 {
+  background-color: $bg-color-3;
+}
+
+.loaders-bg-4 {
+  background-color: $bg-color-4;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  @include size(50px);
+  vertical-align: middle;
+  margin: auto;
+}
+
+/*	$Loader Quadrant
+	========================================================================== */
+
+.loader-quart {
+  border-radius: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.4);
+
+  &:after {
+    content: "";
+    @include absPosition(-6px, -6px, -6px, -6px);
+    border-radius: 50px;
+    border: 6px solid transparent;
+    border-top-color: $color;
+    @include animation(spin 1s linear infinite);
+  }
+}
+
+/*	$Loader Double circle
+	========================================================================== */
+
+.loader-double {
+  border-radius: 50px;
+  border: 6px solid transparent;
+  border-top-color: $color;
+  border-bottom-color: $color;
+  margin-top: 20px;
+  @include animation(spin 1.5s linear infinite);
+
+  &:before,
+  &:after {
+    content: "";
+    @include absPosition(5px, 5px, 5px, 5px);
+    border-radius: 50px;
+    border: 6px solid transparent;
+    border-top-color: $color;
+    border-bottom-color: $color;
+    @include opacity(0.6);
+    @include animation(spinreverse 2s linear infinite);
+  }
+
+  &:before {
+    top: 13px;
+    left: 13px;
+    bottom: 13px;
+    right: 13px;
+    @include animation(spinreverse 3s linear infinite);
+  }
+}
+
+/*	$Loader Multiple circle
+	========================================================================== */
+
+.loader-circles {
+  border-radius: 50px;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  @include animation(spin 1s linear infinite);
+
+  &:before,
+  &:after {
+    content: "";
+    @include absPosition(5px, 5px, 5px, 5px);
+    border-radius: 50px;
+    border: 3px solid transparent;
+    border-top-color: $color;
+    @include opacity(0.8);
+    @include animation(spinreverse 5s linear infinite);
+  }
+
+  &:before {
+    top: 12px;
+    left: 12px;
+    bottom: 12px;
+    right: 12px;
+    @include animation(spinreverse 10s linear infinite);
+  }
+}
+
+/*	$Loader Bars
+	========================================================================== */
+
+.loader-bars:before,
+.loader-bars:after,
+.loader-bars span {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include size(10px, 30px);
+  background-color: $color;
+  @include animation(grow 1.5s linear infinite);
+}
+
+.loader-bars:after {
+  left: 15px;
+  @include animation(grow 1.5s linear -0.5s infinite);
+}
+
+.loader-bars span {
+  left: 30px;
+  @include animation(grow 1.5s linear -1s infinite);
+}
+
+@-webkit-keyframes grow {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  50% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes grow {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  50% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    tranform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    tranform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinreverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-360deg);
+    tranform: rotate(-360deg);
+  }
+}
+
+@keyframes spinreverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(-360deg);
+    tranform: rotate(-360deg);
+  }
+}

@@ -1,0 +1,122 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <section>
+  <grid :data="UserList" :columns="columns" header='<h3>Role Previleges</h3>'>
+
+
+    <template slot="operation-links">
+      <button data-toggle="tooltip" data-placement="top" title="Add" data-original-title="Add" v-if="canAdd"
+        @click="insertModel" class="btn btn-primary btn-sm mb-xs">
+        <i class="fa fa-plus"></i>
+      </button>
+      <button data-toggle="tooltip" data-placement="top" title="Refresh" data-original-title="Refresh"
+        @click="refreshData" class="btn btn-info btn-sm mb-xs">
+        <i class="fa fa-refresh"></i>
+      </button>
+    </template>
+
+    <template slot="action" slot-scope="item">
+      <a title="Edit" href="#" class="btn btn-success btn-xs mb-xs" @click="editModel(item.row)" v-if="canEdit">
+        <i class="fa fa-edit"></i>
+      </a>
+      <a title="Delete" href="#" class="btn btn-info btn-xs mb-xs" @click="deleteModel(item.row)" v-if="canDelete">
+        <i class="fa fa-trash"></i>
+      </a>
+
+    </template>
+
+  </grid>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+  <single-edit></single-edit>
+</section> -->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Role Privileges
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+          </div>
+          <grid :data="UserList" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                
+              </div>
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+               <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+          
+            </template>
+          </grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+  <single-edit></single-edit>
+</div> -->
+
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.role')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.RolePrevilages')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.RolePrevilages')">
+    <template slot="portlet-body">
+      <div v-if="canRead">
+        <grid :data="UserList" :columns="columns" pre="modal.RolePrevilages.">
+          <template slot="action-area">
+            <button @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+              <i class="la la-plus"></i> Insert User
+            </button>
+          </template>
+          <template slot="action" slot-scope="item">
+            <button @click="editModel(item.row)" v-if="canEdit" title="Edit" type="button"
+              class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+              <i class="la la-edit"></i>
+            </button>
+            <button @click="deleteModel(item.row)" v-if="canDelete" title="Delete" type="button"
+              class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+              <i class="la la-trash"></i>
+            </button>
+          </template>
+        </grid>
+      </div>
+    </template>
+  </portlet-area>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+  <single-edit></single-edit>
+  <user-add v-on:submit="refreshData"></user-add>
+</page-area>

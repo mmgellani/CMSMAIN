@@ -1,0 +1,67 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="40%" height="auto" @before-open="beforeModalOpen"
+    @before-close="beforeModalClose">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.registrationProgramCourseLink')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body programcourse">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>{{$t('modal.setupProgramCourseLink.courseName')}}</h5>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tbody>
+                            <tr v-for="item in CourseSelectedList">
+                                <td>{{item.fullName}}</td>
+                                <td>
+                                    <label class="kt-checkbox kt-checkbox--brand"
+                                        style="margin-bottom: 14px !important;">
+                                        <input type="checkbox" v-model="item.isChecked">
+                                        <span></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                    <!-- <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

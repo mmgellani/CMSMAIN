@@ -1,0 +1,255 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<modal name="ExamSchedule-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+  :reset="true" :scrollable="true" :adaptive="false" transition="bounce" width="50%" top="10" height="auto"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-md-6 modal_heading">
+        <h3 class="modal-title">{{$t('Exam Schedule')}}</h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mx-auto" style=" position: fixed; top: 10px; z-index: 999; right: 0px;text-align: center;">
+        <div class="alert alert-danger text-center" v-if="activeDayoff == true"   role="alert">
+          <p class="mb-0 text-center" style="width:100%"> {{msgShow}}</p>
+          </div>
+       </div>
+    </div>
+    <div class="modal-body">
+      <div class="row" v-if="!IsNewRecord">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="kt-option kt-option-custom">
+              <span class="kt-option__label">
+                <span class="kt-option__head">
+                  <span class="kt-option__title mt-1">
+                    {{$t('modal.setupClass.recordStatus')}}
+                  </span>
+                </span>
+              </span>
+              <span class="kt-switch kt-switch--sm kt-switch--icon">
+                <label class="m-0">
+                  <input type="checkbox" checked="checked" v-model="isActive">
+                  <span></span>
+                </label>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group validated">
+            <label>{{$t('modal.examBulk.examType')}}<span style="color:red">
+              *</span></label>
+            <select-ex :options="examTypeList" @input="loadSectionCode()" keyValue="examTypeId" displayValue="fullName"
+              v-model.trim="data.examTypeId">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.data.examTypeId.$error">
+              <span v-if="!$v.data.examTypeId.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('Exam Name')}}<span style="color:red">
+                *</span></label>
+            <input disabled type="text" class="form-control form-control-sm" v-model.trim="data.fullName"
+              :class="{'is-invalid': $v.data.fullName.$error}" @input="$v.data.fullName.$touch()">
+            <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+              <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group  validated">
+            <div class="d-flex justify-content-between">
+              <label>{{$t('Fail Criteria')}}<span style="color:red"> *</span></label>
+              <button class="btn btn-primaray btn-sm mt-3" style="transform: translateY(-7px); padding: 0 !important"
+                v-if="data.failMasterId.length>0" @click="editModel()"><i class="la la-expand"></i></button>
+            </div>
+            <select-ex :options="failCriteriaList" keyValue="failMasterId" displayValue="fullName"
+              v-model.trim="data.failMasterId">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.data.failMasterId.$error">
+              <span v-if="!$v.data.failMasterId.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group validated">
+            <div class="d-flex justify-content-between">
+              <label>{{$t('Grading Criteria')}}<span style="color:red"> *</span></label>
+              <button class="btn btn-primaray btn-sm mt-3" style="transform: translateY(-7px); padding: 0 !important;"
+                v-if="data.gradingMasterId.length>0" @click="editModel2()"><i class="la la-expand"></i></button>
+            </div>
+            <select-ex :options="GradingMasterDetailData" keyValue="gradingMasterId" displayValue="name"
+              v-model.trim="data.gradingMasterId">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.data.gradingMasterId.$error">
+              <span v-if="!$v.data.gradingMasterId.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group validated">
+            <label>{{$t('Month')}}<span style="color:red"> *</span></label>
+            <select-ex :options="monthList" keyValue="name" displayValue="name"
+              v-model.trim="data.month">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.data.month.$error">
+              <span v-if="!$v.data.month.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="!IsNewRecord" class="row">
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.examBulk.course')}}<span style="color:red"> *</span></label>
+            <select-ex :options="courseLists" keyValue="courseId" displayValue="courseName"
+              v-model.trim="programCourseLinkId"  @input="refreshData" >
+            </select-ex>
+          </div>
+        </div> -->
+        <!-- @input="dayoffdata(data.examDate)" -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceTeacherUser.date')}}</label>
+            <date-picker class="input-28" id="change-width" disabled  ref="changeWidth" v-model="data.examDate" 
+            format="DD/MM/YYYY" lang="en"></date-picker>
+          </div>
+        </div>
+
+        <!-- @input="GetCourseList(data.examDate)" -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label >{{$t('modal.examBulk.course')}}<span style="color:red"> *</span></label>
+     <div style="position: relative;">
+            <select-ex :options="courseLists"  disabled keyValue="courseId"  displayValue="courseName" 
+            v-model.trim="data.courseId">
+            </select-ex>
+            <div v-if="disablebuuton" style="position: absolute; 
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: #0000001f;"></div>
+        
+          </div>
+        </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>{{$t('modal.examBulk.totalMarks')}}<span style="color:red">
+                *</span></label></label>
+            <input class="form-control form-control-sm" v-model="data.totalMarks" :disabled="disablebuuton"  type="number" required>
+          </div>
+        </div>
+      
+    
+    </div>
+      
+      <div v-if="IsNewRecord" class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceTeacherUser.date')}}<span style="color:red">
+                *</span></label></label>
+    
+                <date-picker class="input-28" id="change-width"  ref="changeWidth"  v-model="data.examDate"
+              format="DD/MM/YYYY" lang="en" @input="enablecourselist()" ></date-picker>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>{{$t('modal.examBulk.course')}}<span style="color:red"> *</span></label>
+            <select-ex :options="courseLists" :disabled="!enablelistcourse" keyValue="courseId" @input="GetCourseList(data.examDate)" displayValue="courseName"
+              v-model.trim="data.courseId">
+            </select-ex> 
+
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>{{$t('modal.examBulk.totalMarks')}}<span style="color:red">
+                *</span></label></label>
+            <input class="form-control form-control-sm" v-model="data.totalMarks"  type="number" required>
+          </div>
+        </div>
+        <div class="col-md-3" style="margin-bottom: 30px;">
+          <button v-if="examScheduleList.length>1"    @click="removeFromList(data.examScheduleId)"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle" style="margin-top:24px" :disabled="activeDayoff">
+            <i class="la la-floppy-o"> </i>
+          </button>
+
+          <button class="btn btn-light btn-hover btn-sm btn-primary"  style="margin-top:24px"
+          :disabled="activeDayoff" @click="checkdayoff(data)">
+          
+           Add To List</button>
+        </div>
+      </div>
+      <div  v-for="(itemList,i) in examScheduleListCourseName">
+        <div class="row">
+           <div class="col-md-3">
+             <div class="form-group">
+              <span class="mx-input  "  >{{itemList.examDate}}</span>
+             </div>
+           </div>
+           <input type="text" ref="myInput"  type="hidden" v-model="itemList.examDate"  >
+           <div class="col-md-4">
+             <div class="form-group">
+             <span class="mx-input p-3">{{itemList.courseName}}</span>
+           </div>
+          </div>
+          <div class="col-md-2">
+           <div class="form-group">
+           <span class="mx-input p-3">{{itemList.totalMarks}}</span>
+         </div>
+        </div>
+        <div class="col-md-3">
+         <div class="form-group">
+         <button  
+         class="btn btn-outline-primary btn-icon btn-sm btn-circle mt-2"  @click="removeCourseList(i)" >
+         <i class="la la-minus"></i>
+       </button>
+     </div>
+      </div>
+        </div>
+     
+     </div>
+     <div class="modal-footer">
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+     
+          <button class="btn btn-light btn-hover btn-sm btn-primary" v-if="!enablebutton"  :disabled = "activeDayoff==true || examScheduleListCourseName.length == '' "   @click="saveModel()"><i class="la la-floppy-o"></i>
+            {{$t('button.save')}}</button>
+
+          <button class="btn btn-light btn-hover btn-sm btn-primary"  v-if="enablebutton"  :disabled = "activeDayoff==true" @click="saveModel()"><i class="la la-floppy-o"></i>
+            {{$t('button.save')}}</button>
+         
+        </div>
+      </div>
+    </div>
+
+    </div>
+   
+    <fail-master-preview></fail-master-preview>
+    <grading-olicy-preview></grading-olicy-preview>
+  </div>
+</modal>

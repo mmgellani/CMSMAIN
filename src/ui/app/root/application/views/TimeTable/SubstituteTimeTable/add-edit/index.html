@@ -1,0 +1,203 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="60%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        TimeTable&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" v-if="staffList">
+                        <v-select label="fullName" v-model="data.staffId" :options="staffList"
+                            :reduce="option => option.staffId">
+                            <template slot="option" slot-scope="option">
+                                <span v-html="staffMember(option)"></span>
+                            </template>
+                        </v-select>
+                        <label class="caption-title">Staff Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control form-control-sm" v-model="data.programCourseLinkId" required>
+                            <option :value="model.programCourseLinkId" v-for="(model,index) in CourseList">
+                                {{ model.courseName }} </option>
+                        </select>
+                        <label>Course<span style="color:red">
+                                *</span></label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="form-group col-md-12" v-if="datas">
+
+                            <v-select label="fullName" v-model="data.roomId" :options="datas"
+                                :reduce="option => option.roomId">
+                                <template slot="option" slot-scope="option">
+                                    <span v-html="roomCampus(option)"></span>
+                                </template>
+                            </v-select>
+                            <label class="caption-title">Room</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control form-control-sm" v-model="data.dayName" required>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                        <label :class="!$v.model.dayName.required">Day<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <select class="form-control form-control-sm" v-model="data.slotTimingId" required>
+                                <option :value="model.slotTimingId" v-for="(model,index) in SlotTimingList">
+                                    {{model.startTime + `-` + model.endTime}} </option>
+                            </select>
+                            <label :class="!$v.model.slotTimingId.required" style="margin-left:15px;">Slot<span
+                                    style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close">
+                        <input class="switch" type="checkbox" v-model="data.isBreak">
+                    </div>
+                    <label class="caption-title">Break</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Staff v-on:submit="loadStaff"></Staff>
+    <Room v-on:submit="loadRoom"></Room>
+    <Slots v-on:submit="loadSlots"></Slots>
+</modal> -->
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.viewTimeTable')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-3" v-if="staffList">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.viewTimeTable.staffName')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="staffList" keyValue="staffId" displayValue="fullName"
+                            v-model="data.staffId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.viewTimeTable.course')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="CourseList" keyValue="programCourseLinkId" displayValue="courseName"
+                            v-model="data.programCourseLinkId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3" v-if="datas">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.viewTimeTable.room')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="datas" keyValue="roomId" displayValue="fullName" v-model="data.roomId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.viewTimeTable.day')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="week" keyValue="dayname" displayValue="dayname" v-model="data.dayName">
+                        </select-ex>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-control-label">{{$t('modal.viewTimeTable.slot')}}</label> <span
+                        style="color:red"></span>
+                    *</span>
+                    <select-ex :options="SlotTimingList" keyValue="slotTimingId" displayValue="startTime"
+                        v-model="data.slotTimingId">
+                    </select-ex>
+                </div>
+
+                <!-- <select class="form-control form-control-sm" v-model="data.slotTimingId" required>
+                        <option :value="model.slotTimingId" v-for="(model,index) in SlotTimingList">
+                            {{model.startTime + `-` + model.endTime}} </option>
+                    </select> -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" :disabled="!allowsubmit()" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+</modal>

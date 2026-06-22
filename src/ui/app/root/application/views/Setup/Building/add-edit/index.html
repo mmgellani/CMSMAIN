@@ -1,0 +1,288 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="Building-add-edit-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="bounce"   top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.setupBuilding')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupBuilding.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label>{{$t('modal.concessionDashboard.subcities')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="cityList" keyValue="subCityId" displayValue="subCityName"
+                            v-model="data.subCityId" @input="loadAddress">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.subCityId.$error">
+                            <span v-if="!$v.data.subCityId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.setupBuilding.fullName')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  "
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupBuilding.address')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="addresslist" keyValue="addressId" groupBy="fullName" displayValue="address"
+                            v-model.trim="data.addressId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.addressId.$error">
+                            <span v-if="!$v.data.addressId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label ">
+                            {{$t('modal.setupBuilding.possession')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="possessionlist" keyValue="possessionId" groupBy="fullName"
+                            displayValue="fullName" v-model.trim="data.possessionId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.possessionId.$error">
+                            <span v-if="!$v.data.possessionId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.setupBuilding.phoneNo')}}</label>
+                        <the-mask :mask="'(####) ### ####'" v-model="data.phoneNo"
+                            class="form-control  " />
+                        <!-- <div class="invalid-feedback" v-show="$v.data.phoneNo.$error">
+                            <span v-if="!$v.data.phoneNo.required">{{$t('validation.required')}}</span>
+                        </div> -->
+                        <!-- <input type="text" class="form-control form-control-sm" v-mask="'(9999) 999 9999'"
+                            v-model="data.phoneNo" required>
+                        <label>Phone #</label> -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.setupBuilding.googleCoordinats')}}</label>
+                        <input type="text" class="form-control  " v-model.trim="data.coordinate">
+                        <!-- <div class="invalid-feedback" v-show="$v.data.coordinate.$error">
+                            <span v-if="!$v.data.coordinate.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.coordinate.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div> -->
+                        <!-- <input type="text" class="form-control form-control-sm" v-model="data.coordinate" required>
+                        <label>Google Coordinats</label> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Address v-on:submit="loadAddress"></Address>
+    <Possession v-on:submit="loadPossession"></Possession>
+</modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <modal name="Building-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        Building&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input type="checkbox" v-model="isActive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="70" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control m-input m-input-air" v-model="data.addressId" required>
+                                    <option v-for="option in addresslist" :value="option.addressId">
+                                        {{option.address}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.addressId.required" style="margin-left:15px;">Address<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewAddress">
+                                        <i class="fa fa-plus m--hide success"></i>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadAddress">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control m-input m-input-air" v-model="data.possessionId" required>
+                                    <option v-for="option in possessionlist" :value="option.possessionId">
+                                        {{option.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.possessionId.required" style="margin-left:15px;">Possession<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewPossession">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadPossession">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-mask="'(9999) 999 9999'" v-model="data.phoneNo" required>
+                            <label>Phone #</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.coordinate" required>
+                            <label>Google Coordinats</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Address v-on:submit="loadAddress"></Address>
+    <Possession v-on:submit="loadPossession"></Possession>
+</modal> -->

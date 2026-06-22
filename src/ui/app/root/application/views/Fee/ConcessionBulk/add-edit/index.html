@@ -1,0 +1,489 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        ConcessionBulk&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" @change="loadCampusProgram()" v-model="data.zoneId" required>
+                                    <option v-for="(model,index) in zoneList" :value="model.zoneId">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Zone</label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewZone">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadZone">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                   
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" @change="loadCampusProgram()" v-model="data.shiftId" required>
+                                    <option v-for="(model,index) in ShiftList" :value="model.shiftId">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Shift</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewShift">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadShift">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" @change="loadExistingConcession()" v-model="challanTypeId" required>
+                                    <option v-for="(model,index) in ChallantypeList" :value="model.challanTypeId">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Challan Type</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" @change="reloadFeeHead()" v-model="concessionName" required>
+                                    <option v-for="(model,index) in existingConcsessionList" :value="model.providedString">{{model.providedString}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Select Concession</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div v-if="concessionName=='New Concession'" class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.fullName" required>
+                            <label style="margin-left:15px;">Concession Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div  class="row">
+
+                    <div class="col-md-6">
+                        <h5>Choose Programs</h5>
+                        <ul style="max-height:100px;overflow-y: auto; border:1px solid #ccc0d6;padding: 5px; ">
+                            <li v-for="(model, index) in programCBList" style="list-style:none;">
+                                <input type="checkbox" v-model="model.isChecked" @change="reloadFeeHead()">
+                                {{model.name}}
+                                </input>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                            <h5>Choose FeeHeads</h5>
+                        <ul style="max-height:100px;overflow-y: auto; border:1px solid #ccc0d6; padding: 5px;">
+                            <li v-for="(model, index) in feeHeadCBList" style="list-style:none;">
+                                <input type="checkbox" v-model="model.isChecked" @change="reloadFeeHead()">
+                                {{model.name}}
+                                </input>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div  class="row" v-for="(model,index) in feeStructureVMListTemp">
+                    <div class="col-md-12">
+                        <h2> <b> {{model.programName}} </b> </h2>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row" v-for="(mod,index) in feeStructureVMList">
+                            <div class="col-md-12">
+                                <div class="row" v-if="model.programName==mod.programName">
+                                    <div class="col-md-3">
+                                        <h5>{{mod.feeHeadName}}</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="number" disabled v-model="mod.feeAmount" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="number" @change="calculateTotalAmount(mod)"
+                                            v-model="mod.percentage" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="number" @change="calculatePercentage(mod)" v-model="mod.amount" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                
+                    <div class="col-md-6 form-group">
+                        <h5>Continuation Policy</h5>
+                        <ul style="max-height:100px;overflow-y: auto; border:1px solid #ccc0d6;padding: 5px;">
+                            <li v-for="(model,index) in continuationPolicyCBList" style="list-style:none;">
+                                <input type="checkbox" v-model="model.isChecked">
+                                {{model.fullName}}
+                                </input>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group col-md-10">
+                            <select @change="checkScholarship" v-model="admissionTypeId" class="form-control form-control-sm" required>
+                                <option :key="index" :value="model.admissionTypeId"
+                                    v-for="(model,index) in admissionTypeList">{{model.fullName}}
+                                </option>
+                            </select>
+                            <label style="margin-left:15px;">Admission Type<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input maxlength="4" class="form-control form-control-sm" v-model="attendancePercentage" required>
+                            <label>Attendance Percentage<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6" v-show="isScholarship">
+                        <select v-model="scholarshipTypeId" class="form-control form-control-sm" required>
+                            <option :key="index" :value="model.scholarshipTypeId" v-for="(model,index) in GradesList">
+                                {{model.grades}}
+                            </option>
+                        </select>
+                        <label>Grades<span style="color:red"> *</span></label>
+                    </div>
+                    <div class="form-group col-md-6" v-show="isScholarship">
+                        <input class="form-control form-control-sm" v-model="marksPer" required>
+                        <label>Marks Percentage<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Shift v-on:submit="loadShift"></Shift>
+    <Zone v-on:submit="loadZone"></Zone>
+</modal> -->
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.feeConcessionBulk')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.zone')}}</label>
+                        <select-ex :options="zoneList" keyValue="zoneId" displayValue="fullName"
+                            @input="loadCampusProgram()" v-model="data.zoneId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.shift')}}</label>
+                        <select-ex :options="ShiftList" keyValue="shiftId" displayValue="fullName"
+                            @input="loadCampusProgram()" v-model="data.shiftId">
+                        </select-ex>
+                        <!-- <select class="form-control form-control-sm" @change="loadCampusProgram()"
+                                    v-model="data.shiftId" required>
+                                    <option v-for="(model,index) in ShiftList" :value="model.shiftId">{{model.fullName}}
+                                    </option>
+                                </select> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.class')}}</label>
+                        <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model="classId">
+                        </select-ex>
+                        <!-- <select  class="form-control" v-model="classId" required>
+                                    <option v-for="(model,index) in classList" :value="model.classId">
+                                        {{model.fullName}}</option>
+                                </select> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.challanType')}}</label>
+                        <select-ex :options="ChallantypeList" keyValue="challanTypeId" displayValue="fullName"
+                            @input="loadExistingConcession()" v-model="challanTypeId">
+                        </select-ex>
+
+                        <!-- <select class="form-control form-control-sm" @change="loadExistingConcession()"
+                            v-model="challanTypeId" required>
+                            <option v-for="(model,index) in ChallantypeList" :value="model.challanTypeId">
+                                {{model.fullName}}
+                            </option>
+                        </select> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.AdmissionType')}}</label>
+                        <div class="fee-structure-square">
+                            <div class="row">
+                                <div class="col-md-12" v-for="data in admissionTypeCBList">
+                                    <label class="kt-checkbox kt-checkbox--brand"> {{data.name}}
+                                        <input type="checkbox" v-model.trim="data.isChecked" @change="checkScholarship()">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <select-ex :options="admissionTypeList" keyValue="admissionTypeId" displayValue="fullName"
+                            v-model="admissionTypeId" @input="checkScholarship">
+                        </select-ex> -->
+                        <!-- <select @change="checkScholarship" v-model="admissionTypeId"
+                            class="form-control form-control-sm" required>
+                            <option :key="index" :value="model.admissionTypeId"
+                                v-for="(model,index) in admissionTypeList">{{model.fullName}}
+                            </option>
+                        </select> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.attendance')}}</label>
+                        <input maxlength="4" class="form-control form-control-sm" v-model="attendancePercentage">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.program')}}</label>
+                        <div class="fee-structure-square">
+                            <div class="row">
+                                <div class="col-md-12" v-for="data in programCBList">
+                                    <label class="kt-checkbox kt-checkbox--brand"> {{data.name}}
+                                        <input type="checkbox" v-model.trim="data.isChecked" @change="reloadFeeHead()">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.feeType')}}</label>
+                        <div class="fee-structure-square" style="height:100px;">
+                            <div class="row">
+                                <div class="col-md-12" v-for="(model,index) in feeHeadCBList">
+                                    <label class="kt-checkbox kt-checkbox--brand"> {{model.name}}
+                                        <input type="checkbox" v-model.trim="model.isChecked" @change="reloadFeeHead()">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.continuationPolicy')}}</label>
+                        <div class="fee-structure-square">
+                            <div class="row">
+                                <div class="col-md-12" v-for="(model,index) in continuationPolicyCBList">
+                                    <label class="kt-checkbox kt-checkbox--brand"> {{model.fullName}}
+                                        <input type="checkbox" v-model.trim="model.isChecked">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.concession')}}</label>
+                        <!-- <select-ex :options="existingConcsessionList" keyValue="providedString"
+                            displayValue="providedString" @input="reloadFeeHead()" v-model="concessionName">
+                        </select-ex> -->
+                        <select class="form-control form-control-sm" @change="reloadFeeHead()" v-model="concessionName"
+                            required>
+                            <option v-for="(model,index) in existingConcsessionList" :value="model.providedString">
+                                {{model.providedString}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4" v-if="concessionName=='+ New Concession'">
+                    <div class="form-group">
+                        <label>{{$t('modal.feeConcessionBulk.concessionName')}}</label>
+                        <input type="text" class="form-control form-control-sm" v-model="data.fullName" required>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" v-for="(data,index) in feeStructureVMListTemp">
+                <div class="offset-md-5 col-md-7 mb-2">
+                    <span class="kt-badge kt-badge--inline kt-badge--pill"
+                        style="background: rgb(235, 237, 242); color: black; font-size: 1rem;">
+                        {{data.programName}}
+                    </span>
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr role="row">
+                                <th>{{$t('modal.feeConcessionBulk.feeType')}}</th>
+                                <th>{{$t('modal.feeConcessionBulk.totalAmount')}}</th>
+                                <th>{{$t('modal.feeConcessionBulk.concession')}}</th>
+                                <th>{{$t('modal.feeConcessionBulk.concessionAmount')}}</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(mod,index) in feeStructureVMList" v-if="data.programName==mod.programName">
+                            <tr>
+                                <td class="v-align-middle">{{mod.feeHeadName}}</td>
+                                <td class="v-align-middle"> <input type="number" disabled
+                                        class="form-control form-control-sm" v-model="mod.feeAmount" />
+                                </td>
+                                <td class="v-align-middle"> <input type="number" class="form-control form-control-sm"
+                                        @change="calculateTotalAmount(mod)" v-model="mod.percentage" />
+                                </td>
+                                <td class="v-align-middle"> <input type="number" class="form-control form-control-sm"
+                                        @change="calculatePercentage(mod)" v-model="mod.amount" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</modal>
+
+
+
+
+<!-- <div  class="row" v-for="(model,index) in feeStructureVMListTemp">
+        <div class="col-md-12">
+            <h2> <b> {{model.programName}} </b> </h2>
+        </div>
+        <div class="col-md-12">
+            <div class="row" v-for="(mod,index) in feeStructureVMList">
+                <div class="col-md-12">
+                    <div class="row" v-if="model.programName==mod.programName">
+                        <div class="col-md-3">
+                            <h5>{{mod.feeHeadName}}</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" disabled v-model="mod.feeAmount" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" @change="calculateTotalAmount(mod)"
+                                v-model="mod.percentage" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" @change="calculatePercentage(mod)" v-model="mod.amount" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

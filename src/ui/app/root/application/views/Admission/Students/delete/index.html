@@ -1,0 +1,67 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="delete-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true" :scrollable="true"
+  :adaptive="false" transition="nice-modal-fade" width="40%" height="auto" @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header clearfix text-left">
+
+        <div class="row">
+            <div class="col-md-8">
+              <h5>
+                <span class="semi-bold">{{title}}</span>
+              </h5>
+      
+      
+            </div>
+            <div class="col-md-4 text-right">
+                <a href="#" @click="cancel" class="cancel">
+                    <i class="fa fa-close"></i>
+                  </a>
+      
+            </div>
+          </div>
+
+    </div>
+     
+<div class="modal-body" style="height: 450px;overflow: auto;">
+  -->
+
+<div class="fixed-header-table">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr role="row">
+          <th>{{$t('modal.studentDetails.srNo')}}</th>
+          <th>{{$t('modal.studentDetails.course')}}</th>
+          <th>{{$t('modal.studentDetails.dated')}}</th>
+          <th>{{$t('modal.studentDetails.time')}}</th>
+          <th>{{$t('modal.studentDetails.status')}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in data">
+          <td class="align-middle">{{index+1}}</td>
+          <td class="align-middle"> {{item.courseName}}</td>
+          <td class="align-middle">{{item.dated| formatDMY}}</td>
+          <td class="align-middle">{{item.sectionName}}-{{item.className}}</td>
+          <td class="align-middle">
+            <span :class="getStatusClass(item.attendanceStatus)">
+              {{item.attendanceStatus}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- </div>
+<div class="col-md-12">
+        <button class="btn btn-primary btn-block" type="submit" @click="cancel()">Close</button>
+      </div>
+  </div>
+</modal> -->

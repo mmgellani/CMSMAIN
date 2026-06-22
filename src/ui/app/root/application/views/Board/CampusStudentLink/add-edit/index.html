@@ -1,0 +1,85 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="CampusStudentLink-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        Board Campus &nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select @change="" class="form-control" v-model="boardCampusId" required>
+                            <option v-for="(model,index) in boardCampusList" :value="model.boardCampusId">
+                                {{model.fullName}}</option>
+                        </select>
+                        <label>Board Campus<span style="color: red"> *</span> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper no-footer">
+                        <table class="table">
+                            <thead>
+                                <tr role="row">
+                                    <th>No.</th>
+                                    <th>Roll No</th>
+                                    <th>Name</th>
+                                    <th>
+                                        Assign Campus <input type="checkbox" @change="checkAll" class="mt-2"
+                                            v-model="selectAll"></input>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in studentList">
+                                    <td class="v-align-middle">{{item.rollNo}}</td>
+                                    <td class="v-align-middle">{{item.fullName}}</td>
+                                    <td> <input type="checkbox" class="mt-2" v-model="item.isSelected"></input>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

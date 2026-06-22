@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <root Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>root</Alias>
+        <Key />
+        <Name>root</Name>
+        <PathData>C:\Users\salman.tariq\Desktop\examsubject.json</PathData>
+      </root>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <root Ref="3" type="DataTableSource" isKey="true">
+        <Alias>root</Alias>
+        <Columns isList="true" count="20">
+          <value>examDetailId,System.Guid</value>
+          <value>admissionFormId,System.Guid</value>
+          <value>examName,System.String</value>
+          <value>code,System.Char</value>
+          <value>sectionName,System.String</value>
+          <value>campusName,System.String</value>
+          <value>sectionCourseLinkId,System.Guid</value>
+          <value>examMasterId,System.Guid</value>
+          <value>totalMarks,System.Double</value>
+          <value>obtainedMarks,System.Double</value>
+          <value>passStatus,System.Char</value>
+          <value>courseName,System.String</value>
+          <value>courseId,System.Guid</value>
+          <value>className,System.String</value>
+          <value>description,System.String</value>
+          <value>sessionName,System.Double</value>
+          <value>rollNo,System.String</value>
+          <value>fullName,System.String</value>
+          <value>matricObtainMarks,System.Double</value>
+          <value>matricTotalMarks,System.Double</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>6b8b62382d26462485df1781305ada34</Key>
+        <Name>root</Name>
+        <NameInSource>root.root</NameInSource>
+      </root>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>39668f10c16b4aa8abbb6e8a2b6d2c73</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="2">
+        <ReportTitleBand1 Ref="5" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,28.7,3.4</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text1 Ref="6" type="Text" isKey="true">
+              <Brush>White</Brush>
+              <ClientRectangle>0.2,0,28.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,16,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{root.campusName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="7" type="Text" isKey="true">
+              <Border>Top, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>White</Brush>
+              <ClientRectangle>8.25,1.2,12.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,15,Bold</Font>
+              <Guid>f827db8d1041492da8f6993d2cabe374</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>SUBJECT SESSION EXAM REPORT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text6 Ref="8" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.35,2.2,8.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9</Font>
+              <Guid>cdc50dce62624446a26d0f417b984c38</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>&lt;strong&gt;Class:&lt;/strong&gt; {root.description}-{root.className}-{root.sessionName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text4 Ref="9" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.95,2.2,2.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14</Font>
+              <Guid>c3bbad03fb7f42cd91ab18e0d7a12de0</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text3 Ref="10" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>24,2.2,4.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9</Font>
+              <Guid>1fb06f0a34054d128b1c89dafb6ec541</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>&lt;strong&gt;Section:&lt;/strong&gt; {root.sectionName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text5 Ref="11" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.65,2.2,7.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9</Font>
+              <Guid>13a34b8e694f430c81981ea3dcdd844e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>&lt;b&gt;Exam Type: &lt;/b&gt;  {root.examName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <HorizontalLinePrimitive1 Ref="12" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,3.2,28.6,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <Conditions isList="true" count="0" />
+              <EndCap Ref="13" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Size>2</Size>
+              <StartCap Ref="14" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportTitleBand1>
+        <DataBand1 Ref="15" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <CanBreak>True</CanBreak>
+          <ClientRectangle>0,4.6,28.7,3</ClientRectangle>
+          <Components isList="true" count="1">
+            <Cross_Tab1 Ref="16" type="Stimulsoft.Report.CrossTab.StiCrossTab" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0.2,0,8.8,2.4</ClientRectangle>
+              <Components isList="true" count="16">
+                <Cross_Tab1_RowTotal1 Ref="17" type="CrossRowTotal" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>0,2.5,2.2,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Font>Garamond,8</Font>
+                  <Guid>d1797aedc5e34dd7a50c5eb419b17b6b</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_RowTotal1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </Cross_Tab1_RowTotal1>
+                <Cross_Tab1_Row1_Title Ref="18" type="CrossTitle" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>0,0.45,1.6,0.8</ClientRectangle>
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>080bad41dc734f60a1fe82a1f9fdef50</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Row1_Title</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Student ID</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TypeOfComponent>Row:Cross_Tab1_Row1</TypeOfComponent>
+                </Cross_Tab1_Row1_Title>
+                <Cross_Tab1_RowTotal2 Ref="19" type="CrossRowTotal" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>1,2.1,1.2,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Font>Garamond,8</Font>
+                  <Guid>2e4dda3e92644f3eb3020e363415fed3</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_RowTotal2</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </Cross_Tab1_RowTotal2>
+                <Cross_Tab1_Row2_Title Ref="20" type="CrossTitle" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>1.6,0.45,1.2,0.8</ClientRectangle>
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>af3b921aedca4eaeb9681dcff8fcadef</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Row2_Title</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Name</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TypeOfComponent>Row:Cross_Tab1_Row2</TypeOfComponent>
+                </Cross_Tab1_Row2_Title>
+                <Cross_Tab1_ColTotal1 Ref="21" type="CrossColumnTotal" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>5.45,0.45,0.8,0.8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>e0336f71073546a880473e8857a8d006</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_ColTotal1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Cross_Tab1_ColTotal1>
+                <Cross_Tab1_LeftTitle Ref="22" type="CrossTitle" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,0,2.8,0.4</ClientRectangle>
+                  <Enabled>False</Enabled>
+                  <Font>Garamond,8</Font>
+                  <Guid>c571fe8b38c44952a9df6ecf398d2dcf</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MinSize>1,0</MinSize>
+                  <Name>Cross_Tab1_LeftTitle</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>root</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TypeOfComponent>LeftTitle</TypeOfComponent>
+                </Cross_Tab1_LeftTitle>
+                <Cross_Tab1_SumHeader1 Ref="23" type="Stimulsoft.Report.CrossTab.StiCrossSummaryHeader" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>2.85,0.85,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>f940b43766454f7c9db059f58a7755e4</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_SumHeader1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Om</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Cross_Tab1_SumHeader1>
+                <Cross_Tab1_SumHeader2 Ref="24" type="Stimulsoft.Report.CrossTab.StiCrossSummaryHeader" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>3.45,0.85,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>fbcffae1e3664b788f1e59d2368bda2c</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_SumHeader2</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Tm</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Cross_Tab1_SumHeader2>
+                <Cross_Tab1_SumHeader3 Ref="25" type="Stimulsoft.Report.CrossTab.StiCrossSummaryHeader" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>4.05,0.85,1.4,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>92ef1455ff2f49bd90ac3ad11b08b766</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_SumHeader3</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Rem.</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Cross_Tab1_SumHeader3>
+                <Cross_Tab1_RightTitle Ref="26" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>2.85,0,3.4,0.4</ClientRectangle>
+                  <Font>Arial,8</Font>
+                  <Guid>8fbc451f2eb14e9c8a11cde013f82f43</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_RightTitle</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>courseName</Text>
+                  <TextBrush>[105:105:105]</TextBrush>
+                  <TypeOfComponent>RightTitle</TypeOfComponent>
+                </Cross_Tab1_RightTitle>
+                <Cross_Tab1_Row1 Ref="27" type="CrossRow" isKey="true">
+                  <Alias>rollNo</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,1.3,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root.rollNo}</DisplayValue>
+                  <Font>Garamond,8</Font>
+                  <Guid>a7ae1f505ab0428cbf1aa534e29e78ba</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Row1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>rollNo</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TotalGuid>d1797aedc5e34dd7a50c5eb419b17b6b</TotalGuid>
+                  <Value>{root.rollNo}</Value>
+                </Cross_Tab1_Row1>
+                <Cross_Tab1_Row2 Ref="28" type="CrossRow" isKey="true">
+                  <Alias>fullName</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>1.6,1.3,1.2,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root.fullName}</DisplayValue>
+                  <Font>Garamond,8</Font>
+                  <Guid>067d9cf2ccf342eb9ea8c41a7dcfc3ef</Guid>
+                  <HorAlignment>Left</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Row2</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>fullName</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TotalGuid>2e4dda3e92644f3eb3020e363415fed3</TotalGuid>
+                  <Value>{root.fullName}</Value>
+                </Cross_Tab1_Row2>
+                <Cross_Tab1_Column1 Ref="29" type="CrossColumn" isKey="true">
+                  <Alias>courseName</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[191:191:191]</Brush>
+                  <ClientRectangle>2.85,0.45,2.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root.courseName}</DisplayValue>
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>f7c3e3625150482b984949cb84743061</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Column1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>courseName</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TotalGuid>e0336f71073546a880473e8857a8d006</TotalGuid>
+                  <Value>{root.courseName}</Value>
+                </Cross_Tab1_Column1>
+                <Cross_Tab1_Sum1 Ref="30" type="CrossSummary" isKey="true">
+                  <Alias>obtainedMarks</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>2.85,1.3,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Garamond,8,Bold</Font>
+                  <Guid>d4bc940f5b3644b5857134455c5194ba</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Sum1</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>0</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Value>{root.obtainedMarks}</Value>
+                </Cross_Tab1_Sum1>
+                <Cross_Tab1_Sum2 Ref="31" type="CrossSummary" isKey="true">
+                  <Alias>totalMarks</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>3.45,1.3,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Garamond,8</Font>
+                  <Guid>1a7b39b0d82b49389a0ca9d26a5491e1</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Sum2</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>0</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Value>{root.totalMarks}</Value>
+                </Cross_Tab1_Sum2>
+                <Cross_Tab1_Sum3 Ref="32" type="CrossSummary" isKey="true">
+                  <Alias>passStatus</Alias>
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>4.05,1.3,1.4,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>88cea804a8944b7787381ee9dc41aacd</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Cross_Tab1_Sum3</Name>
+                  <Page isRef="4" />
+                  <Parent isRef="16" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Summary>None</Summary>
+                  <Text>0</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Value>{root.passStatus}</Value>
+                </Cross_Tab1_Sum3>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DataRelationName />
+              <DataSourceName>root</DataSourceName>
+              <EmptyValue />
+              <Filters isList="true" count="0" />
+              <Guid>7e2581c26d5345699a09d5c2871cf620</Guid>
+              <HorAlignment>Width</HorAlignment>
+              <Name>Cross_Tab1</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Sort isList="true" count="0" />
+              <SummaryDirection>LeftToRight</SummaryDirection>
+            </Cross_Tab1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>7ff1710b463042c199d6d0b3dda95d25</Guid>
+      <Margins>0.5,0.5,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21</PageHeight>
+      <PageWidth>29.7</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>1/10/2020 3:34:57 PM</ReportChanged>
+  <ReportCreated>10/8/2019 11:22:00 AM</ReportCreated>
+  <ReportFile>E:\EMS360local\src\server\wwwroot\assets\Reports\Resource\Examination\combined-subject-exam.mrt</ReportFile>
+  <ReportGuid>4edffd5c50a749709b5057e85a901505</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2019.3.6.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

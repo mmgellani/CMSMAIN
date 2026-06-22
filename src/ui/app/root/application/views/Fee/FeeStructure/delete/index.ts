@@ -1,0 +1,51 @@
+/*
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+*/
+
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+import { StoreTypes } from '../../../../../../store';
+import { PayloadMessageTypes } from '../../../../../../model';
+
+import { IFeeFeeStructure } from '../../../../models';
+import { FeeFeeStructureService } from '../../../../service';
+
+@Component({
+    name: 'delete-modal',
+    template: require('./index.html')
+})
+export class FeeFeeStructureDelete extends Vue {
+    private repository: FeeFeeStructureService;
+    private data: IFeeFeeStructure = { feeStructureId: '', zoneId: '', sessionId: '', programId: '', shiftId: '', classId: '', feeHeadId: '', feeAmount: 0, statusId: 0, loggerId: '', isApproved: false, };
+    private title: string = 'Delete Record';
+
+    created() {
+        this.repository = new FeeFeeStructureService(this.$store);
+    }
+
+    beforeModalOpen(event) {
+        Object.assign(this.data, event.params.model);
+    }
+
+    cancel() {
+        this.$modal.hide('delete-model');
+        this.$emit("submit");
+    }
+
+    deleteModel() {
+        var key=this.data.feeStructureId+'?'+this.data.feeAmount+'?'+'2'
+        this.repository.DeleteFeestructure(key)
+            .then(() => {this.$store.dispatch(StoreTypes.updateStatusBar, {
+                text: 'Record has been Deleted successfully',
+                title: 'Deleted',
+                messageTypeId: PayloadMessageTypes.warning
+            })
+            this.cancel();
+        });
+
+        this.cancel();
+    }
+}

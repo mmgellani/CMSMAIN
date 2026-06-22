@@ -1,0 +1,23 @@
+<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+    <div class="kt-header-mobile__logo">
+        <a href="#">
+            <img alt="Logo" src="~assets/images/emslogo.svg">
+        </a>
+    </div>
+    <div class="kt-header-mobile__toolbar">
+        <button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"
+            @click.prevent="toggleSideBar()">
+            <span></span>
+        </button>
+
+        <!-- <button class="kt-header-mobile__toggler" id="kt_header_mobile_toggler">
+            <span></span>
+        </button> -->
+
+        <button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler">
+            <!-- <i class="flaticon-more"></i> -->
+            <a href="#" class="btn btn-clean btn-sm btn-bold" @click.prevent="logout()">Sign
+                Out</a>
+        </button>
+    </div>
+</div>

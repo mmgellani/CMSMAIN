@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,UAAU;EACN,WAAW,EAAE,sBAAsB;EACnC,GAAG,EAAE,sEAAsE;EAC3E,GAAG,EAAE,6EAA6E,CAAC,2BAA2B,EAC9G,wEAAwE,CAAC,eAAe,EACxF,uEAAuE,CAAC,cAAc,EACtF,sEAAsE,CAAC,kBAAkB,EACzF,kGAAkG,CAAC,aAAa",
+    "sources": [
+        "glyphicons.scss"
+    ],
+    "names": [],
+    "file": "glyphicons.css"
+}

@@ -1,0 +1,85 @@
+<!-- <modal name="helper-transport-modal" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="90%" top="10" height="auto">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+
+                <div class="col-md-2 mt-3">
+                    <i class="fa fa-close cancel" href="#" @click="cancel"></i>
+                </div>
+                <div class="col-md-10">
+                    <div class="radio-group radio-group--5">
+                        <input type="radio" id="radio-1" name="radio-group" class="radio-group__input" checked
+                            @click="show('challan')" value="challan" v-model="selc">
+                        <label for="radio-1" class="radio-group__label">
+                            Student Challan
+                        </label>
+
+                        <input type="radio" id="radio-3" name="radio-group" class="radio-group__input"
+                            @click="show('exep')" value="exep" v-model="selc" v-if="canAdd">
+                        <label for="radio-3" class="radio-group__label" v-if="canAdd">
+                            Exemption
+                        </label>
+
+                        <input type="radio" id="radio-4" name="radio-group" class="radio-group__input"
+                            @click="show('insta')" value="insta" v-model="selc" v-if="canEdit">
+                        <label for="radio-4" class="radio-group__label" v-if="canEdit">
+                            Sub-Installment
+                        </label>
+                        <span class="radio-group__background"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <challan v-if="stchallan" :id="indexed+1"></challan>
+            <exemption v-if="exep" :id="indexed+3"></exemption>
+            <subInstallment v-if="insta" id="indexed+4"></subInstallment>
+        </div>
+
+    </div>
+</modal> -->
+
+
+
+<modal name="helper-transport-modal" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10">
+                <div class="radio-group radio-group--5">
+                    <input type="radio" id="radio-1" name="radio-group" class="radio-group__input" checked
+                        @click="show('challan')" value="challan" v-model="selc">
+                    <label for="radio-1" class="radio-group__label">
+                        Student Challan
+                    </label>
+
+                    <input type="radio" id="radio-3" name="radio-group" class="radio-group__input" @click="show('exep')"
+                        value="exep" v-model="selc" v-if="canAdd">
+                    <label for="radio-3" class="radio-group__label" v-if="canAdd">
+                        Exemption
+                    </label>
+
+                    <input type="radio" id="radio-4" name="radio-group" class="radio-group__input"
+                        @click="show('insta')" value="insta" v-model="selc" v-if="canEdit">
+                    <label for="radio-4" class="radio-group__label" v-if="canEdit">
+                        Sub-Installment
+                    </label>
+                    <span class="radio-group__background"></span>
+                </div>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <challan v-if="stchallan" :id="indexed+1"></challan>
+            <exemption v-if="exep" :id="indexed+3"></exemption>
+            <subInstallment v-if="insta" id="indexed+4"></subInstallment>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,356 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<!-- <modal name="fee-student-exemption-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto" @before-open="beforeModalOpen">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="col-md-4">
+          <div class="modal-title">
+
+          Full Fee Challan &nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-md-8 offset-md-4">
+              <select @change="filterData" v-model="installNo" class="form-control form-control-sm">
+                <option value="">Insallment No</option>
+                <option v-for="item in maxInstallments" :value="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body ModeColor">
+      <div class="form-group m-form__group m--margin-top-10">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="mt-3">RefNo: {{RefrenceNo}}
+            </h3>
+            <h3 class="mt-3">Name: {{studentName}}
+            </h3>
+            <h3 style="margin-top: 10px">Program:{{program}}</h3>
+          </div>
+          <div class="col-md-6">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>FeeHeads</th>
+                  <th>FeeAmount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Tempdata">
+                  <td class="v-align-middle">{{item.feeHead}}</td>
+                  <td class="v-align-middle">{{item.feeAmount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr role="row">
+              <th>
+                Challan No
+              </th>
+              <th>
+                Paid Date
+              </th>
+              <th>
+                Due Date
+              </th>
+              <th>
+                Challan Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in TempChallandata">
+              <td>
+                {{item.challanNo}}
+              </td>
+              <td>
+                {{item.paidDate && item.paidDate.toString().split('T')[0]}}
+              </td>
+              <td>
+                {{item.dueDate && item.dueDate.toString().split('T')[0]}}
+              </td>
+           
+              <td >
+                {{item.feeAmount}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn btn-danger ripple" @click="cancel">Close</button>
+          <button class="btn btn-primary" @click="GenerateFullFeeChallan">Generate Full Fee Challan</button>
+          RevertFullFee<input type="checkbox" v-model="RevertFullFee">
+          <button v-if="RevertFullFee==true" class="btn btn-primary" @click="RevertFeeChallan">Revert Full Fee Challan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal> -->
+
+
+
+
+<div>
+  <modal name="fee-student-exemption-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200"
+    :pivot-y="0.5" :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto"
+    width="60%" @before-open="beforeModalOpen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-6 modal_heading">
+          <h3 class="modal-title">{{$t('navigation.feeExemption')}}</h3>
+          <p> {{title}} </p>
+        </div>
+        <div class="col-md-6 text-right">
+          <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+            <i class="la la-close"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body staffModel">
+        <!-- <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="kt-option kt-option-custom">
+              <span class="kt-option__label">
+                <span class="kt-option__head">
+                  <span class="kt-option__title mt-1">
+                    {{$t('modal.feeExemption.grid.revertFee')}}
+                  </span>
+                </span>
+              </span>
+              <span class="kt-switch kt-switch--sm kt-switch--icon">
+                <label>
+                  <input type="checkbox" checked="checked" v-model.trim="RevertFullFee">
+                </label>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div> -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="kt-option kt-option-custom">
+                <span class="kt-option__label">
+                  <span class="kt-option__head">
+                    <span class="kt-option__title mt-1">
+                      {{$t('modal.feeExemption.grid.revertFee')}}
+                    </span>
+                  </span>
+                </span>
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model.trim="RevertFullFee">
+                    <span></span>
+                  </label>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mt-1">
+            <div class="form-group">
+              <label>{{$t('modal.feeSubInstallment.installment')}}</label>
+              <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model.trim="installNo"
+                @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+          <div class="col-md-4 mt-1">
+            <div class="form-group">
+              <label>{{$t('modal.feeExemption.grid.selectChallanType')}}</label>
+              <select-ex :options="ChallanTypeList" keyValue="challanTypeId" displayValue="fullName"
+                v-model.trim="challanType"  @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+          <div class="col-md-4 mt-1">
+            <div class="form-group">
+              <label>Class</label>
+              <select-ex :options="classlist" keyValue="classId" displayValue="fullName"
+                v-model.trim="classid" @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h6>{{$t('modal.feeSubInstallment.referenceNo')}}</h6>
+                <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">
+                  {{RefrenceNo}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h6>{{$t('modal.feeSubInstallment.name')}}</h6>
+                <span class="kt-badge  kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">{{studentName}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h6>{{$t('modal.feeSubInstallment.program')}}</h6>
+                <span class="kt-badge  kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">{{program}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <table class="table">
+              <thead class="thead-light">
+                <tr role="row">
+                  <th>{{$t('modal.feeExemption.grid.feeHeads')}}</th>
+                  <th>{{$t('modal.feeExemption.grid.feeAmount')}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Tempdata">
+                  <td>{{item.feeHead}}</td>
+                  <td>{{item.feeAmount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead class="thead-light">
+                <tr role="row">
+                  <th>{{$t('modal.feeExemption.grid.challanNo')}}</th>
+                  <th>{{$t('modal.feeExemption.grid.paidDate')}}</th>
+                  <th>{{$t('modal.feeExemption.grid.dueDate')}}</th>
+                  <th>{{$t('modal.feeExemption.grid.challanAmount')}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in TempChallandata">
+                  <td class="align-middle">
+                    {{item.challanNo}}
+                  </td>
+                  <td class="align-middle">
+                    <!-- {{item.paidDate | formatDMY}} -->
+                    {{item.paidDate && item.paidDate.toString().split('T')[0]}}
+                  </td>
+                  <td class="align-middle">
+                    <!-- {{item.dueDate | formatDMY}} -->
+                    {{item.dueDate && item.dueDate.toString().split('T')[0]}}
+                  </td>
+                  <td class="align-middle">
+                    {{item.feeAmount}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+              {{$t('button.close')}}</button>
+            <button v-if="RevertFullFee==false" class="btn btn-light btn-hover btn-sm btn-primary"
+              data-target="#myModalOne" data-toggle="modal"><i class="la la-floppy-o"></i>
+              {{$t('modal.feeExemption.grid.generateFullFeeChallan')}}</button>
+            <button v-if="RevertFullFee==true" class="btn btn-light btn-hover btn-sm btn-primary" data-target="#myModal"
+              data-toggle="modal">{{$t('modal.feeExemption.grid.revertFee')}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </modal>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.feeExemption')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to Revert Full Fee?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            @click="RevertFeeChallan">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="myModalOne" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.feeExemption')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to Generate Full Fee?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            @click="GenerateFullFeeChallan">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

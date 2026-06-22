@@ -1,0 +1,214 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admission')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admissionAdmissionForm')}} </a>
+    </div>
+  </template>
+  <portlet-area action="0" :title="$t('navigation.admissionAdmissionForm')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="session-id">Session</label>
+            <select-ex id="session-id" :options="termModel" keyValue="sessionId" displayValue="fullName"
+              v-model="sessionId" @input="loadCityCampus"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="campus-id">Campus</label>
+          <select-ex id="campus-id" :options="campusSubCityModel" keyValue="campusId" displayValue="campusName"
+            groupBy="cityName" v-model="campusId" @input="loadPrograms"></select-ex>
+        </div>
+        <div class="col-md-3">
+          <label for="Program-id">Program</label>
+          <select-ex :options="programList" keyValue="programId" displayValue="programName"
+            v-model.trim.trim="programId" @input="loadProgramsOfCampus">
+          </select-ex>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group validated">
+            <label class="form-control-label">Program Detail</label>
+            <!-- <div class="col-md-3">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" v-model="ischecked" @change="loadProgramsOfCampus">
+                    <span></span>
+                  </label>
+                </span>
+              </div> -->
+            <select-ex :options="campusProgramLinkList" groupBy="programName" key-value="campusProgramId"
+              display-value="description" v-model.trim="campusProgramId" @input="refreshDatabyProgram"></select-ex>
+            </div>
+        </div>
+
+      </div>
+
+      <grid :data="data" :columns="columns" pre="modal.admissionAdmissionForm.">
+        <template slot="action-area">
+          <button v-if="canAdd" @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-plus"></i> {{$t('button.insert')}}
+          </button>
+          <button @click="refreshData2" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="admissionStatus" slot-scope="item">
+          <strong>
+            <span v-if="item.row.admissionStatus == 'Pending'"
+              class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">{{item.row.admissionStatus}}</span>
+            <span v-if="item.row.admissionStatus == 'Fee Paid'"
+              class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">{{item.row.admissionStatus}}</span>
+            <span v-if="item.row.admissionStatus == 'Enrolled'"
+              class="kt-badge  kt-badge--primary kt-badge--inline kt-badge--pill">{{item.row.admissionStatus}}</span>
+            <span v-if="item.row.admissionStatus == 'Processing Fee Paid'"
+              class="kt-badge  kt-badge--warning kt-badge--inline kt-badge--pill">{{item.row.admissionStatus}}</span>
+          </strong>
+        </template>
+
+        <template slot="action" slot-scope="item">
+          <button title="Edit" class="btn btn-outline-primary btn-icon btn-sm btn-circle" @click="editModel(item.row)"
+            v-if="canEdit">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button title="Fee Detail" class="btn btn-outline-danger btn-icon btn-sm btn-circle" @click="helper(item.row)"
+            v-if="canDelete && item.row.isApproval==true">
+            <i class="fa fa-clone"></i>
+          </button>
+          <button title="print" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+            @click="getAdmissionSlip(item.row.sessionId,item.row.campusId,item.row.admissionFormId,item.row.refferenceNo)">
+            <i class="fa fa-print"></i>
+          </button>
+        </template>
+      </grid>
+
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.admissionAdmissionForm')}}</h3>
+            <!-- <p>{{ title }}</p> -->
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            @click="insertModel"><i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <grid :data="data" :columns="columns" pre=".modal.admissionAdmissionForm." header='Admission <span class="fw-semi-bold">Form</span>'> -->
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <helper-modal :student-info='studentInfo' @fire_report="fireChallan"></helper-modal>
+  <!-- <report-engine :data="reportDate" :path="report"></report-engine> -->
+  </template>
+</page-area>
+
+<!-- 
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.admission')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admissionAdmissionForm')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.admissionAdmissionForm')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="session-id">{{$t('navigation.setupSession')}}</label>
+            <select-ex :options="termModel" id="session-id" keyValue="sessionId" displayValue="fullName"
+              v-model="sessionId" @input="loadCityCampus">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="campus-id">{{$t('navigation.setupCity')}}</label>
+            <select-ex :options="campusSubCityModel" keyValue="campusId" displayValue="fullName" v-model="campusId" id="campus-id"
+              @input="refreshData"></select-ex>
+            </select>
+          </div>
+        </div>
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.staffHr.">
+        <template slot="action-area">
+          <button v-if="canAdd" @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-plus"></i> {{$t('button.insert')}}
+          </button>
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm">
+            <i class="la la-edit"></i>
+          </button>
+
+          <button @click="deleteModel(item.row)" v-if="canDelete" title="Delete" type="button"
+            class="btn btn-outline-danger btn-icon btn-sm">
+            <i class="la la-trash"></i>
+          </button>
+        </template>
+
+        <template slot="dateOfBirth" slot-scope="item">
+          {{item.row.dateOfBirth && item.row.dateOfBirth.toString().split('T')[0]}}
+        </template>
+        <template slot="maritalStatus" slot-scope="item">
+          {{item.row.maritalStatus==true ? 'Married':'UnMarried'}}
+        </template>
+        <template slot="contactNo" slot-scope="item">
+          <div v-for="phone in getPhone(item.row.contactNo)">{{phone.contactNo}}</div>
+        </template>
+        <template slot="address" slot-scope="item">
+          <div v-for="address in getAddress(item.row.address)">{{address.address}}</div>
+        </template>
+        <template slot="statusId" slot-scope="item">
+          <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.statusId == 1">Active</span>
+          <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill" v-else>InActive</span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <Staff-add-edit-model v-on:submit="refreshData"></Staff-add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</page-area> -->

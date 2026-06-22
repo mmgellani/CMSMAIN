@@ -1,0 +1,121 @@
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.timetableclose')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.timetableclose')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.timetableclose')">
+    <template slot="portlet-body">
+      <div class="row" v-if="!showmodel">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.timetable.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionid"
+              @input="loadCityCampus">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.timetable.campus')}}</label>
+            <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" v-model="campusid"
+              groupBy="cityName" @input="loadProgramsOfCampus"> </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.timetable.class')}}</label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model="classid"
+              @input="GetTimeTableCloseData"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="!showmodel">
+        <div class="col-md-3">
+          <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-9 text-right" style="margin-top: 26px;">
+          <button class="btn btn-primary btn-light btn-hover btn-sm" :disabled="!isDisabled" @click="toggle()">CloseTimeTable</button>
+         
+          <button @click="GetTimeTableCloseData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> Reload
+          </button>
+        </div>
+      </div>
+      <div class="row" v-if="!showmodel">
+        <div class="col-md-12">
+            <grid :data="DataResponse" :columns="columns" pre="modal.timeTableClose.">
+              <template slot="programName" slot-scope="item">
+                {{item.row.programName}}
+              </template>
+              <template slot="description" slot-scope="item">
+                {{item.row.description}}
+              </template>
+              <template slot="shiftName" slot-scope="item">
+                {{item.row.shiftName}}
+              </template> 
+              <template slot="isChecked-header" slot-scope="item">
+                <label class="kt-checkbox kt-checkbox--brand mb-0">All <input type="checkbox"   @change="updall()" v-model="chkall" class="mb-0">
+                  <span></span>
+                </label>
+              </template>
+              <template slot="isChecked" slot-scope="item">
+                <label class="kt-checkbox kt-checkbox--brand">
+                  <input type="checkbox" v-model="item.row.isChecked"  @change="updatechek()">
+                  <span></span>
+                </label>
+              </template>
+            </grid>
+        </div>
+      </div>
+    </template>
+    
+  </portlet-area>
+  <div v-if="showmodel" height="auto" class="w-50  "
+    style="position: absolute;
+    top: 30%;
+    left: 35%;
+    z-index: 111;"   >
+  
+      <div class="modal-content" b-alert
+   :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+   :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%">
+     <div class="modal-header">
+       <div class="col-md-6 modal_heading">
+         <h5 class="modal-title">Approve TimeTable Close</h5>
+         <p>Confirmation</p>
+       </div>
+       <div class="col-md-6 text-right">
+         <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel()">
+           <i class="la la-close"></i>
+         </button>
+       </div>
+     </div>
+     <div class="modal-body">
+       <div class="row mt-3">
+         <div class="col-md-12">
+           <p>Are you sure you want to Close TimeTable?</p>
+         </div>
+       </div>
+     </div>
+     <div class="modal-footer">
+       <div class="row">
+         <div class="col-md-12 text-right">
+           <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel()"> <i class="la la-close"></i>
+             {{$t('button.close')}}</button>
+           <button class="btn btn-light btn-hover btn-sm btn-primary" @click="updatedata()">
+             Save</button>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+</page-area>

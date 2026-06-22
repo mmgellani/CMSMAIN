@@ -1,0 +1,437 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Daily Feedback Survey</a>
+    </div>
+  </template>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>From Date</label>
+        <date-picker class="input-28" id="change-width"  ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+          lang="en" :not-after="dueDate">
+        </date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>To Date</label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+          lang="en" :not-after="dueDate">
+        </date-picker>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card-box" style="background: #273b73eb;">
+        <div class="inner">
+          <p class="mb-4"> Summary </p>
+          <div class="row" v-for="item in survey">
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.totalSurvey}} </h3>
+              <span>Total Surveys</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{ item.totalSubmitted }} </h3>
+              <span>Total Submitted</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.average}} % </h3>
+              <span>Response Rate</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.groupAverage }} / 5</h3>
+              <span>Average Rating </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="icon">
+          <i class="la la-file-text" aria-hidden="true"></i>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h4 class="mb-4">
+            <u>Top 5</u>
+          </h4>
+        </div>
+      </div>
+      <div class="card-box" style="background: rgb(102, 137, 242)">
+        <div class="inner">
+          <table class="table">
+            <thead>
+              <th>
+                Name
+              </th>
+              <th>
+                Rating
+              </th>
+              <th>
+                Subject
+              </th>
+              <th>
+                Sub-City
+              </th>
+            </thead>
+            <tbody>
+              <tr v-for="item in topData">
+                <td>
+                  {{item.teacherName}}
+                </td>
+                <td>
+                  {{item.average}}
+                </td>
+                <td>
+                  {{item.courseName}}
+                </td>
+                <td>
+                  {{item.subCiy}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h4 class="mb-4">
+            <u>Bottom 5</u>
+          </h4>
+        </div>
+      </div>
+      <div class="card-box" style="background: rgb(102, 137, 242)">
+        <div class="inner">
+          <table class="table">
+            <thead>
+              <th>
+                Name
+              </th>
+              <th>
+                Rating
+              </th>
+              <th>
+                Subject
+              </th>
+              <th>
+                Sub-City
+              </th>
+            </thead>
+            <tbody>
+              <tr v-for="item in bottomData">
+                <td>
+                  {{item.teacherName}}
+                </td>
+                <td>
+                  {{item.average}}
+                </td>
+                <td>
+                  {{item.courseName}}
+                </td>
+                <td>
+                  {{item.subCiy}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h4 class="mb-4">
+        <u>City-Wise Rating</u>
+      </h4>
+    </div>
+    <div class="col-md-8">
+      <nav aria-label="breadcrumb" v-show="breadcrums.length>0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" v-for="(val,index) in breadcrums">
+            <a @click.prevent='returnBack(index)' style="cursor: pointer;"
+              :class="breadcrums.length-1==index?'font-weight-bold':''">{{val}}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-md-4 text-right">
+      <button type="button" class="btn btn-hover btn-sm btn-outline-primary" @click="loadPrevious">
+        <i class="la la-arrow-left"></i> Go Back</button>
+    </div>
+  </div>
+  <div class="table-responsive mt-3">
+    <template>
+      <template>
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2">
+                  Description
+                </th>
+                <th>
+                  Total Survey
+                </th>
+                <th>
+                  Total Submitted
+                </th>
+                <th>
+                  Response Rate
+                </th>
+                <th>
+                  Average Rating
+                </th>
+                <th>
+                  Current Month Rating
+                </th>
+                <th>
+                  Previous Month Rating
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="checkCity" v-for="item in data" class="rowHover" style="cursor: pointer;"
+                @click="loadSubCityData(item.cityId,item.cityName)">
+                <td>
+                  <span v-html="item.cityName"></span>
+                </td>
+                <td>
+                  {{item.totalSurvey}}
+                </td>
+                <td>
+                  {{item.totalSubmitted}}
+                </td>
+                <td>
+                  {{item.average}} %
+                </td>
+                <td>
+                  {{item.groupAverage}} / 5
+                </td>
+                <td>
+                  {{item.monthAverage}}
+                </td>
+                <td>
+                  {{item.prevAverage}}
+                </td>
+              </tr>
+              <tr v-if="checkSubCity" v-for="item in subCityData" class="rowHover" style="cursor: pointer;"
+                @click="loadCrsData(item.subCityId,item.subCityName)">
+                <td>
+                  <span v-html="item.subCityName"></span>
+                </td>
+                <td>
+                  {{item.totalSurvey}}
+                </td>
+                <td>
+                  {{item.totalSubmitted}}
+                </td>
+                <td>
+                  {{item.average}} %
+                </td>
+                <td>
+                  {{item.groupAverage}} / 5
+                </td>
+                <td>
+                  {{item.monthAverage}}
+                </td>
+                <td>
+                  {{item.prevAverage}}
+                </td>
+              </tr>
+              <!-- <tr v-if="checkCamp" v-for="item in campData" class="rowHover" style="cursor: pointer;">
+                <td @click="loadCrsData(item.campusId,item.campusName)">
+                  <span v-html="item.campusName"></span>
+                </td>
+                <td>
+                  {{item.totalSurvey}}
+                </td>
+                <td>
+                  {{item.totalSubmitted}}
+                </td>
+                <td>
+                  {{item.average}} %
+                </td>
+                <td>
+                  {{item.groupAverage}} / 5
+                </td>
+                <td>
+                  {{item.monthAverage}}
+                </td>
+                <td>
+                  {{item.prevAverage}}
+                </td>
+              </tr> -->
+              <tr v-if="checkCrs" v-for="item in crsData" class="rowHover" style="cursor: pointer;"
+                @click="loadSubData(item.courseId,item.courseName)">
+                <td>
+                  <span v-html="item.courseName"></span>
+                </td>
+                <td>
+                  {{item.totalSurvey}}
+                </td>
+                <td>
+                  {{item.totalSubmitted}}
+                </td>
+                <td>
+                  {{item.average}} %
+                </td>
+                <td>
+                  {{item.groupAverage}} / 5
+                </td>
+                <td>
+                  {{item.monthAverage}}
+                </td>
+                <td>
+                  {{item.prevAverage}}
+                </td>
+              </tr>
+              </td>
+              </tr>
+              <tr v-if="checkSubj" v-for="(item,index) in subjData" class="rowHover" style="cursor: pointer;"
+                :class="currIndex===index?'highlightRow':''" @click="loadTeacherGraph(item.teacherId,index); MonthlyRating(item.teacherId);MonthlySummary(item.teacherId);">
+                <td>
+                  <span v-html="item.teacherName"></span>
+                </td>
+                <td>
+                  {{item.totalSurvey}}
+                </td>
+                <td>
+                  {{item.totalSubmitted}}
+                </td>
+                <td>
+                  {{item.average}} %
+                </td>
+                <td>
+                  {{item.groupAverage}} / 5
+                </td>
+                <td>
+                  {{item.monthAverage}}
+                </td>
+                <td>
+                  {{item.prevAverage}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        <br>
+        <div class="col-md-12" v-if="graphData.length>0">
+          <collapsible-widget>
+            <template slot="title">
+              Rating: Section Comparison
+            </template>
+            <template slot="content">
+              <Highcharts :options="options" />
+            </template>
+          </collapsible-widget>
+        </div> 
+        <div class="col-md-12 mt-5" v-if="teachermonthgraph">
+          <collapsible-widget>
+            <template slot="title">
+              Rating: Month Wise
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsEx" />
+            </template>
+          </collapsible-widget>
+        </div>
+
+
+      </template>
+    </template>
+  </div>
+  <!-- <div class="row mt-5">
+    <div class="col-md-12">
+      <h4 class="mb-2">
+        <u>Teacher List</u>
+      </h4>
+    </div>
+    <div class="col-md-6">
+      <nav aria-label="breadcrumb" v-show="secondBreadcrums.length>0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" v-for="(val,index) in secondBreadcrums">
+            <a @click.prevent='returnSecondBack(index)' style="cursor: pointer;"
+              :class="secondBreadcrums.length-1==index?'font-weight-bold':''">{{val}}</a>
+          </li>
+
+        </ol>
+      </nav>
+    </div>
+    <div class="col-md-6 text-right">
+      <button type="button" class="btn btn-hover btn-sm btn-outline-primary" @click="loadPreviousEx">
+        <i class="la la-arrow-left"></i> Go Back</button>
+    </div>
+  </div> -->
+  <!-- <div class="table-responsive mt-5">
+    <template>
+      <template>
+        <div class="fixed-header-table ">
+          <table style="width:100%;" class="customTable">
+            <thead>
+              <tr>
+                <th rowspan="2">
+                  Description
+                </th>
+                <th>
+                  Rating
+                </th>
+                <th>
+                  City
+                </th>
+                <th>
+                  Campus
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="checkTchr" v-for="item in tchrData" class="rowHover" style="cursor: pointer;">
+                <td @click="loadSubjectWise(item.teacherId,item.teacherName)">
+                  <span v-html="item.teacherName"></span>
+                </td>
+                <td>
+                  {{item.average}}
+                </td>
+                <td>
+                  {{item.cityName}}
+                </td>
+                <td>
+                  {{item.campusName}}
+                </td>
+              </tr>
+              <tr v-if="checkSub" v-for="item in subData" class="rowHover" style="cursor: pointer;">
+                <td>
+                  {{item.courseName}}
+                </td>
+                <td>
+                  {{item.average}}
+                </td>
+                <td>
+                  {{item.cityName}}
+                </td>
+                <td>
+                  {{item.campusName}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </template>
+    </template>
+  </div> -->
+
+</page-area>

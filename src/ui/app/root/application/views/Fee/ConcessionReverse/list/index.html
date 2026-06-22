@@ -1,0 +1,142 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Concession Reverse
+      </div>
+      <div class="row mt-4" style="overflow: visible !important">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                  <select class="form-control" v-model="installmentNo" required>
+                    <option :value="n" v-for="n in 12"> {{n}} </option>
+                  </select>
+                  <label>Installment</label>
+                </div>
+              </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Here "
+                v-on:keydown.enter="getstudent">
+              <label>Enter Ref No/ Roll No/ Student Name </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="card-body">
+        <div v-if="canRead">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive" v-if="canRead ">
+                <div class="dataTables_wrapper no-footer">
+                  <table class="table">
+                    <thead>
+                      <tr role="row">
+                        <th>Reff #</th>
+                        <th>Roll #</th>
+                        <th>Name</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in studentRecord">
+                        <td class="v-align-middle">{{item.refferenceNo}}</td>
+                        <td class="v-align-middle">{{item.rollNo}}</td>
+                        <td class="v-align-middle">{{item.fullName}}</td>
+                         <td>
+                          <a @click="editStudent(item)" data-toggle="tooltip" data-placement="top" title="Edit Student">
+                            <feather icon="edit" xclass="b-edit"></feather>
+                          </a>
+                          
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.feeReverseConcessionList')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.feeReverseConcessionList')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.concessionRenew.class')}}</label>
+            <select-ex :options="classlist" keyValue="classId" displayValue="fullName" v-model="classid"></select-ex>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.feeReverseConcessionList.installment')}}</label>
+            <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installmentNo">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.feeReverseConcessionList.enterInfo')}}</label>
+            <input type="text" class="form-control  " v-on:keydown.enter="getstudent"
+              v-model="filterString" placeholder="Enter Here">
+          </div>
+        </div>
+      </div>
+      <grid :data="studentRecord" :columns="columns" pre="modal.feeReverseConcessionList.">
+        <template slot="action" slot-scope="item">
+          <button title="Edit Student Concession" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle" @click="saveModal(item.row)" data-toggle="modal"
+            data-target="#myModal">
+            <i class="la la-edit"></i>
+          </button>
+          <!-- @click = "saveModal(item.row)" -->
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.feeReverseConcessionList')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to revert this Concession?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="editStudent(saveStudentRecord)"
+            data-dismiss="modal" type="submit">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

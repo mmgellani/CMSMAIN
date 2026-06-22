@@ -1,0 +1,144 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="AssessmentScheduling-add-edit-model" :clickToClose="false" :width="1000" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="bounce"   top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.admissionRollNoSlip')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+          
+            <div class="row">
+                    <div class="col-md-4" v-if="IsNewRecord">
+                    <div class="form-group">
+                      <label for="session-id">Assessment Scheme Name <span style="color:red">
+                        *</span></label>
+                      <select-ex id="session-id" :options="assesmentScemelist" keyValue="assessmentSchemeMasterId" displayValue="fullName"
+                        v-model="assessmentMasterId" @input="loadData" :disabled="!IsNewRecord"></select-ex>
+                    </div>
+                  </div>
+                  <div class="col-md-4" v-if="!IsNewRecord">
+                    <div class="form-group">
+                      <label for="session-id">Assessment Scheme Name<span style="color:red">
+                        *</span></label>
+                        <input  type="text" class="form-control form-control-sm" v-model.trim="assessmentName" disabled="true">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="session-id">Grading Policy<span style="color:red">
+                        *</span></label>
+                        <input  type="text" class="form-control form-control-sm" v-model.trim="gradingPolicy" disabled="true">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="session-id">Pass/Fail Criteria<span style="color:red">
+                        *</span></label>
+                        <input  type="text" class="form-control form-control-sm" v-model.trim="passCriteria" disabled="true">
+                    </div>
+                  </div>
+
+            </div> 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="session-id">Total Weightage <span style="color:red">
+                        *</span></label>
+                        <input  type="text" class="form-control form-control-sm" v-model.trim="totalWeightage" disabled="true">
+                    </div>
+                  </div>  
+            </div>  
+        </div>
+        <div class="modal-body">
+            <table class="table border-none" >
+              <tbody class="border-none" style="border: none;">
+                <tr>
+                  <th  class="border-none" style="border: none;">Assessment Name <span style="color:red">*</span></th>
+                  <th  class="border-none" style="border: none;">Month  <span style="color:red">*</span></th>
+                  <th  class="border-none" style="border: none;">Weightage <span style="color:red">*</span></th>
+                  <th  class="border-none" style="border: none;">Order No <span style="color:red">*</span></th>
+                </tr> 
+                 <tr v-for="item in assessmentSchedulingListData">
+                    <td class="border-none" style="border: none;">
+                        <input  type="text" class="form-control form-control-sm" v-model="item.assessmentCategoryName" disabled="true">
+                    </td>
+                    <td class="border-none" style="border: none;"> 
+                        <select-ex  :options="monthList" keyValue="key" displayValue="value"
+                        v-model="item.month"></select-ex> 
+                    </td>
+                    <td class="border-none" style="border: none;">
+                        <input  type="text" class="form-control form-control-sm" v-model="item.weightage" disabled="true">
+                    </td>
+                    <td class="border-none" style="border: none;"> 
+                        <input  type="text" class="form-control form-control-sm" v-model="item.order" @input="checkOrderExist">
+                    </td> 
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-content" v-if="showWarning">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h5 class="modal-title">{{$t('navigation.admissionRollNoSlip')}}</h5>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancelWarning">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{$t('navigation.deleteModal')}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" @click="cancelWarning">
+                        <i class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-danger" type="submit" @click="deleteModel"><i
+                            class="la la-trash"></i> {{$t('button.delete')}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</modal>

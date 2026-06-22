@@ -1,0 +1,48 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admission')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('modal.preAcademicInfo.preAcademicInfo')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('modal.preAcademicInfo.preAcademicInfo')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.studentDetails.enterRefNoRoLLNoStudentName')}}</label>
+            <input type="text" class="form-control" v-model="filterString"
+              v-on:keydown.enter="getstudent">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.class')}}</label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName"
+              v-model="classId" @input="getstudent">
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <grid :data="studentRecord" :columns="columns" pre="modal.studentDetails.">
+        <template slot="action" slot-scope="item">
+          <button @click="editStudent(item.row)" class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+            data-toggle="tooltip" data-placement="top" title="Edit Student Profile">
+            <i class="la la-edit"></i>
+          </button>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <edit-model></edit-model>
+</page-area>

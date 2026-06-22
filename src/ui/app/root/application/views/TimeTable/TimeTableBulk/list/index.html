@@ -1,0 +1,155 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Time Table Bulk
+      </div>
+      <div class="card-body">
+        <!-- <div v-if="canRead">
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links"> -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select v-model="sessionid" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">
+                  {{model.fullName}}
+                </option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="campusid" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-2">
+            <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+              key-value="campusProgramId" display-value="description" placeholder="Programs" @change="loadClass">
+            </drop-down>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select @change="loadProgramSection" v-model="classid" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.classId" v-for="(model,index) in classList">{{model.fullName}}
+                </option>
+              </select>
+              <label>Class</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select @change="GetTimeTableViaSession" v-model="sectionid" class="form-control form-control-sm" required>
+                <option :key="index" :value="model.sectionId" v-for="(model,index) in sectionCourseLinkList">
+                  {{model.sectionName}}
+                </option>
+              </select>
+              <label>Section</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button v-if="canAdd" @click="insertModel" class="b-add">
+              <feather icon="plus-circle"></feather>
+            </button>
+            <button @click="GetTimeTableViaSession" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+            <button @click="getReport" class="btn btn-primary btn-sm tbl-btn bt-mr">
+              View TimeTable
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-title">
+                Time Table
+              </div>
+              <div class="card-body">
+                <div class="table-responsive" v-if="data">
+                  <div class="table" v-if="data.length > 0">
+                    <table class="timetable">
+                      <thead>
+                        <tr>
+                          <th>Days</th>
+                          <th v-for="slot in slots">{{slot}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="day in days">
+                          <td>{{day}}</td>
+                          <td v-for="slot in slots">
+                            <template v-if="getClass(day, slot)">
+                              <div class="table-dec">
+                                <!-- <button @click="editModelVM(slot, day)" class="btnadd">
+                                  <i class="fa fa-edit"></i>
+                                </button> -->
+                                <button @click="deleteModelVM(slot, day)" class="btnedit" ref="edit">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                                <span v-html="getClass(day, slot)"></span>
+                              </div>
+                            </template>
+                            <template v-else>
+                              <button @click="insertModelVM(slot, day)" class="btn-timetable">
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </template>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="6" class="bg-white no-border"></td>
+                        </tr>
+                        <tr>
+                          <td>Day</td>
+                          <td v-for="slot in fslots">
+                            {{slot}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Friday</td>
+                          <td v-for="slot in fslots">
+                            <template v-if="getClass('Friday', slot)">
+                              <div class="table-dec">
+                                <!-- <button @click="editModelVM(slot,'Friday')" class="btnadd">
+                                  <i class="fa fa-edit"></i>
+                                </button> -->
+                                <button @click="deleteModelVM(slot,'Friday')" class="btnedit" ref="edit">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                                <span v-html="getClass('Friday', slot)"></span>
+                              </div>
+                            </template>
+                            <template v-else>
+                              <button @click="insertModelVM(slot,'Friday')" class="btn-timetable">
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </template>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <add-edit-model v-on:submit="GetTimeTableViaSession"></add-edit-model>
+        <delete-model v-on:submit="GetTimeTableViaSession"></delete-model>
+        <report-engine :data="reportData" :path="report"></report-engine>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+{
+  "data": {
+
+    "connectionString": "Server=10.12.4.50;Port=5432;User Id=postgres;Password=postgres;Database=CmsDbSt;",
+    "schemaName": ""
+  },
+  "server": {
+    "areas": [
+      "admin"
+    ],
+    "antiForgery": {
+      "cookieName": "XSRF-COOKIE",
+      "headerName": "X-XSRF-TOKEN",
+      "clientName": "XSRF-TOKEN",
+      "requireSsl": false
+    },
+    "defaultCulture": "en",
+    "defaultTimeZone": "Pakistan Standard Time",
+    "webroot": "./wwwroot"
+  },
+  "service": {
+    "authenticationProviders": [
+      {
+        "clientId": "1012191853724-f9u0dcapj679ggokk5mblma4fbd77jmv.apps.googleusercontent.com",
+        "profileUri": "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token={0}",
+        "providerId": "GOOGLE",
+        "revokeUri": "https://accounts.google.com/o/oauth2/revoke?token={0}"
+      },
+      {
+        "clientId": "5150c9e8-c886-436d-9304-a19e06ecb8aa",
+        "profileUri": "",
+        "providerId": "MICROSOFT",
+        "revokeUri": ""
+      }
+    ],
+    "claimsNamespace": "https://cms360/claims/",
+    "tokenProvider": {
+      "tokenExpiration": "1440",
+      "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
+      "tokenSecurityAlgorithm": "HS256",
+      "tokenIssuer": "localhost",
+      "tokenAudience": "cms360app"
+    }
+  },
+  "Logging": {
+    "IncludeScopes": true,
+    "Debug": {
+      "LogLevel": {
+        "Default": "Information"
+      }
+    },
+    "Console": {
+      "LogLevel": {
+        "Default": "Information"
+      }
+    },
+    "LogLevel": {
+      "Default": "Information"
+    }
+  },
+  "Azure": {
+    "SignalR": {
+      "ConnectionString": "Endpoint=https://ems360.service.signalr.net;AccessKey=eWw1EGDaB4TV4yO8zJqRk5+CWAsMSCiw8YjCKkJ+2gQ=;Version=1.0;"
+    }
+  },
+  "Kestrel": {
+    "Endpoints": {
+      "Http": {
+        "Url": "http://localhost:8001"
+      },
+      "Https": {
+        "Url": "https://localhost:8002"
+      }
+    },
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    },
+    "DisableStringReuse": true
+  }
+}

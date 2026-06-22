@@ -1,0 +1,229 @@
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.bsetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.concessionRenew')}} </a>
+    </div>
+  </template>
+
+
+  <portlet-area action="0" :title="$t('navigation.concessionRenew')">
+    <template slot="portlet-body">
+      <tabs>
+        <tab name='Concession Continuation' :selected="true">
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>{{$t('navigation.setupSession')}}<span style="color:red"> *</span></label>
+                <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId"
+                  @input="loadCityCampus"></select-ex>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label>{{$t('navigation.setupCampus')}}<span style="color:red"> *</span></label>
+              <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" groupBy="cityName"
+                v-model="campusId" @input="loadProgramsOfCampus"></select-ex>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>{{$t('modal.concessionRenew.program')}}<span style="color:red"> *</span></label>
+                <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+                  groupBy="programName" v-model="programDetailId" @input="loadClass"></select-ex>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>{{$t('modal.concessionRenew.class')}}<span style="color:red"> *</span></label>
+                <select-ex :options="classList" keyValue="classId" displayValue="fullName"
+                  v-model="classId"></select-ex>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-3 mt-2">
+              <div class="form-group">
+                <label>{{$t('modal.concessionRenew.fromDate')}}<span style="color:red"> *</span></label>
+                <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="fromdatestring"
+                  format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'">
+                </date-picker>
+              </div>
+            </div>
+            <div class="col-md-3 mt-2">
+              <div class="form-group">
+                <label>{{$t('modal.concessionRenew.toDate')}}<span style="color:red"> *</span></label>
+                <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="todatestring"
+                  format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'">
+                </date-picker>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-8"> <label>{{$t('modal.concessionRenew.section')}}</label></div>
+                  <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                        class="m-0"><input type="checkbox" checked="checked" @change="enableSectionCheckbox"
+                          v-model="forAllSection">
+                        <span></span></label></span></div>
+                </div>
+                <select-ex :disabled="!forAllSection" :options="courseList" keyValue="sectionCourseLinkId"
+                  displayValue="sectionName" v-model="sectionCourseLinkId"></select-ex>
+                </select>
+                <!-- <label class="show-checkBox" >For All Sections</label> -->
+              </div>
+            </div>
+
+            <div class="col-md-3 mt-2">
+              <div class="form-group">
+                <label>{{$t('modal.concessionRenew.installno')}}<span style="color:red"> *</span></label>
+                <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model.trim="installmentNo">
+                </select-ex>
+
+              </div>
+            </div>
+
+            <div class="col-md-3" style="position: relative;">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-8"><label>{{$t('modal.concessionRenew.concessionContinutionRules')}}</label></div>
+                  <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                        class="m-0">
+                        <input type="checkbox" checked="checked" @change="enableCheckbox" v-model="concessionrule">
+                        <span></span></label></span></div>
+                </div>
+                <select-ex :disabled="!concessionrule" :options="ConcessionRulesList" keyValue="concessionRulesId"
+                  displayValue="concessionContinutionRules" v-model="concessionRulesId"
+                  @input="checkconcessionrulesisenable(concessionRulesId)"></select-ex>
+              </div>
+            </div>
+          </div>
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="col-md-6 modal_heading">
+                    <h3 class="modal-title">{{$t('navigation.feeApplyConcession')}}</h3>
+                    <p>{{$t('modal.attendanceBulkDetail.Confirmation')}}</p>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <button type="button" class="close " data-dismiss="modal">
+                    </button>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to Apply this Concession?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+                    <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                  <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+                    @click="insertModel">
+                    <i class="la la-save"></i> {{$t('button.save')}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 text-right" style="margin-top: 26px;">
+              <!-- <button type="button"  class="btn btn-primary btn-sm btn-hover"
+              data-toggle="modal"  data-target="#myModal">{{$t('button.save')}}</button> -->
+              <button title="Add Bulk" class="btn  btn-hover btn-sm btn-outline-primary" data-toggle="modal"
+                data-target="#myModal" :disabled="data.length==0 || (concessionrule && !concessionRulesId)">
+                <i class="la la-save"></i> Save
+              </button>
+              <button @click="refreshData" class="btn btn-hover btn-sm btn-outline-primary">
+                <i class="la la-refresh"></i> Reload
+              </button>
+            </div>
+          </div>
+          <div v-show="isLoading" class="loader-container mt-2">
+            <!-- <div class="loader">Loading...</div> -->
+            <div class="progress-bar-container" style="background: #eee;">
+              <div class="progress-bar" :style="{ width: (progress + 1) + '%' }">{{ progress}}%</div>
+            </div>
+            <br>
+            <!-- ////////////////// -->
+            <p>{{ toastMessage }}</p>
+          </div>
+          <div class="row mt-3" v-if="data.length>0">
+            <div class="col-md-12">
+              <div class="fixed-header-table">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Sr. No</th>
+                      <th>{{$t('modal.concessionRenew.rollNo')}}</th>
+                      <th>{{$t('modal.concessionRenew.fullName')}}</th>
+                      <th>{{$t('modal.concessionRenew.admissionType')}}</th>
+                      <th>{{$t('modal.concessionRenew.percentage')}}</th>
+                      <th>{{$t('modal.concessionRenew.firstConcession')}}</th>
+                      <th>Previous Concession</th>
+                      <th>{{$t('modal.concessionRenew.concession')}}</th>
+                      <th> <label class="kt-checkbox kt-checkbox--brand">
+                          <input type="checkbox" @change="checkAll" v-model="isCheckedAll" :disabled="checkboxdisable">
+                          <span></span>
+                        </label></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-if="item.isEligible" v-for="(item, index) in data">
+                      <td>{{ index + 1 }}</td>
+                      <td class="v-align-middle"> {{item.rollNo}} </td>
+                      <td class="v-align-middle"> {{item.fullName}} </td>
+                      <td class="v-align-middle"> {{item.admissionType}} </td>
+                      <td class="v-align-middle"> {{item.percentage}} </td>
+                      <td class="v-align-middle"> {{item.firstConcession}} </td>
+                      <td class="v-align-middle"> {{item.concessionName}} </td>
+
+                      <td class="v-align-middle">
+                        <select class="form form-control" :disabled="concessionrule"
+                          v-model="item.scholarshipCriteriaId">
+                          <option :value="model.scholarshipCriteriaId" v-for="model in scholarshipList">
+                            {{model.concessioName}}</option>
+                        </select>
+                      </td>
+                      <td class="v-align-middle">
+                        <label class="kt-checkbox kt-checkbox--brand">
+                          <input v-model="item.isSelected" type="checkbox" :disabled="checkboxdisable"
+                            class="custom-control-input">
+                          <span></span>
+                        </label>
+                      
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+         <div class="row mt-5">
+    <span v-if="data.length==0">
+      There is no record.
+    </span>
+  </div>
+
+          </grid>
+        </tab>
+      </tabs>
+    </template>
+  </portlet-area>
+  </tab>
+
+  </tabs>
+
+</page-area>

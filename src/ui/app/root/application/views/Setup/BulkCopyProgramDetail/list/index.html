@@ -1,0 +1,160 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.ssetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.rsetup')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.bulkCopyProgramDetail')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="0" :title="$t('navigation.bulkCopyProgramDetail')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="session-id">Session</label>
+            <select-ex id="session-id" :options="termModel" keyValue="sessionId" displayValue="fullName"
+              v-model="sessionId" @input="loadCityCampus"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>From Campus</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon" style="margin-top: -10px;">
+                  <label class="m-0">
+                    <input type="checkbox" v-model="checkfromcampus" @change="addParam(checkfromcampus,'campusId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex id="campus-id" :options="campusSubCityModel" keyValue="campusId" displayValue="campusName"
+              :disabled="disabldeProgramDetail" groupBy="cityName" v-model="campusId"
+              @input="loadProgramsOfCampus"></select-ex>
+          </div>
+
+        </div>
+
+        <div class="col-md-4" v-if="!disabldeProgramDetail">
+          <div class="form-group validated">
+            <label>Program Detail</label>
+
+            <div style="max-height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 3px; border-radius: 5px;">
+              <div class="col-md-12">
+                <label class="kt-checkbox kt-checkbox--brand font-weight-bold">
+                  <input type="checkbox" v-model="selectAllToggle" @change="toggleSelectAll">
+                  Select All
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-md-12" v-for="data in campusProgramLinkList" :key="data.campusProgramId">
+                <label class="kt-checkbox kt-checkbox--brand">
+                  <input v-model="data.isChecked" type="checkbox" :disabled="selectAllToggle || disabldeProgramDetail"
+                    @change="toggleSpecificSelection">
+                  {{ data.description }}
+                  <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="session-idto">Session</label>
+            <select-ex id="session-idto" :options="termModel" keyValue="sessionId" displayValue="fullName"
+              v-model="sessionIdTo" @input="loadCityCampusTo"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-4" :disabled="disabldeProgramDetail">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>To Campus</label>
+              </div>
+              <!-- <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon" style="margin-top: -10px;">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" v-model="checkfromcampus"
+                      @change="addParamTo(checkfromcampus,'campusId')">
+                    <span></span>
+                  </label>
+                </span>
+              </div> -->
+            </div>
+            <select-ex :disabled="disabldeProgramDetail" id="campus-idto" :options="campusSubCityModelTo"
+              keyValue="campusId" displayValue="campusName" groupBy="cityName" v-model="campusIdTo"></select-ex>
+          </div>
+
+        </div>
+
+        <!-- <div class="col-md-3">
+          <div class="form-group validated">
+            <label>Program Detail</label>
+
+            <div style="max-height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 3px; border-radius: 5px;">
+              <div class="col-md-12">
+                <label class="kt-checkbox kt-checkbox--brand font-weight-bold">
+                  <input type="checkbox" v-model="selectAllToggle" @change="toggleSelectAll">
+                  Select All
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-md-12" v-for="data in campusProgramLinkList" :key="data.campusProgramId">
+                <label class="kt-checkbox kt-checkbox--brand">
+                  <input v-model="data.isChecked" type="checkbox" :disabled="selectAllToggle"
+                    @change="refreshDatabyProgram(data)">
+                  {{ data.description }}
+                  <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-10"></div>
+
+        <div class="col-md-1">
+          <div class="m-portlet__foot">
+            <div class="row align-items-center">
+              <button class="btn btn-danger" @click="Reset">Reset</button>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="m-portlet__foot">
+            <div class="row align-items-center">
+              <button class="btn btn-primary me-2" :disabled="!allowSubmit" @click="saveModel">Save</button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

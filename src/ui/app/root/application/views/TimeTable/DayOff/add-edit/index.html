@@ -1,0 +1,174 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="60%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.dayOff')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.timetableTimeTableMerge.fromDate')}}</label> <span
+                            style="color:red">
+                            *</span>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="fromdateStr"
+                            format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'" @input="$v.data.dateOfBirth.$touch()">
+                        </date-picker>
+                        <!-- <input type="date" class="form-control" v-model="fromdateStr"> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.timetableTimeTableMerge.toDate')}}</label> <span
+                            style="color:red">
+                            *</span>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="todateStr"
+                            format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'" @input="$v.data.dateOfBirth.$touch()">
+                        </date-picker>
+                        <!-- <input type="date" class="form-control" v-model="todateStr"> -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <select v-model="dayOffModel.timeTableId" class="form-control" required>
+                        <option :key="index" :value="model.timeTableId" v-for="(model,index) in TimeTabledata">
+                            {{model.fullName}}--{{model.sectionName}}--{{model.staffName}}--{{model.startTime}}--{{model.endTime}}--{{model.dayName}}
+                        </option>
+                    </select>
+                    <!-- <select-ex :options="TimeTabledata" keyValue="timeTableId" displayValue="name"
+                        v-model.trim="dayOffModel.timeTableId">
+                    </select-ex> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="row text-right">
+            <div class="col-md-12">
+
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+                <!-- <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+                <button :disabled="!allowSubmit" class="btn  btn-primary" @click="saveModel">Save</button> -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- <Course v-on:submit="loadCourse"></Course> -->
+
+</modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="60%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        TimeTable Merge&nbsp;-&nbsp;
+                        <span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="date" class="form-control" v-model="fromdateStr">
+                        <label :class="!$v.model.fromDate.required">From Date
+                            <span style="color:red"> *</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="date" class="form-control" v-model="todateStr">
+                        <label>To Date
+                            <span style="color:red"> *</span>
+                        </label>
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <select v-model="dayOffModel.timeTableId" class="form-control" required>
+                        <option :key="index" :value="model.timeTableId" v-for="(model,index) in TimeTabledata">
+                            {{model.fullName}}--{{model.sectionName}}--{{model.staffName}}--{{model.startTime}}--{{model.endTime}}--{{model.dayName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="row text-right">
+            <div class="col-md-12">
+                <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                <button :disabled="!allowSubmit" class="btn  btn-primary" @click="saveModel">Save</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</modal> -->

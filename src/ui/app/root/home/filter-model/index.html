@@ -1,0 +1,126 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<modal name="filter-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="50%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">Admission Count</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="mb-3">{{$t('modal.concessionDashboard.session')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName"
+                            v-model="sessionId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="mb-3">All Cities</label>
+                        <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId"
+                            multiple >
+                        </select-ex>
+                        <!-- <div class="invalid-feedback" v-show="$v.cityId.$error">
+                            <span v-if="!$v.cityId.required">{{$t('validation.required')}}</span>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="mb-3">{{$t('modal.concessionDashboard.level')}}</label>
+                        <select-ex :options="LevelList" keyValue="levelName" displayValue="levelName"
+                            v-model="levelName" @input="loadPrograms()">
+                        </select-ex>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="mb-3">{{$t('modal.concessionDashboard.program')}}</label>
+                        <select-ex :options="ProgramLinkList" keyValue="programId" displayValue="programName"
+                            v-model="programId" @input="loadProgramsOfCampus()">
+                        </select-ex>
+                    </div>
+                </div>
+                <!-- </div>
+              <div class="row"> -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{$t('modal.concessionDashboard.programDetail')}}</label>
+                        <select-ex :options="campusProgramLinkList" keyValue="programDetailId"
+                            displayValue="description" v-model="programDetailId" groupBy="programName" multiple>
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">From Date</label> <span style="color:red">*</span>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDateEx"
+                            format="DD/MM/YYYY" lang="en" @input="checkparam()" :not-after="toDateEx"></date-picker>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">To Date</label> <span style="color:red">*</span>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDateEx"
+                            format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'" @input="checkparam()"
+                            :not-after="currDate"></date-picker>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                  <div class="form-group">
+                    <label>{{$t('modal.concessionDashboard.program')}}</label>
+        
+                    <select-ex @input="cityWiseData" :options="campusProgramLinkList" keyValue="programDetailId"
+                      displayValue="description" v-model="programDetailId" groupBy="programName"></select-ex>
+                  </div>
+                </div> -->
+                <div class="col-md-4 text-right">
+                    <!-- <div class="form-group">
+                    <label>{{$t('modal.concessionDashboard.preference')}}</label>
+                    <select-ex :options="preferenceArr" keyValue="item" displayValue="item" v-model="tabRef"
+                      @input='changedEvent'></select-ex>
+                    </select>
+                  </div> -->
+                    <!-- <button class="btn btn-primary btn-sm" title="Clear selection" style="width:40px;margin-top: 24px;"
+                        @click="clearSelection()"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-info btn-sm" title="Reload selection" style="width:40px;margin-top: 24px;"
+                        @click="checkparam()"><i class="fa fa-refresh"></i></button> -->
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

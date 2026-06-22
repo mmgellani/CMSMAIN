@@ -1,0 +1,68 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="content sm-gutter">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-alt">
+      <li class="breadcrumb-item active">Bus Stop Info</li>
+    </ol>
+  </div>
+  <div class="container-fluid container-fixed-lg bg-white">
+    <div class="card card-transparent">
+      <div class="card-header">
+        <div class="card-controls">
+          <ul>
+            <li><a href="#" class="card-refresh" @click="refreshData"><i class="card-icon card-icon-refresh"></i></a></li>
+            <li v-if="canAdd"><a href="#" class="card-close" @click="insertModel"><i class="card-icon pg-plus"></i></a></li>
+          </ul>
+        </div>
+        <form class="col-lg-4">
+          <div class="form-group form-group-default required" ref="filters">
+            <label>Search</label>
+            <input class="form-control input-sm" type="text" v-model="filterString" 
+                @focus="$refs.filters.className = 'form-group form-group-default required focused'"
+                @blur="$refs.filters.className = 'form-group form-group-default required'">
+          </div>
+        </form>
+      </div>
+      <div class="card-body no-padding">
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table table-hover table-condensed dataTable no-footer" role="grid">
+              <thead>
+                <tr role="row">
+<th>BusStopName</th>
+<th>RouteId</th>
+<th>FeeAmount</th>
+<th>SessionId</th>
+<th>VehicleId</th>
+
+                  <th>Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in data">
+<td class="v-align-middle">{{item.busStopName}}</td>
+<td class="v-align-middle">{{item.routeId}}</td>
+<td class="v-align-middle">{{item.feeAmount}}</td>
+<td class="v-align-middle">{{item.sessionId}}</td>
+<td class="v-align-middle">{{item.vehicleId}}</td>
+
+                  <td>
+                    <a href="#" class="card-refresh" @click="editModel(item)" v-if="canEdit"><i class="card-icon pg-form"></i></a>
+                    <a href="#" class="card-close" @click="deleteModel(item)" v-if="canDelete"><i class="card-icon pg-trash"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

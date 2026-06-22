@@ -1,0 +1,1730 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <root Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>root</Alias>
+        <Key />
+        <Name>root</Name>
+        <PathData>E:\CMS 360\Reports\Resource\JSON\challanForm.json</PathData>
+      </root>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <root Ref="3" type="DataTableSource" isKey="true">
+        <Alias>root</Alias>
+        <Columns isList="true" count="32">
+          <value>newID,System.String</value>
+          <value>feeHeadId,System.String</value>
+          <value>studentFeeStructureId,System.String</value>
+          <value>admissionFormId,System.String</value>
+          <value>studentChallanId,System.String</value>
+          <value>concessionDetailId,System.String</value>
+          <value>campusId,System.String</value>
+          <value>programDetailId,System.String</value>
+          <value>installmentNo,System.Decimal</value>
+          <value>challanNo,System.String</value>
+          <value>challanNote,System.String</value>
+          <value>feeHead,System.String</value>
+          <value>fullName,System.String</value>
+          <value>refferenceNo,System.String</value>
+          <value>fatherName,System.String</value>
+          <value>concessionName,System.String</value>
+          <value>campusName,System.String</value>
+          <value>description,System.String</value>
+          <value>feeAmount,System.Decimal</value>
+          <value>challanAmount,System.Decimal</value>
+          <value>payableAmount,System.Decimal</value>
+          <value>dueDate,System.String</value>
+          <value>statusId,System.Decimal</value>
+          <value>loggerId,System.String</value>
+          <value>campusCode,System.String</value>
+          <value>digitCode,System.String</value>
+          <value>businessUnit,System.String</value>
+          <value>nextChallan,System.String</value>
+          <value>nextDuedate,System.String</value>
+          <value>subAmount,System.Decimal</value>
+          <value>bankName,System.String</value>
+          <value>accountNo,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>root</Name>
+        <NameInSource>root.root</NameInSource>
+      </root>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="2">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <PageFooterBand1 Ref="5" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,14.38,28.68,5.6</ClientRectangle>
+          <Components isList="true" count="44">
+            <Text27 Ref="6" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Black</Brush>
+              <ClientRectangle>0,3.22,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold| Italic</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>H/O Copy</Text>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text28 Ref="7" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Black</Brush>
+              <ClientRectangle>7.19,3.22,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,8,Bold| Italic</Font>
+              <Guid>4767ef827d014ecf8f8fbd9215def778</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Campus Copy</Text>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+            <Text29 Ref="8" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Black</Brush>
+              <ClientRectangle>14.4,3.22,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold| Italic</Font>
+              <Guid>5c88c85d2a2848e9aab599bdcae9cd13</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Bank Copy</Text>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text29>
+            <Text30 Ref="9" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Black</Brush>
+              <ClientRectangle>21.59,3.22,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,8,Bold| Italic</Font>
+              <Guid>e0f4dca5cc85423991ef316a049cb124</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text30</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Student Copy</Text>
+              <TextBrush>White</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text30>
+            <BarCode1 Ref="10" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <BackColor>Black</BackColor>
+              <BarCodeType Ref="11" type="Stimulsoft.Report.BarCodes.StiCode128cBarCodeType" isKey="true" />
+              <ClientRectangle>1.19,4.01,4.8,1.02</ClientRectangle>
+              <Code>0123456789012345</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>White</ForeColor>
+              <Guid>342ed1d1296a4c8d82fae219ad30afd8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode1>
+            <BarCode2 Ref="12" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <BackColor>Black</BackColor>
+              <BarCodeType Ref="13" type="Stimulsoft.Report.BarCodes.StiCode128cBarCodeType" isKey="true" />
+              <ClientRectangle>8.41,4.01,4.8,1.02</ClientRectangle>
+              <Code>0123456789012345</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>White</ForeColor>
+              <Guid>7203ca6455994944bf5a03acf0635e0d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode2>
+            <BarCode3 Ref="14" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <BackColor>Black</BackColor>
+              <BarCodeType Ref="15" type="Stimulsoft.Report.BarCodes.StiCode128cBarCodeType" isKey="true" />
+              <ClientRectangle>15.6,4.01,4.8,1.02</ClientRectangle>
+              <Code>0123456789012345</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>White</ForeColor>
+              <Guid>24817e7b6436465f8688ed789e039fee</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode3>
+            <BarCode4 Ref="16" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <BackColor>Black</BackColor>
+              <BarCodeType Ref="17" type="Stimulsoft.Report.BarCodes.StiCode128cBarCodeType" isKey="true" />
+              <ClientRectangle>22.81,4.01,4.8,1.02</ClientRectangle>
+              <Code>0123456789012345</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>White</ForeColor>
+              <Guid>d62ff52eab514a7a9597767a6de73bca</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Name>BarCode4</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <VertAlignment>Bottom</VertAlignment>
+            </BarCode4>
+            <Text20 Ref="18" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.41,3.22,1.6,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>6e347f2449c84424b30621abb88ea963</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text20>
+            <Text21 Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.99,3.22,1.42,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>8fea53cc7ba243d3af272eea5edef6fa</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Issued By:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text21>
+            <Text31 Ref="20" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,3.02,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>9890d8eee58e4fd18d5f76c106853e3c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text31</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text31>
+            <Text5 Ref="21" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.6,3.22,1.6,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>39d4bed751b347f790e16b438f0cdb93</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text5>
+            <Text45 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.2,3.22,1.4,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>0e17a7593a8540e2b60e542fb0309bcc</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Issued By:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text45>
+            <Text48 Ref="23" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.39,3.02,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>0ee0971101d84c12b49cfe4271f946b6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text48>
+            <Text49 Ref="24" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.81,3.22,1.6,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>b0ea30cc0bd6454993c58174739770dc</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text49</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text49>
+            <Text50 Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.39,3.22,1.42,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>32be72c25097430da3913436f056b473</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text50</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Issued By:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text50>
+            <Text51 Ref="26" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.6,3.02,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>356647c250fc4801b575a9aea0722237</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text51</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text51>
+            <Text52 Ref="27" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>27,3.22,1.6,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>75a3e6e38ca5496ea1c26738d99f932d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text52</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text52>
+            <Text53 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,3.22,1.4,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>116f5661f9004ba1a3d47bb4418983f4</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text53</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Issued By:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text53>
+            <Text54 Ref="29" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>21.79,3.02,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>c11e3af12a854a9c98221671f0a83a59</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text54</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text54>
+            <Text18 Ref="30" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.22,6.4,0.21</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>100cb544a2254bd4a214a5bf846f2a16</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text23 Ref="31" type="Text" isKey="true">
+              <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.6,0.42,6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>f259cd8cdbed42fe85a9986296a89143</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>For Bank Use</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text23>
+            <Text26 Ref="32" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.41,1.62,6.4,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,5</Font>
+              <Guid>aeac3c39e5454095bf3d0a9b1b6f4b2f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;&lt;u&gt;Notes:&lt;/u&gt; &lt;/strong&gt;&lt;ul&gt;{root.challanNote}&lt;/ul&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+            </Text26>
+            <Text55 Ref="33" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.59,0.22,6.41,0.21</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>78ad8fa3538e450aa43980e615b9d1c8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text55</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text55>
+            <Text56 Ref="34" type="Text" isKey="true">
+              <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.8,0.43,5.99,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>54e4b9b36c7b422ebe9764a66704012b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text56</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>For Bank Use</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text56>
+            <Text57 Ref="35" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.8,1.01,3,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>9da4eb3fde1b45dea21344d97ead4990</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text57</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Campus Code:&lt;/strong&gt; {root.digitCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text57>
+            <Text58 Ref="36" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.8,1.01,2.99,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>688e205d4d504b50aba34eea97f04a25</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text58</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Document No: &lt;/strong&gt; {Substring(root.challanNo,7, 14)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text58>
+            <Text59 Ref="37" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.59,1.62,6.41,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,5</Font>
+              <Guid>6867297a951941fdb453e838fd7649e2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text59</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;&lt;u&gt;Notes:&lt;/u&gt; &lt;/strong&gt;&lt;ul&gt;{root.challanNote}&lt;/ul&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+            </Text59>
+            <Text60 Ref="38" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.81,0.22,6.4,0.21</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>6dbe33afd1a049f8a622cb54a76501be</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text60</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text60>
+            <Text61 Ref="39" type="Text" isKey="true">
+              <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.01,0.43,6,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>3858d52de12542d0ae0b424b4e729ab7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text61</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>For Bank Use</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text61>
+            <Text64 Ref="40" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>14.81,1.62,6.4,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,5</Font>
+              <Guid>31c5fc04e62340a99f881470ff6c9bee</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text64</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;&lt;u&gt;Notes:&lt;/u&gt; &lt;/strong&gt;&lt;ul&gt;{root.challanNote}&lt;/ul&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+            </Text64>
+            <Text65 Ref="41" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22,0.22,6.4,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>02d9ef93607142b5bc2e10d3949f3e79</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text65</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text65>
+            <Text66 Ref="42" type="Text" isKey="true">
+              <Border>Top, Left, Right;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.2,0.43,5.99,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>4bfafa877a9a4171bd42d82893e59fd0</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text66</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>For Bank Use</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text66>
+            <Text69 Ref="43" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>22,1.62,6.4,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,5</Font>
+              <Guid>6f685bf0ff2c4d07b08aea49bfae6a17</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text69</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;&lt;u&gt;Notes:&lt;/u&gt; &lt;/strong&gt;&lt;ul&gt;{root.challanNote}&lt;/ul&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+            </Text69>
+            <Text70 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.8,3.22,2.01,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,5,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text70</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Date: {Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>DarkGray</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text70>
+            <Text71 Ref="45" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.99,3.22,2.01,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,5,Bold</Font>
+              <Guid>e01c8ed09f874f3197a1a0fcda12c2d9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text71</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Date: {Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>DarkGray</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text71>
+            <Text72 Ref="46" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.21,3.22,2,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,5,Bold</Font>
+              <Guid>6fad8b65e0a04ca88a34a794cde5451e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text72</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Date: {Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>DarkGray</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text72>
+            <Text73 Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>23.39,3.22,2.01,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,5,Bold</Font>
+              <Guid>8b9dea50bf354e58b74c9a00440f86e7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text73</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Date: {Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>DarkGray</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text73>
+            <Text24 Ref="48" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,1.01,3,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>9ca2e07a5b184bffb7e878f74e38b3c1</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Campus Code:&lt;/strong&gt; {root.digitCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text25 Ref="49" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,1.01,2.99,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>effb7929cd444a41a8a20927f224571f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Document No: &lt;/strong&gt; {Substring(root.challanNo,7, 14)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text62 Ref="50" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.2,1.01,3,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>22c37f2f567744b2985e7db1336c92c9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text62</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Campus Code:&lt;/strong&gt; {root.digitCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text62>
+            <Text63 Ref="51" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.2,1.01,2.99,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>b80320d7f46c4ad0beca56c39c564cba</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text63</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Document No: &lt;/strong&gt; {Substring(root.challanNo,7, 14)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text63>
+            <Text67 Ref="52" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.6,1.02,3,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>7603521002794f23bca6e92417e90077</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text67</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Campus Code:&lt;/strong&gt; {root.digitCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text67>
+            <Text68 Ref="53" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.6,1.02,3,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>21d91824953c42c98a0a93598b31a244</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text68</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Document No: &lt;/strong&gt; {Substring(root.challanNo,7, 14)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text68>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>8b68e401d6954784bb16e470689dd0bc</Guid>
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <SubReport1 Ref="54" type="SubReport" isKey="true">
+          <Border>Left, Right;Black;1;Dot;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0,7.19,19.99</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Name>SubReport1</Name>
+          <Page isRef="4" />
+          <Parameters isList="true" count="0" />
+          <Parent isRef="4" />
+          <SubReportPageGuid>485381e546024984bc298e555f2399f2</SubReportPageGuid>
+          <SubReportUrl />
+        </SubReport1>
+        <SubReport2 Ref="55" type="SubReport" isKey="true">
+          <Border>Left, Right;Black;1;Dot;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>7.19,0,7.19,19.99</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Guid>ebf6dada40fd47deba15789293c288af</Guid>
+          <Name>SubReport2</Name>
+          <Page isRef="4" />
+          <Parameters isList="true" count="0" />
+          <Parent isRef="4" />
+          <SubReportPageGuid>485381e546024984bc298e555f2399f2</SubReportPageGuid>
+          <SubReportUrl />
+        </SubReport2>
+        <SubReport3 Ref="56" type="SubReport" isKey="true">
+          <Border>Left, Right;Black;1;Dot;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>14.4,0,7.19,19.99</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Guid>f4bdaf7140084be89687bbf0726225c2</Guid>
+          <Name>SubReport3</Name>
+          <Page isRef="4" />
+          <Parameters isList="true" count="0" />
+          <Parent isRef="4" />
+          <SubReportPageGuid>485381e546024984bc298e555f2399f2</SubReportPageGuid>
+          <SubReportUrl />
+        </SubReport3>
+        <SubReport4 Ref="57" type="SubReport" isKey="true">
+          <Border>Left, Right;Black;1;Dot;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>21.59,0,7.19,19.99</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Guid>fbf178e581a8433eb486b75ab19ebfca</Guid>
+          <Name>SubReport4</Name>
+          <Page isRef="4" />
+          <Parameters isList="true" count="0" />
+          <Parent isRef="4" />
+          <SubReportPageGuid>485381e546024984bc298e555f2399f2</SubReportPageGuid>
+          <SubReportUrl />
+        </SubReport4>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>610d644926f5487fa2f2d4b631db6344</Guid>
+      <Margins>0.508,0.508,0.508,0.508</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21</PageHeight>
+      <PageWidth>29.7</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="58" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+    <subReport_1 Ref="59" type="Page" isKey="true">
+      <Border>None;Black;1;Dash;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="12">
+        <ReportTitleBand1 Ref="60" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,7.19,0.58</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text1 Ref="61" type="Text" isKey="true">
+              <Brush>White</Brush>
+              <ClientRectangle>0.2,0,6.81,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,10,Bold| Underline</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="59" />
+              <Parent isRef="60" />
+              <Text>{root.businessUnit}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </ReportTitleBand1>
+        <EmptyBand1 Ref="62" type="Stimulsoft.Report.Components.StiEmptyBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1.78,7.19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>EmptyBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </EmptyBand1>
+        <ColumnHeaderBand1 Ref="63" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.58,7.19,0.8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text2 Ref="64" type="Text" isKey="true">
+              <AllowHtmlTags>True</AllowHtmlTags>
+              <Brush>White</Brush>
+              <ClientRectangle>0.2,0.06,3.2,0.79</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,6</Font>
+              <Guid>4e9ed92910f74db4b23b557d0fd66f1a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="59" />
+              <Parent isRef="63" />
+              <ProcessingDuplicates>Hide</ProcessingDuplicates>
+              <Text>&lt;strong&gt;Account #:&lt;/strong&gt; {root.accountNo}&lt;br&gt; &lt;strong&gt;{root.bankName}&lt;/strong&gt;</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ColumnHeaderBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </ColumnHeaderBand1>
+        <DataBand1 Ref="65" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,4.18,7.19,0</ClientRectangle>
+          <Columns>2</Columns>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root</DataSourceName>
+          <Filters isList="true" count="1">
+            <value>bankName,IsNotNull,,,String</value>
+          </Filters>
+          <Name>DataBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <HeaderBand1 Ref="66" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.98,7.19,5.39</ClientRectangle>
+          <Components isList="true" count="20">
+            <Text4 Ref="67" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>White</Brush>
+              <ClientRectangle>0.41,0.99,6.4,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Payable by: {Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text6 Ref="68" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,1.8,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>2c5d3148c8854aa4b4b4e58563ecaf8e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Challan #:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="69" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,1.8,4.8,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,10</Font>
+              <Guid>43df3ab06d4746bdb02df3f885df4b9e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.challanNo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="70" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,2.41,1.6,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>5f2003ca662b47b485be6afc0a19977b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Name: </Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text8>
+            <Text9 Ref="71" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,2.41,4.8,0.58</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>56787b14a291431cb214d116cb68cb33</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.fullName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text9>
+            <Text10 Ref="72" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,2.99,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>e9de067647b4448184b0da603ac6d54c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Father: </Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text10>
+            <Text11 Ref="73" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,2.99,4.8,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>b84eec10150744a38efa0a755593da63</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.fatherName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text11>
+            <Text12 Ref="74" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,3.6,1.6,0.59</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>5e44fed8aea9468ea6b2aa86b32fea59</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Class:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text12>
+            <Text13 Ref="75" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,3.6,3.2,0.59</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>3f853f2d421a424287be163999871f37</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.description}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text13>
+            <Text14 Ref="76" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,4.19,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>08b311e822214d569a5a84973e4cc6ed</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Ref #:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text14>
+            <Text15 Ref="77" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,4.19,4.8,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>483860c9632849cea858d391c8998bd0</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.refferenceNo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text15>
+            <Text22 Ref="78" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,1.6,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9</Font>
+              <Guid>a3b1d301d15f49b993cfeaf1999eba40</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text32 Ref="79" type="Text" isKey="true">
+              <Border>Bottom;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,5.41,6.81,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9</Font>
+              <Guid>e3afe924d9a24ebca21ba0d00cfb4fe4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text32</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text32>
+            <Text17 Ref="80" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.01,4.8,2.8,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>d32b39a4daa24b09b5ed7bf5f93fcc6a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Installment - {root.installmentNo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text17>
+            <Text16 Ref="81" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,4.8,1.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>4d3fbca268e24db19497fea53500b1c5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Fee:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text16>
+            <Text3 Ref="82" type="Text" isKey="true">
+              <Brush>White</Brush>
+              <ClientRectangle>0.2,0.2,6.81,0.59</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,9,Bold| Underline</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>{root.campusName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text74 Ref="83" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.81,4.8,1,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>7b5e6be070be4155a95de454e025e550</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text74</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Marks:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text74>
+            <Text75 Ref="84" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.81,4.8,1,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>5edce1873d1b4d4b8a58a253bb1659b1</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text75</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Marks:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text75>
+            <Text76 Ref="85" type="Text" isKey="true">
+              <Border>None;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.21,3.6,0.6,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold</Font>
+              <Guid>a6462b0c04ec48cb8d7291bcb88585b7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text76</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Sec:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text76>
+            <Text77 Ref="86" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.81,3.6,1,0.61</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>60e0ba4a3f3b4188bec36eb84340e529</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text77</Name>
+              <Page isRef="59" />
+              <Parent isRef="66" />
+              <Text>Section</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text77>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </HeaderBand1>
+        <HeaderBand2 Ref="87" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,11.17,7.19,0.79</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text33 Ref="88" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.41,3.2,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold| Italic| Underline</Font>
+              <Guid>b0fff4ba0a404ca885affe3426ecd230</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text33</Name>
+              <Page isRef="59" />
+              <Parent isRef="87" />
+              <Text>Particulars</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text33>
+            <Text34 Ref="89" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.61,0.41,1.6,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold| Italic| Underline</Font>
+              <Guid>250a2955dc6442718a9f5635c5e53828</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="59" />
+              <Parent isRef="87" />
+              <Text>Actual</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text34>
+            <Text35 Ref="90" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.21,0.41,1.6,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold| Italic| Underline</Font>
+              <Guid>2b9e638f66ce46639e03c62851995900</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text35</Name>
+              <Page isRef="59" />
+              <Parent isRef="87" />
+              <Text>Recievable</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text35>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand2</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </HeaderBand2>
+        <GroupHeaderBand1 Ref="91" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,12.76,7.19,0.6</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text36 Ref="92" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.04,3.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>61cb0daa96574785b74d5e01f563b52b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="59" />
+              <Parent isRef="91" />
+              <Text>{root.feeHead} - {root.concessionName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+            <Text37 Ref="93" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>3.61,0.04,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>00b9ccec75264a59aa43338e1223af96</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text37</Name>
+              <Page isRef="59" />
+              <Parent isRef="91" />
+              <Text>{root.feeAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text37>
+            <Text38 Ref="94" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.21,0.04,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>0d92fee47c8040859aae6158e077a9e7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text38</Name>
+              <Page isRef="59" />
+              <Parent isRef="91" />
+              <Text>{root.payableAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text38>
+          </Components>
+          <Condition>{root.feeHead}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </GroupHeaderBand1>
+        <DataBand2 Ref="95" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,14.16,7.19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root</DataSourceName>
+          <Filters isList="true" count="1">
+            <value>feeHead,IsNotNull,,,String</value>
+          </Filters>
+          <Name>DataBand2</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+          <Sort isList="true" count="0" />
+        </DataBand2>
+        <FooterBand1 Ref="96" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,14.96,7.19,0.79</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text41 Ref="97" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.41,4.8,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>1fa1b9cda8574f90a6e59e5443597fb5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text41</Name>
+              <Page isRef="59" />
+              <Parent isRef="96" />
+              <Text> Challan Expiry Date:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text41>
+            <Text42 Ref="98" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.21,0.41,1.6,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>9b0a82fdcbe44869a87d45f834403b94</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="59" />
+              <Parent isRef="96" />
+              <Text>{Substring(root.dueDate,0,10)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text42>
+            <Text39 Ref="99" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0,4.8,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>a92fd42e85a944e9a85245e1c0b77438</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text39</Name>
+              <Page isRef="59" />
+              <Parent isRef="96" />
+              <Text> Payable by Due Date</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text39>
+            <Text40 Ref="100" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.21,0,1.6,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7,Bold</Font>
+              <Guid>ef8cc944ccae4b69ade81fa8e5ff9727</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text40</Name>
+              <Page isRef="59" />
+              <Parent isRef="96" />
+              <Text>{root.challanAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text40>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand1</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </FooterBand1>
+        <HeaderBand3 Ref="101" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,16.55,7.19,0.99</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text46 Ref="102" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.61,4.19,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold| Italic| Underline</Font>
+              <Guid>dd3f26219dce46e1ae5b08af51d520e3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text46</Name>
+              <Page isRef="59" />
+              <Parent isRef="101" />
+              <Text>Remaining Challans Due Date</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text46>
+            <Text19 Ref="103" type="Text" isKey="true">
+              <Border>Top;Black;3;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0.2,6.4,0.21</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8</Font>
+              <Guid>229f5cd93903495d835f6124f778329f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="59" />
+              <Parent isRef="101" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text47 Ref="104" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0.61,2.21,0.38</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,8,Bold| Italic| Underline</Font>
+              <Guid>700b08f4467748c4bbac185ac0dd46de</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text47</Name>
+              <Page isRef="59" />
+              <Parent isRef="101" />
+              <Text>Recievable</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text47>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand3</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </HeaderBand3>
+        <GroupHeaderBand2 Ref="105" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,18.34,7.19,0.39</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text43 Ref="106" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.41,0,4.19,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>ef5b26943bdb47f8856f5762797206c6</Guid>
+              <HideZeros>True</HideZeros>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text43</Name>
+              <Page isRef="59" />
+              <Parent isRef="105" />
+              <Text>{Substring(root.nextDuedate,0,10)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text43>
+            <Text44 Ref="107" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0,2.21,0.41</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Garamond,7</Font>
+              <Guid>ec3cdf1525844936b232e3cde6fd9ed4</Guid>
+              <HideZeros>True</HideZeros>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text44</Name>
+              <Page isRef="59" />
+              <Parent isRef="105" />
+              <Text>{root.subAmount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text44>
+          </Components>
+          <Condition>{root.nextChallan}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand2</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+        </GroupHeaderBand2>
+        <DataBand3 Ref="108" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <CalcInvisible>True</CalcInvisible>
+          <ClientRectangle>0,19.53,7.19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root</DataSourceName>
+          <Filters isList="true" count="1">
+            <value>nextChallan,IsNotNull,,,String</value>
+          </Filters>
+          <Name>DataBand3</Name>
+          <Page isRef="59" />
+          <Parent isRef="59" />
+          <Sort isList="true" count="0" />
+        </DataBand3>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>485381e546024984bc298e555f2399f2</Guid>
+      <Margins>0.499999999999999,0.499999999999999,0.499999999999999,0.499999999999999</Margins>
+      <Name>subReport_1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21</PageHeight>
+      <PageWidth>8.1899999999999977</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="109" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </subReport_1>
+  </Pages>
+  <PrinterSettings Ref="110" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>4/4/2019 2:14:48 PM</ReportChanged>
+  <ReportCreated>3/20/2019 2:16:40 PM</ReportCreated>
+  <ReportFile>C:\Users\umer.khan\Desktop\Report1.mrt</ReportFile>
+  <ReportGuid>2d1a4fa58a704fabb8dca8131e7fb771</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2018.2.3.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

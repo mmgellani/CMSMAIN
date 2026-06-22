@@ -1,0 +1,457 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link"> CMS Student Survey / January 2025</a>
+    </div>
+  </template>
+  <div class="row">
+    <div class="col-md-5 text-center">
+      <span class="kt-switch kt-switch--sm kt-switch--icon">
+        <label class="m-0">
+          <input type="checkbox" checked="checked" v-model="typeChk"> <span></span>
+        </label>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="col-md-9">
+          {{$t('navigation.setupPossessionType')}}
+        </label>
+        <select-ex :options="campusTypeList" keyValue="fullName" displayValue="fullName" v-model="typeId"
+          :disabled="!typeChk">
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.reports.feeReports.city')}}</label>
+
+        <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId">
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.reports.feeReports.subCity')}}</label>
+
+        <select-ex :options="subCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId">
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3 form-group">
+      <label class="form-control-label"> Building
+      </label>
+      <select-ex :options="building" keyValue="buildingName" displayValue="buildingName" v-model="buildingname">
+      </select-ex>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-3 form-group">
+      <button @click="loadData();" class="btn  btn-sm btn-outline-primary btn-primary btn-block"
+        style="color: aliceblue;">
+        Generate
+      </button>
+    </div>
+    <div class="col-md-7 "></div>
+    <div class="col-md-2">
+      <button @click="clearSelection" class="btn  btn-sm btn-outline-primary btn-primary btn-block"
+        style="color: aliceblue;">
+        Reset
+      </button>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="card-box" style="background: #273b73eb;">
+            <div class="inner">
+              <p class="mb-4">Summary</p>
+              <div class="row" v-if="totalsur" v-for="item in survey">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">220816</h3>
+                  <span>Total Students</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{item.totalSubmitted}}</h3>
+                  <span>Total Submitted</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{item.average}}%</h3>
+                  <span>Response Rate</span>
+                </div>
+              </div>
+              <div class="row" v-if="checkposession" v-for="item in PossessionData">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.total}}</h3>
+                  <span>Total Students</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.submitted}}</h3>
+                  <span>Total Submitted</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.response}} %</h3>
+                  <span>Response Rate</span>
+                </div>
+              </div>
+              <div class="row" v-if="checkCity" v-for="item in CityData">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.total}}</h3>
+                  <span>Total Students</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.submitted}}</h3>
+                  <span>Total Submitted</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.response}} %</h3>
+                  <span>Response Rate</span>
+                </div>
+              </div>
+              <div class="row" v-if="checkSubCity" v-for="item in subCityData">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.total}}</h3>
+                  <span>Total Students</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.submitted}}</h3>
+                  <span>Total Submitted</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.response}} %</h3>
+                  <span>Response Rate</span>
+                </div>
+              </div>
+              <div class="row" v-if="checkCampus" v-for="item in subCampusData">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.total}}</h3>
+                  <span>Total Students</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.submitted}}</h3>
+                  <span>Total Submitted</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center"> {{item.response}} %</h3>
+                  <span>Response Rate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="d-flex flex-row-reverse">
+    <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary" v-if="questionss">
+      {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+    </button>
+
+    <button @click="loadcsv2" class="btn btn-light btn-hover btn-sm btn-outline-primary" v-if="teachCheck">
+      Export Teacher List<i class="la la-file-excel-o"></i>
+    </button>
+
+    <button type="button" class="btn btn-hover btn-sm btn-outline-primary" @click="loadPrevious" v-if="teachCheck">
+      <i class="la la-arrow-left"></i> Go Back
+    </button>
+  </div>
+  <div v-for="(qs, index) in questionss" :id="indexd">
+    <h5 class="mt-5">{{qs.o}}. {{qs.q}}</h5>
+
+    <div v-if="showldShowTable(qs.q)">
+      <div class="fixed-header-table">
+        <table style="width:100%;" class="customTable" v-if="!isTeacherTable(qs.o)">
+          <thead>
+            <tr v-if="isPercentage(qs.q)">
+              <th rowspan="2"> </th>
+              <th> Total Submitted </th>
+              <th> Average </th>
+              <th> OverAll Average </th>
+            </tr>
+            <tr v-else>
+              <th rowspan="2"> </th>
+              <th> Total Submitted </th>
+              <th> Average </th>
+              <th>OverAll Average
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="item in filteredData(qs.q)">
+              <tr class="rowHover" style="cursor: pointer;" @click="loadTeachers(item.course)" v-if="qs.o == 1">
+                <td> <span v-html="item.course"></span> </td>
+                <td> {{item.total}} </td>
+                <td> {{item.rating}} </td>
+                <td> {{item.overAllRating}} </td>
+              </tr>
+              <tr class="rowHover" v-else>
+                <td> <span v-html="item.course"></span> </td>
+                <template v-if="isPercentage(qs.q)">
+                  <td> {{item.total}} </td>
+                  <td> {{item.rating}} </td>
+                  <td> {{item.overAllRating}} </td>
+                </template>
+                <template v-else>
+                  <td> {{item.total}} </td>
+                  <td> {{item.rating}} </td>
+                  <td> {{item.overAllRating }} </td>
+                </template>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+<div v-else>
+  <div style="text-align: right;"> 
+  <button @click="loadcsv2" class="btn btn-light btn-hover btn-sm btn-outline-primary" v-if="teachCheck">
+    Export Teacher List<i class="la la-file-excel-o"></i>
+  </button>
+
+  <button type="button" class="btn btn-hover btn-sm btn-outline-primary" @click="loadPrevious" v-if="teachCheck">
+    <i class="la la-arrow-left"></i> Go Back
+  </button>
+  </div>
+        <table style="width:100%;" class="customTable" >
+          <thead>
+            <tr>
+              <th rowspan="2">
+                Teacher
+              </th>
+              <th>
+                Total Submitted
+              </th>
+              <th>
+                Average
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in teacherRatingList" class="rowHover" style="cursor: pointer;"
+              @click="loadSectionData(item.staffid)">
+              <td>
+                <span v-html="item.teacherName"></span>
+              </td>
+              <td>
+                {{item.total}}
+              </td>
+              <td>
+                {{item.rating}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 style="text-align: center;" v-if="data1 && qs.o == 1">Section Wise Rating</h3>
+        <table style="width:100%;" class="customTable" v-if="data1 && qs.o == 1">
+          <thead>
+            <tr>
+              <th rowspan="2">
+                Course Name
+              </th>
+              <th rowspan="2">
+                Section Name
+              </th>
+              <th>
+                Total Submitted
+              </th>
+              <th>
+                Average Rating
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in SectionData" class="rowHover" style="cursor: pointer;">
+              <td>
+                <span v-html="item.courseName"></span>
+              </td>
+              <td>
+                <span v-html="item.sectionName"></span>
+              </td>
+              <td>
+                {{item.total}}
+              </td>
+              <td>
+                {{item.rating}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <!-- <div class="fixed-header-table" v-if="data1"  :class="`index--${index}`"
+      style="text-align: center;">
+        <h3>Section Wise Rating</h3>
+        <table style="width:100%;" class="customTable">
+          <thead>
+            <tr>
+              <th rowspan="2">
+                Course Name
+              </th>
+              <th rowspan="2">
+                Section Name
+              </th>
+              <th>
+                Total Submitted
+              </th>
+              <th>
+                Average Rating
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in SectionData" class="rowHover" style="cursor: pointer;">
+              <td>
+                <span v-html="item.courseName"></span>
+              </td>
+              <td>
+                <span v-html="item.sectionName"></span>
+              </td>
+              <td>
+                {{item.total}}
+              </td>
+              <td>
+                {{item.rating}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+    </div>
+
+    <div class="mt-5" v-else>
+      <div class="row" v-if="isLastQuestion(qs.o)">
+        <template v-if="!isPercentage(qs.q)">
+          <div class="col-md-6 d-flex justify-content-center rightside-border">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="circle-css">
+                  {{ (filteredData(qs.q)[0].rating ) }}
+                </div>
+              </div>
+              <div class="col-md-12 mt-3"><strong>Average Rating
+                </strong></div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="circle-css2">
+                  {{ (filteredData(qs.q)[0].overAllRating) }}
+                </div>
+              </div>
+              <div class="col-md-12 mt-3"><strong>Overall Rating </strong></div>
+            </div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="col-md-6 d-flex justify-content-center rightside-border">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="circle-css">
+                  {{filteredData(qs.q)[0].rating *100 }}
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                <strong>Average Percentage</strong>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="circle-css2">
+                  {{filteredData(qs.q)[0].overAllRating *100 }}
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                <strong>Overall Percentage</strong>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+
+
+
+
+
+
+
+      <div class="mt-5" v-else>
+        <button
+          title="NPS score ranges between -100 and +100. A 'positive' score or NPS above 0 is considered 'Good', +50 is 'Excellent' and +70 is considered 'World Class'"
+          class="circle-btn">
+          <i class="fa fa-info"></i>
+        </button>
+        <div class="row ">
+          <div class="col-md-6 d-flex justify-content-center rightside-border">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="container-g mt-4">
+                  <div class="gauge-a"></div>
+                  <div class="gauge-b"></div>
+                  <div id="gauge-c"
+                    :style="{'transform': 'rotate(' + ((filteredData(qs.q)[0].rating * 270) / 100) + 'deg)'}"></div>
+                  <div class="gauge-data">
+                    <h1 id="percent">{{filteredData(qs.q)[0].rating}}</h1>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding-top: 65px;" class="col-md-12 mt-4 ml-5">
+                <div class="row">
+                  <h5 class="mr-5">-100</h5>
+                  <h5><b>Average</b></h5>
+                  <h5 class="ml-5">100</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
+            <div>
+              <div class="col-md-12 ml-4">
+                <div class="container-g mt-4">
+                  <div class="gauge-a"></div>
+                  <div class="gauge-b"></div>
+                  <div id="gauge-c2"
+                    :style="{'transform': 'rotate(' + ((filteredData(qs.q)[0].overAllRating * 270) / 100) + 'deg)'}">
+                  </div>
+                  <div class="gauge-data">
+                    <h1 id="percent">{{filteredData(qs.q)[0].overAllRating}}</h1>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding-top: 65px;" class="col-md-12 mt-4 ml-5">
+                <div class="row">
+                  <h5 class="mr-5">-100</h5>
+                  <h5><b>OverAll</b></h5>
+                  <h5 class="ml-5">100</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="col-md-6  control" style="text-align:right" v-show="showloader">
+    <section class="loaders loaders-bg-1"><span class="loader loader-double"> </span> Loading...</section>
+  </div>
+</page-area>

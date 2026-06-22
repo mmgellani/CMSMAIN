@@ -1,0 +1,325 @@
+<page-area>
+  <!-- ── Breadcrumb ── -->
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">{{$t('navigation.dashboard')}}</a>
+    </div>
+  </template>
+
+  <!-- ── Dashboard Body ── -->
+  <div class="ems-dashboard">
+
+    <!-- ══ Welcome Banner ══ -->
+    <div class="ems-dash-welcome">
+      <div class="ems-dash-welcome__left">
+        <div class="ems-dash-welcome__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="ems-dash-welcome__title">Welcome to Campus Management System</h2>
+          <p class="ems-dash-welcome__sub">Here's what's happening across your institution today.</p>
+        </div>
+      </div>
+      <div class="ems-dash-welcome__badge">
+        <span class="ems-live-dot"></span> Live Dashboard
+      </div>
+    </div>
+
+    <!-- ══ KPI Stat Cards ══ -->
+    <div class="ems-stat-grid">
+
+      <div class="ems-stat-card ems-stat-card--gold">
+        <div class="ems-stat-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="ems-stat-card__body">
+          <div class="ems-stat-card__value">3,248</div>
+          <div class="ems-stat-card__label">Total Students</div>
+          <div class="ems-stat-card__trend ems-trend--up">
+            <i class="fa fa-arrow-up"></i> 4.2% this month
+          </div>
+        </div>
+      </div>
+
+      <div class="ems-stat-card ems-stat-card--teal">
+        <div class="ems-stat-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="ems-stat-card__body">
+          <div class="ems-stat-card__value">186</div>
+          <div class="ems-stat-card__label">Faculty Members</div>
+          <div class="ems-stat-card__trend ems-trend--up">
+            <i class="fa fa-arrow-up"></i> 2 new this week
+          </div>
+        </div>
+      </div>
+
+      <div class="ems-stat-card ems-stat-card--purple">
+        <div class="ems-stat-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="ems-stat-card__body">
+          <div class="ems-stat-card__value">124</div>
+          <div class="ems-stat-card__label">Admission Forms</div>
+          <div class="ems-stat-card__trend ems-trend--up">
+            <i class="fa fa-arrow-up"></i> 18 today
+          </div>
+        </div>
+      </div>
+
+      <div class="ems-stat-card ems-stat-card--red">
+        <div class="ems-stat-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="ems-stat-card__body">
+          <div class="ems-stat-card__value">91.4%</div>
+          <div class="ems-stat-card__label">Attendance Rate</div>
+          <div class="ems-stat-card__trend ems-trend--down">
+            <i class="fa fa-arrow-down"></i> 1.1% vs last week
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ Middle Row: Quick Access + Activity ══ -->
+    <div class="ems-dash-mid">
+
+      <!-- Quick Access Tiles -->
+      <div class="ems-quick-access">
+        <div class="ems-section-header">
+          <h4 class="ems-section-title">
+            <i class="flaticon2-rocket-1"></i> Quick Access
+          </h4>
+        </div>
+        <div class="ems-qa-grid">
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--gold">
+              <i class="flaticon2-user-1"></i>
+            </div>
+            <span>Admissions</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--teal">
+              <i class="flaticon2-calendar-3"></i>
+            </div>
+            <span>Attendance</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--purple">
+              <i class="flaticon2-document"></i>
+            </div>
+            <span>Exams</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--navy">
+              <i class="flaticon2-pie-chart-1"></i>
+            </div>
+            <span>Reports</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--orange">
+              <i class="flaticon2-group"></i>
+            </div>
+            <span>Classes</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--red">
+              <i class="flaticon2-bell-alarm-symbol"></i>
+            </div>
+            <span>Alerts</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--green">
+              <i class="flaticon2-sheet"></i>
+            </div>
+            <span>Fee Ledger</span>
+          </a>
+          <a href="#" class="ems-qa-tile">
+            <div class="ems-qa-tile__icon ems-qa--slate">
+              <i class="flaticon2-gear"></i>
+            </div>
+            <span>Settings</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="ems-activity">
+        <div class="ems-section-header">
+          <h4 class="ems-section-title">
+            <i class="flaticon2-bell-alarm-symbol"></i> Recent Activity
+          </h4>
+          <a href="#" class="ems-section-link">View all</a>
+        </div>
+        <div class="ems-activity-list">
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--gold"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">New admission form submitted — <strong>Ahmed Raza</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> 10 min ago</div>
+            </div>
+          </div>
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--teal"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">Attendance marked for <strong>Class XI-A</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> 35 min ago</div>
+            </div>
+          </div>
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--purple"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">Exam schedule published for <strong>Final Term 2026</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> 1 hr ago</div>
+            </div>
+          </div>
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--red"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">Fee reminder sent to <strong>47 students</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> 2 hrs ago</div>
+            </div>
+          </div>
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--gold"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">New faculty member added — <strong>Dr. Sara Khan</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> 3 hrs ago</div>
+            </div>
+          </div>
+          <div class="ems-activity-item">
+            <div class="ems-activity-dot ems-dot--teal"></div>
+            <div class="ems-activity-content">
+              <div class="ems-activity-text">Report generated: <strong>Monthly Attendance Summary</strong></div>
+              <div class="ems-activity-time"><i class="fa fa-clock-o"></i> Yesterday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ Bottom Row: Enrollment Chart Placeholder + Calendar ══ -->
+    <div class="ems-dash-bottom">
+
+      <!-- Enrollment Overview -->
+      <div class="ems-enroll-card">
+        <div class="ems-section-header">
+          <h4 class="ems-section-title">
+            <i class="flaticon2-line-chart"></i> Enrollment Overview
+          </h4>
+          <span class="ems-badge-gold">2025–26</span>
+        </div>
+        <div class="ems-enroll-bars">
+          <div class="ems-bar-row">
+            <span class="ems-bar-label">Class IX</span>
+            <div class="ems-bar-track"><div class="ems-bar-fill" style="width:82%"></div></div>
+            <span class="ems-bar-val">820</span>
+          </div>
+          <div class="ems-bar-row">
+            <span class="ems-bar-label">Class X</span>
+            <div class="ems-bar-track"><div class="ems-bar-fill" style="width:75%"></div></div>
+            <span class="ems-bar-val">750</span>
+          </div>
+          <div class="ems-bar-row">
+            <span class="ems-bar-label">Class XI</span>
+            <div class="ems-bar-track"><div class="ems-bar-fill ems-bar--teal" style="width:68%"></div></div>
+            <span class="ems-bar-val">680</span>
+          </div>
+          <div class="ems-bar-row">
+            <span class="ems-bar-label">Class XII</span>
+            <div class="ems-bar-track"><div class="ems-bar-fill ems-bar--purple" style="width:60%"></div></div>
+            <span class="ems-bar-val">600</span>
+          </div>
+          <div class="ems-bar-row">
+            <span class="ems-bar-label">Postgrad</span>
+            <div class="ems-bar-track"><div class="ems-bar-fill ems-bar--red" style="width:40%"></div></div>
+            <span class="ems-bar-val">398</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="ems-events-card">
+        <div class="ems-section-header">
+          <h4 class="ems-section-title">
+            <i class="flaticon2-calendar-3"></i> Upcoming Events
+          </h4>
+          <a href="#" class="ems-section-link">Full calendar</a>
+        </div>
+        <div class="ems-events-list">
+          <div class="ems-event-item">
+            <div class="ems-event-date">
+              <span class="ems-event-day">20</span>
+              <span class="ems-event-month">Jun</span>
+            </div>
+            <div class="ems-event-info">
+              <div class="ems-event-title">Final Term Exams Begin</div>
+              <div class="ems-event-meta"><i class="fa fa-map-marker"></i> Main Campus — All Classes</div>
+            </div>
+            <span class="ems-event-tag ems-tag--red">Exam</span>
+          </div>
+          <div class="ems-event-item">
+            <div class="ems-event-date">
+              <span class="ems-event-day">25</span>
+              <span class="ems-event-month">Jun</span>
+            </div>
+            <div class="ems-event-info">
+              <div class="ems-event-title">Parent–Teacher Meeting</div>
+              <div class="ems-event-meta"><i class="fa fa-map-marker"></i> Auditorium — 10:00 AM</div>
+            </div>
+            <span class="ems-event-tag ems-tag--teal">Meeting</span>
+          </div>
+          <div class="ems-event-item">
+            <div class="ems-event-date">
+              <span class="ems-event-day">01</span>
+              <span class="ems-event-month">Jul</span>
+            </div>
+            <div class="ems-event-info">
+              <div class="ems-event-title">New Session Admissions Open</div>
+              <div class="ems-event-meta"><i class="fa fa-map-marker"></i> Admission Office</div>
+            </div>
+            <span class="ems-event-tag ems-tag--gold">Admin</span>
+          </div>
+          <div class="ems-event-item">
+            <div class="ems-event-date">
+              <span class="ems-event-day">10</span>
+              <span class="ems-event-month">Jul</span>
+            </div>
+            <div class="ems-event-info">
+              <div class="ems-event-title">Result Announcement — Final Term</div>
+              <div class="ems-event-meta"><i class="fa fa-map-marker"></i> Online Portal</div>
+            </div>
+            <span class="ems-event-tag ems-tag--purple">Result</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</page-area>

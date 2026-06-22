@@ -1,0 +1,90 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="body-content off-canvas">
+  <!-- <div class="m-subheader">
+    <ol class="breadcrumb breadcrumb-alt">
+      <li class="breadcrumb-item active">Building Address Link</li>
+    </ol>
+  </div> -->
+  <div class="m-content">
+    <div class="m-subheader ">
+      <div class="d-flex align-items-center">
+        <div class="mr-auto">
+          <h3 style="padding-left: 20px" class="m-subheader__title m-subheader__title--separator">
+            Building Adress Link
+          </h3>
+          <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+            <li class="m-nav__item">
+              <div class="m-input-icon m-input-icon--left">
+                <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Search...">
+                <span class="m-input-icon__icon m-input-icon__icon--left">
+                  <span>
+                    <i class="fa fa-search"></i>
+                  </span>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div style="padding-right: 20px" class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+          data-dropdown-toggle="hover" aria-expanded="true">
+          <a href="#" @click="refreshData" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+            <i class="fa fa-refresh m--hide"></i>
+            <feather icon="refresh-ccw" ></feather>
+          </a>
+          <a href="#" @click="insertModel" v-if="canAdd" class="btn m-btn--pill m-btn--air btn-outline-primary m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+            <i class="fa fa-plus m--hide"></i>
+            <feather icon="plus-circle"></feather>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="m-content">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card-body no-padding">
+            <div class="table-responsive" v-if="canRead">
+              <div class="dataTables_wrapper no-footer">
+                <table class="table">
+                  <thead>
+                    <tr role="row">
+                      <th>Building </th>
+                      <th>Address</th>
+                      <th>PreferenceNo</th>
+                      <th>StatusId</th>
+                      <th>Operation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in data">
+                      <td class="v-align-middle">{{item.buildingName}}</td>
+                      <td class="v-align-middle">{{item.address}}</td>
+                      <td class="v-align-middle">{{item.preferenceNo}}</td>
+                      <td class="v-align-middle">{{item.statusId==1?'Active':'InActive'}}</td>
+                      <td>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="editModel(item)" v-if="canEdit">
+                          <i class="la la-edit"></i>
+                        </a>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="deleteModel(item)" v-if="canDelete">
+                          <i class="la la-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

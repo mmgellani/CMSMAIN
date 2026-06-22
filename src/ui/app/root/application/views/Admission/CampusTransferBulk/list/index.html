@@ -1,0 +1,229 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.campusTransferBulk')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.campusTransferBulk')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.campusTransferBulk')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.session')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.campus')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="campusCityList" groupBy="cityName" keyValue="campusId" displayValue="campusName"
+              v-model.trim="campusId" @input="LoadCampusSubCityWise"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.program')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" keyValue="campusProgramId"
+              displayValue="description" v-model.trim="campusProgramId" @input="loadClass"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.class')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="classList" disabled="true" keyValue="classId" displayValue="fullName"
+              v-model.trim="classid">
+            </select-ex>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.section')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+              v-model.trim="sectionCourseLinkId" @input="refreshData"></select-ex>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Transfer to {{$t('modal.sectionChange.session')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" disabled="true" displayValue="fullName"
+              v-model.trim="tosessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.campus')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="campusCityList2" groupBy="cityName" keyValue="campusId" displayValue="campusName"
+              v-model.trim="tocampusId" @input="toloadProgramsOfCampus"></select-ex>
+
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.program')}}</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="campusProgramLinkList2" disabled="true" groupBy="programName"
+              keyValue="campusProgramId" displayValue="description" v-model.trim="tocampusProgramId"
+              @input="LoadNewSections"></select-ex>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Transfer To Class</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="classList2" disabled="true" keyValue="classId" displayValue="fullName"
+              v-model.trim="transferclassid" @input="LoadNewSections"></select-ex>
+
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-md-3 mt-4">
+
+          <label class="kt-option kt-option-custom m-0" style="border: none !important;">
+            <span class="kt-option__label">
+              <span class="kt-option__head">
+                <span class="kt-option__title mt-1">
+                  Select All
+                </span>
+              </span>
+            </span>
+            <span class="kt-switch kt-switch--sm kt-switch--icon">
+              <label class="m-0">
+                <input type="checkbox" v-model="chkall" @change="updall">
+                <span></span>
+              </label>
+            </span>
+          </label>
+
+
+
+        </div> -->
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Transfer to Sections</label><span style="color:red">
+              *</span></label>
+            <select-ex :options="TransfersectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+              v-model.trim="sectionsAll" @input="AddNewSections"></select-ex>
+
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-3 text-align-end">
+          <button data-toggle="modal" data-target="#myModal" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i> {{$t('button.save')}}
+          </button>
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-3" v-if="datas.length > 0">
+        <div class="col-md-12">
+          <div class="fixed-header-table">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th style="text-align: center; vertical-align: middle;">Serial No</th>
+                  <th style="text-align: center; vertical-align: middle;">Reference No</th>
+                  <th style="text-align: center; vertical-align: middle;">Roll No</th>
+                  <th style="text-align: center; vertical-align: middle;">Student Name</th>
+                  <th>Select All
+                    <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 15px;">
+                      <input type="checkbox" @change="updall" v-model="chkall">
+                      <span></span>
+                    </label>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in datas" :key="item.refferenceNo">
+                  <td class="v-align-middle">{{ index + 1 }}</td>
+                  <td class="v-align-middle">{{ item.refferenceNo }}</td>
+                  <td class="v-align-middle">{{ item.rollNo }}</td>
+                  <td class="v-align-middle">{{ item.fullName }}</td>
+                  <td class="text-align: center; vertical-align: middle;">
+                    <label class="kt-checkbox kt-checkbox--brand">
+                      <input type="checkbox" v-model="item.isSelected" />
+                      <span></span>
+                    </label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="datas.length === 0" class="mt-5 flex flex-col items-center justify-center text-center text-gray-500">
+
+        <p class="text-lg font-semibold">No Record Found</p>
+      </div>
+
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">Change Campus Bulk</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure to Change Selected Students Campus?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="insertModel()" data-dismiss="modal"
+            type="submit">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

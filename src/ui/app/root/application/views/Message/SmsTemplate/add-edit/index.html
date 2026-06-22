@@ -1,0 +1,218 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="60%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        Template&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" v-model="data.type" required>
+                        <label :class="!$v.model.type.required">Type<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <textarea style="height: 100% !important; width:100% !important; border: 1px solid black;"
+                        v-model="data.description" required></textarea>
+                </div>
+                <div class="col-md-5" style="font-size: smaller;">
+                    <strong>Use the Followng Tags.</strong> <br />
+                    <strong>#CAMPUS#</strong> to display Campus of the Student. <br />
+                    <strong>#PROGRAM#</strong> to display Program of the Student. <br />
+                    <strong>#NAME#</strong> to display Name of the Student. <br />
+                    <strong>#FNAME#</strong> to display Father's Name of the Student. <br />
+                    <strong>#ROLL#</strong> to display Roll # of the Student. <br />
+                    <strong>#REFF#</strong> to display Refference # of the Student. <br />
+                    <strong>#SECTION#</strong> to display Section of the Student. <br />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto"  
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.messageTemplate')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.messageTemplate.templateType')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.type">
+                        <!-- <div class="invalid-feedback" v-show="$v.data.fatherName.$error">
+                                @input=" $v.data.fatherName.$touch()"
+                                :class="{'is-invalid': $v.data.fatherName.$error}"
+                            {{$t('validation.required')}}
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.messageTemplate.title')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.title">
+                        <!-- <div class="invalid-feedback" v-show="$v.data.fatherName.$error">
+                                @input=" $v.data.fatherName.$touch()"
+                                :class="{'is-invalid': $v.data.fatherName.$error}"
+                            {{$t('validation.required')}}
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label"> {{$t('modal.messageTemplate.message')}}</label>
+                        <textarea v-model="data.description" class="form-control " rows="6"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.messageTemplate.useTheFollowingNotationToDisplay')}}</label>
+                        <div class="fee-structure-square" style="max-height: 100% !important;">
+
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Campus of the Student
+                                </div>
+                                <div class="col-md-5">
+                                    #CAMPUS#
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Program of the Student
+                                </div>
+                                <div class="col-md-5">
+                                    #PROGRAM#
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Father's Name of the Student
+                                </div>
+                                <div class="col-md-5">
+                                    #FNAME#
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Refference # of the Student
+                                </div>
+                                <div class="col-md-5">
+                                    #REFF#
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Section of the Student
+                                </div>
+                                <div class="col-md-5">
+                                    #SECTION#
+                                </div>
+                            </div>
+                            <!-- <strong>#CAMPUS#</strong> <br />
+                            <strong>#PROGRAM#</strong> Program of the Student. <br />
+                            <strong>#NAME#</strong> Name of the Student. <br />
+                            <strong>#FNAME#</strong>Father's Name of the Student. <br />
+                            <strong>#ROLL#</strong> Roll # of the Student. <br />
+                            <strong>#REFF#</strong> Refference # of the Student. <br />
+                            <strong>#SECTION#</strong> Section of the Student. <br /> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</modal>

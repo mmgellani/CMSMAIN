@@ -1,0 +1,312 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Bulk Challan
+      </div>
+      <div class="card-body" v-if="canRead">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <drop-down @change="refreshData()" v-model="campusProgramId" :data="campusProgramLinkList"
+              group-by="programName" key-value="campusProgramId" display-value="description" placeholder="Programs">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadSections()" v-model="classid" class="form-control" required>
+                <option :key="index" :value="model.classId" v-for="(model,index) in classList">{{model.fullName}}
+                </option>
+              </select>
+              <label>Class</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="refreshData()" v-model="sectionCourseLinkId" class="form-control" required>
+                <option :key="index" :value="model.sectionCourseLinkId" v-for="(model,index) in sectionList">
+                  {{model.sectionName}}
+                </option>
+              </select>
+              <label>Section</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group ">
+              <select class="form-control" @change="loadFeeHeads()" v-model="challanTypeId">
+                <option :value="model.challanTypeId" v-for="(model,index) in challanTypeList">{{model.fullName}}
+                </option>
+              </select>
+              <label style="margin-left:15px;">Challan Type</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group ">
+              <select class="form-control" v-model="feeHeadId" @change="loadFeeHeads">
+                <option :value="model.feeHeadId" v-for="(model,index) in feeHeadList">{{model.fullName}}
+                </option>
+              </select>
+              <label style="margin-left:15px;">FeeHead</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group ">
+              <input type="number" class="form-control" v-model="amount">
+              <label> Challan Amount</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="date" min="" class="form-control" :value="dueDate && dueDate.toString().split('T')[0]"
+                @input="dueDate = $event.target.value">
+              <label>Challan Due Date</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group ">
+              <input type="text" class="form-control" v-model="Remarks">
+              <label> Remarks</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <button @click="insertModel" class="b-add">
+              <feather icon="save"></feather>
+            </button>
+            <button @click="refreshData" class="b-add">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+            <input type="checkbox" v-model="checkAllrec" @change="CheckAll">
+            <label>Check All</label>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-sm tbl-btn" @click="generateChallanReport">Print
+                Challan</button>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>Roll No</th>
+                  <th>RefferenceNo</th>
+                  <th>Name</th>
+                  <th>Select</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Selectdatas">
+                  <td class="v-align-middle">{{item.rollNo}}</td>
+                  <td class="v-align-middle">{{item.refferenceNo}}</td>
+                  <td class="v-align-middle">{{item.fullName}}</td>
+                  <input type="checkbox" class="form-control" v-model="item.isChecked">
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <report-engine :data="reportData" :path="report"></report-engine>
+</div> -->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.sectionFine')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.sectionFine')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.session')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex @input="loadCityCampus" :options="sessionList" keyValue="sessionId" displayValue="fullName"
+              v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.campus')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex :options="campusCityList" v-model.trim="campusId" keyValue="campusId" displayValue="campusName"
+              groupBy="cityName" @input="loadProgramsOfCampus"></select-ex>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.program')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex :options="campusProgramLinkList" keyValue="campusProgramId" displayValue="description"
+              groupBy="programName" v-model.trim="campusProgramId" @input="loadClass"></select-ex>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.class')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex @input="loadSections" :options="classList" keyValue="classId" displayValue="fullName"
+              v-model.trim="classid"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.section')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex @input="refreshData" :options="sectionList" keyValue="sectionCourseLinkId"
+              displayValue="sectionName" v-model.trim="sectionCourseLinkId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-9 text-right mt-4">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.challanType')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex @input="loadFeeHeads" :options="challanTypeList" keyValue="challanTypeId" displayValue="fullName"
+              v-model.trim="challanTypeId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.feeHead')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex :options="feeHeadList" keyValue="feeHeadId" displayValue="fullName" v-model.trim="feeHeadId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.challanAmount')}}<span
+              style="color:red">
+              *</span></label>
+            <input type="number" class="form-control" v-model.trim="amount">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.challanDueDate')}}<span
+              style="color:red">
+              *</span></label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="dueDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionFine.remarks')}}</label>
+            <input type="text" class="form-control " v-model.trim="Remarks">
+          </div>
+        </div>
+      </div>
+      <grid :data="Selectdatas" :columns="columns" pre="modal.sectionFine.">
+        <template slot="action-area">
+          <button data-toggle="modal" :disabled="!allowsubmit()" data-target="#myModal"
+            class=" btn btn-light btn-hover btn-sm btn-outline-primary"> <i class="la la-floppy-o"></i>
+            {{$t('button.save')}}</button>
+          <button type="button" class="btn btn-light btn-hover btn-sm btn-outline-primary"
+            @click="generateChallanReport"><i class="la la-print"></i>{{$t('modal.sectionFine.printChallan')}}</button>
+        </template>
+        <template slot="isChecked-header" slot-scope="item">
+          {{$t('modal.sectionFine.checkAll')}} &nbsp;&nbsp;
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+            <input type="checkbox" @change="CheckAll" v-model="checkAllrec">
+            <span></span>
+          </label>
+          <!-- <input type="checkbox" @change="CheckAll"
+            v-model="checkAllrec"> -->
+        </template>
+        <template slot="isChecked" slot-scope="item">
+          <!-- <input type="checkbox" v-model="item.row.isChecked"> -->
+
+          <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 16px;">
+              <input type="checkbox" @change="CheckIndividuals(item.row.refferenceNo,item.row.isChecked)" v-model="item.row.isChecked">
+              <span></span>
+            </label>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <!-- <report-engine :data="reportData" :path="report"></report-engine> -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.sectionFine')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to generate Challan of these students?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit"
+            :disabled="Selectdatas.length==0" @click="insertModel">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

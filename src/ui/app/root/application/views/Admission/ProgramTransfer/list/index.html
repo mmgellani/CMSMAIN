@@ -1,0 +1,143 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Program Transfer
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <select @change="loadCityCampus" v-model="sessionId" class="form-control form-control-sm" required>
+                      <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">
+                        {{model.fullName}}
+                      </option>
+                    </select>
+                    <label>Session</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                    display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                  </drop-down>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+                    key-value="campusProgramId" display-value="description" placeholder="Programs"
+                    @change="refreshData">
+                  </drop-down>
+                </div>
+                <div class="col-md-3">
+                  <button @click="refreshData" class="b-refresh">
+                    <feather icon="refresh-ccw"></feather>
+                  </button>
+                </div>
+              </div>
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row.refferenceNo)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+                <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+            </template>
+
+          </grid>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.bsetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.programTransfer')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.programTransfer')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('navigation.setupSession')}}<span style="color:red"> *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('navigation.setupCampus')}}<span style="color:red"> *</span></label>
+            <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" groupBy="cityName"
+              v-model.trim="campusId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group validated">
+            <label class="form-control-label">Program Detail<span style="color:red"> *</span></label>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" key-value="campusProgramId"
+              display-value="description" v-model.trim="campusProgramId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group validated">
+            <label class="form-control-label">Class<span style="color:red"> *</span></label>
+            <select-ex :options="classList"  key-value="classId"
+              display-value="fullName" v-model.trim="classid"></select-ex>
+          </div>
+        </div>
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.programTransfer.">
+        <template slot="action-area">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row.refferenceNo)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-edit"></i>
+          </button>
+
+          <!-- <button @click="deleteModel(item.row)" v-if="canDelete" title="Delete" type="button"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+            <i class="la la-trash"></i> -->
+          </button>
+        </template>
+        <template slot="statusId" slot-scope="item">
+          <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.statusId == 1">Active</span>
+          <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill" v-else>InActive</span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+</page-area>

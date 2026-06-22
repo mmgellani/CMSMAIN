@@ -1,0 +1,81 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="delete-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+            <h5>Model <span class="semi-bold">{{title}}</span></h5>
+        </div>
+        <div class="modal-body">
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('modal.BoardStudentBoardLinkList.boardReturnType')}}</label>
+                        <select-ex :options="boardReturnTypeList" keyValue="returnTypeId" displayValue="fullName"
+                            v-model.trim="data.returnTypeId"></select-ex>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>RegistrationCode</label>
+                        <select-ex :options="registrationcodelist" keyValue="registrationCodeId" displayValue="title"
+                            v-model.trim="data.registrationCodeId"></select-ex>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div> -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label>Exam Type </label>
+                        <select-ex :options="ExamTypedata" keyValue="examTypeId" displayValue="fullName"
+                            v-model.trim="data.examTypeId" >
+                        </select-ex>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label>Exam Year </label>
+                        <select-ex :options="Years" keyValue="Year" displayValue="Year"
+                            v-model="data.examYear" >
+                        </select-ex>
+                    </div>
+                </div>
+
+           
+
+
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <label> Amount</label><br>
+                    <input type="number" class="form-control" v-model="data.amount" >
+                </div>
+                <div class="col-md-6">
+                    <label>Gender</label>
+                        <select-ex :options="Genderlist" keyValue="genderId" displayValue="description"
+                            v-model.trim="genderid"></select-ex>
+                        </select>
+                </div>
+            </div> -->
+            <div class="modal-footer">
+                <div class="row text-right">
+                    <div class="col-md-12">
+                        <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                        <button class="btn btn-primary" @click="saveModel">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

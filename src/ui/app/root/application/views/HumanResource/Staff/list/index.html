@@ -1,0 +1,81 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.hr')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.humanResourceStaff')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.humanResourceStaff')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('navigation.setupZone')}}</label>
+            <select-ex :options="zoneList" keyValue="zoneId" displayValue="fullName" v-model="zoneId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('navigation.setupCity')}}</label>
+            <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId"></select-ex>
+            </select>
+          </div>
+        </div>
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.staffHr.">
+        <template slot="action-area">
+          <button v-if="canAdd" @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-plus"></i> {{$t('button.insert')}}
+          </button>
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row)" v-if="canEdit" title="Edit" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-edit"></i>
+          </button>
+
+          <button @click="deleteModel(item.row)" v-if="canDelete" title="Delete" type="button"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+            <i class="la la-trash"></i>
+          </button>
+        </template>
+
+        <!-- filters -->
+        <template slot="dateOfBirth" slot-scope="item">
+          {{item.row.dateOfBirth && item.row.dateOfBirth.toString().split('T')[0]}}
+        </template>
+        <template slot="maritalStatus" slot-scope="item">
+          {{item.row.maritalStatus==true ? 'Married':'UnMarried'}}
+        </template>
+        <template slot="contactNo" slot-scope="item">
+          <div v-for="phone in getPhone(item.row.contactNo)">{{phone.contactNo}}</div>
+        </template>
+        <template slot="address" slot-scope="item">
+          <div v-for="address in getAddress(item.row.address)">{{address.address}}</div>
+        </template>
+        <template slot="statusId" slot-scope="item">
+          <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.statusId == 1">Active</span>
+          <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill" v-else>InActive</span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <Staff-add-edit-model v-on:submit="refreshData"></Staff-add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</page-area>

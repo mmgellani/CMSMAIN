@@ -1,0 +1,697 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"
+        ><i class="flaticon2-shelter"></i
+      ></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admissionDashboard')}}
+      </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.admissionDashboard')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="mb-3"
+              >{{$t('modal.concessionDashboard.session')}}<span
+                style="color:red"
+              >
+                *</span
+              ></label
+            >
+            <select-ex
+              @input="refreshData"
+              :options="sessionList"
+              keyValue="sessionId"
+              displayValue="fullName"
+              v-model="sessionId"
+            >
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3" style="position: relative;">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.concessionDashboard.cities')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon"
+                  ><label class="m-0"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      v-model="viewCities"
+                      @change="showAllRecord()"/>
+                    <span></span></label
+                ></span>
+              </div>
+            </div>
+            <select-ex
+              :options="cityList"
+              keyValue="cityId"
+              displayValue="fullName"
+              v-model="cityId"
+              @input="loadcityWiseData()"
+              multiple
+              :disabled="viewCities"
+            >
+            </select-ex>
+            <label class="show-checkBox">All Cities</label>
+          </div>
+        </div>
+        <!-- <div class="col-md-3" style="position: relative;">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8"><label>{{$t('modal.concessionDashboard.alllevel')}}</label></div>
+              <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                    class="m-0"><input type="checkbox" checked="checked" v-model="levelName" @change="showAllRecord()"> <span></span></label></span></div>
+            </div>
+            <select-ex :options="LevelList" keyValue="levelid" displayValue="fullName" v-model="levelid"
+              @input="loadLevelWise()" multiple :disabled="levelName">
+            </select-ex>
+            <label class="show-checkBox">All Levels</label>
+          </div>
+        </div> -->
+
+        <div class="col-md-3 position-relative">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.concessionDashboard.level')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon"
+                  ><label class="m-0"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      v-model="viewLevel"
+                      @change="loadLevelWise()"/>
+                    <span></span></label
+                ></span>
+              </div>
+            </div>
+            <select-ex
+              :options="LevelList"
+              keyValue="levelName"
+              displayValue="levelName"
+              v-model="levelName"
+              @input="loadLevelWise()"
+              :disabled="viewLevel || cityIdEx.length===0"
+            >
+            </select-ex>
+            <label class="show-checkBox">All level</label>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="mb-3"
+              >{{$t('modal.concessionDashboard.program')}}</label
+            >
+            <select-ex
+              :options="ProgramLinkList"
+              keyValue="programId"
+              displayValue="programName"
+              v-model="programId"
+              @input="programWiseData()"
+              :disabled="levelName.length==0"
+            >
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.concessionDashboard.programDetail')}}</label>
+            <select-ex
+              :options="campusProgramLinkList"
+              keyValue="programDetailId"
+              displayValue="description"
+              v-model="programDetailId"
+              groupBy="programName"
+              @input="cityWiseData()"
+              :disabled="programId.length==0"
+              multiple
+            ></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="form-control-label">From Date</label>
+            <span style="color:red">*</span>
+            <date-picker
+              class="input-28"
+              id="change-width"
+              ref="changeWidth"
+              v-model="fromDateEx"
+              format="DD/MM/YYYY"
+              lang="en"
+              @input="checkparam()"
+              :not-after="toDateEx"
+            ></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="form-control-label">To Date</label>
+            <span style="color:red">*</span>
+            <date-picker
+              class="input-28"
+              id="change-width"
+              ref="changeWidth"
+              v-model="toDateEx"
+              format="DD/MM/YYYY"
+              lang="en"
+              v-mask="'##/##/####'"
+              @input="checkparam()"
+              :not-after="currDate"
+            ></date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.concessionDashboard.program')}}</label>
+
+            <select-ex @input="cityWiseData" :options="campusProgramLinkList" keyValue="programDetailId"
+              displayValue="description" v-model="programDetailId" groupBy="programName"></select-ex>
+          </div>
+        </div> -->
+        <div class="col-md-3 text-right">
+          <!-- <div class="form-group">
+            <label>{{$t('modal.concessionDashboard.preference')}}</label>
+            <select-ex :options="preferenceArr" keyValue="item" displayValue="item" v-model="tabRef"
+              @input='changedEvent'></select-ex>
+            </select>
+          </div> -->
+          <button
+            class="btn btn-primary btn-sm"
+            title="Clear selection"
+            style="width:40px;margin-top: 24px;"
+            @click="clearSelection()"
+          >
+            <i class="fa fa-times"></i>
+          </button>
+          <button
+            class="btn btn-info btn-sm"
+            title="Reload selection"
+            style="width:40px;margin-top: 24px;"
+            @click="checkparam()"
+          >
+            <i class="fa fa-refresh"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="card-box" style="background: #273b73eb;">
+            <div class="inner">
+              <p>Form Collection</p>
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{admissionCount}}</h3>
+                  <span>Total</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{onlineCountNew}}</h3>
+                  <span>Online</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{ondeskCount}}</h3>
+                  <span>On Desk</span>
+                </div>
+                <!-- <div class="col-md-6 text-center" style="border-left:3px solid white;">
+                  <h3 class="text-center"> {{admissionCountDaily}} </h3>
+                  <span>Today</span>
+                </div> -->
+              </div>
+            </div>
+            <div class="icon">
+              <i class="la la-file-text" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+          <div class="card-box" style="background: #fd4853a6;">
+            <div class="inner">
+              <p>Paid</p>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h3 class="text-center">{{paidChallanCount}}</h3>
+                  <span>Total</span>
+                </div>
+              </div>
+            </div>
+            <div class="icon">
+              <i class="la la-money" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-6" style="margin-top: 20px;">
+          <div class="card-box" style="background: #fd4853a6;">
+            <div class="inner">
+              <p>Enrolled</p>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h3 class="text-center">{{onlineCount}}</h3>
+                  <span>Total</span>
+                </div>
+              </div>
+            </div>
+            <div class="icon">
+              <i class="la la-money" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-6"  >
+          <div class="card-box" style="background: #273b73eb;">
+            <div class="inner">
+              <p>Enrollment Status</p>
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{admissionCount}}</h3>
+                  <span>Total Form Collection</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{paidChallanCount}}</h3>
+                  <span>Paid</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{onlineCount}}</h3>
+                  <span>Enrolled</span>
+                </div>
+  
+                <!-- <div class="col-md-6 text-center" style="border-left:3px solid white;">
+                  <h3 class="text-center"> {{admissionCountDaily}} </h3>
+                  <span>Today</span>
+                </div> -->
+              </div>
+            </div>
+            <div class="icon">
+              <i class="la la-file-text" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px;">
+          <div class="card-box" style="background: #273b73eb;">
+            <div class="inner">
+              <p>Gender Status</p>
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{totalGenderCount}}</h3>
+                  <span>Total Gender Count</span>
+                </div>
+                <div  class="col-md-4 text-center">
+                  <h3 class="text-center">{{totalMaleCount}}</h3>
+                  <span>Male</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">{{totalFemaleCount}}</h3>
+                  <span>Female</span>
+                </div>
+
+  
+                <!-- <div class="col-md-6 text-center" style="border-left:3px solid white;">
+                  <h3 class="text-center"> {{admissionCountDaily}} </h3>
+                  <span>Today</span>
+                </div> -->
+              </div>
+              <!-- <div class="row" v-else>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">0</h3>
+                  <span>Total Gender Count</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">0</h3>
+                  <span>Male</span>
+                </div>
+                <div class="col-md-4 text-center">
+                  <h3 class="text-center">0</h3>
+                  <span>Female</span>
+                </div>
+  
+             
+              </div> -->
+              
+
+            </div>
+            <div class="icon">
+              <i class="la la-file-text" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <!-- <div class="row mt-5">
+        <table-graph class="col-md-12" :graphVar="tabTwo" :tableVar="tabOne">
+          <template slot="title">
+            Admission Trend
+          </template>
+          <template slot="tableContent">
+            table
+          </template>
+          <template slot="graphContent">
+            <Highcharts :options="options" />
+          </template>
+        </table-graph>
+      </div> -->
+      <!-- <div class="row mt-3">
+        <collapsible-widget class="col-md-12">
+          <template slot="title">
+            Statistics Program Detail Wise
+          </template>
+          <template slot="content">
+            <Highcharts :options="programchart" />
+          </template>
+        </collapsible-widget>
+      </div> -->
+
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <table-graph :graphVar="tabTwo" :tableVar="tabOne">
+            <template slot="title">
+              Statistics Program Detail Wise
+
+               <!-- <input type="checkbox" class="switch" v-model="studenttypecheck"> -->
+              <button style="margin-left: 580px;" v-if="isShowDrill" class="btn btn-sm btn-primary" @click="isShowDrill=false" >Back</button>
+            </template>
+
+            <template slot="tableContent">
+              
+              <div v-if="!isShowDrill" class="fixed-header-table">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        City
+                      </th>
+                      <th>
+                        Form Collection
+                      </th>
+                      <th>
+                        Fee Paid
+                      </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr @click="showDrill(item)" v-for="item in CityMult">
+                      <td>
+                        {{item.cityName}}
+                      </td>
+                      <td>
+                        {{item.formCollection}}
+                      </td>
+                      <td>
+                        {{item.feePaid}}
+                      </td>
+                      
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div v-if="isShowDrill" class="fixed-header-table">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        City
+                      </th>
+                      <th>
+                        Class
+                      </th>
+                      <th>
+                        Fee Paid
+                      </th>
+                      <th>
+                        Enrolled
+                      </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in cityDrillList">
+                      <td>
+                        {{item.cityName}}
+                      </td>
+                      <td>
+                        {{item.className}}
+                      </td>
+                      <td>
+                        {{item.feePaid}}
+                      </td>
+                      <td>
+                        {{item.enrolled}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- <grid :data="CityMult" :columns="columns" pre="modal.setupCityProgram.">
+              </grid> -->
+            </template>
+            <template slot="graphContent">
+              <Highcharts :options="programchart" />
+            </template>
+          </table-graph>
+        </div>
+      </div>
+      <!-- <div class="row mt-5">
+        <div class="col-md-12">
+          <table-graph :graphVar="tabTwo" :tableVar="tabOne">
+            <template slot="title">
+             Admission Aging Data
+            </template>
+            <template slot="tableContent">
+              <grid style="font-size: 8px;" :data="aging" :columns="columnsn" pre="modal.admissionAgingData." >
+                <template slot="fatherCnicCheck" slot-scope="item">
+                  <i class="fa fa-check" v-if="item.row.fatherCnicCheck"></i>
+                </template>
+                <template slot="studentCnic" slot-scope="item">
+                  <i class="fa fa-check" v-if="item.row.studentCnic"></i>
+                </template>
+                <template slot="studentPic" slot-scope="item">
+                  <i class="fa fa-check" v-if="item.row.studentPic"></i>
+                </template>
+                <template slot="resultCard" slot-scope="item">
+                  <i class="fa fa-check" v-if="item.row.resultCard"></i>
+                </template>
+              </grid>
+            </template>
+            <template slot="graphContent">
+              
+            </template>
+          </table-graph>
+        </div>
+      </div> -->
+
+      <!-- <template slot="fromDob" slot-scope="item">
+        {{item.row.fromDob | formatDMY}}
+      </template>
+      <template slot="toDob" slot-scope="item">
+        {{item.row.toDob | formatDMY}}
+      </template> -->
+
+      <!-- <div class="row mt-5">
+        <div class="col-md-12">
+          <collapsible-widget>
+            <template slot="title">
+              Pre Admission
+            </template>
+            <template slot="content">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="form-control-label">From Date</label> <span style="color:red">*</span>
+                    <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate"
+                      format="DD/MM/YYYY" lang="en" @input="PreData" :not-after="toDate"></date-picker>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="form-control-label">To Date</label> <span style="color:red">*</span>
+                    <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate"
+                      format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'" @input="PreData" :not-after="currDate">
+                    </date-picker>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>
+                          City
+                        </th>
+                        <th>
+                          Total
+                        </th>
+                        <th>
+                          Online
+                        </th>
+                        <th>
+                          Office
+                        </th>
+                        <th>
+                          Enrolled
+                        </th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in preDataList">
+                        <td>{{item.cityName}}</td>
+                        <td>{{item.total}}</td>
+                        <td>{{item.online}}</td>
+                        <td>{{item.office}}</td>
+                        <td>{{item.enrolled}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </template>
+          </collapsible-widget>
+        </div>
+      </div> -->
+
+
+
+      <!-- <div class="row mt-5">
+        <div class="col-md-12">
+          <collapsible-widget>
+            <template slot="title">
+              Admission Trend
+            </template>
+            <template slot="content">
+              <Highcharts :options="options" />
+            </template>
+          </collapsible-widget>
+        </div>
+      </div> -->
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Form Collection Shiftwise
+            </template>
+            <template slot="content">
+              <Highcharts :options="formcolectionPie" />
+            </template>
+          </collapsible-widget>
+        </div>
+        <div v-if="paidChallanCount > 0" class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Paid Shiftwise
+            </template>
+            <template slot="content">
+              <Highcharts :options="feePaidPie" />
+            </template>
+          </collapsible-widget>
+        </div>
+        <div v-if="paidChallanCount == 0" class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Paid Shiftwise
+            </template>
+            <template slot="content">
+              Fee Paid count is 0 against this selection.
+              <!-- <img width="438" height="400" src="https://community.tableau.com/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId=0684T000003Avl7&operationContext=CHATTER&contentId=05T4T00000EytqS&page=0" alt="Image description"/> -->
+              <!-- <Highcharts :options="feePaidPie" /> -->
+            </template>
+          </collapsible-widget>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+         
+          <form-collection-b></form-collection-b>
+         
+        </div>
+      </div> -->
+      <!-- <div class="row ">
+        <div class="col-md-12">
+          <table-graph :graphVar="tabTwo" :tableVar="tabOne">
+            <template slot="title">
+              Yearly Admission
+            </template>
+            <template slot="tableContent">
+              <div class="fixed-header-table">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        City
+                      </th>
+                      <th>
+                        2019
+                      </th>
+                      <th>
+                        2018
+                      </th>
+                      <th>
+                        2017
+                      </th>
+                      <th>
+                        2016
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in dataList">
+                      <td>
+                        {{item.cityName}}
+                      </td>
+                      <td>
+                        {{item.ninteen}}
+                      </td>
+                      <td>
+                        {{item.eighteen}}
+                      </td>
+                      <td>
+                        {{item.seventeen}}
+                      </td>
+                      <td>
+                        {{item.sixteen}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </template>
+            <template slot="graphContent">
+              <Highcharts :options="options1" />
+            </template>
+          </table-graph>
+        </div>
+      </div> -->
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <pre-admission-widget></pre-admission-widget>
+        </div>
+      </div> -->
+    </template>
+  </portlet-area>
+  <add-edit-model></add-edit-model>
+</page-area>

@@ -1,0 +1,250 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<!-- <modal name="userlog-detail-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        User Log&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body modalHeight">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12 userHeading">
+                        <h1>User Information</h1>
+                    </div>
+                </div>
+                <div class="row mt-2 ModeColor">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>User Name:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{data.displayName}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Ip Address:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{data.localIpPort}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Browser:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{data.publicIpPort}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="userHeading">
+                            <h1>Action Information</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 ModeColor">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Action:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{data.controllerAction}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Time:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{data.dateTime | formatDMYt}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Parameter:</p>
+                            </div>
+                            <div class="col-md-8 userlogBg code-block" v-html="$options.filters.prettyJson(data.operation)"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4 ModeColor">
+
+
+                    <div class="col-md-4">
+                        <div class="userHeading">
+                            <h1>Trial Information</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="b-refresh" @click.prevent="getFirst(data.operation)">
+                            <feather icon="loader">
+                            </feather>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="row mt-2 ModeColor">
+                    <div class="col-md-4 ParameterHeight mt-2" v-for="item in datas">
+                        <div class="roleborder">
+                            <div class="row">
+                                <div class="col-md-4">{{item.displayName}}</div>
+                                <div class="col-md-4">{{item.dateTime | formatDMYt}}</div>
+                                <div class="col-md-4">{{item.controllerAction}}</div>
+                            </div>
+                            <div class="col-md-12 userlogBg" v-html="$options.filters.prettyJson(item.operation)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</modal> -->
+
+
+
+
+<modal name="userlog-detail-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.UserLog')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.userName')}}</h6>
+                        <p>{{data.displayName}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.ipAddress')}}</h6>
+                        <p>{{data.localIpPort}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.browser')}}</h6>
+                        <p>{{data.publicIpPort}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.actionNo')}}</h6>
+                        <p>{{data.controllerAction}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.date')}}</h6>
+                        <p>{{data.dateTime | formatDMYt}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="formgroup">
+                        <h6 class="form-control-label font-h6"> {{$t('modal.UserLog.parameter')}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="kt-portlet kt-portlet--mobile" style="border-left: 4px solid rgb(93, 120, 254);">
+                        <div class="kt-portlet__body">
+                            <div class="kt-portlet__content" v-html="$options.filters.prettyJson(data.operation)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row ">
+                <div class="col-md-4">
+                    <div class="userHeading">
+                        <h1>Trial Information</h1>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button class="b-refresh" @click.prevent="getFirst(data.operation)">
+                        <feather icon="loader">
+                        </feather>
+                    </button>
+                </div>
+            </div>
+             <div class="container">
+                <div class="row mt-2">
+                    <div class="col-md-4 ParameterHeight mt-2" v-for="item in datas">
+                        <div class="roleborder">
+                            <div class="row">
+                                <div class="col-md-4">{{item.displayName}}</div>
+                                <div class="col-md-4">{{item.dateTime | formatDMYt}}</div>
+                                <div class="col-md-4">{{item.controllerAction}}</div>
+                            </div>
+                            <div class="col-md-12 userlogBg" v-html="$options.filters.prettyJson(item.operation)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         -->
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,148 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+
+
+<!-- 
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="70%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left  m-portlet m-portlet--brand m-portlet--head-solid-bg m-portlet--bordered"
+            style="margin-bottom: 0px;">
+            <h5>Model
+                <span class="semi-bold">{{title}}</span>
+            </h5>
+
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <span class="alert-danger" v-if="allowSubmit != true">Please fill all the required fields</span>
+                <div class="form-group-attached">
+                    <div class="row" style="padding-top: 15px">
+
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Student Fee Structure Id" v-model="data.studentFeeStructureId" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Admission Form Id" v-model="data.admissionFormId" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Class Id" v-model="data.classId" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Installment No" v-model="data.installmentNo" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Fee Head Id" v-model="data.feeHeadId" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Fee Amount" v-model="data.feeAmount" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Concession Detail Id" v-model="data.concessionDetailId" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Payable Amount" v-model="data.payableAmount" /><br></div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Status Id" v-model="data.statusId" />
+                        </div>
+                        <div class="col-md-6">
+                            <vs-input label-placeholder="Logger Id" v-model="data.loggerId" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-6"><br>
+                    <a href="#" class="btn btn-danger btn-block m-t-5" @click="cancel">
+                        <i class="card-icon card-icon-close"></i> Close</a>
+                </div>
+                <div class="col-md-6"><br>
+                    <a href="#" class="btn btn-primary btn-block m-t-5" :disabled="!allowSubmit" @click="saveModel">
+                        <i class="fa fa-save"></i> Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="70%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="modal-title">
+
+                        StudentFeeStructure&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Student Fee Structure Id" v-model="data.studentFeeStructureId" />
+                    </div>
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Admission Form Id" v-model="data.admissionFormId" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Class Id" v-model="data.classId" />
+                    </div>
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Installment No" v-model="data.installmentNo" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Fee Head Id" v-model="data.feeHeadId" />
+                    </div>
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Fee Amount" v-model="data.feeAmount" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Concession Detail Id" v-model="data.concessionDetailId" />
+                    </div>
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Payable Amount" v-model="data.payableAmount" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Status Id" v-model="data.statusId" />
+                    </div>
+                    <div class="col-md-6">
+                        <vs-input label-placeholder="Logger Id" v-model="data.loggerId" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

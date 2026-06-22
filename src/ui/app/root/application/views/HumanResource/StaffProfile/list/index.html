@@ -1,0 +1,47 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.hr')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.staffProfile')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.staffProfile')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.staffProfile.enterNameEmail')}}</label>
+            <input type="text" class="form-control" v-model="filterString"
+              v-on:keydown.enter="getTeacherProfile">
+          </div>
+        </div>
+      </div>
+
+      
+      <grid :data="data" :columns="columns" pre="modal.staffProfile.">
+
+        <template slot="action" slot-scope="item">
+          <button @click="editModel(item.row)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+            data-toggle="tooltip" data-placement="top" title="View Student Profile">
+            <i class="la la-user"></i>
+          </button>
+        </template>
+
+
+      </grid>
+
+    </template>
+  </portlet-area>
+  <add-edit></add-edit>
+</page-area>

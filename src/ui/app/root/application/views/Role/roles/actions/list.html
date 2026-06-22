@@ -1,0 +1,50 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.role')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.listRoles')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.listRoles')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-12">
+          <grid :data="searchResults.items" pre="modal.listRoles." :columns="columns" v-if="searchResults">
+            <template slot="enabled" slot-scope="item">
+              <toggle v-model="item.row.enabled" :enabled="!item.row.isSystemRole" :on-text="onText" :off-text="offText"
+                v-on:input="updateRoleStatus(item.row)"></toggle>
+            </template>
+            <template slot="action" slot-scope="item">
+              <button v-if="item.row.roleId !== 'admin'" title="Edit" type="button"
+                class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                @click="$router.push({ name: 'readRoleEx', params: { id: item.row.roleId }})">
+                <i class="la la-edit"></i>
+              </button>
+
+              <button v-if="item.row.roleId !== 'admin'" title="View" type="button"
+                class="btn btn-outline-success btn-icon btn-sm btn-circle"
+                @click="$router.push({ name: 'createRoleEx', params: { id: item.row.roleId }})">
+                <i class="la la-clipboard"></i>
+              </button>
+            </template>
+            <!-- <template slot="action" slot-scope="item">
+              <button v-if="item.row.roleId !== 'admin'" class="btn btn-primary"
+                @click="$router.push({ name: 'viewRole', params: { id: item.row.roleId }})">
+                <span class="fa fa-lg fa-edit"></span>
+              </button>
+
+              <button v-if="item.row.roleId !== 'admin'" class="btn btn-primary"
+                @click="$router.push({ name: 'createRole', params: { id: item.row.roleId }})">
+                <span class="fa fa-lg fa-clone"></span>
+              </button>
+            </template> -->
+          </grid>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

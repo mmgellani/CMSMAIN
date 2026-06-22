@@ -1,0 +1,14 @@
+{
+    plugins: [
+        'transform-runtime'
+    ],
+    presets: [
+        [env, {
+            targets: {
+                browsers: ['last 2 versions'],
+                loose: true,
+                modules: false
+            }
+        }]
+    ]
+}

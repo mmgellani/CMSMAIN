@@ -1,0 +1,24 @@
+<nav id="sidebar" class="sidebar" role="navigation" @mouseenter="sidebarMouseEnter" @mouseleave="sidebarMouseLeave">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 150vh;">
+        <div class="js-sidebar-content" style="overflow: scroll; width: auto; height: 150vh;">
+            <header class="logo d-none d-md-block">
+                <a href="#"><span class="text-warning">EMS</span> 360</a>
+            </header>
+            <div class="sidebar-status d-md-none">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="thumb-sm avatar float-right">
+                        <img class="rounded-circle" src="~assets/images/users/default.jpg" alt="...">
+                    </span>
+                    <span class="circle bg-warning fw-bold text-gray-dark">
+                        0
+                    </span>
+                    &nbsp;
+                    {{user.displayName}}
+                </a>
+            </div>
+            <ul class="sidebar-nav">
+                <nav-link v-for="link in userMenu" :activeItem="link.activeItem" :menuItem="link" />
+            </ul>
+        </div>
+    </div>
+</nav>

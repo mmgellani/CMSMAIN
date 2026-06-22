@@ -1,0 +1,85 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="modal-title">
+
+                        FeeStructureApproval&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <label style="margin-left:15px; "><b>{{feeHeadName.fullName}} Amount</b></label>
+
+                    </div>
+                    <div class="col-md-2" style="margin-left:-15%">
+                        <div class="form-group">
+                            <input v-on:keyup="reloadAmount" class="form-control form-control-sm" v-model="data.feeAmount" required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <table class="table">
+                            <thead>
+                                <tr role="row">
+                                    <th>
+                                        Installment No
+                                    </th>
+                                    <th>
+                                        Fee Amount
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in installdata">
+                                    <td>
+                                        {{item.installmentNo}}
+                                    </td>
+                                    <td>
+                                        {{item.feeAmount}}
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

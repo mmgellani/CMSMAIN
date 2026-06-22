@@ -1,0 +1,109 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.listRoles')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.editRole')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="title">
+    <template slot="portlet-body">
+
+      <div v-if="init && role">
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <router-link :disabled="role.roleId === 'admin'" tag="button" class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+              :to="{ name: 'updateRole', params: { id: role.roleId }}">
+              <span :title="$t('dict.update')" class="fa fa-lg fa-edit"></span>
+            </router-link>
+            <router-link :disabled="role.roleId === 'admin'" tag="button" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+              :to="{ name: 'createRole', params: { id: role.roleId }}">
+              <span :title="$t('dict.copy')" class="fa fa-lg fa-clone"></span>
+            </router-link>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="roleId">{{$t('dict.key')}}</label>
+          </div>
+          <div class="col-md-4">
+            <span>{{role.roleId}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="parentRoleId">{{$t('admin.role.parentRoleId')}}</label>
+          </div>
+          <div class="col-md-4">
+            <span v-if="role.isSystemRole"></span>
+            <span v-else-if="!role.isSystemRole">
+              {{role.parent.name}}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="isSystemRole">{{$t('admin.role.isSystemRole')}}</label>
+          </div>
+          <div class="col-md 3">
+            <div id="isSystemRole" class="form-control-static">{{yesOrNo(role.isSystemRole)}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="enabled">{{$t('dict.enabled')}}</label>
+          </div>
+          <div class="col-md-3">
+            <span>{{yesOrNo(role.enabled)}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="lastUpdated">{{$t('admin.role.lastUpdated')}}</label>
+          </div>
+          <div class="col-md-3">
+            <div id="lastUpdated" class="form-control-static">{{lastUpdateText}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="claims">{{$t('dict.all')}}</div>
+          </div>
+        </div>
+        <div class="row" v-show="role.roleId !== 'admin'">
+          <div class="col-md-12">
+            <h5>
+              <span>{{$t('admin.role.claims')}}</span>
+            </h5>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="d-none d-md-table-cell">{{$t('dict.origin')}}</th>
+                  <th>{{$t('dict.name')}}</th>
+                  <th>{{$t('dict.value')}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(claim,index) in role.securityClaims">
+                  <td class="d-none d-md-table-cell">
+                    {{claim.securityClaim.origin}}
+                  </td>
+                  <td>
+                    {{claim.securityClaimId}}</span>
+                  </td>
+                  <td>
+                    {{claim.value}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+</page-area>

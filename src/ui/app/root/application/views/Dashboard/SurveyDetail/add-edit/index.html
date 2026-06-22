@@ -1,0 +1,161 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="Medium-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('Survey Detail')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Survey Name')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="surveymastlist" keyValue="surveyMasterId" displayValue="name"
+                            v-model="data.surveyMasterId">
+                        </select-ex>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Survey Question')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.question.$error}" v-model.trim="data.question"
+                            @input="$v.data.question.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.question.$error">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Survey Description')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.description.$error}" v-model.trim="data.description"
+                            @input="$v.data.description.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.description.$error">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Control Type')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="controltypelist" keyValue="controlType" displayValue="controlType"
+                            v-model="data.controlType">
+                        </select-ex>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Survey Query')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="querylist" keyValue="name" displayValue="name" v-model="data.query">
+                        </select-ex>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('Question Order')}}<span style="color:red">
+                                *</span></label>
+                        <input type="number" v-model="data.order" class="form-control form-control-sm">
+
+
+                    </div>
+                </div>
+            </div>
+            <div v-if="ShowOptions(data.controlType)" class="row" v-for="(item2,index3) in data.operation">
+                <div class="col-md-4">
+
+                    <label class="form-control-label">
+                        Option Order
+                    </label>
+                    <input type="number" class="form-control form-control-sm" v-model.trim="item2.order">
+
+                    <!-- <input type="number" class="form-control" v-model="item.fail_In" required>
+                <label>Fail Count<span style="color:red"> *</span></label> -->
+
+                </div>
+                <div class="col-md-5">
+
+                    <label class="form-control-label">
+                        Option
+                    </label>
+                    <input type="text" class="form-control form-control-sm" v-model.trim="item2.option">
+                </div>
+                <div class="col-md-3 text-right">
+                    <button class="btn btn-outline-danger btn-icon btn-sm btn-circle" style="margin-top:24px"
+                        @click="removeDetail(index3)">
+                        <i class="la la-trash"></i>
+                    </button>
+                    <button @click="addDetail(data.operation)"
+                        class="btn btn-outline-primary btn-icon btn-sm btn-circle" style="margin-top:24px">
+                        <i class="la la-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                    <!-- <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

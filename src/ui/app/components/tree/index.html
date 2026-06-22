@@ -1,0 +1,39 @@
+<!-- <li v-if="treeNode.children.length > 0">
+    <label class="kt-checkbox">
+        <input type="checkbox" v-model="treeNode.isChecked" :ref="nodeIndex" :id="nodeIndex" @click="toggleAll(treeNode)">
+        <span></span>
+    </label>
+    <a href="#" class="ModeColor" @click="isActive = !isActive">
+        <span class="fa fa-folder-open-o" v-if="isActive"></span>
+        <span class="fa fa-folder-o" v-else></span>
+        {{treeNode.caption}} </a>
+    <ul :style="isActive ? 'display: block;' : 'display: none;'">
+        <tree v-for="(item, index) in treeNode.children" :tree-node="item" :key="item.id" :node-index="updateTreeNode(index)"></tree>
+    </ul>
+</li>
+<li v-else>
+    <label class="kt-checkbox">
+        <input type="checkbox" v-model="treeNode.isChecked" :ref="nodeIndex" :id="nodeIndex" @click="reverseToggle()">{{treeNode.caption}}
+        <span></span>
+    </label>    
+</li> -->
+<li v-if="treeNode.children.length > 0">
+    <label class="kt-checkbox">
+        <input type="checkbox" v-model="treeNode.isChecked" :ref="nodeIndex" :id="nodeIndex" @change="toggleAll(treeNode)">
+        <span></span>
+    </label>
+    <a href="#" class="ModeColor" @click="isActive = !isActive">
+        <span class="fa fa-folder-open-o" v-if="isActive"></span>
+        <span class="fa fa-folder-o" v-else></span>
+        {{ treeNode.caption }}
+    </a>
+    <ul :style="isActive ? 'display: block;' : 'display: none;'">
+        <tree v-for="(item, index) in treeNode.children" :tree-node="item" :key="item.id" :node-index="updateTreeNode(index)" @update-parent="checkParent"></tree>
+    </ul>
+</li>
+<li v-else>
+    <label class="kt-checkbox">
+        <input type="checkbox" v-model="treeNode.isChecked" :ref="nodeIndex" :id="nodeIndex" @change="checkParent()">{{ treeNode.caption }}
+        <span></span>
+    </label>
+</li>

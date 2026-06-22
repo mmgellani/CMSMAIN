@@ -1,0 +1,12 @@
+*.swp
+*.*~
+bin/
+obj/
+project.lock.json
+.DS_Store
+*.pyc
+dist
+cms360.zip
+.git
+.vs/
+*.user

@@ -1,0 +1,104 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :width="920" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto"  
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.RolePrevilages')}}</h3>
+                <p>{{$t('modal.RolePrevilages.title')}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body roleModel">
+            <div class="row">
+                <div class="col-md-12">
+                    <tabs>
+                        <tab :name="$t('modal.RolePrevilages.userRole')" :selected="true">
+                            <div class="row mb-2">
+                                <div class="col-md-12">
+                                    <h6>{{$t('modal.RolePrevilages.selectRole')}}</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6" v-for="item in RoleList"
+                                    style="border:1px solid #ebedf2; padding: 7px 0px !important;">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="align-middle role-firstTD">
+                                                    {{item.name}}</td>
+                                                <td class="align-middle role-secondTD">
+                                                    <label class="kt-checkbox kt-checkbox--brand"
+                                                        style="margin-bottom: 14px !important;">
+                                                        <input type="checkbox" v-model="item.isAssigned">
+                                                        <span></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab :name="$t('modal.RolePrevilages.grantPrivileges')">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="tree">
+                                        <tree v-for="(item, index) in rsu" :tree-node="item" :key="item.id"
+                                            :node-index="index"></tree>
+                                    </ul>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab :name="$t('modal.RolePrevilages.assignSession')">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>{{$t('modal.RolePrevilages.selectSession')}}</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12 mt-2" v-for="item in sessionList">
+                                    <div class="row">
+                                        <div class="col-md-1" style="height: 30px;
+                                        line-height: 30px;">
+                                            <i class="la la-circle" style="font-size: 8px;"></i> <label
+                                                class="m-0">{{item.fullName}}</label>
+                                        </div>
+                                        <div class="col-md-3" style="height: 30px;">
+                                            <label class="kt-checkbox kt-checkbox--brand">
+                                                <input type="checkbox" v-model="item.isAssigned">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+</modal>

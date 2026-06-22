@@ -1,0 +1,42 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="delete-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce"   height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h5 class="modal-title">{{$t('navigation.setupClass')}}</h5>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{$t('navigation.deleteModal')}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" @click="cancel">
+                        <i class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-danger" type="submit" @click="deleteModel"><i
+                            class="la la-trash"></i> {{$t('button.delete')}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</modal>

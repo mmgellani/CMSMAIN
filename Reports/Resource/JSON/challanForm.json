@@ -1,0 +1,55 @@
+[
+    {
+        "newID": "c3495cac-ba24-4625-b515-e14a8dcf1525",
+        "feeHeadId": "a15a3727-2d99-4e16-b48e-05b8e0d3a71c",
+        "studentFeeStructureId": "93d1bd76-1e35-11e9-bab4-00155d0a1e04",
+        "admissionFormId": "f3e60f0e-9081-4037-b816-065f7223411c",
+        "studentChallanId": "ee0bab3c-2397-11e9-bab4-00155d0a1e04",
+        "concessionDetailId": "null",
+        "campusId": "fdc63f6f-b8ff-424d-bc2f-428e6acaebfb",
+        "programDetailId": "b32644e1-a82d-49b9-a4e0-cb4b2fbf50c2",
+        "installmentNo": 1,
+        "challanNo": "042190000025",
+        "challanNote": "<li>Testing Note</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li><li>Another Test</li>",
+        "feeHead": "Admission Fee",
+        "fullName": "Omer Khan pathan",
+        "refferenceNo": "RFSDFSCMM1900001",
+        "fatherName": "Sana Ullah",
+        "concessionName": "null",
+        "campusName": " Campus 8",
+        "description": "Medical Morning",
+        "feeAmount": 24000,
+        "challanAmount": 7000,
+        "payableAmount": 24000,
+        "dueDate": "2019-01-23T05:00:00+05:00",
+        "paidDate": null,
+        "statusId": 1,
+        "loggerId": "93d1bd77-1e35-11e9-bab4-00155d0a1e04",
+        "campusCode": "001",
+        "digitCode": "042",
+        "businessUnit": "Educational Excellence Limited"
+    },
+    {
+        "nextChallan": "042190000026",
+        "nextDuedate": "2019-01-23T05:00:00+05:00",
+        "subAmount": 7000
+    },
+    {
+        "nextChallan": "042190000027",
+        "nextDuedate": "2019-01-23T05:00:00+05:00",
+        "subAmount": 7000
+    },
+    {
+        "nextChallan": "042190000028",
+        "nextDuedate": "2019-01-23T05:00:00+05:00",
+        "subAmount": 7000
+    },
+    {
+        "bankName": "Habib Bank Limited",
+        "accountNo": "109997455601"
+    },
+    {
+        "bankName": "HBL",
+        "accountNo": "109997401"
+    }
+]

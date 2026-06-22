@@ -1,0 +1,36 @@
+<div class="kt-portlet"
+    style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);                                                                                     ">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                <slot name="title"></slot>
+            </h3>
+        </div>
+        <div class="button-collapse collapse d-inline mt-3 mr-3" title="Collapse">
+            <i id="up" v-if="bodyVisible" class="la la-angle-up" @click.prevent="collapseBody()"></i>
+            <i id="down" v-if="!bodyVisible" class="la la-angle-down" @click.prevent="openBody()"></i>
+        </div>
+    </div>
+    <div v-if="bodyVisible">
+        <div class="kt-portlet__body" style="min-height: 300px;">
+            <div class="kt-portlet__content">
+                <div v-if="tableVarTemp == true" class="ele">
+                    <slot name="tableContent"></slot>
+                </div>
+                <div v-if="graphVarTemp == true" class="ele">
+                    <slot name="graphContent"></slot>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot" style="padding: 10px;">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <button class="circleBtn" :class="{active:tableVarTemp}" @click.prevent="leftSide()"><i
+                            class="la la-circle"></i></button>
+                    <button class="circleBtn" :class="{active:graphVarTemp}" @click.prevent="rightSide()"><i
+                            class="la la-circle"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

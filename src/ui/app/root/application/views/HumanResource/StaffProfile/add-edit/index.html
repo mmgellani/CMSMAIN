@@ -1,0 +1,131 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title mb-5"> {{$t('navigation.staffProfile')}}</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body roleModel">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.personal')}}</h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <template>
+                               
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">Teacher Name</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.teacherName }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">Email</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.email }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">CNIC</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.cnic }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">Contact No</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span v-for="phone in getPhone(data.contactNo)" class="std-sub-heading">
+                                            {{phone.contactNo}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">Department</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.department }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">Designation</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.designation }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">City</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.cityName }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">SubCity</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ data.subCity }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+            </div>
+        </div>
+    </div>
+
+</modal>

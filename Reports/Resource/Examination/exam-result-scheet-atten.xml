@@ -1,0 +1,1045 @@
+{
+  "ReportVersion": "2018.1.6.0",
+  "ReportGuid": "e855c2d93b9443cd8ce0e8e393117a32",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(1528549575000+0500)/",
+  "ReportChanged": "/Date(1607414508920+0500)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "CacheAllData": true,
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "DataSources": {
+      "0": {
+        "Ident": "StiVirtualSource",
+        "Name": "byRoll",
+        "Alias": "byRoll",
+        "Columns": {
+          "0": {
+            "Name": "byRollNo.courseName",
+            "Index": -1,
+            "NameInSource": "byRollNo.courseName",
+            "Alias": "byRollNo.courseName",
+            "Type": "System.Object"
+          },
+          "1": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "root",
+        "GroupColumns": {
+          "0": "byRollNo.courseName",
+          "1": "rollNo"
+        },
+        "Sort": {
+          "0": "ASC",
+          "1": "rollNo"
+        }
+      },
+      "1": {
+        "Ident": "StiDataTableSource",
+        "Name": "root",
+        "Alias": "root",
+        "Columns": {
+          "0": {
+            "Name": "className",
+            "Index": -1,
+            "NameInSource": "className",
+            "Alias": "className",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "code",
+            "Index": -1,
+            "NameInSource": "code",
+            "Alias": "code",
+            "Type": "System.Char"
+          },
+          "2": {
+            "Name": "campusName",
+            "Index": -1,
+            "NameInSource": "campusName",
+            "Alias": "campusName",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "description",
+            "Index": -1,
+            "NameInSource": "description",
+            "Alias": "description",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          },
+          "5": {
+            "Name": "sectionName",
+            "Index": -1,
+            "NameInSource": "sectionName",
+            "Alias": "sectionName",
+            "Type": "System.String"
+          },
+          "6": {
+            "Name": "courseName",
+            "Index": -1,
+            "NameInSource": "courseName",
+            "Alias": "courseName",
+            "Type": "System.String"
+          },
+          "7": {
+            "Name": "totalMarks",
+            "Index": -1,
+            "NameInSource": "totalMarks",
+            "Alias": "totalMarks",
+            "Type": "System.Double"
+          },
+          "8": {
+            "Name": "obtainedMarks",
+            "Index": -1,
+            "NameInSource": "obtainedMarks",
+            "Alias": "obtainedMarks",
+            "Type": "System.Double"
+          },
+          "9": {
+            "Name": "overAllGrades",
+            "Index": -1,
+            "NameInSource": "overAllGrades",
+            "Alias": "overAllGrades",
+            "Type": "System.String"
+          },
+          "10": {
+            "Name": "examName",
+            "Index": -1,
+            "NameInSource": "examName",
+            "Alias": "examName",
+            "Type": "System.String"
+          },
+          "11": {
+            "Name": "dated",
+            "Index": -1,
+            "NameInSource": "dated",
+            "Alias": "dated",
+            "Type": "System.DateTime"
+          },
+          "12": {
+            "Name": "sessionName",
+            "Index": -1,
+            "NameInSource": "sessionName",
+            "Alias": "sessionName",
+            "Type": "System.Double"
+          },
+          "13": {
+            "Name": "fullName",
+            "Index": -1,
+            "NameInSource": "fullName",
+            "Alias": "fullName",
+            "Type": "System.String"
+          },
+          "14": {
+            "Name": "overAllResult",
+            "Index": -1,
+            "NameInSource": "overAllResult",
+            "Alias": "overAllResult",
+            "Type": "System.String"
+          },
+          "15": {
+            "Name": "aCode",
+            "Index": -1,
+            "NameInSource": "aCode",
+            "Alias": "aCode",
+            "Type": "System.String"
+          },
+          "16": {
+            "Name": "passStatus",
+            "Index": -1,
+            "NameInSource": "passStatus",
+            "Alias": "passStatus",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "root.root"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiJsonDatabase",
+        "Name": "root",
+        "Alias": "root",
+        "PathData": "C:\\Users\\shahid\\Desktop\\exam-json.json"
+      }
+    },
+    "Relations": {
+      "0": {
+        "Name": "byRollNo",
+        "ChildColumns": {
+          "0": "rollNo"
+        },
+        "ParentColumns": {
+          "0": "rollNo"
+        },
+        "NameInSource": "byRollNo",
+        "Alias": "byRollNo",
+        "ParentSource": "byRoll",
+        "ChildSource": "root"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "c70ceec3d700c1a2afb32dd38f60f174",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeaderBand1",
+          "Guid": "6bce1a0874c946edafc3d72b987daa05",
+          "ClientRectangle": "0,0.4,28.7,2.62",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "a44d2760335b4599af9604d8a81235b1",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,0,28.4,1.02",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.campusName}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Garamond;20;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "DataColumn"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "4ce33d1f44984837a02178258d512a61",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,0.92,28.4,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "<strong>Exam Result</strong> for <strong>Session </strong> : {root.sessionName}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Garamond;12;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "TextQuality": "Wysiwyg",
+              "AllowHtmlTags": true
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "5fdb57f7cd6e4e7fbea898bab69314e8",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,1.4,28.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "<strong>Program </strong> : {root.description} (<strong>{root.className}</strong>)"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Garamond;10;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "TextQuality": "Wysiwyg",
+              "AllowHtmlTags": true
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text11",
+              "Guid": "b6b9587514d84f75af77f9f129f296db",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,2,28.4,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Section:<strong>{root.sectionName}</strong> Examination: <strong>{root.examName}</strong> of (<i>{root.dated}</i>)"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Garamond;;;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "TextQuality": "Wysiwyg",
+              "AllowHtmlTags": true
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiHeaderBand",
+          "Name": "ReportBandHeader",
+          "ClientRectangle": "0,3.82,28.7,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiCrossHeaderBand",
+              "Name": "CrossHeaderBand1",
+              "ClientRectangle": "0,0,7.8,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text5",
+                  "Guid": "6ba765749dcf4ddbb085e2f0d7ed12af",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.1,0.8,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Sr. #"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text6",
+                  "Guid": "82b37467158b49ffb337222ce055b46f",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0.8,0.1,2.8,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Roll #"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text7",
+                  "Guid": "ee5d78f12d38462bb05736cfa1704155",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.6,0.1,4.2,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Name"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              }
+            },
+            "1": {
+              "Ident": "StiCrossDataBand",
+              "Name": "CrossDataBand1",
+              "ClientRectangle": "7.8,0,1.6,1.2",
+              "Interaction": {
+                "Ident": "StiBandInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text10",
+                  "Guid": "42fdc93d2a394115a64e10fe1af46645",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.1,1.6,0.68",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.courseName}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text3",
+                  "Guid": "db303c6e97764d35b22b8a8d97d64192",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.78,1.6,0.4",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.totalMarks}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "DataColumn"
+                }
+              },
+              "DataSourceName": "root",
+              "DataRelationName": "byRollNo",
+              "MasterComponent": "MainDataSource"
+            },
+            "2": {
+              "Ident": "StiCrossFooterBand",
+              "Name": "CrossFooterBand1",
+              "ClientRectangle": "9.4,0,6,1.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text14",
+                  "Guid": "d3e232c6907b40619f0cdceef276c28a",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.79,1.4,0.39",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Sum(root.totalMarks)}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text15",
+                  "Guid": "f990c743bab74641b1c696a441ab2843",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "1.4,0.1,1,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "% Age"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text12",
+                  "Guid": "e4300fbee193428ebc38238df13b9e4e",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "2.4,0.1,1,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Grade"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text13",
+                  "Guid": "c1335d48b868458e98e7d887137c82d4",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.4,0.1,2.6,1.08",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Remarks"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                },
+                "4": {
+                  "Ident": "StiText",
+                  "Name": "Text8",
+                  "Guid": "8dca07fd075a4abdae11d541958f9008",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.1,1.4,0.69",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression"
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "Ident": "StiDataBand",
+          "Name": "MainDataSource",
+          "ClientRectangle": "0,5.82,28.7,0.6",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiCrossHeaderBand",
+              "Name": "CrossHeaderBand2",
+              "ClientRectangle": "0,0,7.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text19",
+                  "Guid": "740bd06894274d10999d84151064f2fa",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0,0.8,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Line}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text20",
+                  "Guid": "1e0d9626afee4d0cbdd92f3322c75092",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0.8,0,2.8,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.rollNo}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text21",
+                  "Guid": "3c0a2f2cd3374505bc2d807b74e48404",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.6,0,4.2,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.fullName}"
+                  },
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                }
+              }
+            },
+            "1": {
+              "Ident": "StiCrossDataBand",
+              "Name": "CrossDataBand2",
+              "ClientRectangle": "7.8,0,1.6,0.6",
+              "Interaction": {
+                "Ident": "StiBandInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text23",
+                  "Guid": "5289bfdaa349458b9a7503ee729c09a9",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0,1.59,0.6",
+                  "Conditions": {
+                    "0": {
+                      "Ident": "StiMultiCondition",
+                      "TextColor": "Black",
+                      "BackColor": "LightGray",
+                      "CanAssignExpression": true,
+                      "BorderSides": "All",
+                      "FilterMode": "Or",
+                      "Filters": {
+                        "0": {
+                          "Ident": "StiFilter",
+                          "Condition": "NotEqualTo",
+                          "Column": "root.passStatus"
+                        },
+                        "1": {
+                          "Ident": "StiFilter",
+                          "Condition": "NotEqualTo",
+                          "Column": "root.aCode"
+                        }
+                      }
+                    }
+                  },
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.aCode} {root.obtainedMarks}  {root.passStatus}\r\n"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                }
+              },
+              "DataSourceName": "root",
+              "DataRelationName": "byRollNo",
+              "MasterComponent": "MainDataSource"
+            },
+            "2": {
+              "Ident": "StiCrossFooterBand",
+              "Name": "CrossFooterBand2",
+              "ClientRectangle": "9.4,0,6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiText",
+                  "Name": "Text25",
+                  "Guid": "47640a6dee6143e9be086c81c9108d59",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0,1.4,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Sum(root.obtainedMarks)}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiText",
+                  "Name": "Text26",
+                  "Guid": "69536f6e17374f5b85f781b0a8fc7f8d",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "1.4,0,1,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{Round((Sum(root.obtainedMarks) * 100) / Sum(root.totalMarks), 0)}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "2": {
+                  "Ident": "StiText",
+                  "Name": "Text16",
+                  "Guid": "cbe31d6f302544698c209ea782ef615e",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "2.4,0,1,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.overAllGrades}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "3": {
+                  "Ident": "StiText",
+                  "Name": "Text17",
+                  "Guid": "81ba75c4b9f84faab6637bf6b4608d80",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.4,0,2.6,0.6",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "{root.overAllResult}"
+                  },
+                  "HorAlignment": "Center",
+                  "VertAlignment": "Center",
+                  "Font": "Garamond;;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "DataColumn"
+                }
+              }
+            }
+          },
+          "DataSourceName": "byRoll"
+        },
+        "3": {
+          "Ident": "StiFooterBand",
+          "Name": "FooterBand1",
+          "ClientRectangle": "0,7.22,28.7,2.8",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text9",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "3.6,0.38,2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountDistinct(MainDataSource,root.rollNo)}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Totals"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text18",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "3.6,0.98,2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(MainDataSource,root.overAllResult==\"Pass\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Totals"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text22",
+              "Guid": "63c2e40f6d9b496eb23b14c0b3b58470",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "3.6,2.18,2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(MainDataSource,root.overAllResult==\"Fail\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Totals"
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text24",
+              "Guid": "0f9c08a26e5542cf97d07ed09c3bb1ce",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.8,0.38,2.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Total Students:"
+              },
+              "VertAlignment": "Center",
+              "Font": "Garamond;;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text27",
+              "Guid": "c0baf5300a5640aeb97d8a4920f2c237",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.8,0.98,2.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Pass:"
+              },
+              "VertAlignment": "Center",
+              "Font": "Garamond;;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text28",
+              "Guid": "66c7be04f23b4dbd8ab5f78bd24b3a35",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.8,1.58,2.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Provisionaly Pass:"
+              },
+              "VertAlignment": "Center",
+              "Font": "Garamond;;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text29",
+              "Guid": "dae63e6efd5f48ffb42832b225b815fb",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.8,2.18,2.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Fail:"
+              },
+              "VertAlignment": "Center",
+              "Font": "Garamond;;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text30",
+              "Guid": "0cffd383fac54ec8be46a156232fe180",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "3.6,1.58,2,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountIf(MainDataSource,root.overAllResult==\"Provisional Pass\")}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Totals"
+            }
+          }
+        }
+      },
+      "PaperSize": "A4",
+      "Orientation": "Landscape",
+      "PageWidth": 29.7,
+      "PageHeight": 21.0,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 0.5,
+        "Right": 0.5,
+        "Top": 0.5,
+        "Bottom": 0.5
+      },
+      "ReportUnit": {
+        "Ident": "StiCentimetersUnit"
+      }
+    }
+  }
+}

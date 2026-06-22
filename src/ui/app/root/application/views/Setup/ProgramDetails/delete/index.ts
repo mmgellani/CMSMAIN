@@ -1,0 +1,59 @@
+/*
+ *   Auther: H.Muhammad Kamran
+ *   email: hmuhdkamran@gmail.com
+ *   contact: +92 (313 / 333) 9112 845
+ */
+
+import Vue from "vue";
+import Component from "vue-class-component";
+
+import { StoreTypes } from "../../../../../../store";
+import { PayloadMessageTypes } from "../../../../../../model";
+
+import { ISetupProgramDetails } from "../../../../models";
+import { SetupProgramDetailsService } from "../../../../service";
+
+@Component({
+  name: "delete-modal",
+  template: require("./index.html")
+})
+export class SetupProgramDetailsDelete extends Vue {
+  private repository: SetupProgramDetailsService;
+  private data: ISetupProgramDetails = {
+    programDetailId: "",
+    description: "",
+    code: "",
+    programId: "",
+    shiftId: "",
+    mediumId: "",
+    statusId: 0,
+    loggerId: ""
+  };
+  private title: string = "Delete Record";
+
+  created() {
+    this.repository = new SetupProgramDetailsService(this.$store);
+  }
+
+  beforeModalOpen(event) {
+    Object.assign(this.data, event.params.model);
+  }
+
+  cancel() {
+    this.$emit("submit");
+    this.$modal.hide("delete-model");
+  }
+
+  deleteModel() {
+    this.repository.Delete(this.data).then(() => {
+      this.$store.dispatch(StoreTypes.updateStatusBar, {
+        text: "Record has been Deleted successfully",
+        title: "Deleted",
+        messageTypeId: PayloadMessageTypes.warning
+      });
+      this.cancel();
+    });
+
+    this.cancel();
+  }
+}

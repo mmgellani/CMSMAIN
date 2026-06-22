@@ -1,0 +1,35 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="fixed-header-table">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr role="row">
+          <th>{{$t('modal.studentDetails.srNo')}}</th>
+          <th>{{$t('modal.studentDetails.course')}}</th>
+          <th>{{$t('modal.studentDetails.obtained')}}</th>
+          <th>{{$t('modal.studentDetails.total')}}</th>
+          <th>Markes Percentage</th>
+          <th>Grade</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in data">
+          <td>{{index+1}}</td>
+          <td> {{item.course}}</td>
+          <td>{{item.obtainMarks}}</td>
+          <td>{{item.totalMarks}}</td>
+          <td>{{item.markesPercentage}}%</td>
+          <td>{{item.grade}}</td>
+          <td>{{item.overAllRemark}}</td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>  

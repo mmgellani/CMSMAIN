@@ -1,0 +1,109 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="30%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div style="margin-bottom: 0px" class="modal-header clearfix text-left text-left m-portlet m-portlet--brand m-portlet--head-solid-bg m-portlet--bordered">
+            <h5>Model
+                <span class="semi-bold">{{title}}</span>
+            </h5>
+            <div class="close" v-if="IsNewRecord==false">
+                <input class="switch" type="checkbox" v-model="isActive">
+            </div>
+        </div>
+        <div class="modal-body">
+            <span class="alert-danger" v-if="allowSubmit != true">Please fill all the required fields</span>
+
+            <form role="form">
+                <div class="form-group-attached">
+                    <div class="row">
+                        <div class="col-md-12">{{data}}
+                            <vs-select v-model="data.zoneId">Choose Zone
+                                <vs-select-item :key="index" :value="model.zoneId" :text="model.fullName" v-for="(model,index) in ZoneList" />
+                            </vs-select><br>
+                            <vs-select v-model="data.cityId">Choose City
+                                <vs-select-item :key="index" :value="model.cityId" :text="model.fullName" v-for="(model,index) in CityList" />
+                            </vs-select><br>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="m-portlet__foot">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <button class="btn btn-danger" @click="cancel">Close</button>
+                        <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+<!-- new... -->
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="nice-modal-fade"   top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="modal-title">
+
+                        {{title}}
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <select v-model="data.zoneId" class="form-control  " required>
+                            <option :key="index" :value="model.zoneId" v-for="(model,index) in ZoneList">{{model.fullName}}
+                            </option>
+                        </select>
+                        <label :class="!$v.model.zoneId.required">Zone<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <select v-model="data.cityId" class="form-control  " required>
+                            <option :key="index" :value="model.cityId" v-for="(model,index) in CityList">{{model.fullName}}
+                            </option>
+                        </select>
+                        <label :class="!$v.model.cityId.required">City<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

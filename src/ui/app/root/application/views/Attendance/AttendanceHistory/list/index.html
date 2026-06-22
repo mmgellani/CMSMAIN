@@ -1,0 +1,110 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Attendance History
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <input @change="refreshData" type="date" v-model="attendanceDate" class="form-control form-control-sm" />
+                <label>To: </label>
+              </div>
+            </div>
+            <div class="col-md-2 offset-7">
+              <button @click="refreshData" class="b-refresh">
+                <feather icon="refresh-ccw"></feather>
+              </button>
+            </div>
+          </div>
+          <div class="row" v-for="item in data">
+            <div class="col-md-12" style="border-bottom: 1px solid red;" @click = "detailModel(item)">
+              <div class="row">
+                <div class="col-md-10">
+                  <strong>Device Info: </strong>{{item.browserInfo}}
+                </div>
+                <div class="col-md-2">
+                  <strong>Count: </strong>{{item.count}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <detail-model v-on:submit="refreshData"></detail-model>
+</div> -->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.ulog')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceHistory')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.attendanceHistory')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              {{$t('modal.attendanceHistory.to')}}</label>
+            <!-- <input type="date" class="form-control form-control-sm"
+                  :value="data.startingDtae && data.startingDtae.toString().split('T')[0]"
+                  @input="data.startingDtae = $event.target.value" required> -->
+
+            <date-picker class="input-28" id="change-width" ref="changeWidth" format="DD/MM/YYYY" lang="en"
+              v-mask="'##/##/####'" @input="refreshData" v-model="attendanceDate">
+            </date-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="data.length>0">
+        <div class="col-md-12">
+          <div class="fixed-header-table">
+            <div class="table-responsive">
+              <table style="width:100%;" class="customTable">
+                <thead>
+                  <tr>
+                    <th>
+                      {{$t('modal.attendanceHistory.deviceInfo')}}
+                    </th>
+                    <th>
+                      {{$t('modal.attendanceHistory.count')}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in data" class="rowHover" style="cursor: pointer;" @click="detailModel(item)">
+                    <td style="width: 50%; padding: 10px;">{{item.browserInfo}}</td>
+                    <td style="width: 50%;">{{item.count}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="data.length==0">
+        <div class="col-md-12">
+          <p>There is no record.</p>
+        </div>
+      </div>
+    </template>
+  </portlet-area>
+  <detail-model v-on:submit="refreshData"></detail-model>
+</page-area>

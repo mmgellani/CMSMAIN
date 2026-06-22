@@ -1,0 +1,118 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        User Log
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+          <div class="row">
+              <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="date" v-model="fromDate" class="form-control form-control-sm" />
+                    <label>From: </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input @change="refreshData" type="date" v-model="toDate" class="form-control form-control-sm" />
+                    <label>To: </label>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive" v-if="canRead ">
+                <div class="dataTables_wrapper no-footer">
+                  <table class="table">
+                    <thead>
+                      <tr role="row">
+                        <th>Time</th>
+                        <th>User Name</th>
+                        <th>Client Info</th>
+                        <th>Operation</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in data">
+                        <td class="v-align-middle">{{item.dateTime  | formatDMYt}}</td>
+                        <td class="v-align-middle">{{item.user}}</td>
+                        <td class="v-align-middle">{{item.publicIpPort}}</td>
+                        <td class="v-align-middle">{{item.controllerAction}}</td>
+                        <td>
+                          <button @click="detailModel(item)" class="btn btn-primary rounded-circle">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <userlog-detail-model v-on:submit="refreshData"></userlog-detail-model>
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.role')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.UserLog')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.UserLog')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.UserLog.from')}}</label>
+            <!-- <input type="date" v-model="fromDate" class="form-control form-control-sm" /> -->
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate"
+              format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.UserLog.to')}}</label>
+            <!-- <input @input="refreshData" type="date" v-model="toDate" class="form-control form-control-sm" /> -->
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" @input="refreshData">
+            </date-picker>
+
+          </div>
+        </div>
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.UserLog.">
+        <template slot="action" slot-scope="item">
+          <button @click="detailModel(item.row)" title="View" type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+            <i class="la la-eye"></i>
+          </button>
+          <template slot="dateTime" slot-scope="item">
+            {{item.row.dateTime|formatDMYt}}
+          </template>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <userlog-detail-model v-on:submit="refreshData"></userlog-detail-model>
+</page-area>

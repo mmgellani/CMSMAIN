@@ -1,0 +1,237 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<modal name="ExamSchedule-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+  :reset="true" :scrollable="true" :adaptive="false" transition="bounce" width="70%" top="10" height="auto"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header"  v-if="IsNewRecord" >
+      <div class="col-md-6 modal_heading">
+        <h3 class="modal-title">{{$t('Assessment Scheme Definition')}}</h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-header" v-if="!IsNewRecord"  >
+      <div class="col-md-6 modal_heading">
+        <h3 class="modal-title">{{$t('Assessment Scheme Definition Edit')}}</h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-3 mx-auto" style=" position: fixed; top: 10px; z-index: 999; right: 0px;text-align: center;">
+        <div class="alert alert-danger text-center" v-if="activeDayoff == true"   role="alert">
+          <p class="mb-0 text-center" style="width:100%"> {{msgShow}}</p>
+          </div>
+       </div>
+    </div>
+
+    <div class="modal-body" >
+
+     
+  
+      <div class="row"  >
+        <div class="col-md-4" >
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('Assessment Scheme Name')}}<span style="color:red">
+                *</span></label>
+            <input  type="text" class="form-control form-control-sm " style="height: 40px;" v-model.trim="assmentMasterdata.fullName"
+              :class="{'is-invalid': $v.assmentMasterdata.fullName.$error}" @input="$v.assmentMasterdata.fullName.$touch()">
+            <div class="invalid-feedback" v-show="$v.assmentMasterdata.fullName.$error">
+              <span v-if="!$v.assmentMasterdata.fullName.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+        
+           
+
+        <div class="col-md-4">
+          <div class="form-group  validated">
+            <div class="d-flex justify-content-between">
+              <label>{{$t('Fail Criteria')}}<span style="color:red"> *</span></label>
+              <button class="btn btn-primaray btn-sm mt-3"  style="transform: translateY(-7px); padding: 0 !important"
+                v-if="assmentMasterdata.failMasterId.length>0" @click="editModel()"><i class="la la-expand"></i></button>
+            </div>
+            <select-ex :options="failCriteriaList"  keyValue="failMasterId" displayValue="fullName"
+              v-model.trim="assmentMasterdata.failMasterId">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.assmentMasterdata.failMasterId.$error">
+              <span v-if="!$v.assmentMasterdata.failMasterId.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="form-group validated">
+            <div class="d-flex justify-content-between">
+              <label>{{$t('Grading Criteria')}}<span style="color:red"> *</span></label>
+              <button class="btn btn-primaray btn-sm mt-3" style="transform: translateY(-7px); padding: 0 !important;"
+                v-if="assmentMasterdata.gradingMasterId.length>0" @click="editModel2()"><i class="la la-expand"></i></button>
+            </div>
+            <select-ex :options="GradingMasterDetailData"  keyValue="gradingMasterId" displayValue="name"
+              v-model.trim="assmentMasterdata.gradingMasterId">
+            </select-ex>
+            <div class="invalid-feedback" v-show="$v.assmentMasterdata.gradingMasterId.$error">
+              <span v-if="!$v.assmentMasterdata.gradingMasterId.required">{{$t('validation.required')}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group validated">
+          <label class="form-control-label">{{$t('Total Weightage ')}}<span style="color:red">
+              *</span></label>
+          <input  type="text" class="form-control form-control-sm"  disabled="true" v-model.trim="assmentMasterdata.totalWeightage">
+            
+          </div>
+        </div>
+      </div>
+      <div>
+        <span>
+
+        </span>
+      </div>
+      <div class="modal-body" >
+      <div class="row">
+        <div class="col-md-12">
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group validated m-0">
+                            <label class="form-control-label">AssessmentCategory<span style="color:red">*</span></label>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group validated m-0">
+                            <label class="form-control-label">AssessmentType <span style="color:red"> *</span></label>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group validated m-0">
+                            <label
+                                class="form-control-label">ExamCount <span style="color:red"> *</span></label>
+                           
+  
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group validated m-0">
+                          <label
+                              class="form-control-label">Weightage <span style="color:red"> *</span></label>  
+                      </div>
+                  </div>
+                    
+                    <div class="col-md-2 text-right" style="margin-top:24px;">
+                    </div>
+                </div>
+            
+          
+  
+            <div v-for="(item,index) in academicsArray" style="margin-top:12px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group validated m-0">
+                          <select-ex :options="assementCategoryList" keyValue="assessmentCategoryId" displayValue="fullName"
+                           v-model.trim="item.assessmentCategoryId" @input="loadAssesmentExamType(item.assessmentCategoryId, index)">
+                      </select-ex>
+                        </div>
+                    </div>
+                    <div class="col-md-3" >
+                      <div class="form-group validated m-0" v-if="item.examtypelistData && item.examtypelistData.length > 0">
+                        <select-ex :options="item.examtypelistData" keyValue="assessmentTypeId" 
+                                   displayValue="fullName" v-model.trim="item.assessmentTypeId">
+                        </select-ex>
+                      </div>
+                      <div class="form-group validated m-0" v-else>
+                        <select-ex :options="dummyList" keyValue="assessmentTypeId" 
+                                   disabled displayValue="fullName" v-model.trim="item.assessmentTypeId">
+                        </select-ex>
+                      </div>
+                    </div>
+
+
+                    <!-- <div class="col-md-3" >
+                      <div class="form-group validated m-0">
+                        <select-ex :options="examtypelistDataEx" keyValue="assessmentTypeId" 
+                                   :disabled="dropdisble" displayValue="fullName" v-model.trim="item.assessmentTypeId">
+                        </select-ex>
+                      </div>
+                    </div> -->
+                    
+                    
+                
+
+             
+                      <!-- <div class="col-md-2">
+                        <select v-model="selectedExam">
+                          <option value="">Select an exam type</option>
+                          <option v-for="examType in examlist[index]?.AssessmentExamType" :key="examType.assessmentTypeId" :value="examType.examTypeId">
+                            {{ examType.fullName }}
+                          </option>
+                          
+                        </select>
+                      </div> -->
+                
+                    
+                    
+                  
+                    <div class="col-md-2">
+                        <div class="form-group validated m-0">
+                            <the-mask :mask="'#####'" class="form-control form-control-sm" style="height: 40px;"
+                                v-model="item.examCount" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group validated m-0">
+                          <the-mask :mask="'#####'" class="form-control form-control-sm" style="height: 40px;"
+                              v-model="item.weightage" />
+                      </div>
+                  </div>
+                    <div class="col-md-2 text-right">
+                        <button class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                            @click="addAcademics"><i
+                                class="fa fa-plus"></i></button>
+                        <button class="btn btn-outline-danger btn-icon btn-sm btn-circle"
+                            @click="deleteAcademics(index)" v-if="academicsArray.length>1"><i
+                                class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="row text-right">
+
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                        class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+
+                <button class="btn btn-light btn-hover btn-sm btn-primary" :disabled="!(assmentMasterdata.fullName.length>0 && assmentMasterdata.failMasterId.length>0 && assmentMasterdata.gradingMasterId.length>0 ) " @click="saveModelNew"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+            </div>
+        </div>
+    </div>
+   
+    <fail-master-preview></fail-master-preview>
+    <grading-olicy-preview></grading-olicy-preview>
+  </div>
+</modal>

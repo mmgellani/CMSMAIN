@@ -1,0 +1,382 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="Staff-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.humanResourceStaff')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="container">
+                <div class="row" v-if="!IsNewRecord">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="kt-option kt-option-custom">
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title mt-1">
+                                            {{$t('modal.setupClass.recordStatus')}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="isActive">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- First Row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.fullName')}}<span style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control form-control-sm" v-restrict.alpha
+                                :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                                @input="$v.data.fullName.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.fatherName')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control form-control-sm" v-restrict.alpha
+                                :class="{'is-invalid': $v.data.fatherName.$error}" v-model.trim="data.fatherName"
+                                @input="$v.data.fatherName.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.fatherName.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.cnic')}}<span style="color:red">
+                                    *</span></label>
+                            <the-mask :mask="'#####-#######-#'" class="form-control form-control-sm"
+                                v-model.trim="data.cnic" @input="$v.data.cnic.$touch()" />
+                            <div class="invalid-feedback" v-show="$v.data.cnic.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second Row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">{{$t('modal.staffHr.bloodGroup')}}</label> <span
+                                style="color:red"> *</span>
+                            <select-ex :options="BloodGroupList" keyValue="bloodGroupId" displayValue="fullName"
+                                v-model.trim="data.bloodGroupId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.bloodGroupId.$error">
+                                <span v-if="!$v.data.bloodGroupId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">{{$t('modal.staffHr.gender')}}</label> <span
+                                style="color:red"> *</span>
+                            <select-ex :options="GenderList" keyValue="genderId" displayValue="description"
+                                v-model.trim="data.genderId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.genderId.$error">
+                                <span v-if="!$v.data.genderId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="custom-control custom-checkbox mr-sm-2" style="margin-top: 2.2rem !important;">
+                            <input type="checkbox" v-model="data.maritalStatus" class="custom-control-input"
+                                id="customControlAutosizing">
+                            <label class="custom-control-label"
+                                for="customControlAutosizing">{{$t('modal.staffHr.maritalStatus')}}</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="left-p form-control-label">{{$t('modal.staffHr.department')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <select-ex :options="DepartmentList" keyValue="departmentId" displayValue="fullName"
+                                v-model="data.departmentId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.departmentId.$error">
+                                <span v-if="!$v.data.departmentId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="left-p">{{$t('modal.staffHr.designation')}}<span style="color:red">
+                                    *</span></label>
+
+                            <select-ex :options="DesignationList" keyValue="designationId" displayValue="fullName"
+                                v-model="data.designationId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.designationId.$error">
+                                <span v-if="!$v.data.designationId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">{{$t('modal.staffHr.employeeCode')}}</label> <span
+                                style="color:red"> *</span>
+                            <the-mask :mask="'#####'" v-model="data.empolyeeCode" class="form-control form-control-sm"
+                                @input="$v.data.empolyeeCode.$touch()" />
+                            <div class="invalid-feedback" v-show="$v.data.empolyeeCode.$error">
+                                <span v-if="!$v.data.empolyeeCode.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fourth Row  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">{{$t('modal.staffHr.DOB')}}</label> <span
+                                style="color:red">
+                                *</span>
+                            <date-picker class="input-28" id="change-width" ref="changeWidth"
+                                v-model.trim="data.dateOfBirth" format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'"
+                                @input="$v.data.dateOfBirth.$touch()"></date-picker>
+                            <div class="invalid-feedback" v-show="$v.data.dateOfBirth.$error">
+                                <span v-if="!$v.data.dateOfBirth.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.email')}}<span style="color:red">
+                                    *</span></label>
+                            <input type="text" :disabled="maildisable" class="form-control form-control-sm"
+                                :class="{'is-invalid': $v.data.email.$error}" v-model.trim="data.email"
+                                @input="$v.data.email.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.email.$error">
+                                <span v-if="!$v.data.email.required">{{$t('validation.required')}}</span>
+                                <span v-if="!$v.data.email.email">{{$t('validation.email')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">{{$t('modal.staffHr.city')}}</label> <span
+                                style="color:red">
+                                *</span>
+                            <select-ex :options="cityList" @input="loadSubCity()" keyValue="cityId"
+                                displayValue="fullName" v-model.trim="data.cityId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.cityId.$error">
+                                <span v-if="!$v.data.cityId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label">Sub City</label> <span style="color:red">
+                                *</span>
+                            <select-ex :options="subcityList" keyValue="subCityId" displayValue="name"
+                                v-model.trim="data.subCityId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.subCityId.$error">
+                                <span v-if="!$v.data.subCityId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control-label"> Transfer to EL</label> <span style="color:red">
+                            *</span>
+                        <div>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input v-model="transferEl" type="checkbox" checked="checked">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Fifth Row  -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.address')}}<span style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control form-control-sm"
+                                :class="{'is-invalid': $v.data.address.$error}" v-model.trim="data.address"
+                                @input="$v.data.address.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.address.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.contact')}}<span style="color:red">
+                                    *</span></label>
+                            <input type="text" v-restrict.number v-mask="'(####) ### ####'"
+                                class="form-control form-control-sm" :class="{'is-invalid': $v.data.contactNo.$error}"
+                                v-model.trim="data.contactNo" @input="$v.data.contactNo.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.contactNo.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.addressm')}} </label>
+                            <input type="text" class="form-control form-control-sm" v-model.trim="address2">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.staffHr.contact')}}</label>
+                            <input type="text" v-restrict.number v-mask="'(####) ### ####'"
+                                class="form-control form-control-sm" v-model.trim="contact2">
+                        </div>
+                    </div>
+                </div>
+                <div v-if="!IsNewRecord" class="row">
+                    <button @click="insertModel" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                        <i class="la la-plus"></i> {{$t('button.insert')}}
+                    </button>
+                </div>
+                <table v-if="!IsNewRecord" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr #</th>
+                            <th scope="col">Building</th>
+                            <th scope="col">Campus</th>
+                            <th scope="col">Sub Department</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Primary Status</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in staffCourseDepVMList">
+                            <th scope="row">{{index+1}}</th>
+                            <td>{{item.building}}</td>
+                            <td>{{item.campus}}</td>
+                            <td>{{item.department}}</td>
+                            <td>{{item.parentDepartment}}</td>
+                            <td>{{item.course}}</td>
+                            <td>{{item.isPrimary}}</td>
+                            <td>
+                                <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+                                    v-if="item.statusId == 1">Active</span>
+                                <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+                                    v-else>InActive</span>
+                            </td>
+
+                            <td>
+                                <button @click="editModel(item)" title="Edit" type="button"
+                                    class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                                    <i class="la la-edit"></i>
+                                </button>
+                                <button @click="deleteModel(item)" title="Delete" type="button"
+                                    class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+                                    <i class="la la-trash"></i>
+                                </button>
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div v-if="IsNewRecord" class="row">
+                    <div class="col-md-12">
+                        <input type="checkbox" :checked="isNewStaffAdd" v-model="isNewStaffAdd"> &nbsp; Insert
+                        StaffCourse
+
+                    </div>
+                </div>
+                <staff-add-edit-list v-if="isNewStaffAdd && IsNewRecord" :IsNewRecord="IsNewRecord" :data="staffCourse">
+                </staff-add-edit-list>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel">
+                    <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel">
+                    <i class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <Departments v-on:submit="loadDepartments"></Departments>
+    <Designations v-on:submit="loadDesignations"></Designations>
+    <staff-course-add-edit v-on:submit="loadStaffCourseDepVM"></staff-course-add-edit>
+    <staff-course-delete v-on:submit="loadStaffCourseDepVM"></staff-course-delete>
+
+
+    <div class="last-popup-outer" v-if="showTopPop">
+        <div class="last-popup">
+            <div class="modal-header" style="padding: 15px;">
+                <h5 class="modal-title text-dangerous" style="margin-top: 15px; color: red;" id="exampleModalLabel">Record Duplication Alert</h5>
+                <button type="button" class="close" @click="ClosethePopUp" style="margin: 0px !important;" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>A record already exists against this Email, <br> following are the details:</p>
+               
+                    <div v-for="item in checkteachermodel">
+                        <p><b>Teacher Name :     </b>{{item.fullName}}</p>
+                        <p><b>Email :     </b>{{item.email}}</p>
+                    </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="ClosethePopUp" >Ok</button>
+              </div>
+        </div>
+
+        <div class="overlay-outer">
+
+        </div>
+    </div>
+
+
+
+
+</modal>

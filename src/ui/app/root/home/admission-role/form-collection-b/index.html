@@ -1,0 +1,11 @@
+<collapsible-widget>
+    <template slot="title">
+        Comparison between Admission - Fee Paid - Enrolled
+    </template>
+    <template slot="content">
+        <Highcharts :options="options" v-if="isProcessed" />
+        <div class="col-md-4 offset-md-4">
+          <img src="../../../../assets/images/Capture1.png">  
+        </div>
+    </template>
+</collapsible-widget>

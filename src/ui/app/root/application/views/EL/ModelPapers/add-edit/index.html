@@ -1,0 +1,94 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        ModelPapers&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.totalMarks" required>
+                            <label :class="!$v.model.totalMarks.required">Total Marks<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.correctCredit" required>
+                            <label :class="!$v.model.correctCredit.required">Correct Credit<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.incorrectCredit" required>
+                            <label :class="!$v.model.incorrectCredit.required">Incorrect Credit<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.skippedCredit" required>
+                            <label :class="!$v.model.skippedCredit.required">Skipped Credit<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.testTime" required>
+                            <label :class="!$v.model.testTime.required">Test Time<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <vs-input label-placeholder="Incorrect Credit" v-model="data.incorrectCredit" />
+                    </div>
+                    <div class="col-md-4">
+                        <vs-input label-placeholder="Skipped Credit" v-model="data.skippedCredit" />
+                    </div>
+                    <div class="col-md-4">
+                        <vs-input label-placeholder="Test Time" v-model="data.testTime" />
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

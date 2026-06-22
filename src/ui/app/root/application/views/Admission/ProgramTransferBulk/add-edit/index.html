@@ -1,0 +1,189 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="30%" height="auto"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-11 text-center">
+                    <div class="modal-title">
+                        Program Transfer&nbsp;-&nbsp;
+                        <span class="font12">Modal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group-attached">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName"
+                                @change="loadProgramsOfCampus" key-value="campusId" display-value="campusName"
+                                placeholder="Campus">
+                            </drop-down>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <drop-down v-model="campusProgramId" @change="loadSectionsList"
+                                :data="campusProgramLinkList" group-by="programName" key-value="campusProgramId"
+                                display-value="description" placeholder="Transfer to Program">
+                            </drop-down>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Remove RollNo
+                                <input class="switch" type="checkbox" v-model="removerollno">
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control form-control-sm" v-model="SectionCourselinkId">
+                                    <option v-for="(model,index) in SectionCourseLinkLIst"
+                                        :value="model.sectionCourseLinkId">{{model.fullName}}
+                                        :{{model.fromSerial}}--{{model.toSerial}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="#" class="btn btn-danger" @click="cancel">
+                        Close</a>
+                    <a href="#" class="btn btn-primary " @click="ProgramTransfer">
+                        Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+    <span v-if="isLoading">
+        <i class="la la-refresh la-spin" /> Loading...
+    </span>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h5 class="modal-title">{{$t('navigation.programTransfer')}}</h5>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('navigation.setupCampus')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="campusCityList" keyValue="campusId" @input="loadProgramsOfCampus"
+                            displayValue="campusName" groupBy="cityName" v-model.trim="campusId"></select-ex>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-4 text-right">
+                        <span class="kt-switch kt-switch--sm kt-switch--icon">
+                            <label class="m-0">
+                               Show All <input class="switch" v-model="showall" type="checkbox" @change="getCustomize">
+                                <span></span>
+                            </label>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.programTransfer.program')}}<span
+                                style="color:red"> *</span></label>
+                        <select-ex :options="campusProgramLinkList" groupBy="programName" @input="loadSectionsList"
+                            keyValue="campusProgramId" displayValue="description" v-model.trim="campusProgramId">
+                        </select-ex>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label>{{$t('modal.programTransfer.removeRollNo')}}</label>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input class="switch" v-model="removerollno" type="checkbox">
+                                        <span></span>
+                                    </label>
+                                </span>
+
+                            </div>
+                        </div>
+                        <label class="form-control-label">Section<span style="color:red"> *</span></label>
+                        <select-ex :options="SectionCourseLinkLIst" keyValue="sectionCourseLinkId"
+                            displayValue="fullName" v-model.trim="SectionCourselinkId"></select-ex>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <label class="form-control-label">{{$t('modal.programTransfer.removeRollNo')}}</label>
+                    <select-ex :options="SectionCourseLinkLIst" keyValue="sectionCourseLinkId" displayValue="fullName"
+                        v-model.trim="SectionCourselinkId"></select-ex>
+                </div>
+                <div class="col-md-6">
+                    <div class="mt-4">
+                        <input class="switch" type="checkbox" v-model="removerollno">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="ProgramTransfer"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

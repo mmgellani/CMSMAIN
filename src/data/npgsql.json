@@ -1,0 +1,6 @@
+{
+    "data": {
+        "connectionString": "Server=116.71.132.11;Port=5432;User Id=postgres;Password=cms@123;Database=Cms360;",
+        "schemaName": ""
+    }
+}

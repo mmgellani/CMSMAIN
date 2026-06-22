@@ -1,0 +1,102 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Grading Policy
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+
+
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <select @change="loadCityCampus" class="form-control form-control-sm" v-model="sessionId" required>
+                      <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+                    </select>
+                    <label>Session</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                    display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                  </drop-down>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+                    key-value="campusProgramId" display-value="description" placeholder="Programs" @change="loadClass">
+                  </drop-down>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <select @change="loadSection" class="form-control form-control-sm" v-model="classId" required>
+                      <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+                    </select>
+                    <label>Class</label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <select @change="refreshData" v-model="sectionId" class="form-control form-control-sm" required>
+                      <option :value="item.sectionId" v-for="item in sectionCourseLinkList">{{item.sectionName}}
+                      </option>
+                    </select>
+                    <label>Section</label>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <button v-if="canAdd" @click="insertModel" class="b-add">
+                    <feather icon="plus-circle"></feather>
+                  </button>
+                  <button @click="refreshData" class="b-refresh">
+                    <feather icon="refresh-ccw"></feather>
+                  </button>
+                </div>
+              </div>
+            </template>
+            <template slot="grading" slot-scope="item">
+              <div v-for="model in getGrades(item.row.grading)">{{model.Grading}}</div>
+            </template>
+            <template slot="failRemarks" slot-scope="item">
+              <div v-for="model in getFailRemarks(item.row.failRemarks)">{{model.FailRemarks}}</div>
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+                <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+            </template>
+
+          </grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

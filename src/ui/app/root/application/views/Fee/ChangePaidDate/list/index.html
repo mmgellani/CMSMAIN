@@ -1,0 +1,127 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-title">
+                Change Paid Date
+            </div>
+            <div class="card-body">
+                <div class="row" style="overflow: visible !important">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" v-model="filterString"
+                                    placeholder="Enter Challan No " v-on:keydown.enter="SearchFeeConfirmation">
+                                <label>Enter Challan No </label>
+                            </div>
+                        </div>
+
+                        <div class="cardbody">
+                            <div class="row mt-5">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="caption-title">Change Paid Date</label>
+                                        <date-picker v-model="recievedDate" format="DD/MM/YYYY" lang="en"></date-picker>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control form-control-sm" v-model="collectorName">
+                                            <option value="" disabled>Choose Collector </option>
+                                            <option v-for="option in CollectorList" :value="option.description">
+                                                {{option.description}}
+                                            </option>
+                                        </select>
+                                        <label>Collector</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" v-if="StudentFeedata">
+                                    <template v-if="collectorName">
+                                        <button class="btn btn-primary btn-block"
+                                            @click="InsertPaidDate">Confirm</button>
+                                    </template>
+                                    <template v-if="recievedDate== null"> NO PAID CHALLAN DATA. GO TO FEE CONFIRMATION
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title">{{$t('navigation.fee')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.changePaidDate')}} </a>
+        </div>
+    </template>
+    <portlet-area action="1" :title="$t('navigation.changePaidDate')">
+        <template slot="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.changeDueDate.challanNo')}}</label>
+                        <input type="text" v-restrict.number class="form-control" v-model.trim="data.filterString"
+                            placeholder="Enter Here" v-on:keydown.enter="SearchFeeConfirmation"
+                            :class="{'is-invalid': $v.data.filterString.$error}">
+                        <div class="invalid-feedback" v-show="$v.data.filterString.$error">
+                            <span v-if="!$v.data.filterString.required">Required Field</span>
+                            <span v-if="!$v.data.filterString.minLength">Invalid Challan</span>
+                            <span v-if="!$v.data.filterString.maxLength">Invalid Challan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">
+                            {{$t('modal.changePaidDate.changePaidDateTo')}}
+                        </label>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="recievedDate"
+                            format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'">
+                        </date-picker>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.changePaidDate.grid.collector')}}</label>
+                        <select-ex :options="CollectorList" keyValue="collectorId" displayValue="description"
+                            v-model.trim="collectorid">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-4" v-if="StudentFeedata">
+                    <template v-if="collectorName">
+                        <button class="btn btn-light btn-hover btn-sm btn-primary" @click="InsertPaidDate"
+                            style="margin-top:23px;"><i class="la la-floppy-o"></i>
+                            {{$t('button.submit')}}</button>
+                    </template>
+                    <template v-if="recievedDate == null">
+                        <label style="margin-top:27px; color:red !important">
+                            {{$t('modal.changePaidDate.grid.noPaidDate')}}
+                        </label>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </portlet-area>
+</page-area>

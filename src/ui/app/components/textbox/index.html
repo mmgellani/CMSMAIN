@@ -1,0 +1,5 @@
+<input :type="fieldType" :class="fieldClass" :value="myPropertyValue(value)" @input="updateValue($event.target.value)" v-if="inputTyped === 'T'">
+<input :type="fieldType" :class="fieldClass" :value="myPropertyValue(value)" @input="updateValue($event.target.value)" v-mask="fieldMask" v-else-if="inputTyped === 'TM'">
+
+<date-picker :class="fieldClass" :value="value" @input="updateValue($event)" format="DD/MM/YYYY" lang="en" v-else-if="inputTyped === 'D'"></date-picker>
+<date-picker :class="fieldClass" :value="value" @input="updateValue($event)" format="DD/MM/YYYY" lang="en" v-mask="fieldMask" v-else-if="inputTyped === 'DM'"></date-picker>

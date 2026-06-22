@@ -1,0 +1,107 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="ExamMaster-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        ExamMaster&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="programCourseLinkId" required>
+                                <option v-for="(model,index) in courseList" :value="model.programCourseLinkId">
+                                    {{model.courseName}} </option>
+                            </select>
+                            <label>Course<span style="color:red"> *</span></label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="data.examTypeId" required>
+                                    <option v-for="(model,index) in examTypeList" :value="model.examTypeId">
+                                        {{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.examTypeId.required" style="margin-left:15px;">Exam Type<span
+                                        style="color:red"> *</span></label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewExamType">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadExamType">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="data.totalMarks" required>
+                            <label :class="!$v.model.totalMarks.required">Total Marks<span style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input :value="data.dated && data.dated.toString().split('T')[0]"
+                                @input="data.dated = $event.target.value" type="date" class="form-control form-control-sm" />
+                            <label>Date</label>
+                        </div>
+                        <!-- <vs-input :value="data.dated && data.dated.toString().split('T')[0]" @input="data.dated = $event.target.value"
+                            type="date" label-placeholder="Enter Date " /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ExamType v-on:submit="loadExamType"></ExamType>
+</modal>

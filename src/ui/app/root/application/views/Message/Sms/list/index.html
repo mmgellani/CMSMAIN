@@ -1,0 +1,865 @@
+<!-- <div class="row">
+    <div class="card">
+        <div class="card-title">
+            <div class="row">
+                <div class="col-md-4">Custom Sms</div>
+                <div class="col-md-4" style="font-size: 12px;">
+                    <input class="switch" v-model="condition" type="checkbox">
+                    {{condition ? 'Import List' : 'Selection'}}
+                </div>
+                <div class="col-md-4" v-if="!condition" style="font-size: 12px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input @change="resetMessage()" class="switch" v-model="useTemplate" type="checkbox">
+                            {{useTemplate ? 'Templates' : 'Type'}}
+                        </div>
+                        <div class="col-md-6" v-if="useTemplate">
+                            <select @change="showTemplateMessage()" class="form-control" v-model="templateId">
+                                <option v-for="(model,index) in templateList" :value="model.templateId">
+                                    {{model.type}}</option>
+                            </select>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mt-5 ModeColor">
+                <div class="col-md-12">
+                        <div class="row" v-if="condition">
+                                <div class="col-md-6">
+                                        <select class="form-control " v-model="smsapid" required>
+                                                <option v-for="option in smsapilist" :value="option.smsApId">
+                                                    {{option.mask}}</option>
+                                            </select>
+                                            <label style="margin-left:15px;">SMS Mask</label>
+
+    
+                                </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-4" v-if="condition">
+                            <div class="row">
+                                <div class="col-md-12 offset-2">
+                                    <vue-xlsx-table @on-select-file="uploadExcel"> Click to Upload Excel File
+                                    </vue-xlsx-table>
+                                </div>
+                                <div class="col-md-12 mt-4 mb-3">
+                                    Mobile Number List (Total Number Of Contacts are {{smsNumbers.length}})
+                                    <select class="form-control m-input m-input--air" multiple="">
+                                        <option v-for="number of smsNumbers">{{number}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <  class="col-md-4" v-if="!condition">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select @change="loadCityCampus" class="form-control" v-model="sessionId"
+                                            required>
+                                            <option v-for="(model,index) in sessionModel" :value="model.sessionId">
+                                                {{model.fullName}}</option>
+                                        </select>
+                                        <label>Session</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <drop-down v-model="campusId" :data="campusCityList" group-by="cityName"
+                                        key-value="campusId" display-value="campusName" placeholder="Campus"
+                                        @change="loadProgramsOfCampus">
+                                    </drop-down>
+                                </div>
+                                <div class="col-md-12">
+                                    <drop-down v-model="programDetailId" :data="campusProgramLinkList"
+                                        group-by="programName" key-value="programDetailId" display-value="description"
+                                        placeholder="Programs" @change="loadClass">
+                                    </drop-down>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="form-control" v-model="classId" @change="refereshData" required>
+                                            <option v-for="(model,index) in classList" :value="model.classId">
+                                                {{model.fullName}}</option>
+                                        </select>
+                                        <label>Class</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Message to Send
+                                    <textarea :disabled="useTemplate" class="form-control m-input m-input--air"
+                                        v-model="messageText"></textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group m-input-group m-input-group--air">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Country Code</span>
+                                        </div>
+                                        <input class="form-control m-input" placeholder="Country Code" type="number"
+                                            v-model="countryCode" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group m-input-group m-input-group--air">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Number Length</span>
+                                        </div>
+                                        <input class="form-control m-input" placeholder="Number Length" type="number"
+                                            v-model="numberLength" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary" style="width: 100%" @click="sendMessage()">Send
+                                        Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title"> {{$t('navigation.bsetup')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.customSms')}} </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.customSms')">
+        <template slot="portlet-body">
+            <!-- <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label" style="width: 40% !important;">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        SMS
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm">
+                                <label class="m-0">
+                                    <input type="checkbox" @change="refreshdropdowns" checked="checked"
+                                        v-model="viewNotification">
+                                    <span></span>
+                                </label>
+                            </span>
+                            <span class="kt-option__title mt-2" style="margin: 0 auto;">Notification</span>
+                        </label>
+                    </div>
+                </div>
+            </div> -->
+            <tabs>
+                <tab name='SMS' :selected="true">
+                    <template>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Create SMS</h5>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="kt-option kt-option-custom">
+                                        <span class="kt-option__label">
+                                            <span class="kt-option__head">
+                                                <span class="kt-option__title mt-1">
+                                                    {{$t('modal.customSms.importList')}}
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="kt-switch kt-switch--sm">
+                                            <label class="m-0">
+                                                <input type="checkbox" checked="checked" v-model="condition"
+                                                    @change="checkToggle()">
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-if="condition">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>{{$t('modal.customSms.messageMask')}}</label>
+                                    <select-ex :options="smsapilist" keyValue="smsApId" displayValue="mask"
+                                        v-model="smsapid">
+                                    </select-ex>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <vue-xlsx-table @on-select-file="uploadExcel"> Click to Upload Excel File
+                                    </vue-xlsx-table>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>{{$t('modal.customSms.contactList')}}(Total Numbers are
+                                    {{smsNumbers.length}})</label>
+                                <div class="fee-structure-square mt-1" style="min-height: 100px;">
+                                    <ul v-for="number of smsNumbers">
+                                        <li>
+                                            {{number}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-if="!condition">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.session')}}</label>
+                                    <select-ex :options="sessionModelEx" keyValue="sessionId" displayValue="fullName"
+                                        v-model="sessionIdEx" @input="loadCityCampusEx">
+                                    </select-ex>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3" v-if="allowuser">
+                                <div class="form-group">
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>{{$t('modal.customSms.campus')}}</label>
+                                        </div>
+                                        <div class="col-md-4 text-right" style="position: relative;">
+                                            <span class="kt-switch kt-switch--sm">
+                                                <label class="m-0">
+                                                    <input type="checkbox" class="switch" v-model="showall"
+                                                        @change="getCustomize">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                            <label class="show-checkBox">Show All</label>
+                                        </div>
+                                    </div>
+                                    <select-ex :options="campusCityListEx" keyValue="campusId" displayValue="campusName"
+                                        groupBy="cityName" v-model="campusIdExx" @input="loadProgramsOfCampusExx">
+                                    </select-ex>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3" v-else>
+                                <div class="form-group">
+
+                                    <label class="mb-3">{{$t('modal.customSms.campus')}}</label>
+
+                                    <select-ex :options="campusCityListEx" keyValue="campusId" displayValue="campusName"
+                                        groupBy="cityName" v-model="campusIdExx" @input="loadProgramsOfCampusExx">
+                                    </select-ex>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.program')}}</label>
+                                    <select-ex :options="campusProgramLinkListEx" keyValue="programDetailId"
+                                        displayValue="description" v-model="programDetailIdEx" groupBy="programName"
+                                        @input="loadClassEx">
+                                    </select-ex>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.class')}}</label>
+                                    <select-ex :options="classListEx" keyValue="classId" displayValue="fullName"
+                                        v-model="classIdEx" @input="loadSectionsExx">
+                                    </select-ex>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-if="!condition">
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>Sections</label>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+
+                                            <span class="kt-switch kt-switch--sm">
+                                                <label class="m-0">
+                                                    <input class="switch" @change="loadSectionsExx" v-model="issection"
+                                                        type="checkbox">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                    <select-ex :options="sectionListEx" :disabled="!issection"
+                                        keyValue="sectionCourseLinkId" displayValue="sectionName"
+                                        v-model="sectionCourseLinkIdEx">
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>{{$t('modal.customSms.template')}}</label>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+
+                                            <span class="kt-switch kt-switch--sm">
+                                                <label class="m-0">
+                                                    <input @change="resetMessage()" class="switch" v-model="useTemplate"
+                                                        type="checkbox">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <select-ex :options="templateList" keyValue="templateId" displayValue="type"
+                                        v-model="templateId" @input="showTemplateMessage()" :disabled="!enableTemplate"
+                                        required>
+                                    </select-ex>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>{{$t('modal.customSms.message')}}</label>
+                                        </div>
+                                        <div class="col-md-3 offset-md-6">
+                                            <label v-if="checkunicode"><span style="color:red"> Sms Contains Unicoded
+                                                    Text!</span></label>
+                                        </div>
+                                    </div>
+                                    <textarea :disabled="useTemplate" class="form-control form-control-sm" rows="5"
+                                        v-model="messageText" maxlength="480" v-on:keyup="keyHandler"></textarea>
+                                    <label>Note : Message Should be less than 480 Characters</label>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-2 offset-md-4 text-right" v-if="viewDatapicker">
+                                <label>Select Date for Delivery Report</label>
+                            </div>
+                            <div class="col-md-2" v-if="viewDatapicker">
+                                <div class="form-group">
+                                    <date-picker class="input-28" id="change-width" ref="changeWidth"
+                                        format="DD/MM/YYYY" @input="deliveryreport" lang="en" v-model="datestring">
+                                    </date-picker>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 text-right" :class="{'offset-md-8':!viewDatapicker}">
+                                <button class="btn btn-primary btn-hover btn-sm" @click="viewReport()">Delivery
+                                    Report</button>
+                                <button class="btn btn-hover btn-sm btn-primary" @click="sendMessage()"
+                                    :disabled="sendToogle"> <i class="la la-envelope-o"></i>
+                                    {{$t('modal.customSms.sendMessage')}}</button>
+                            </div>
+                        </div>
+                    </template>
+                </tab>
+
+                <tab name='Notifications'>
+                    <template>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Create  Notification</h5>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <!-- <div class="col-md-3">
+                                <h5 class="noti-title-bar">Select Recepients</h5>
+                            </div> -->
+                        </div> 
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="kt-option kt-option-custom">
+                                    <span class="kt-option__label">
+                                        <span class="kt-option__head">
+                                            <span class="kt-option__title mt-1">
+                                                Import List Of Roll No
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="kt-switch kt-switch--sm">
+                                        <label class="m-0">
+                                            <input type="checkbox" checked="checked" v-model="condition"
+                                                @change="checkToggle()">
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row" v-if="condition">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Entity</label>
+                                    <select v-model="checkEntity" @change="loadSession"
+                                        class="form-control form-control-sm" required>
+                                        <option value="CMS">CMS</option>
+                                        <option value="Hadaf">Hadaf</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <vue-xlsx-table @on-select-file="uploadExcelEx"> Click to Upload Excel File
+                                    </vue-xlsx-table>
+                                </div>
+                            </div>
+                            
+
+                            <div class="col-md-3">
+                                <span style="color:red">
+                                    *</span><b>Students Only </b>
+                                    <label>
+                                    Roll No List(Total Numbers are
+                                    {{smsNumbers.length}}</label>
+                                <div class="fee-structure-square mt-1" style="min-height: 100px;">
+                                    <ul v-for="number of smsNumbers">
+                                        <li>
+                                            {{number}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 text-center" style="margin-top: 28px;">
+                                <button class="btn btn-primary" @click="AddRollNo">Add</button>
+                            </div>
+                        </div>
+                 
+
+                        <div class="row mt-4" v-if="!condition" >
+                            <div class="col-md-3">
+                                <label>Receiver</label>
+                                <select v-model="receiver" @change="checkvaluest(receiver)" :disabled="checkvaluebutton"
+                                    class="form-control form-control-sm" required>
+                                    <option value="Student">Student</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="All"> Student & Parent</option>
+                                </select>
+                                </div>
+                                <!-- <template  >
+                                    <div class="d-flex flex-column">
+                                        <label >All  </label>
+                                         
+                                         <input style="width: 20px;
+                                         height: 20px;
+                                         margin-top: 3px;"  type="checkbox"  @change="CheckValueButtonex" v-model="checkvaluebutton"  >
+    
+                                        
+                                    </div>
+                                    
+                                      
+                                    </label>
+                                  </template> -->
+                                </div>
+                                  <div class="row mt-4" v-if="!condition" >
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Entity</label>
+                                    <select v-model="checkEntity" @change="loadSession"
+                                        class="form-control form-control-sm" required>
+                                        <option value="CMS">CMS</option>
+                                        <option value="Hadaf">Hadaf</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.session')}}<span style="color:red">
+                                            *</span></label>
+                                    <select-ex :options="sessionModel" keyValue="sessionId" displayValue="fullName"
+                                        v-model="sessionId" @input="loadCityCampus">
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label class="mb-3">{{$t('modal.customSms.campus')}}<span style="color:red">
+                                                    *</span></label>
+                                        </div>
+                                        <!-- <div class="col-md-4 text-right" style="position: relative;">
+                                            <span class="kt-switch kt-switch--sm">
+                                                <label class="m-0">
+                                                    <input type="checkbox" class="switch" v-model="showall"
+                                                        @change="getCustomize">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                            <label class="show-checkBox">Show All</label>
+                                        </div> -->
+                                    </div>
+                                    <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName"
+                                        groupBy="cityName" v-model="campusIdEx" @input="loadClass"  >
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.class')}}</label>
+                                    <select-ex :options="classList" keyValue="classId" displayValue="fullName"
+                                        v-model="classId" @input="loadProgramsOfCampusEx" >
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">{{$t('modal.customSms.program')}}</label>
+                                    <select-ex :options="campusProgramLinkList" keyValue="campusProgramId" multiple
+                                        displayValue="description" v-model="campusProgramId" groupBy="programName"
+                                        @input="loadSectionsEx" >
+                                    </select-ex>
+                                </div>
+                            </div>
+                            
+                          
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>Sections</label>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+
+                                            <span class="kt-switch kt-switch--sm">
+                                                <label class="m-0">
+                                                    <input class="switch" @change="loadSectionsEx" v-model="issection"
+                                                        type="checkbox">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                    <select-ex :disabled="checkCamp || !issection" :options="sectionList"
+                                        keyValue="sectionCourseLinkId" displayValue="sectionName"
+                                        v-model="sectionCourseLinkId" multiple @input="CookTag()">
+                                    </select-ex>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-3">Gender</label>
+                                    <select-ex :options="genderModel" keyValue="genderId" displayValue="description"
+                                        v-model="idGender">
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center" style="margin-top: 28px;">
+                                <button class="btn btn-primary" @click="AddNotific">Add</button>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <div class="form-group">
+                                    <label >Tag</label>
+                                    <input  class="form-control "
+                                        v-model="tag" disabled></input>
+                                    
+                                </div>
+                            </div> -->
+
+                        </div>
+                        <div class="row mt-2" v-if="list.length">
+                            <div class="col-md-3">
+                                <h5 class="noti-title-bar">Preview Recepients</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive mt-3" v-if="list.length">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">
+                                                    Session
+                                                </th>
+                                                <th>
+                                                    Campus
+                                                </th>
+                                                <th>
+                                                    Program
+                                                </th>
+                                                <th>
+                                                    Class
+                                                </th>
+                                                <th>
+                                                    Section
+                                                </th>
+                                                <th>
+                                                    Gender
+                                                </th>
+                                                <th>
+                                                    Receiver
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                                <!-- <th>
+                                                    Type
+                                                </th>
+                                                <th>
+                                                    Title
+                                                </th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in list" class="rowHover" style="cursor: pointer;">
+                                                <td>
+                                                    <span v-html="item.sessionName"></span>
+                                                </td>
+                                                <td>
+                                                    {{item.campusName!=null?item.campusName:'All'}}
+                                                </td>
+                                                <td>
+                                                    {{item.programName!=null?item.programName:'All'}}
+                                                </td>
+                                                <td>
+                                                    {{item.class!=null?item.class:'All'}}
+                                                </td>
+                                                <td>
+                                                    {{item.section!=null?item.section:'All'}}
+                                                </td>
+                                                <td>
+                                                    {{item.gender!=null?item.gender:'All'}}
+                                                </td>
+                                                <td>
+                                                     
+                                                    {{item.receiver!=null?item.receiver:'All'}}
+                                                </td>
+                                                <td>
+                                                    <button title="Delete" type="button" @click="removeItem(item)"
+                                                        class="btn btn-outline-danger btn-icon btn-sm btn-circle"><i
+                                                            class="la la-trash"></i></button>
+                                                </td>
+                                                <!-- <td>
+                                                    {{item.type}}
+                                                </td>
+                                                <td>
+                                                    {{item.title}}
+                                                </td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                       
+                        <div class="row mt-2 mb-3" v-if="list.length || showNotification">
+                            <div class="col-md-3">
+                                <h5 class="noti-title-bar">Enter Notification</h5>
+                            </div>
+                        </div>
+                        <div class="row" v-if="list.length>0 || showNotification">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-2">Notification Type<span style="color:red">
+                                            *</span></label>
+                                    <select-ex :options="datanoti" keyValue="typeid" displayValue="typeName"
+                                        v-model.trim="typeid">
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-2">Notification Title<span style="color:red">
+                                            *</span></label>
+                                    <input type="text" v-model.trim="titletxt" class="form-control"
+                                        style="height: 29px;">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-control-label mb-3">
+                                </label>
+                                <div v-if="!imagetxt" class="dropzone-panel">
+                                    <div class="img-wrapper">
+                                        <div class="img-icon">
+                                            <label for="AttachFile" class="btn btn-primary btn-sm">Attach File</label>
+                                            <input type="file" class="dropzone-select" style="display: none;"
+                                                accept="application/pdf, image/*" id="AttachFile"
+                                                @input="convertToBase64()">
+                                        </div>
+                                    </div>
+                                    <span style="font-size: 10px;color:red; font-weight: 500;">(pdf,jpeg,png) max size:
+                                        1 mb</span>
+                                </div>
+                                <div class="col-md-4" v-else>
+                                    <div class="group-logo-img" v-if="!pdfFile">
+                                        <img :src="imagetxt" />
+                                        <label class="mt-2 text-primary">{{fileName}}</label>
+                                        <button class="group-logo-del" vs-type="border" vs-icon="close"
+                                            @click="removeImage">
+                                            <i class="la la-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="group-logo-img" v-if="pdfFile">
+                                        <img src="../../../../../../assets/images/pdf .png" />
+                                        <label class="mt-2 text-primary">{{fileName}}</label>
+                                        <button class="group-logo-del" vs-type="border" vs-icon="close"
+                                            @click="removeImage">
+                                            <i class="la la-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="col-md-3">
+                                <button class="btn btn-primary mt-5" @click="AssignNot">Add</button>
+                            </div> -->
+
+                            <!-- {{dataNotificationTemp}} -->
+                            <!-- <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="mb-4">Attachment</label>
+                                    <input type="text" v-model.trim="imagetxt" class="form-control"
+                                        style="height: 29px;">
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="row" v-if="list.length>0 || showNotification">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{$t('navigation.notification')}}<span style="color:red">
+                                            *</span></label>
+                                    <textarea id="txtmessage" rows="5" class="form-control form-control-sm"
+                                        v-model.trim="Messaage">
+                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-if="list.length>0 || showNotification">
+                            <div class="offset-md-8 col-md-2">
+                                <div class="form-group">
+                                    <!-- <button class="btn btn-light btn-hover btn-sm btn-primary" style="width: 100%"
+                                        @click="generate()" data-dismiss="modal" type="submit">
+                                        <i class="fa fa-file-o"></i> Notification History</button> -->
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <button class="btn btn-light btn-hover btn-sm btn-primary" style="width: 100%"
+                                        @click="SaveBulkData()" data-dismiss="modal" type="submit">
+                                        <i class="fa fa-bell-o"></i> Send Notification</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="col-md-6 modal_heading">
+                                            <h3 class="modal-title">{{$t('navigation.notification')}}</h3>
+                                            <p>Confirmation</p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <button type="button" class="close " data-dismiss="modal">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row mt-2">
+                                            <div class="col-md-12">
+                                                <p>Are you sure to Send Notification to selected student?</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit"
+                                            data-dismiss="modal">
+                                            <i class="la la-close"></i>
+                                            {{$t('button.close')}}</button>
+                                        <button class="btn btn-light btn-hover btn-sm btn-primary"
+                                            @click="insertModel(saveDatasList)" data-dismiss="modal" type="submit">
+                                            <i class="la la-save"></i> {{$t('button.save')}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </tab>
+
+                <!-- <tab name="NotificationToAll"> 
+                    <Notification-New-Tab></Notification-New-Tab>
+                </tab> -->
+                <tab name='Report'>
+                    <template>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth"
+                                        v-model="datestring1" format="DD/MM/YYYY" @change="changedate" lang="en"  ></date-picker>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <date-picker class="input-28 mt-2" id="change-width" ref="changeWidth" 
+                                        v-model="todatestring" format="DD/MM/YYYY" lang="en" :not-before="datestring1"></date-picker>
+                                </div>
+                            </div>
+                            <div class="offset-md-2 col-md-2 text-right mt-5">
+                                <div class="form-group">
+                                    <button @click="generate2()"
+                                        class="btn btn-light btn-hover btn-sm btn-outline-primary">Generate Sms Report
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right mt-5">
+
+                                <div class="form-group">
+                                    <button class="btn btn-light btn-hover btn-sm btn-outline-primary"
+                                        style="width: 100%" @click="generate()" data-dismiss="modal" type="submit">
+                                        <i class="fa fa-file-o"></i>Generate Notification Report</button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </tab>
+            </tabs>
+        </template>
+    </portlet-area>
+
+</page-area>

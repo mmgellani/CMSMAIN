@@ -1,0 +1,119 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <!-- <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.ConcessionStudent')}} </a>
+    </div> -->
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.admission')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Online Form Approval </a>
+    </div>
+  </template>
+  <portlet-area action="1" title="Online Form Approval">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.sectionChange.campus')}}</label>
+            <select-ex :options="campusCityList" groupBy="cityName" keyValue="campusId" displayValue="campusName"
+              v-model.trim="campusId" @input="refreshData"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-3 mt-2" v-for="item in admissionstatusdatas">
+          <div class="card-box padding-class" :class="set_bgColor(item)" style="background: rgba(39, 59, 115, 0.92);"
+            @click="loadFilter(item.apllicationStatus)">
+            <div class="inner">
+              <p>{{item.apllicationStatus}} </p>
+              <h3> {{item.statusCount}} </h3>
+            </div>
+          </div>
+          <p
+            v-if="item.apllicationStatus =='Sign Up' || item.apllicationStatus =='Form Submitted'||item.apllicationStatus =='Admission Granted' ||item.apllicationStatus =='Processing fee paid'">
+            Current state</p>
+          <p v-if="item.apllicationStatus =='Concession / Scholarships'||item.apllicationStatus =='Principal approval'">
+            Pending</p>
+        </div>
+      </div>
+      <grid :data="datas" :columns="columns" pre="modal.sectionChange.">
+        <template slot="action-area">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+
+        <template slot="admissionDate" slot-scope="item">
+          {{item.row.admissionDate | formatDMY}}
+        </template>
+
+        <template slot="isApproval-header" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand mb-0">
+            {{$t('modal.feeChallanValidityUpdate.checkAll')}}<input class="mb-0" type="checkbox" @change="checkAll"
+              v-model="selectAll">
+            <span></span>
+          </label>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button v-if="checkStatus(item.row.apllicationStatus)" class="btn btn-outline-info btn-icon btn-sm btn-circle"
+            @click="UpdateElRecord(item.row)" data-toggle="tooltip" data-placement="top" title="View Record">
+            <i class="la la-eye"></i>
+          </button>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">Online Form Approval</h3>
+            <p>Insert</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-hover btn-sm btn-primary" data-dismiss="modal" type="submit" @click="insertModel">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+</page-area>

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-title">
+                Student Full Fee
+            </div>
+            <p> </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select @change="loadCampus" v-model="session" class="form-control form-control-sm" required>
+                            <option :value="item.sessionId" v-for="item in sessionModel">{{item.fullName}}
+                            </option>
+                        </select>
+                        <label>Session</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select @change="loadProgram" v-model="campus" class="form-control form-control-sm" required>
+                            <option :value="item.campusId" v-for="item in campusModel">{{item.fullName}}
+                            </option>
+                        </select>
+                        <label>Campus</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select @change="loadData" v-model="program" class="form-control form-control-sm" required>
+                            <option :value="item.programDetailId" v-for="item in programModel">{{item.description}}
+                            </option>
+                        </select>
+                        <label>Program</label>
+                    </div>
+                </div>
+            </div>
+            <grid :data="model" :columns="columns">
+                <template slot="action" slot-scope="item">
+                    <a class="btn btn-primary btn-sm tbl-btn">
+                        <i class="fa fa-edit" @click="insert(item.row)"></i>
+                    </a>
+                </template>
+            </grid>
+        </div>
+    </div>
+    <!-- <add-edit-model v-on:submit="loadData"></add-edit-model> -->
+</div>

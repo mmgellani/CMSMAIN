@@ -1,0 +1,276 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="CampusStudentLink-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        Student Board Link &nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select @change="" class="form-control" v-model="data.returnTypeId">
+                            <option v-for="(model,index) in boardReturnTypeList" :value="model.returnTypeId">
+                                {{model.fullName}}</option>
+                        </select>
+                        <label>Board Return Type<span style="color: red"> *</span> </label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select @change="" class="form-control" v-model="data.programCampusId">
+                            <option v-for="(model,index) in programCampusList" :value="model.programCampusId">
+                                {{model.description}}</option>
+                        </select>
+                        <label>Program Campus<span style="color: red"> *</span> </label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="caption-title">Return Date</label>
+                        <date-picker v-model="data.returnDate" format="DD/MM/YYYY" lang="en"></date-picker>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control" v-model="boardId" @change="GetBoardCode" required>
+                            <option v-for="(model,index) in boardList" :value="model.boardId">{{model.fullName}}
+                            </option>
+                        </select>
+                        <label>Board</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <select class="form-control" @change="loadFeeHeads()" v-model="challanTypeId">
+                            <option :value="model.challanTypeId" v-for="(model,index) in challanTypeList">
+                                {{model.fullName}}
+                            </option>
+                        </select>
+                        <label>Challan Type</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <select class="form-control" v-model="feeHeadId" @change="GetBoardFee">
+                            <option :value="model.feeHeadId" v-for="(model,index) in feeHeadList">{{model.fullName}}
+                            </option>
+                        </select>
+                        <label>FeeHead</label>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group ">
+                            <label class="caption-title">Board Fee</label>
+                        <input type="number" class="form-control" v-model="this.amount" readonly>
+                      
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper no-footer">
+                        <table class="table">
+                            <thead>
+                                <tr role="row">
+                                    
+                                    <th>RollNo</th>
+                                    <th>Name</th>
+                                    <th>Board No</th>
+                                    <th>
+                                        Assign Board<input type="checkbox" @change="checkAll" class="mt-2"
+                                            v-model="selectAll"></input>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in studentList">
+                                    <td class="v-align-middle">{{item.rollNo}}</td>
+                                    <td class="v-align-middle">{{item.fullName}}</td>
+                                    <th class="v-align-middle"><input type="text"  placeholder="Enter Serial No" v-model="item.boardRegistrationNo" maxlength="11"></th>
+                                    
+                                    <td> <input type="checkbox" class="mt-2" v-model="item.isSelected"></input>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                     
+                    <button class="btn btn-primary" :disabled="!allowsubmit()" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+
+
+<modal name="StudentRegistration-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" width="80%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-8 modal_heading">
+                <h3 class="modal-title"> Board/University Exam Entry</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-4 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body programcourse">
+            <!-- <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.BoardStudentBoardLinkList.boardReturnType')}}</label>
+                        <select-ex :options="boardReturnTypeList" keyValue="returnTypeId" displayValue="fullName"
+                            v-model.trim="data.returnTypeId"></select-ex>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>RegistrationCode</label>
+                        <select-ex :options="registrationcodelist" keyValue="registrationCodeId"
+                            displayValue="title" v-model.trim="data.registrationCodeId"></select-ex>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>{{$t('modal.BoardStudentBoardLinkList.returnDate')}}</label>
+                    <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="data.returnDate"
+                        format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'"></date-picker>
+                    </date-picker>
+                </div>
+
+            
+            </div> -->
+            <!-- <div class="row">
+            
+           
+                <div class="col-md-3">
+                    <div class="form-group validated">
+                        <label> {{$t('modal.BoardStudentBoardLinkList.boardFee')}}</label>
+                        <input type="number" class="form-control form-control-sm" v-model.trim="data.amount">
+                    </div>
+                </div>
+
+               
+            </div> -->
+            <div class="row">
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper no-footer">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr role="row">
+
+                                    <th>RollNo</th>
+                                    <th>Name</th>
+                                    <th>Father Name</th>
+                                    <th>Section</th>
+                                  <th>Registration No</th>
+                                  <th>Checkbox</th>
+                                    <th>Select All
+                                        <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 15px;">
+                                            <input type="checkbox" @change="checkAll" v-model="selectAll">
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <!-- <input type="checkbox" @change="checkAll" class="mt-2"
+                                    v-model="selectAll"></input> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in studentselectedListEx">
+                                    <td class="align-middle">{{item.rollNo}}</td>
+                                    <td class="align-middle">{{item.fullName}}</td>
+                                    <td class="align-middle">{{item.fatherName}}</td>
+                                    <td class="align-middle">{{item.sectionName}}</td>
+
+                                    <!-- <td class="align-middle"><input type="text" v-model="item.boardNo"></td> -->
+                                    
+                                    <td class="align-middle">
+                                        <!-- <label>{{sessionName}}-{{registrationCode}}-</label> -->
+                                            <input type="text" v-model="item.boardUniversityNo" readonly>
+                                        
+
+                                    </td>
+                                    <td class="align-middle">
+                                        
+
+                                        <label class="kt-checkbox kt-checkbox--brand">
+                                            <input type="checkbox" v-model="item.isSelected">
+                                            <span></span>
+                                        </label>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"><i
+                            class="la la-close"></i>{{$t('button.close')}}</button>
+                    <button class="btn btn-hover btn-sm btn-primary" 
+                        @click="saveModel"><i class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

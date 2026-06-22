@@ -1,0 +1,208 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="60%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.feeScholarshipCriteria')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="left-p form-control-label">{{$t('modal.setupScholarshipCriteria.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="left-p form-control-label">{{$t('modal.setupScholarshipCriteria.shift')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="shiftList" keyValue="shiftId" displayValue="fullName"
+                            v-model.trim="shiftId" @input="loadConcession">
+                        </select-ex>
+                        <div v-if="shiftId.length==0"class="invalid-feedback" >
+                            {{$t('validation.required')}}
+                        </div>
+
+<!-- 
+                        <div v-if="allowenter()">
+                           <label>Required Field</label>
+                        </div>  -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupScholarshipCriteria.admissionType')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="admissionTypeList" keyValue="admissionTypeId" displayValue="fullName"
+                            v-model.trim="data.admissionTypeId" @input="checkScholarship">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.admissionTypeId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupScholarshipCriteria.concession')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="concessionList" keyValue="concessionId" displayValue="fullName"
+                            v-model.trim="data.concessionId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.concessionId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupScholarshipCriteria.continuationPolicy')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="continuationPolicyList" keyValue="continuationPolicyId"
+                            displayValue="fullName" v-model.trim="data.continuationPolicyId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.continuationPolicyId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupScholarshipCriteria.attendancePercentage')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.attendancePercentage.$error}"
+                            v-model.trim="data.attendancePercentage" @input="$v.data.attendancePercentage.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.attendancePercentage.$error">
+                            <span v-if="!$v.data.attendancePercentage.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.attendancePercentage.maxLength">{{$t('validation.maxLength')}}
+                                <br>Field Length:
+                                {{$v.data.attendancePercentage.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-md-6" v-show="isScholarship">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupScholarshipCriteria.grades')}}</label>
+                        <select-ex :options="GradesList" keyValue="scholarshipTypeId" displayValue="grades"
+                            v-model.trim="scholarshiptype">
+                        </select-ex>
+
+
+                        
+
+
+                    </div>
+                </div> -->
+                <div class="col-md-6" v-show="isScholarship">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupScholarshipCriteria.enterPercentage')}}</label>
+                        <input class="form-control form-control-sm" v-model.trim="data.marksPer">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom" style="border: none !important;">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        Check For Scholarship
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="data.isScholarship">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                    <!--      <label class="form-control-label">
+                        Check For Scholarship
+                    </label>
+                    <span class="kt-switch kt-switch--sm kt-switch--icon">
+                        <label class="m-0">
+                            <input type="checkbox" v-model="data.isScholarship">
+                            <span></span>
+                        </label>
+                    </span> -->
+                    <!-- <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close">
+                        <input class="switch" type="checkbox" v-model="data.isScholarship">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

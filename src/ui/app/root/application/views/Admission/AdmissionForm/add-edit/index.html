@@ -1,0 +1,669 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="90%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Admission <span class="fw-semi-bold">Form</span></h3>
+            <div class="close">
+                <p>Ref. #{{data.refferenceNo}}</p>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                        display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus" :id="indexId">
+                    </drop-down>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="admission-id">Session</label>
+                        <select for="admission-id" v-model="data.admissionTypeId" class="form-control form-control-sm"
+                            @change="CheckCriteria" required>
+                            <option value="" disabled>Admission Type<span style="color:red !important"> *</span>
+                            </option>
+                            <option :value="model.admissionTypeId" v-for="(model,index) in admissionTypeList">
+                                {{model.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Program<span style="color:red"> *</span></label>
+                        <select v-model="data.campusProgramId" class="form-control form-control-sm"
+                            @change="CheckCriteria" required :disabled="data.admissionTypeId.length == 0">
+                            <option :value="model.campusProgramId" v-for="(model,index) in campusProgramLinkList">
+                                {{model.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Admission Type<span style="color:red"> *</span></label>
+                        <select v-model="data.admissionTypeId" class="form-control form-control-sm"
+                            @change="CheckCriteria" required>
+                            <option :value="model.admissionTypeId" v-for="(model,index) in admissionTypeList">
+                                {{model.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="studentModel.fullName" v-uppercase required
+                            :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label :class="!$v.model.fatherName.required">Father Name<span style="color:red">
+                                *</span></label>
+                        <input class="form-control form-control-sm" v-model="studentModel.fatherName" v-uppercase
+                            required :disabled="data.admissionTypeId.length == 0" />
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Student CNIC<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-mask="'99999-9999999-9'"
+                            v-model="studentModel.studentCNIC" :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Father CNIC<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-mask="'99999-9999999-9'"
+                            v-model="studentModel.parentCNIC" required :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Gender<span style="color:red"> *</span></label>
+                        <select @change="CheckCriteria" v-model="studentModel.genderId"
+                            class="form-control form-control-sm" required :disabled="data.admissionTypeId.length == 0">
+                            <option :value="model.genderId" v-for="(model,index) in genderList">{{model.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Religion<span style="color:red"> *</span></label>
+                        <select v-model="studentModel.religionId" class="form-control form-control-sm"
+                            :disabled="data.admissionTypeId.length == 0">
+                            <option :value="model.religionId" v-for="(model,index) in religionList">{{model.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3" v-for="model in parentContactList">
+                    <div class="form-group">
+                        <label>Parent's Contact #<span style="color:red"> *</span></label>
+                        <input type="text" v-model="model.phoneNo" v-mask="'(9999) 999 9999'"
+                            class="form-control form-control-sm" required :disabled="data.admissionTypeId.length == 0">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="caption-title">Date Of Birth<span style="color:red"> *</span></label>
+                        <date-picker id="change-width" ref="changeWidth" v-model="studentModel.dateOfBirth"
+                            format="DD/MM/YYYY" lang="en" :disabled="data.admissionTypeId.length == 0"></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Permanent Address<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="addressList[1].address" v-uppercase
+                            required :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mailing Address<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="addressList[0].address" v-uppercase
+                            required :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-for="(model,index) in academicInfoList">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Degree<span style="color:red"> *</span></label>
+                        <select v-model="model.degreeId" class="form-control form-control-sm"
+                            @change="getStatusDegree(model.degreeId.toString())" required
+                            :disabled="data.admissionTypeId.length == 0">
+                            <option :value="mod.degreeId" v-for="(mod,index) in degreeList">{{mod.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Group<span style="color:red"> *</span></label>
+                        <select v-model="model.groupId" class="form-control form-control-sm" required
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true">
+                            <option :value="mod.groupId" v-for="(mod,index) in groupList">{{mod.fullName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Roll #<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="model.rollNo" required v-uppercase
+                            v-restrict.number maxlength="10"
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Passing Year<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-mask="'9999'" v-model="model.year"
+                            placeholder='val' v-restrict.number maxlength='4'
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Obtained Marks<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="model.obtainMarks" v-restrict.number
+                            maxlength='4' :disabled="data.admissionTypeId.length == 0 || degreeStatus==true" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Total Marks<span style="color:red"> *</span></label>
+                        <select v-model="model.totalMarks" class="form-control form-control-sm" required
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true">
+                            <option :value="mod.marks" v-for="(mod,index) in MarksList">{{mod.marks}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Board Name<span style="color:red"> *</span></label>
+                        <select v-model="model.board" class="form-control form-control-sm" required
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true">
+                            <option :value="mod.fullName" v-for="(mod,index) in BoardList">{{mod.fullName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary btn-sm mb-xs" @click="cancel">Close</button>
+            <button class="btn btn-primary btn-sm mb-xs" disabled v-if="!allowSubmit">Save</button>
+            <button class="btn btn-primary btn-sm mb-xs" @click="saveModel" v-else>Save</button>
+        </div>
+
+    </div>
+
+</modal>  -->
+
+
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="70%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title" style="display: inline-block;">{{$t('navigation.admissionAdmissionForm')}}</h3>
+                <p> {{title}} </p>
+                <!-- <p>Add Details </p> -->
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            
+               
+
+          
+            <div class="row"> 
+                <div class="col-md-3  offset-md-6">
+
+                    <div class="form-group" v-if="IsNewRecord">
+                        <label> Enter Roll No/Ref No to Promote</label>
+                        <input type="text" class="form-control form-control-sm" v-model.trim="datas.filterString"
+                            placeholder="Enter Here" v-on:keydown.enter="loadStudentPromoted"
+                            :class="{'is-invalid': $v.datas.filterString.$error}">
+                        <div class="invalid-feedback" v-show="$v.datas.filterString.$error">
+                            <span v-if="!$v.datas.filterString.required">Required Field</span>
+                            <span v-if="!$v.datas.filterString.minLength">Invalid Entry</span>
+                            <span v-if="!$v.datas.filterString.maxLength">Invalid Entry</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3  ">
+
+                    <div class="form-group">
+                        <label>Form No </label>
+                        <input type="text" v-restrict.number class="form-control form-control-sm" v-model="data.formNo" v-uppercase
+                            required>
+
+                    </div>
+                </div>
+                <div class="col-md-3" v-if="show">
+                    <div class="form-group">
+                        <label >{{$t('modal.admissionAdmissionForm.cmsRollNo')}}</label>
+                        <input type="text" v-uppercase  v-on:keypress="isLetterOrNumber($event)"  class="form-control form-control-sm" placeholder='e.g, LHRFSCMM2200000 '
+                            v-model="cmsRollNo" :disabled="data.admissionTypeId.length == 0" required>
+                    </div>
+                </div>
+                <div class="col-md-3" v-if="show">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.cmssection')}}</label>
+                        <input type="text"  class="form-control form-control-sm" placeholder='Section Name'
+                            v-model="cmssection" :disabled="data.admissionTypeId.length == 0" required>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">   
+                <div class="col-md-3"   >
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.campus')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="campusCityList" group-by="cityName" :disabled="locck || isPermoted"   keyValue="campusId"
+                            displayValue="campusName" v-model="campusId" @input="loadProgramsOfCampus"  >
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.admissionType')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="admissionTypeList" keyValue="admissionTypeId" :disabled="locck"
+                            displayValue="fullName" v-model="data.admissionTypeId" @input="CheckCriteria"  >
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.program')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="campusProgramLinkList" keyValue="campusProgramId"
+                            displayValue="description" v-model="data.campusProgramId" @input="checkPresubinstllent"
+                            required :disabled="locck ||isPermoted">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3" >
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.gender')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="genderList" keyValue="genderId" displayValue="description"
+                            v-model="studentModel.genderId" @input="CheckCriteria"
+                            :disabled="data.admissionTypeId.length == 0 || isPermoted"  >
+                        </select-ex>
+                    </div>
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col-md-3" >
+                    <div class="form-group">
+                        <label :class="!$v.model.fullName.required">{{$t('modal.admissionAdmissionForm.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" v-restrict.alpha class="form-control form-control-sm"
+                            v-model="studentModel.fullName" :disabled="data.admissionTypeId.length == 0 ||isPermoted" required>
+                    </div>
+                </div>
+                <div class="col-md-3" >
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.relationship')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="relationshipTypeList" keyValue="fullName" displayValue="fullName"
+                            v-model="relationshipType" required :disabled="data.admissionTypeId.length == 0 || isPermoted">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3" >
+                    <div class="form-group">
+                        <label
+                            :class="!$v.model.fatherName.required">{{$t('modal.admissionAdmissionForm.studentCNIC')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <!-- <input type="text" class="form-control form-control-sm" v-mask="'99999-9999999-9'"
+                            v-model="studentModel.studentCNIC" :disabled="data.admissionTypeId.length == 0"> -->                         
+
+                        <the-mask :mask="'#####-#######-#'"  placeholder='00000-0000000-0'  class="form-control form-control-sm"
+                            v-model.trim="studentModel.studentCNIC"  :disabled="data.admissionTypeId.length == 0 || isPermoted" />
+                        <!-- <div class="invalid-feedback" v-show="$v.data.parentCNIC.$error">
+                            {{$t('validation.required')}}
+                        </div> -->
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Email<span style="color:red">
+                            </span></label>
+                        <input type="text" class="form-control form-control-sm" v-model="Email"
+                            :disabled="data.admissionTypeId.length == 0" required>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.dateOfBirth')}}<span style="color:red">
+                                *</span></label>
+                        <date-picker class="input-28" id="change-width" ref="changeWidth"
+                            v-model="studentModel.dateOfBirth" format="DD/MM/YYYY" lang="en"
+                            :disabled="data.admissionTypeId.length == 0 ||isPermoted"></date-picker>
+                    </div>
+                    <!-- <label class="caption-title">Date Of Birth<span style="color:red"> *</span></label>
+                        <date-picker id="change-width" ref="changeWidth" v-model="studentModel.dateOfBirth"
+                            format="DD/MM/YYYY" lang="en" :disabled="data.admissionTypeId.length == 0"></date-picker> -->
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" >
+                        <label
+                            :class="!$v.model.fatherName.required">{{$t('modal.admissionAdmissionForm.fatherName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" v-restrict.alpha class="form-control form-control-sm"
+                            v-model="studentModel.fatherName" required :disabled="data.admissionTypeId.length == 0 || isPermoted" >
+                    </div>
+                </div>
+                <div class="col-md-3" >
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.fatherCNIC')}}<span style="color:red">
+                                *</span></label>
+                        <!-- <input class="form-control form-control-sm" v-mask="'99999-9999999-9'"
+                            v-model="studentModel.parentCNIC" required :disabled="data.admissionTypeId.length == 0" /> -->
+
+                        <the-mask :mask="'#####-#######-#'" placeholder='00000-0000000-0'
+                            class="form-control form-control-sm" v-model.trim="studentModel.parentCNIC"
+                            :disabled="data.admissionTypeId.length == 0 ||isPermoted" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="from-group" v-for="model in parentContactList">
+                        <label>{{$t('modal.admissionAdmissionForm.parentContact')}}<span style="color:red">
+                                *</span></label>
+                        <!-- :key="model.phoneNo" -->
+                        <div v-if="model.phoneNo && model.phoneNo.startsWith('92')">
+                            <the-mask :mask="'(####) ### #####'" placeholder='(0000) 000 00000'
+                                v-model.trim="model.phoneNo" :disabled="data.admissionTypeId.length == 0"
+                                class="form-control form-control-sm"></the-mask>
+                        </div>
+                        <div v-else>
+                            <the-mask :mask="'(####) ### ####'" placeholder='(0000) 000 0000'
+                                v-model.trim="model.phoneNo" :disabled="data.admissionTypeId.length == 0"
+                                class="form-control form-control-sm"></the-mask>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" v-for="model in stdContactList">
+                        <label>{{$t('modal.admissionAdmissionForm.studentContact')}}</label>
+                        <div v-if="model.phoneNo && model.phoneNo.startsWith('92')">
+                            <the-mask :mask="'(####) ### #####'" placeholder='(0000) 000 00000'
+                                v-model.trim="model.phoneNo" :disabled="data.admissionTypeId.length == 0"
+                                class="form-control form-control-sm"></the-mask>
+                        </div>
+                        <div v-else>
+                            <the-mask :mask="'(####) ### ####'" placeholder='(0000) 000 0000'
+                                v-model.trim="model.phoneNo" :disabled="data.admissionTypeId.length == 0"
+                                class="form-control form-control-sm"></the-mask>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.religion')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="religionList" keyValue="religionId" displayValue="fullName"
+                            v-model="studentModel.religionId" @input="CheckCriteria"
+                            :disabled="data.admissionTypeId.length == 0 || isPermoted">
+                        </select-ex>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.mailingAddress')}}</label>
+                        <input class="form-control form-control-sm" v-model="addressList[0].address" v-uppercase
+                            required :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.permanentAddress')}}</label>
+                        <input class="form-control form-control-sm" v-model="addressList[1].address" v-uppercase
+                            required :disabled="data.admissionTypeId.length == 0" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-for="(model,index) in academicInfoList">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.degree')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="degreeList" keyValue="degreeId" displayValue="fullName"
+                            v-model="model.degreeId" @input="getStatusDegree(model.degreeId.toString())" required
+                            :disabled="data.admissionTypeId.length == 0">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.group')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="groupList" keyValue="groupId" displayValue="fullName"
+                            v-model="model.groupId" @input="CheckCriteria" required
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true ">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.roll')}}<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="model.rollNo" required v-uppercase
+                            v-restrict.number maxlength="10"
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true " />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.passingYear')}}<span style="color:red">
+                                *</span></label>
+                        <!-- <input class="form-control form-control-sm" v-mask="'9999'" v-model="model.year"
+                            placeholder='val' v-restrict.number maxlength='4'
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true" /> -->
+
+                        <the-mask :mask="'####'" class="form-control form-control-sm" v-model="model.year"
+                            v-restrict.number maxlength='4'
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true " />
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-for="(model,index) in academicInfoList">
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.obtainedMarks')}}<span style="color:red">
+                                *</span></label>
+                        <input class="form-control form-control-sm" v-model="model.obtainMarks" v-restrict.number
+                            maxlength='4' :disabled="data.admissionTypeId.length == 0 || degreeStatus==true" />
+                    </div>
+                </div>
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.totalMarks')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="MarksList" keyValue="marks" displayValue="marks" v-model="model.totalMarks"
+                            required :disabled="data.admissionTypeId.length == 0 || degreeStatus==true">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.boardName')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="BoardList" keyValue="fullName" displayValue="fullName"
+                            v-model="model.board" required
+                            :disabled="data.admissionTypeId.length == 0 || degreeStatus==true">
+                        </select-ex>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mt-2" v-if="isStep==true">
+                    <div class="form-group">
+                        <label>{{$t('modal.admissionAdmissionForm.studenttype')}}</label>
+                        <select-ex :options="studentTYpeList" keyValue="studenttype" displayValue="description"
+                            v-model="data.studentType">
+                        </select-ex>
+                    </div>
+                </div>
+                <!-- <div class="col-md-2">
+                    <div class="form-group">
+                        <select v-model="data.studentType" class="form-control" :disabled="!studenttypecheck">
+                            <option value="P">Candidate</option>
+                            <option value="N">Non Candidate</option>
+                        </select>
+                        <label>StudentType<span style="color:red"> *</span></label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    StudentType<div class="form-group">
+                        <input type="checkbox" class="switch" v-model="studenttypecheck">
+                    </div>
+                </div> -->
+            </div>
+            <div class="row"> 
+                    <div class="col-md-3" v-if="isPermoted">
+                        <div class="form-group">
+                            <label>Annual Package</label>
+                            <input class="form-control form-control-sm" type="number" v-model="packgeamount" v-restrict.number />
+        
+        
+                            <!-- <input type="number" v-model="packgeamount" class="form-control form-control-sm"> -->
+                        </div>
+                    </div> 
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Annual Package</label>
+                        <input class="form-control form-control-sm" type="number" v-model="packgeamount"
+                            v-restrict.number />
+
+
+                    </div>
+                </div> -->
+
+                <div class="col-md-3" v-if="isPresub">
+                    <label>Pre Fee</label>
+                    <select-ex :options="maxsubInstallment" keyValue="item" displayValue="item"
+                        v-model="installmentAmountStr" @input="convertpayload">
+                    </select-ex>
+                </div>
+            </div>
+            
+        </div>
+       
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" disabled
+                        v-if="!allowSubmit || ischalandefined==true || saveClicked"><i
+                            class="la la-floppy-o"></i>{{$t('button.save')}}</button>
+                            
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel" v-else><i
+                            class="la la-floppy-o"></i>{{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <div class="last-popup-outer" v-if="showTopPop && showpopup===false">
+        <div class="last-popup">
+            <div class="modal-header" style="padding: 15px;">
+                <h5 class="modal-title text-dangerous" style="margin-top: 15px; color: red;" id="exampleModalLabel">Record Duplication Alert</h5>
+                <button type="button" class="close" @click="ClosethePopUp" style="margin: 0px !important;" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>A record already exists against this candidate CNIC number, <br> following are the details:</p>
+               
+                    <div v-for="item in resultOfstudent">
+                        <p><b>Reference Number :  </b>{{item.refrenceNo}}</p>
+                        <p><b>Program Name :     </b>{{item.programName}}</p>
+                        <p><b>Student Name :     </b>{{item.studentName}}</p>
+                        <p><b>Student CNIC # :   </b>{{item.studentCNIC}}</p>                   
+                    </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="ClosethePopUp" >Ok</button>
+              </div>
+        </div>
+
+        <div class="overlay-outer">
+
+        </div>
+    </div>
+    <div class="last-popup-outer" v-if="showpopup && showTopPop===false">
+        <div class="last-popup">
+            <div class="modal-header" style="padding: 15px;">
+                <h5 class="modal-title text-dangerous" style="margin-top: 15px; color: red;" id="exampleModalLabel">Record Duplication Alert</h5>
+                <button type="button" class="close" @click="ClosethePopUp" style="margin: 0px !important;" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>A Fee challan has already been paid against this CNIC number, <br> following are the details:</p>
+               
+                    <div v-for="item in studentfeeexist">
+                        <p><b>Reference Number :  </b>{{item.refrenceNo}}</p>
+                        <p><b>Student Name :     </b>{{item.studentName}}</p>
+                        <p><b>Student CNIC # :   </b>{{item.studentCNIC}}</p>                   
+                        <p><b>Campus :   </b>{{item.campusName}}</p>                   
+                        <p><b>Program Detail :     </b>{{item.programName}}</p>
+                        <p><b>Class        :   </b>{{item.className}}</p>                   
+                    </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="ClosethePopUp" >Ok</button>
+              </div>
+        </div>
+
+        <div class="overlay-outer">
+
+        </div>
+    </div>
+
+</modal>
+

@@ -1,0 +1,240 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Paid Date Removal
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+          <tabs>
+            <div class="row mt-4"></div>
+            <tab name='Students' :selected="true">
+              <grid :data="data" :columns="columns">
+                <template slot="operation-links">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <select v-model="sessionId" class="form-control form-control-sm" required>
+                          <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">
+                            {{model.fullName}}</option>
+                        </select>
+                        <label>Session</label>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                        display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                      </drop-down>
+                    </div>
+
+                    <div class="col-md-3">
+                      <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+                        key-value="campusProgramId" display-value="description" placeholder="Programs"
+                        @change="GetAllFilterData"></drop-down>
+                    </div>
+                    <div class="col-md-3">
+                      <button @click="GetAllFilterData" class="b-refresh">
+                        <feather icon="refresh-ccw"></feather>
+                      </button>
+                    </div>
+                  </div>
+                </template>
+                <template slot="statusId" slot-scope="item">
+                  {{item.row.statusId==1?'Active':'InActive'}}
+                </template>
+                <template slot="action" slot-scope="item">
+                  <a @click="editModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip" data-placement="top"
+                    title="Revert Paid Date">
+                    <feather icon="rotate-ccw" xclass="b-edit color1"></feather>
+                  </a>
+
+                </template>
+              </grid>
+            </tab>
+            <br>
+            <tab name='Search Student'>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input v-on:keydown.enter="find" type="text" v-model="search" class="form form-control btn-sm"
+                      required>
+                    <label>Search</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-sm" @click="find">Search</button>
+                </div>
+              </div>
+              <div class="row">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+
+                      <th>RefferenceNo</th>
+                      <th>Student Name</th>
+                      <th>Parent Name</th>
+                      <th>Program Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="model in searchdata">
+                      <td>{{model.refferenceNo}}</td>
+                      <td>{{model.fullName}}</td>
+                      <td>{{model.fatherName}}</td>
+                      <td>{{model.description}}</td>
+                      <td>
+                        <a class="btn btn-primary btn-sm tbl-btn" @click="editModel(model.refferenceNo)" v-if="canEdit">
+                          <feather icon="edit" xclass="b-edit"></feather>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </tab>
+          </tabs>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <student-challan-add-edit-model v-on:submit="GetAllFilterData"></student-challan-add-edit-model>
+  <delete-model v-on:submit="GetAllFilterData"></delete-model>
+
+
+</div> -->
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.fee')}} </h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.feeStudentChallanPaidList')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.feeStudentChallanPaidList')">
+    <template slot="portlet-body">
+      <div v-if="canRead">
+        <tabs>
+          <tab name='Students' :selected="true">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="zone-id">{{$t('modal.paidDateRemoval.session')}}</label>
+                  <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId">
+                  </select-ex>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="city-id">{{$t('modal.paidDateRemoval.campus')}}</label>
+                  <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" v-model="campusId"
+                    groupBy="cityName" @input="loadProgramsOfCampus"></select-ex>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="city-id">{{$t('modal.paidDateRemoval.programs')}}</label>
+                  <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+                    v-model="campusProgramId" @input="GetAllFilterData" groupBy="programName"></select-ex>
+                </div>
+              </div>
+              <!-- <div class="col-md-3 text-right" style="margin-top: 26px;">
+                <button @click="GetAllFilterData" class="b-refresh">
+                  <feather icon="refresh-ccw"></feather>
+                </button>
+              </div> -->
+            </div>
+            <grid :data="data" :columns="columns" pre="modal.paidDateRemoval.">
+              <template slot="statusId" slot-scope="item">
+                {{item.row.statusId==1?'Active':'InActive'}}
+              </template>
+              <template slot="action" slot-scope="item">
+                <button @click="editModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip"
+                  data-placement="top" title="Revert Paid Date"
+                  class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                  <i class="la la-rotate-right"></i>
+                </button>
+              </template>
+            </grid>
+          </tab>
+          <br>
+          <tab name='Search Student'>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label
+                    class="form-control-label">{{$t('modal.leaveManagement.Enter')}}</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" v-on:keydown.enter="find" v-model="search">
+                    <div class="input-group-append">
+                      <button class="input-group-text" @click="find"><i class="la la-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <grid :data="searchdata" :columns="columns" pre="modal.paidDateRemoval.">
+              <template slot="action" slot-scope="item">
+                <button class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                  @click="editModel(item.row.refferenceNo)" v-if="canEdit">
+                  <i class="la la-rotate-right"></i>
+                </button>
+              </template>
+            </grid>
+            <!-- <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{{$t('modal.paidDateRemoval.grid.refferenceNo')}}</th>
+                      <th>{{$t('modal.paidDateRemoval.grid.fullName')}}</th>
+                      <th>{{$t('modal.paidDateRemoval.grid.fatherName')}}</th>
+                      <th>{{$t('modal.paidDateRemoval.grid.description')}}</th>
+                      <th>{{$t('modal.paidDateRemoval.grid.action')}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="model in searchdata">
+                      <td>{{model.refferenceNo}}</td>
+                      <td>{{model.fullName}}</td>
+                      <td>{{model.fatherName}}</td>
+                      <td>{{model.description}}</td>
+                      <td>
+                        <button class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                          @click="editModel(model.refferenceNo)" v-if="canEdit">
+                          <i class="la la-rotate-right"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> -->
+          </tab>
+        </tabs>
+
+
+      </div>
+    </template>
+  </portlet-area>
+
+  <student-challan-add-edit-model v-on:submit="GetAllFilterData"></student-challan-add-edit-model>
+  <delete-model v-on:submit="GetAllFilterData"></delete-model>
+
+</page-area>

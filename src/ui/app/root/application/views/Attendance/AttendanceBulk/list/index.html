@@ -1,0 +1,353 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.attendance')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceBulk')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.attendanceBulk')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceBulk.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>{{$t('modal.attendanceBulk.campus')}}</label>
+          <select-ex :options="campusCityList" keyValue="campusId" groupBy="cityName" displayValue="campusName"
+            v-model.trim="campusId">
+          </select-ex>
+          <!-- <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+            display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+          </drop-down> -->
+        </div>
+        <div class="col-md-3">
+          <label>{{$t('modal.attendanceBulk.programs')}}</label>
+          <select-ex :options="campusProgramLinkList" keyValue="programDetailId" groupBy="programName"
+            displayValue="description" v-model.trim="programDetailId">
+          </select-ex>
+          <!-- <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+            key-value="programDetailId" display-value="description" placeholder="Programs" @change="loadClass">
+          </drop-down> -->
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceBulk.class')}}</label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId">
+            </select-ex>
+            <!-- <select @change="loadCourses" class="form-control form-control-sm" v-model="classId" required>
+              <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+            </select>
+            <label>Class</label> -->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceBulk.date')}}</label>
+            <!-- <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="date" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker> -->
+            <!-- <input class="form-control form-control-sm"  v-model="datestring" type="date"> -->
+            <input class="form-control form-control-sm" @input="loadCourses" v-model="datestring" type="date" required>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceBulk.sectionCourse')}}</label>
+            <select-ex :options="programCourseList" keyValue="timeTableId" displayValue="fullName"
+              v-model.trim="timeTableId">
+            </select-ex>
+
+            <!-- <select v-model.trim="timeTableId" v-select="options" style="width: 100%;"></select> -->
+            <!-- <v-select label="fullName" v-model="timeTableId" :options="programCourseList"
+              :reduce="option => option.timeTableId">
+              <template slot="option" slot-scope="option">
+                <span v-html="courseName(option)"></span>
+              </template>
+            </v-select>
+            <label class="caption-title">SectionCourse</label> -->
+          </div>
+        </div>
+        <div class="col-md-6 text-right" style="margin-top: 26px;">
+          <button @click="refreshData" class="btn  btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </div>
+        <!-- <div v-if="mergeSectionList.length>1" class="col-md-12">
+          <strong>Merged Sections</strong>&nbsp;&nbsp;
+          <span class="kt-badge kt-badge--inline kt-badge--pill" v-for="item in mergeSectionList"
+            style="background: rgba(93, 120, 254, 0.29); color: black; font-size: 1rem;">
+            {{item.sectionName}}</span>
+        </div> -->
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <!-- <div class="custom-control custom-checkbox mr-sm-2" style="margin-top: 2.2rem;">
+            <input @input="markFullDayAbsent" type="checkbox" v-model="fullDayAbsent" class="custom-control-input">
+            <label>Full Day Absent</label>
+          </div> -->
+          <div class="custom-control custom-checkbox">
+            <input @change="markFullDayAbsent" type="checkbox" v-model="fullDayAbsent" class="custom-control-input"
+              id="customControlAutosizing">
+            <label class="custom-control-label" for="customControlAutosizing">Full Day Absent</label>
+          </div>
+          <!-- <input type="checkbox" @change="markFullDayAbsent" class="mt-2" v-model="fullDayAbsent">Full Day
+          Absent</input> -->
+        </div>
+        <div class="col-md-8 text-right">
+          <div v-if="mergeSectionList.length>1">
+            <strong>Merged Sections</strong>&nbsp;&nbsp;
+            <span style="margin-right: 5px;" v-for="item in mergeSectionList"
+              class="badge badge-primary">{{item.sectionName}}</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{$t('modal.attendanceBulk.rollNo')}}</th>
+                <th>{{$t('modal.attendanceBulk.name')}}</th>
+                <th>{{$t('modal.attendanceBulk.slotTiming')}}</th>
+                <th>{{$t('modal.attendanceBulk.markAttendance')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in Ddata">
+                <td class="v-align-middle">{{item.rollNo}}</td>
+                <td class="v-align-middle">{{item.fullName}}</td>
+                <td class="v-align-middle">{{item.startTime}} - {{item.endTime}}</td>
+                <td class="v-align-middle">
+                  <label v-for="(model,index) in attendanceStatusList" :class="addClass(model,item.attendenceStatusId)"
+                    style="position: relative;">
+                    <input type="radio" :value="model.attendenceStatusId" v-model="item.attendenceStatusId"
+                      style="visibility: hidden; position: absolute;" />
+                    {{model.code}}
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+
+      <grid :data="Ddata" :columns="columns" pre="modal.attendanceBulk.">
+        <template slot="action-area">
+          <button v-if="!isApproved" data-toggle="modal" data-target="#myModal"
+            class="btn btn-hover btn-sm btn-outline-primary" style="width: 90px" :disabled="Ddata.length==0">
+            <i class="la la-save"></i> {{$t('button.save')}}
+          </button>
+        </template>
+        <template slot="startTime" slot-scope="item">
+          {{item.row.startTime}} - {{item.row.endTime}}
+        </template>
+        <template slot="action" slot-scope="item">
+          <!-- <span v-for="(model,index) in attendanceStatusList">
+            <label v-if="model.attendenceStatusId!='fe9a2ca9-05b6-4151-bdd8-a4fbb9a6bd05'"
+              :class="addClass(model,item.row.attendenceStatusId)" style="position: relative;">
+
+              <input
+                :disabled="item.row.shouldAbsent || item.row.attendenceStatusId=='fe9a2ca9-05b6-4151-bdd8-a4fbb9a6bd05'"
+                type="radio" :value="model.attendenceStatusId" v-model="item.row.attendenceStatusId"
+                style="visibility: hidden; position: absolute;" />
+              {{model.code}}
+            </label>
+            <label
+              v-if="model.attendenceStatusId=='fe9a2ca9-05b6-4151-bdd8-a4fbb9a6bd05' && item.row.attendenceStatusId=='fe9a2ca9-05b6-4151-bdd8-a4fbb9a6bd05'"
+              :class="addClass(model,item.row.attendenceStatusId)" style="position: relative;">
+
+              <input disabled="true" type="radio" :value="model.attendenceStatusId"
+                v-model="item.row.attendenceStatusId" style="visibility: hidden; position: absolute;" />
+              {{model.code}}
+            </label>
+          </span> -->
+          <label v-for="(model,index) in attendanceStatusList" :class="addClass(model,item.row.attendenceStatusId)"
+            style="position: relative;">
+            <input :disabled="item.row.shouldAbsent" type="radio" :value="model.attendenceStatusId"
+              v-model="item.row.attendenceStatusId" style="visibility: hidden; position: absolute;" />
+            {{model.code}}
+          </label>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.attendanceBulk')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to mark attendance ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-hover btn-sm" data-dismiss="modal"> <i
+              class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button type="button" @click="insertModel" class="btn btn-hover btn-sm btn-primary"
+            data-dismiss="modal">Yes</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</page-area>
+
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Attendance
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control form-control-sm" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="loadClass">
+            </drop-down>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCourses" class="form-control form-control-sm" v-model="classId" required>
+                <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+              </select>
+              <label>Class</label>
+            </div>
+          </div>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input class="form-control form-control-sm" @change="loadCourses" v-model="datestring" type="date"
+                required>
+              <label>Date</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group" v-if="programCourseList">
+              <v-select label="fullName" v-model="timeTableId" :options="programCourseList"
+                :reduce="option => option.timeTableId">
+                <template slot="option" slot-scope="option">
+                  <span v-html="courseName(option)"></span>
+                </template>
+              </v-select>
+              <label class="caption-title">SectionCourse</label>
+            </div>
+          </div>
+
+          <div class="col-md-5 text-right">
+            <button v-if="!isApproved" data-toggle="modal" data-target="#myModal" class="b-add">
+              <feather icon="save"></feather>
+            </button>
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+          <div v-if="mergeSectionList.length>1" class="col-md-12">
+            <strong>Merged Sections</strong>&nbsp;&nbsp;
+            <span style="margin-right: 5px;" v-for="item in mergeSectionList"
+              class="badge badge-primary">{{item.sectionName}}</span>
+          </div>
+        </div>
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Slot Timming</th>
+                  <th>Attendance</th>
+                  <input type="checkbox" @change="markFullDayAbsent" class="mt-2" v-model="fullDayAbsent">Full Day
+                  Absent</input>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Ddata">
+                  <td class="v-align-middle">{{item.rollNo}}</td>
+                  <td class="v-align-middle">{{item.fullName}}</td>
+                  <td class="v-align-middle">{{item.startTime}} - {{item.endTime}}</td>
+                  <td class="v-align-middle">
+                    <div class="form-group">
+                      <select :disabled="isApproved" class="form-control form-control-sm"
+                        v-model="item.attendenceStatusId">
+                        <option v-for="(model,index) in attendanceStatusList" :value="model.attendenceStatusId">
+                          {{model.fullName}}</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Confirm Attendance?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" @click="insertModel" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

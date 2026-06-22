@@ -1,0 +1,195 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.bsetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.notification')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.notification')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.session')}}</label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.campus')}}</label>
+            <select-ex :options="campusCityList" groupBy="cityName" keyValue="campusId" displayValue="campusName"
+              v-model.trim="campusId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.program')}}</label>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" keyValue="campusProgramId"
+              displayValue="description" v-model.trim="campusProgramId" @input="loadClass"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.class')}}</label>
+            <select-ex :options="classList" groupBy="cityName" keyValue="classId" displayValue="fullName"
+              v-model.trim="classid"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.section')}}</label>
+            <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+              v-model.trim="sectionCourseLinkId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Notification Type</label>
+            <select-ex :options="data" keyValue="typeid" displayValue="typeName" v-model.trim="typeid"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Notification Title</label>
+            <input type="text" v-model.trim="titletxt" class="form-control" style="height: 29px;">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-control-label mb-3">
+          </label>
+          <div v-if="!imagetxt" class="dropzone-panel">
+              <div class="img-wrapper">
+                  <div class="img-icon">
+                      <label for="AttachFile" class="btn btn-primary btn-sm">Attach File</label>
+                      <input type="file" class="dropzone-select" style="display: none;"
+                          id="AttachFile" @input="onFileChange($event)">
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4" v-else>
+              <div class="group-logo-img">
+                  <img :src="imagetxt" />
+                  <tooltip text="Delete image">
+                      <button class="group-logo-del" vs-type="border" vs-icon="close"
+                          @click="removeImage">
+                          <i class="la la-trash"></i>
+                      </button>
+                  </tooltip>
+              </div>
+          </div>
+      </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label>Attachment</label>
+            <input type="file" @change="$(event)" >
+             <input type="text" v-model.trim="imagetxt" class="form-control" style="height: 29px;"> 
+          </div>
+        </div> -->
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Notification Title</label>
+             <input type="text" v-model.trim="title" placeholder="Notification Title...">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Notification Type</label>
+            <select-ex :options="data" keyValue="typeid" displayValue="typeName"
+              v-model.trim="typeid"></select-ex>
+          </div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>{{$t('navigation.notification')}}</label>
+            <textarea id="txtmessage" rows="10" cols="12" class="form-control form-control-sm" v-model.trim="Messaage"
+              placeholder="Enter Message">
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-md-9 col-md-3 text-right">
+          <div class="form-group">
+            <button class="btn btn-light btn-hover btn-sm btn-primary" @click="SaveBulkData()" data-dismiss="modal"
+              type="submit">
+              <i class="la la-save"></i> {{$t('button.save')}}</button>
+          </div>
+        </div>
+      </div>
+      <!-- <grid :data="datas" :columns="columns" pre="modal.notification.">
+        <template slot="action-area">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="sectionId" slot-scope="item">
+          <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+            v-model.trim="item.row.sectionCourseLinkId" style="width:200px"></select-ex>
+        </template>
+          <template slot="isSelected" slot-scope="item">
+          <label class="kt-checkbox kt-checkbox--brand">
+            <input type="checkbox" @input="check(item.row)" :disabled="item.row.isDisabled"
+              v-model="item.row.isSelected">
+            <span></span>
+          </label>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button v-if="canEdit" title="Save" type="button"
+            class="btn btn-outline-success btn-icon btn-sm btn-circle" @click="saveModal(item.row)" data-toggle="modal" data-target="#myModal">
+            <i class="la la-save"></i>
+          </button>
+        </template>
+      </grid> -->
+    </template>
+  </portlet-area>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.notification')}}</h3>
+            <p>Confirmation</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <p>Are you sure to Send Notification to selected student?</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="insertModel(saveDatasList)"
+            data-dismiss="modal" type="submit">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</page-area>

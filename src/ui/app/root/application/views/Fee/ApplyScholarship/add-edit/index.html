@@ -1,0 +1,67 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" height="auto"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-1">
+          <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="col-md-11 text-center">
+          <div class="modal-title">
+            {{title}}&nbsp;-&nbsp;<span class="font12">Modal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <div class="dataTables_wrapper no-footer">
+          <table class="table">
+            <thead>
+              <tr role="row">
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Ref No</th>
+                <th>Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in data">
+                <td class="v-align-middle">{{item.fullName}}</td>
+                <td class="v-align-middle">{{item.fatherName}}</td>
+                <td class="v-align-middle">{{item.referrenceNo}}</td>
+                <td class="v-align-middle">{{item.percentage}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <a href="#" class="btn btn-danger" @click="cancel">
+            <i class="card-icon card-icon-close"></i> Close</a>
+          <a href="#" class="btn btn-primary" @click="saveModel">
+            <i class="fa fa-save"></i> Save</a>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-6"><br>
+
+          </div>
+          <div class="col-md-6"><br>
+
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</modal>

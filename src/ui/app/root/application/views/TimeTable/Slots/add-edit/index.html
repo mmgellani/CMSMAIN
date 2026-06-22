@@ -1,0 +1,184 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="Slots-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        Slots&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-11">
+                                <select class="form-control form-control-sm" v-model="data.shiftId" required>
+                                    <option :value="model.shiftId" v-for="(model,index) in shiftList">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.shiftId.required" style="margin-left:15px;">Shift<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewShift">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadShift">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" type="time" v-model="data.startTime">
+                            <label :class="!$v.model.startTime.required">Start Time<span style="color:red">
+                                    *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" type="time" v-model="data.endTime">
+                            <label :class="!$v.model.endTime.required">End Time<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Shift v-on:submit="loadShift"></Shift>
+    <Campus v-on:submit="loadCampus"></Campus>
+</modal> -->
+
+<modal name="Slots-add-edit-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto" 
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h5 class="modal-title">{{$t('navigation.timeTableSlots')}}</h5>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body" style="padding: 4% !important;">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.setupSlots.fullName')}}<span style="color:red">
+                            *</span></label></label>
+                        <select-ex :options="shiftList" keyValue="shiftId" displayValue="fullName"
+                            v-model.trim="data.shiftId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.shiftId.$error">
+                            <span v-if="!$v.data.shiftId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupSlots.startTime')}}<span style="color:red">
+                                *</span></label>
+                        <input class="form-control  " type="time"
+                            :class="{'is-invalid': $v.data.startTime.$error}" v-model.trim="data.startTime"
+                            @input="$v.data.startTime.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.startTime.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupSlots.endTime')}}<span style="color:red">
+                                *</span></label>
+                        <input class="form-control  " type="time"
+                            :class="{'is-invalid': $v.data.endTime.$error}" v-model.trim="data.endTime"
+                            @input="$v.data.endTime.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.endTime.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

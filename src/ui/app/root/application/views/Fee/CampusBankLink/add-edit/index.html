@@ -1,0 +1,215 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="30%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        CampusBankLink&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close"
+                        v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <drop-down v-model="data.programDetailId" :data="campusProgramLinkList" group-by="programName"
+                            key-value="programDetailId" display-value="description" placeholder="Choose Program"></drop-down>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select v-model="data.bankId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.bankId" v-for="(model,index) in BankList">
+                                        {{model.fullName}}---{{model.accountNo}}
+                                    </option>
+                                </select>
+                                <label>Choose Bank<span style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewBank">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadBank">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Bank ></Bank>
+    <Campus ></Campus>
+</modal> -->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.feeCampusBankLink')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupCampusBankLink.program')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="campusProgramLinkList" keyValue="programDetailId"
+                            displayValue="description" v-model.trim="data.programDetailId" groupBy="programName">
+                        </select-ex>
+
+                        <!-- <drop-down v-model="data.programDetailId" :data="campusProgramLinkList" group-by="programName"
+                            key-value="programDetailId" display-value="description" placeholder="Choose Program">
+                        </drop-down> -->
+
+                        <div class="invalid-feedback" v-show="$v.data.programDetailId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupCampusBankLink.bank')}}<span
+                                style="color:red">
+                                *</span></label>
+
+                        <select-ex :options="BankList" keyValue="bankId" displayValue="fullName"
+                            v-model.trim="data.bankId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.bankId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12">
+                    <label> {{$t('modal.setupCampusBankLink.gender')}}</label>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6" v-for="item in  GenderSelectedList">
+                    <label class="m-0">{{item.name}} </label>
+                </div>
+                <div class="col-md-6" style="height: 30px;">
+                    <label class="kt-checkbox kt-checkbox--brand">
+                        <input type="checkbox" v-model.trim="item.isChecked">
+                        <span></span>
+                    </label>
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-control-label">
+                        {{$t('modal.setupCampusBankLink.gender')}}<span style="color:red">
+                            *</span></label>
+                </div>
+            </div>
+            <div class="row mt-3">
+
+
+                <!-- <div class="col-md-6">
+                            <label class="kt-checkbox kt-checkbox--brand">
+                                <input type="checkbox" v-model.trim="item.isChecked">
+                                <span></span>
+                            </label>
+                        </div> -->
+
+                <!-- <div class="col-md-3" v-for="item in  GenderSelectedList">
+                    <div class="form-group">
+                        <span class="radio radio-outline">
+                            <input type="radio" name="item.name" v-model.trim="item.isChecked">
+                            <span class="ml-2">{{item.name}}</span>
+                        </span>
+                    </div>
+
+                </div> -->
+
+                <div>
+                    <label class="kt-checkbox kt-checkbox--brand" v-for="item in  GenderSelectedList">
+                        <input class="mb-0" type="checkbox" v-model.trim="item.isChecked"> {{ item.name }}
+                        <span></span>
+                    </label>
+                </div>
+
+
+                <!-- {{item.name}} <input type="checkbox" v-model.trim="item.isChecked"> -->
+
+            </div>
+            <div class="row">
+
+                <label class="form-control-label">Show In Challan</label>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close">
+                        <input class="switch" type="checkbox" v-model="data.showInChallan">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

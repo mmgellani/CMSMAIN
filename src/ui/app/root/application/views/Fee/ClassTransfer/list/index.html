@@ -1,0 +1,71 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+         Transfer
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <select @change="loadCityCampus" v-model="sessionId" class="form-control form-control-sm" required>
+                      <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">
+                        {{model.fullName}}
+                      </option>
+                    </select>
+                    <label>Session</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                    display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                  </drop-down>
+                </div>
+                <div class="col-md-3">
+                  <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+                    key-value="campusProgramId" display-value="description" placeholder="Programs"
+                    @change="refreshData">
+                  </drop-down>
+                </div>
+                <div class="col-md-3">
+                  <button @click="refreshData" class="b-refresh">
+                    <feather icon="refresh-ccw"></feather>
+                  </button>
+                </div>
+              </div>
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row.refferenceNo)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+                <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+            </template>
+
+          </grid>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <!-- <delete-model v-on:submit="refreshData"></delete-model> -->
+</div>

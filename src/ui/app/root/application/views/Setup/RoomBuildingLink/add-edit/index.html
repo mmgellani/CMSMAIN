@@ -1,0 +1,219 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" width="40%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.setupRoomBuildingLink')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupRoomBuildingLink.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupRoomBuildingLink.room')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="roomList" keyValue="roomId" displayValue="fullName"
+                            v-model.trim="data.roomId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.roomId.$error">
+                            <span v-if="!$v.data.roomId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupRoomBuildingLink.building')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="buildingList" keyValue="buildingId" displayValue="fullName"
+                            v-model.trim="data.buildingId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.buildingId.$error">
+                            <span v-if="!$v.data.buildingId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div clas="form-group">
+                        {{$t('modal.setupRoomBuildingLink.remarks')}}<span style="color:red">
+                            *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.remarks.$error}" v-model.trim="data.remarks"
+                            @input="$v.data.remarks.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.remarks.$error">
+                            <span v-if="!$v.data.remarks.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.remarks.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Room v-on:submit="loadRoom"></Room>
+    <Building v-on:submit="loadBuilding"></Building>
+</modal>
+
+
+
+
+
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                       RoomBuildingLink&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="data.roomId" required>
+                                    <option v-for="(model,index) in roomList" :value="model.roomId">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.roomId.required" style="margin-left:15px;">Room<span style="color:red">
+                                        *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewRoom">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadRoom">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="data.buildingId" required>
+                                    <option v-for="(model,index) in buildingList" :value="model.buildingId">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.buildingId.required" style="margin-left:15px;">Building<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewBuilding">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadBuilding">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div clas="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="30" v-model="data.remarks" required>
+                            <label :class="!$v.model.remarks.required" class="left-p">Remarks<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Room v-on:submit="loadRoom"></Room>
+    <Building v-on:submit="loadBuilding"></Building>
+</modal> -->

@@ -1,0 +1,19 @@
+<div class="kt-grid kt-grid--hor kt-grid--root" style="min-height: 100%;">
+  <status-bar :clear-after="5" locale-prefix="dict"></status-bar>
+  <token-expiry :info-timeout="80" :warn-timeout="60" :error-timeout="true" :logout="true"></token-expiry>
+  <mobile-area />
+  <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page" @click="documentClicked($event)">
+    <area-sidebar />
+    <dashboard-widget id="dashboard-widget" v-if="dashboardVisible" :class="dashboardVisible ? 'slide-in':'slide-out'"
+      class="slider" @componentAdded="componentAdded" @closeDashboardWidget="closeDashboardWidget()">
+    </dashboard-widget>
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+      <area-header />
+      <router-view ref="routerContent" @toggleDashboardWidget="toggleDashboardWidget($event)" />
+      <template v-if="report">
+        <report-engine :data="report.data" :path="report.path"></report-engine>
+      </template>
+      <area-footer />
+    </div>
+  </div>
+</div>

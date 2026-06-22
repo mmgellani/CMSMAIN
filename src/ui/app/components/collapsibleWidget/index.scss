@@ -1,0 +1,49 @@
+// .button-collapse {
+//     text-align: center;
+//     position: absolute;
+//     top: 15px;
+//     right: 23px;
+//     cursor: pointer;
+//     color: #93a2dd;
+//     height: 2.5rem;
+//     width: 2.5rem;
+//     line-height: 2.5rem;
+//     font-size: 1.2rem;
+//     border-radius: 3px;
+
+//     &:hover {
+//         background: #f2f3f7;
+//     }
+// }
+
+.content-body {
+    .fa-arrow-right {
+        transform: rotate(315deg);
+    }
+}
+
+.title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.content-body {
+    min-height: 122px;
+}
+
+.card {
+    margin: 10px;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.progress {
+    height: 0.5rem !important;
+    margin-bottom: 5px;
+}

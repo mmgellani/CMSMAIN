@@ -1,0 +1,407 @@
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title"> {{$t('navigation.fee')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.refundchallan')}} </a>
+
+
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.refundchallan')">
+        <template slot="portlet-body">
+            <div v-if="ClickonChallan">
+                <!-- <i class="la la-arrow-left" @click="goBack" style="cursor: pointer; margin-left: 10px; width: 50px; height:40px"
+                    title="Go Back"></i> -->
+                <button class="btn btn-light btn-hover btn-sm btn-primary " style="cursor: pointer; margin-left: 10px"
+                    @click="goBack">Back</button>
+                <div class="row">
+                    <!-- <div class="col-md-3">
+                    
+                    <div class="form-group">
+                        <label> {{$t('modal.refundchallan.enterChallanNo')}}</label>
+                        <input type="text" class="form-control" v-model.trim="data.filterString"
+                            placeholder="Enter Here" v-on:keydown.enter="SearchFeeConfirmation"
+                            :class="{'is-invalid': $v.data.filterString.$error}">
+                        <div class="invalid-feedback" v-show="$v.data.filterString.$error">
+                            <span v-if="!$v.data.filterString.required">Required Field</span>
+                            <span v-if="!$v.data.filterString.minLength">Invalid Challan</span>
+                            <span v-if="!$v.data.filterString.maxLength">Invalid Challan</span>
+                        </div>
+                    </div>
+                </div> -->
+                </div>
+                <br>
+                <div v-if="StudentFeedata != null & !nodata">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label>ChallanNo</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                 color: black; font-size: 1rem;">
+                                        {{ data.filterString || '' }}
+                                    </span>
+                                </div>
+                            </div>
+                            <h6 class="mb-3">{{$t('modal.refundchallan.information')}}</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.reference')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                    color: black; font-size: 1rem;">
+                                        {{RefrenceNo ? RefrenceNo : ''}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.rollno')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                        color: black; font-size: 1rem;">
+                                        {{accountNo ? accountNo : ''}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.studentName')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                        color: black; font-size: 1rem;">
+                                        {{Name ? Name : ''}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.fatherName')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                    color: black; font-size: 1rem;">
+                                        {{fatherName ? fatherName : ''}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.program')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                    color: black; font-size: 1rem;">
+                                        {{description ? description : ''}}-{{className ? className : ''}}
+                                        ({{sectionName ? sectionName : ''}})</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{$t('modal.refundchallan.campusName')}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                                    color: black; font-size: 1rem;">
+                                        {{campusName ? campusName : ''}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 mt-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.installment')}}</label>
+                            <span>{{installmentNO ? installmentNO : ''}}</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.totalAmount')}}</label>
+                            <span>{{TotalAmount ? TotalAmount : ''}}</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.collectorName')}}</label>
+                            <span>{{collectorName ? collectorName : ''}}</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.paidStatus')}}</label>
+                            <span
+                                class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">{{$t('modal.refundchallan.challanPaid')}}</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.dueDate')}}</label>
+                            <span>{{dueDate ? dueDate : '' | formatDMY}}</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <label class="d-block">{{$t('modal.refundchallan.paidDate ')}}</label>
+                            <span>{{recievedDate ? recievedDate : '' | formatDMY}}</span>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-4">
+                            <h6 class="mb-3">{{$t('modal.refundchallan.feeParticulars')}}</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr role="row">
+                                        <th>{{$t('modal.refundchallan.particulars')}}</th>
+                                        <th>{{$t('modal.refundchallan.feeAmount')}}</th>
+                                        <th>{{$t('modal.refundchallan.Concession')}}</th>
+
+
+                                        <th>Refund Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="items in StudentFeedata">
+                                        <td class="align-middle"> {{items.feeHead}} </td>
+                                        <td class="align-middle"> {{items.payableAmount}} </td>
+                                        <td class="align-middle">{{items.concessionName}} </td>
+                                        <td class="align-middle" style="width: 170px;">
+                                            <input type="number" class="form-control form-control-sm ext-left"
+                                                style="width: 170px;" v-model.number="items.stfeeamount" min="0"
+                                                :disabled="isRefundDisabled(items)"
+                                                @input="calculateTotal"
+                                                @keypress="if (['.', ',', 'e'].includes($event.key)) $event.preventDefault()" />
+                                        </td>
+
+                                        <!-- <td class="align-middle">{{items.payableAmount}} </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+
+                                <div class="col-md-8"></div> <!-- empty space -->
+
+                                <div class="col-md-4">
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-md-6 font-weight-bold">
+                                            Total Refund Amount <span class="text-danger">*</span>
+                                        </label>
+
+                                        <div class="col-md-6">
+                                            <input type="number" class="form-control ext-left font-weight-bold"
+                                                v-model="refundAmount" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- <div class="col-md-4" >
+                            <div class="form-group validated" style="margin-left: 10px;">
+                        <label class="form-control-label">Total Refund Amount <span style="color:red">
+                                *</span></label>             
+                        <input type="number" class="form-control" 
+                        v-model="refundAmount" 
+                        :disabled
+                        @keypress="if (['.', ',', 'e'].includes($event.key)) $event.preventDefault()"
+                         @input="$v.data.refundAmount.$touch()"  
+                         :class="{ 'is-invalid': $v.data.refundAmount.$error }"
+                        />
+                    <div class="invalid-feedback" v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                        {{$t('validation.required')}}
+                    </div>
+                    
+                    <div class="invalid-feedback" v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.minValue" >
+                        Value cannot be less than zero
+                    </div>
+                    </div>
+
+                     </div> -->
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-4">
+                                    <h6 class="mb-3">Refund Entry Details</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label for="zone-id">Refund Date <span style="color:red">
+                                                *</span></label>
+                                        <date-picker v-model="paidDate" format="DD/MM/YYYY" lang="en"
+                                            :disabled="RefundChallan.length > 0">
+                                        </date-picker>
+                                        <div class="invalid-feedback" v-show="$v.data.paidDate.$error">
+                                            {{$t('validation.required')}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-md-4">
+
+                                    <div class="form-group validated" >
+                                        <label class="form-control-label"> Cheque Number <span style="color:red">
+                                                *</span></label>
+                                        <input type="text" class="form-control" v-model="chequeNo" maxlength="12" :disabled="RefundChallan.length > 0" />
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="form-group validated" style="margin-left: 10px;">
+                                        <label class="form-control-label"> Payee Name <span style="color:red">
+                                                *</span></label>
+                                        <input type="text" class="form-control" v-model="payeeName" maxlength="25" :disabled="RefundChallan.length > 0" />
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                                                </div>
+
+<div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="zone-id">Bank <span style="color:red">
+                                                *</span></label>
+                                        <select-ex :options="campusBankList" keyValue="campusBankLinkId"
+                                            displayValue="bankName" v-model="campusBankLinkId" :disabled="RefundChallan.length > 0">
+                                        </select-ex>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label for="zone-id">Cheque Issue Date <span style="color:red">
+                                                *</span></label>
+                                        <date-picker v-model="chequeIssueDate" format="DD/MM/YYYY" lang="en"
+                                            :disabled="RefundChallan.length > 0">
+                                        </date-picker>
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group validated" style="margin-left: 10px;">
+                                        <label class="form-control-label"> Remarks </label>
+                                        <input type="text" class="form-control" v-model="remarks" maxlength="25" :disabled="RefundChallan.length > 0"/>
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                </div>
+
+                                <div class="col-md-3" style="margin-top: 10px;">
+                                    <template v-if="canAdd">
+                                        <button class="btn btn-light btn-hover btn-sm btn-primary mt-4"
+                                            @click="InsertPaidDate" :disabled="RefundChallan.length > 0">Save</button>
+
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Refund Challan List</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr role="row">
+                                        <th>Student Name</th>
+                                        <th>Reg No</th>
+                                        <th>Father Name</th>
+                                        <th>Refund Amount</th>
+                                        <th>Refund Date</th>
+                                        <th>Refund Ref No</th>
+                                        <th>Cheque No</th>
+                                        <th>Payee Name</th>
+                                        <th>Bank </th>
+                                        <th>Cheque Issue Date </th>
+                                        <th>Remarks </th>
+
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr v-for="item in RefundChallan">
+                                        <td class="align-middle"> {{item.studentName}} </td>
+                                        <td class="align-middle"> {{item.rollNo}} </td>
+                                        <td class="align-middle"> {{item.fatherName}} </td>
+                                        <td class="align-middle"> {{item.refundAmount}} </td>
+                                        <td class="align-middle">{{item.refundDate ? item.refundDate : '' | formatDMY}}
+                                        </td>
+                                        <td class="align-middle"> {{item.challanNo}} </td>
+
+                                        <td class="align-middle"> {{item.chequeNumber}} </td>
+                                        <td class="align-middle"> {{item.payName}} </td>
+                                        <td class="align-middle"> {{item.bank}} </td>
+                                        <td class="align-middle">{{item.chequeDate ? item.chequeDate : '' | formatDMY}}
+                                        </td>
+                                        <td class="align-middle"> {{item.remarks}} </td>
+
+
+                                        <td class="align-middle">
+
+                                            <button @click="EditRefundChallan(item)" title="Edit" type="button"
+                                                class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                                                <i class="la la-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="nodata">
+                    <h2>No data Found!</h2>
+                </div>
+            </div>
+            <div v-if="challanlist">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <!-- <label>Enter Ref No./ Roll No.</label> -->
+                        <label class="form-control-label"> Enter Ref No./ Roll No. <span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control" v-model.trim="data.filterString"
+                            placeholder="Enter Here" v-on:keydown.enter="SearchStudentChallantoRefund">
+
+                    </div>
+
+                </div>
+                <grid :data="StudetnChallanList" :columns="columns" pre="modal.refundchallan.">
+
+                    <template slot="action" slot-scope="item">
+
+                        <button @click="serachchallanNo(item.row)"
+                            class="btn btn-outline-primary btn-icon btn-sm btn-circle" data-toggle="tooltip"
+                            data-placement="top" title="Add/View">
+                            <i class="la la-edit"></i>
+                        </button>
+
+
+
+                    </template>
+                </grid>
+            </div>
+
+        </template>
+    </portlet-area>
+    <add-edit-model v-on:submit="getRefundChallan"></add-edit-model>
+</page-area>

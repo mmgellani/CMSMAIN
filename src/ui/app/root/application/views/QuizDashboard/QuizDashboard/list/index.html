@@ -1,0 +1,31 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.quizDashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.quizDashboard')}} </a>
+    </div>
+  </template>
+
+  <tabs>
+    <tab name="Response Rate" :selected="true">
+      <response-rate></response-rate>
+    </tab>
+    <tab name="Performance">
+     <performance-analytics></performance-analytics>
+    </tab>
+    <tab name="Weekly Performance Trend">
+      <weekly-quiz-performance></weekly-quiz-performance>
+    </tab>
+    <tab name="Top Students">
+      <top-student></top-student>
+    </tab>
+  </tabs>
+</page-area>
+
+
+
+</page-area>

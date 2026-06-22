@@ -1,0 +1,174 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+
+
+<!-- 
+
+<div class="body-content off-canvas">
+  <div class="m-subheader ">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="m-subheader__title m-subheader__title--separator">
+          Student Fee Structure
+        </h3>
+        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+          <li class="m-nav__item">
+            <div class="m-input-icon m-input-icon--left">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Search...">
+              <span class="m-input-icon__icon m-input-icon__icon--left">
+                <span>
+                  <i class="fa fa-search"></i>
+                </span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+        data-dropdown-toggle="hover" aria-expanded="true">
+        <a href="#" @click="refreshData" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+          <i class="fa fa-refresh m--hide"></i>
+          <feather icon="refresh-ccw" ></feather>
+        </a>
+        <a href="#" @click="insertModel" v-if="canAdd" class="btn m-btn--pill m-btn--air btn-outline-primary m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+          <i class="fa fa-plus m--hide"></i>
+          <feather icon="plus-circle"></feather>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="m-content">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet m-portlet--tabs">
+          <div class="m-portlet__body" style="overflow-x: auto;">
+            <div class="table-responsive" v-if="canRead">
+              <div class="dataTables_wrapper no-footer">
+                <table class="table">
+                  <thead>
+                    <tr role="row">
+                      <th>StudentFeeStructureId</th>
+                      <th>AdmissionFormId</th>
+                      <th>ClassId</th>
+                      <th>InstallmentNo</th>
+                      <th>FeeHeadId</th>
+                      <th>FeeAmount</th>
+                      <th>ConcessionDetailId</th>
+                      <th>PayableAmount</th>
+                      <th>StatusId</th>
+                      <th>LoggerId</th>
+
+                      <th>Operation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in data">
+                      <td class="v-align-middle">{{item.studentFeeStructureId}}</td>
+                      <td class="v-align-middle">{{item.admissionFormId}}</td>
+                      <td class="v-align-middle">{{item.classId}}</td>
+                      <td class="v-align-middle">{{item.installmentNo}}</td>
+                      <td class="v-align-middle">{{item.feeHeadId}}</td>
+                      <td class="v-align-middle">{{item.feeAmount}}</td>
+                      <td class="v-align-middle">{{item.concessionDetailId}}</td>
+                      <td class="v-align-middle">{{item.payableAmount}}</td>
+                      <td class="v-align-middle">{{item.statusId}}</td>
+                      <td class="v-align-middle">{{item.loggerId}}</td>
+
+                      <td>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="editModel(item)" v-if="canEdit"><i class="la la-edit"></i></a>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="deleteModel(item)" v-if="canDelete"><i class="la la-trash"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div> -->
+
+
+<!-- new.... -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Student Fee Structure
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group search">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Search...">
+              <span class="fa fa-search form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="col-md-9 text-right">
+            <button v-if="canAdd" @click="insertModel" class="b-add">
+              <feather icon="plus-circle"></feather>
+            </button>
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw" ></feather>
+            </button>
+          </div>
+        </div>
+        <div v-if="canRead" class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>StudentFeeStructureId</th>
+                <th>AdmissionFormId</th>
+                <th>ClassId</th>
+                <th>InstallmentNo</th>
+                <th>FeeHeadId</th>
+                <th>FeeAmount</th>
+                <th>ConcessionDetailId</th>
+                <th>PayableAmount</th>
+                <th>Status</th>
+                <th>LoggerId</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in data">
+                <td class="v-align-middle">{{item.studentFeeStructureId}}</td>
+                <td class="v-align-middle">{{item.admissionFormId}}</td>
+                <td class="v-align-middle">{{item.classId}}</td>
+                <td class="v-align-middle">{{item.installmentNo}}</td>
+                <td class="v-align-middle">{{item.feeHeadId}}</td>
+                <td class="v-align-middle">{{item.feeAmount}}</td>
+                <td class="v-align-middle">{{item.concessionDetailId}}</td>
+                <td class="v-align-middle">{{item.payableAmount}}</td>
+                <td class="v-align-middle">{{item.statusId}}</td>
+                <td class="v-align-middle">{{item.loggerId}}</td>
+
+                <td>
+                  <a href="#" class="btn btn-primary" @click="editModel(item)" v-if="canEdit"><feather icon="edit" xclass="b-edit"></feather></a>
+                  <a href="#" class="btn btn-danger" @click="deleteModel(item)" v-if="canDelete"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

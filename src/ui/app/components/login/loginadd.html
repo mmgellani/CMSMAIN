@@ -1,0 +1,356 @@
+<div class="ems-login-wrapper">
+    <status-bar :clear-after="5" :locale-prefix="'validation.login'"></status-bar>
+
+    <!-- LEFT PANEL — Gold / Education Scene -->
+    <div class="ems-left-panel">
+        <div class="ems-left-bg"></div>
+        <div class="ems-left-overlay"></div>
+
+        <!-- ── Floating Education Particles ── -->
+        <div class="ems-particles">
+
+            <!-- P1: Diploma / Certificate scroll -->
+            <div class="ems-particle ems-p1">
+                <svg width="58" height="58" viewBox="0 0 58 58" fill="none">
+                    <rect x="6" y="11" width="46" height="36" rx="4" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.75)" stroke-width="1.8"/>
+                    <ellipse cx="29" cy="11" rx="23" ry="4.5" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                    <ellipse cx="29" cy="47" rx="23" ry="4.5" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                    <line x1="14" y1="22" x2="44" y2="22" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round"/>
+                    <line x1="14" y1="28" x2="44" y2="28" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round"/>
+                    <line x1="14" y1="34" x2="34" y2="34" stroke="rgba(255,255,255,0.55)" stroke-width="1.2" stroke-linecap="round"/>
+                    <circle cx="40" cy="38" r="7" fill="#F5C518" opacity="0.95"/>
+                    <circle cx="40" cy="38" r="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+                    <polygon points="40,33.5 41.2,36.8 44.7,37 42,39.2 42.9,42.7 40,40.8 37.1,42.7 38,39.2 35.3,37 38.8,36.8" fill="white" opacity="0.9"/>
+                </svg>
+            </div>
+
+            <!-- P2: Graduation cap with tassel -->
+            <div class="ems-particle ems-p2">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <polygon points="30,8 54,20 30,32 6,20" fill="rgba(255,255,255,0.95)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                    <!-- Cap shine -->
+                    <polygon points="30,8 54,20 50,22 28,11" fill="rgba(255,255,255,0.25)"/>
+                    <!-- Diploma tube under cap -->
+                    <path d="M14,23 L14,38 C14,38 20,46 30,46 C40,46 46,38 46,38 L46,23"
+                          stroke="rgba(255,255,255,0.9)" stroke-width="2.5" fill="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Tassel cord -->
+                    <line x1="54" y1="20" x2="54" y2="34" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="54" cy="36.5" r="4.5" fill="#F5C518"/>
+                    <line x1="51.5" y1="38.5" x2="48" y2="48" stroke="#F5C518" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="54"   y1="40"   x2="54" y2="50" stroke="#F5C518" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="56.5" y1="38.5" x2="60" y2="48" stroke="#F5C518" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- P3: Open book with text lines -->
+            <div class="ems-particle ems-p3">
+                <svg width="58" height="50" viewBox="0 0 58 50" fill="none">
+                    <!-- Left page -->
+                    <path d="M29,8 C29,8 18,5 6,9 L6,44 C6,44 17,41 29,44 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linejoin="round"/>
+                    <!-- Right page -->
+                    <path d="M29,8 C29,8 40,5 52,9 L52,44 C52,44 41,41 29,44 Z" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-linejoin="round"/>
+                    <!-- Spine -->
+                    <line x1="29" y1="8" x2="29" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                    <!-- Left text lines -->
+                    <line x1="10" y1="17" x2="25" y2="16" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="10" y1="22" x2="25" y2="21" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+                    <line x1="10" y1="27" x2="25" y2="26" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+                    <line x1="10" y1="32" x2="22" y2="31" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
+                    <!-- Right text lines -->
+                    <line x1="33" y1="16" x2="48" y2="17" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+                    <line x1="33" y1="21" x2="48" y2="22" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+                    <line x1="33" y1="26" x2="48" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+                    <line x1="33" y1="31" x2="43" y2="32" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round"/>
+                    <!-- Bookmark ribbon -->
+                    <path d="M46,5 L50,5 L50,16 L48,14 L46,16 Z" fill="#F5C518" opacity="0.9"/>
+                </svg>
+            </div>
+
+            <!-- P4: Trophy cup -->
+            <div class="ems-particle ems-p4">
+                <svg width="52" height="56" viewBox="0 0 52 56" fill="none">
+                    <!-- Cup body -->
+                    <path d="M14,6 L38,6 L38,24 C38,33 32,38 26,38 C20,38 14,33 14,24 Z"
+                          fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linejoin="round"/>
+                    <!-- Cup shine -->
+                    <path d="M16,8 C16,8 20,7 24,8 L24,22 C22,22 18,20 16,16 Z" fill="rgba(255,255,255,0.15)"/>
+                    <!-- Left handle -->
+                    <path d="M14,10 C14,10 6,12 6,19 C6,24 11,26 14,24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Right handle -->
+                    <path d="M38,10 C38,10 46,12 46,19 C46,24 41,26 38,24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Star on cup -->
+                    <polygon points="26,14 27.5,19 32,19 28.5,22 29.8,27 26,24.5 22.2,27 23.5,22 20,19 24.5,19" fill="#F5C518" opacity="0.95"/>
+                    <!-- Stem -->
+                    <line x1="26" y1="38" x2="26" y2="46" stroke="rgba(255,255,255,0.75)" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Base -->
+                    <rect x="14" y="46" width="24" height="5" rx="2.5" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                </svg>
+            </div>
+
+            <!-- P5: Pencil + ruler -->
+            <div class="ems-particle ems-p5">
+                <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+                    <!-- Ruler body -->
+                    <rect x="4" y="22" width="46" height="14" rx="3" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                    <!-- Ruler ticks -->
+                    <line x1="12" y1="22" x2="12" y2="28" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+                    <line x1="20" y1="22" x2="20" y2="31" stroke="rgba(255,255,255,0.8)" stroke-width="1.4"/>
+                    <line x1="28" y1="22" x2="28" y2="28" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+                    <line x1="36" y1="22" x2="36" y2="31" stroke="rgba(255,255,255,0.8)" stroke-width="1.4"/>
+                    <line x1="44" y1="22" x2="44" y2="28" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+                    <!-- Pencil -->
+                    <path d="M36,4 L44,4 L48,8 L18,38 L14,38 L10,34 Z" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linejoin="round"/>
+                    <!-- Pencil body stripe -->
+                    <line x1="38" y1="6" x2="46" y2="10" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <!-- Pencil tip -->
+                    <path d="M10,34 L14,38 L12,42 Z" fill="#F5C518" opacity="0.9"/>
+                    <!-- Eraser -->
+                    <rect x="38" y="2" width="8" height="5" rx="1.5" fill="#F5C518" opacity="0.85"/>
+                </svg>
+            </div>
+
+            <!-- P6: Student / person with book -->
+            <div class="ems-particle ems-p6">
+                <svg width="52" height="58" viewBox="0 0 52 58" fill="none">
+                    <!-- Head -->
+                    <circle cx="26" cy="10" r="8" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.8)" stroke-width="1.8"/>
+                    <!-- Body -->
+                    <path d="M10,36 C10,26 16,22 26,22 C36,22 42,26 42,36 L42,48 L10,48 Z"
+                          fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.75)" stroke-width="1.8" stroke-linejoin="round"/>
+                    <!-- Book held by student -->
+                    <rect x="16" y="30" width="14" height="18" rx="2" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/>
+                    <line x1="16" y1="39" x2="30" y2="39" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                    <!-- Graduation cap on head -->
+                    <polygon points="26,3 36,8 26,13 16,8" fill="white" opacity="0.9"/>
+                    <line x1="36" y1="8" x2="36" y2="14" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+                    <circle cx="36" cy="15.5" r="2.5" fill="#F5C518"/>
+                </svg>
+            </div>
+
+            <!-- P7: Apple (teacher/education icon) -->
+            <div class="ems-particle ems-p7">
+                <svg width="50" height="54" viewBox="0 0 50 54" fill="none">
+                    <!-- Leaf -->
+                    <path d="M28,6 C28,6 36,2 38,8 C40,14 32,14 28,12 C24,14 16,14 18,8 C20,2 28,6 28,6 Z" fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                    <!-- Stem -->
+                    <path d="M25,10 C25,10 24,6 26,4" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Apple body -->
+                    <path d="M8,20 C6,16 8,10 14,10 C18,10 22,14 25,14 C28,14 32,10 36,10 C42,10 44,16 42,20 C46,26 46,34 42,40 C38,46 35,48 30,48 C27,48 25,46 25,46 C25,46 23,48 20,48 C15,48 12,46 8,40 C4,34 4,26 8,20 Z"
+                          fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.78)" stroke-width="1.8"/>
+                    <!-- Shine -->
+                    <ellipse cx="16" cy="22" rx="4" ry="6" fill="rgba(255,255,255,0.18)" transform="rotate(-20 16 22)"/>
+                    <!-- Gold star on apple -->
+                    <polygon points="25,26 26.5,30.5 31,30.5 27.5,33.2 28.7,37.7 25,35.3 21.3,37.7 22.5,33.2 19,30.5 23.5,30.5" fill="#F5C518" opacity="0.9"/>
+                </svg>
+            </div>
+
+            <!-- Glowing dots -->
+            <div class="ems-dot ems-d1"></div>
+            <div class="ems-dot ems-d2"></div>
+            <div class="ems-dot ems-d3"></div>
+            <div class="ems-dot ems-d4"></div>
+            <div class="ems-dot ems-d5"></div>
+            <div class="ems-dot ems-d6"></div>
+        </div>
+
+        <!-- Left Content -->
+        <div class="ems-left-content">
+            <div class="ems-brand-logo">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                    <polygon points="28,12 44,20 28,28 12,20" fill="white" opacity="0.95"/>
+                    <path d="M16 22 L16 33 C16 33 21 38 28 38 C35 38 40 33 40 33 L40 22" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="44" y1="20" x2="44" y2="30" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+                    <circle cx="44" cy="32.5" r="3" fill="#2D2B6F"/>
+                    <line x1="42.5" y1="33.5" x2="40" y2="39" stroke="#2D2B6F" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="44" y1="34.5" x2="44" y2="40" stroke="#2D2B6F" stroke-width="1.8" stroke-linecap="round"/>
+                    <line x1="45.5" y1="33.5" x2="48" y2="39" stroke="#2D2B6F" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <div class="ems-brand-name">
+                    <span class="ems-brand-ems">CMS</span>
+                    <span class="ems-brand-tagline">Campus Management System</span>
+                </div>
+            </div>
+
+            <h1 class="ems-brand-title">
+                Empowering<br>
+                <span class="ems-title-highlight">Every Student's</span><br>
+                Journey
+            </h1>
+            <p class="ems-brand-subtitle">
+                A comprehensive campus platform trusted by leading institutions across the nation.
+            </p>
+
+            <div class="ems-features">
+                <div class="ems-feature-item">
+                    <div class="ems-feature-icon">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <span>Academic Management</span>
+                </div>
+                <div class="ems-feature-item">
+                    <div class="ems-feature-icon">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <span>Enrollment &amp; Admissions</span>
+                </div>
+                <div class="ems-feature-item">
+                    <div class="ems-feature-icon">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><polyline points="23 6 13 16 8 11 1 18"/></svg>
+                    </div>
+                    <span>Performance Analytics</span>
+                </div>
+                <div class="ems-feature-item">
+                    <div class="ems-feature-icon">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <span>Student Success Portal</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ems-left-footer">
+            <div class="ems-stat"><span class="ems-stat-num">200<sup>+</sup></span><span class="ems-stat-label">Institutions</span></div>
+            <div class="ems-stat-divider"></div>
+            <div class="ems-stat"><span class="ems-stat-num">50K<sup>+</sup></span><span class="ems-stat-label">Students</span></div>
+            <div class="ems-stat-divider"></div>
+            <div class="ems-stat"><span class="ems-stat-num">99<sup>%</sup></span><span class="ems-stat-label">Uptime</span></div>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL — Navy #2D2B6F -->
+    <div class="ems-right-panel">
+        <div class="ems-right-bg"></div>
+        <div class="ems-right-overlay"></div>
+
+        <div class="ems-r-particles">
+            <div class="ems-r-particle ems-rp1">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,3 19,11 27,12 21,18 23,26 16,22 9,26 11,18 5,12 13,11" fill="rgba(245,197,24,0.3)" stroke="rgba(245,197,24,0.5)" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="ems-r-particle ems-rp2">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <rect x="3" y="4" width="18" height="22" rx="2" fill="none" stroke="rgba(245,197,24,0.35)" stroke-width="1.2"/>
+                    <line x1="7" y1="10" x2="17" y2="10" stroke="rgba(245,197,24,0.45)" stroke-width="1" stroke-linecap="round"/>
+                    <line x1="7" y1="14" x2="17" y2="14" stroke="rgba(245,197,24,0.4)" stroke-width="1" stroke-linecap="round"/>
+                    <line x1="7" y1="18" x2="13" y2="18" stroke="rgba(245,197,24,0.35)" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="ems-r-particle ems-rp3">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                    <polygon points="13,3 15.5,9.5 22,10 17,15 18.5,22 13,18.5 7.5,22 9,15 4,10 10.5,9.5" fill="rgba(245,197,24,0.28)" stroke="rgba(245,197,24,0.5)" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="ems-r-dot ems-rd1"></div>
+            <div class="ems-r-dot ems-rd2"></div>
+            <div class="ems-r-dot ems-rd3"></div>
+            <div class="ems-r-dot ems-rd4"></div>
+        </div>
+
+        <div class="ems-form-container">
+            <div class="ems-form-header">
+                <div class="ems-form-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D2B6F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 22 8.5 12 15 2 8.5 12 2"/>
+                        <path d="M6 11.5 L6 17 C6 17 8.5 20 12 20 C15.5 20 18 17 18 17 L18 11.5"/>
+                        <line x1="22" y1="8.5" x2="22" y2="14"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="ems-form-title">Welcome Back</h2>
+                    <p class="ems-form-desc">Sign in to your institution portal</p>
+                </div>
+            </div>
+
+            <div class="ems-form-card">
+                <form class="ems-form" novalidate @submit.prevent="login()">
+
+                    <div class="ems-field-group" :class="{ 'ems-field-error': $v.data.username.$error }">
+                        <label class="ems-label">Email Address</label>
+                        <div class="ems-input-wrap">
+                            <span class="ems-input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </span>
+                            <input class="ems-input" type="text" name="username" autocomplete="username"
+                                placeholder="you@institution.edu"
+                                v-model.trim="data.username"
+                                @input="$v.data.username.$touch()" />
+                        </div>
+                        <span class="ems-error-msg" v-show="$v.data.username.$error">
+                            <span v-if="!$v.data.username.required">Email is required</span>
+                            <span v-else-if="!$v.data.username.email">Enter a valid email address</span>
+                        </span>
+                    </div>
+
+                    <div class="ems-field-group" :class="{ 'ems-field-error': $v.data.password.$error }">
+                        <label class="ems-label">Password</label>
+                        <div class="ems-input-wrap">
+                            <span class="ems-input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                            </span>
+                            <input class="ems-input"
+                                :type="showPassword ? 'text' : 'password'"
+                                name="password" autocomplete="current-password"
+                                placeholder="Enter your password"
+                                v-model.trim="data.password"
+                                @input="$v.data.password.$touch()" />
+                            <span class="ems-input-toggle" @click="showPassword = !showPassword">
+                                <svg v-if="!showPassword" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                <svg v-else width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                    <line x1="1" y1="1" x2="23" y2="23"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="ems-error-msg" v-show="$v.data.password.$error">
+                            <span v-if="!$v.data.password.required">Password is required</span>
+                            <span v-else-if="!$v.data.password.minLength">Minimum 4 characters required</span>
+                        </span>
+                    </div>
+
+                    <div class="ems-form-options">
+                        <label class="ems-remember">
+                            <input type="checkbox" v-model="rememberMe" />
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="ems-forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="ems-btn-signin">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                            <polyline points="10 17 15 12 10 7"/>
+                            <line x1="15" y1="12" x2="3" y2="12"/>
+                        </svg>
+                        <span>Sign In</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="ems-trust-row">
+                <span class="ems-trust-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Secure Login
+                </span>
+                <span class="ems-trust-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    256-bit SSL
+                </span>
+                <span class="ems-trust-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    FERPA Compliant
+                </span>
+            </div>
+            <p class="ems-copyright">&copy; 2026 CMS — Campus Management System</p>
+        </div>
+    </div>
+</div>

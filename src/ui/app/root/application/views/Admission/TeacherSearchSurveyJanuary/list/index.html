@@ -1,0 +1,229 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link"> CMS Student Survey / January 2023</a>
+    </div>
+  </template>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.reports.feeReports.city')}}</label>
+        <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId">
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="form-control-label">{{$t('modal.reports.feeReports.subCity')}}</label>
+
+        <select-ex :options="subCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="form-control-label">Enter Teacher Name</label>
+      <input type="text" class="form-control" v-model="filterString">
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-3 form-group">
+      <button @click="loadData();" class="btn  btn-sm btn-outline-primary btn-primary btn-block"
+        style="color: aliceblue;">
+        Generate
+      </button>
+    </div>
+    <div class="col-md-7 "></div>
+    <div class="col-md-2">
+      <button @click="clearSelection" align="right" class="btn  btn-sm btn-outline-primary btn-primary btn-block"
+        style="color: aliceblue;">
+        Reset
+      </button>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-10 "></div>
+    <div class="col-md-2">
+      <button align="right" @click="BackSelection()" class="btn  btn-sm btn-outline-primary btn-primary btn-block"
+        style="color: aliceblue;">
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" v-if="DATA">
+      <table class="table">
+        <thead>
+          <th class="text-center">
+            Name
+          </th>
+          <th class="text-center">
+            Sub-City
+          </th>
+          <!-- <th class="text-center">
+            Campus
+          </th> -->
+          <th class="text-center">
+            Courses
+          </th>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in data" @click="pushData(item)" class="rowHover"
+            :class="currIndex===index?'highlightRow':''" style="cursor: pointer;">
+            <td class="highlightRow">
+              <strong v-html="item.teacherName"></strong>
+            </td>
+            <td>
+              {{item.subcity}}
+            </td>
+            <!-- <td>
+              {{item.campusName}}
+            </td> -->
+            <td>
+              {{item.courseName}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-12" v-else  >
+      <table class="table">
+        <thead>
+          <th class="text-center">
+            Name
+          </th>
+          <th class="text-center">
+            Sub-City
+          </th>
+          <th class="text-center">
+            Courses
+          </th>
+        </thead>
+        <tbody>
+          <tr class="rowHover" :class="currIndex===index?'highlightRow':''" style="cursor: pointer;">
+            <td class="highlightRow">
+              <strong v-html="selectedItem.teacherName"></strong>
+            </td>
+            <td>
+              {{selectedItem.subcity}}
+            </td>
+            <!-- <td>
+              {{item.campusName}}
+            </td> -->
+            <td>
+              {{selectedItem.courseName}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section v-if="checkSurvey" class="row mt-5">
+    <div class="col-md-12" id="id">
+      <div class="card-box" style="background: #273b73eb;">
+        <div class="inner">
+          <p class="mb-4"> Teacher Summary </p>
+          <div class="row" v-for="item in dataSurvey" v-if="data1">
+            <div class="col-md-6 text-center">
+              <h3 class="text-center"> {{item.teacherName}}</h3>
+              <span>Teacher Name</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.rating }}</h3>
+              <span>Rating </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="icon">
+
+          <i class="la la-file-text" aria-hidden="true"></i>
+
+        </div> -->
+      </div>
+    </div>
+  </section>
+  <br><br><br>
+  <div class="fixed-header-table" v-if="data1" style="text-align: center;">
+    <h3>Course Wise Rating</h3>
+    <table style="width:100%;" class="customTable">
+      <thead>
+        <tr>
+          <th rowspan="2">
+            Course Name
+          </th>
+          <th>
+            Total Submitted
+          </th>
+          <th>
+            Average Rating
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in CourseData" class="rowHover" style="cursor: pointer;">
+          <td>
+            <span v-html="item.courseName"></span>
+          </td>
+          <td>
+            {{item.totalSubmitted}}
+          </td>
+          <td>
+            {{item.rating}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <br><br><br>
+  <div class="fixed-header-table" v-if="data1" style="text-align: center;">
+    <h3>Section Wise Rating</h3>
+    <table style="width:100%;" class="customTable">
+      <thead>
+        <tr>
+          <th rowspan="2">
+            Course Name
+          </th>
+         
+          <th rowspan="2">
+            Section Name
+          </th>
+          <th>
+            Total Submitted
+          </th>
+          <th>
+            Average Rating
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in SectionData" class="rowHover" style="cursor: pointer;">
+          <td>
+            <span v-html="item.courseName"></span>
+          </td>
+         
+          <td>
+            <span v-html="item.sectionName"></span>
+          </td>
+          <td>
+            {{item.total}}
+          </td>
+          <td>
+            {{item.rating}}
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </page-area>

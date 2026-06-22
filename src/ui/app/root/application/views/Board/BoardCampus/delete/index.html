@@ -1,0 +1,22 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="delete-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="30%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+            <h5>Model <span class="semi-bold">{{title}}</span></h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-danger btn-block" type="submit" @click="deleteModel">Delete</button>
+                    <button class="btn btn-primary btn-block" type="submit" @click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,157 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="Designations-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header" style="padding: 0 !important;">
+            <div class="col-md-6">
+                <h3 class="modal-title">Designation</h3>
+                <p>{{title}}</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <span aria-hidden="true" style="font-size: 30px !important;">×</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body" style="padding: 4% !important;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :class="!$v.model.fullName.required">Designation Title<span style="color:red">
+                                *</span></label>
+                        <input class="form-control form-control-sm" v-model="data.fullName" v-uppercase required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :class="!$v.model.fullName.required">Category<span style="color:red"> *</span></label>
+                        <input class="form-control form-control-sm" v-model="data.category" v-uppercase required>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+
+                    <button class="btn btn-outline-inverse mb-xs width-80" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary mb-xs width-80" :disabled="!allowSubmit"
+                        @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+<modal name="staffCourse-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.staffCourse')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('navigation.registrationCourse')}}</label><span style="color:red">
+                            *</span></label>
+                        <select-ex :options="courseList" keyValue="courseId" displayValue="fullName" v-model="data.courseId"
+                           >
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.courseId.$error">
+                            <span v-if="!$v.data.courseId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('navigation.setupCampusBuildingLink')}}</label><span style="color:red">
+                            *</span></label>
+                        <select-ex :options="campusbuildingList" keyValue="campusBuildingId" displayValue="campusBuildingName"
+                            v-model="data.campusBuildingId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.campusBuildingId.$error">
+                            <span v-if="!$v.data.campusBuildingId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="kt-option kt-option-custom">
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title mt-1">
+                                            {{$t('modal.staffCourse.isPrimary')}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" :checked="data.isPrimary" v-model="data.isPrimary">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

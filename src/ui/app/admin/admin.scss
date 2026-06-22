@@ -1,0 +1,16 @@
+// vendor depencies
+$fa-font-path: "../../node_modules/font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+// Project specific
+@import "../styles/index";
+
+// Make sidebar (aside) menu SVG icons white.
+// Only recolor elements that already declare a `fill` (the icon line-art);
+// the bounding `<g fill="none">`/`<polygon>` stays transparent so icons render
+// as white outlines, not solid white boxes.
+#kt_aside_menu {
+    .kt-menu__link-icon svg g [fill] {
+        fill: #ffffff !important;
+    }
+}

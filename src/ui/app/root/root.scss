@@ -1,0 +1,83 @@
+// vendor depencies
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+@import '../styles/index';
+
+.mx-datepicker {
+    width: 100% !important;
+}
+
+.xlsx-button {
+    border: none !important;
+    background: #2D2B6F !important;
+    font-size: 0.875rem !important;
+    padding: 0.5rem 1rem !important;
+    height: 30px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    transition: filter 0.2s !important;
+    &:hover { filter: brightness(1.15) !important; }
+}
+
+.bounce-enter-active {
+    animation: bounce-in .5s;
+}
+.index--1,.index--2,.index--3,.index--4,.index--5,.index--6,.index--7,.index--8,.index--9{
+    display: none !important;
+}
+.bounce-leave-active {
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    50% {
+        -webkit-transform: scale(1.25);
+        transform: scale(1.05);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes bounce-in {
+    0% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    50% {
+        -webkit-transform: scale(1.25);
+        transform: scale(1.05);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.activated{
+    color: #2D2B6F !important;
+    background-color: #F5C518 !important;
+    border-color: #E8A800 !important;
+}
+
+// Make sidebar (aside) menu SVG icons white.
+// The Metronic vertical-menu mixin recolors the icon shapes using the aside config
+// (default #494b74). We only recolor elements that already declare a `fill`
+// (the actual icon line-art); the bounding `<g fill="none">`/`<polygon>` stays
+// transparent so icons render as white outlines, not solid white boxes.
+#kt_aside_menu {
+    .kt-menu__link-icon svg g [fill] {
+        fill: #ffffff !important;
+    }
+}

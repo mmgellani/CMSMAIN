@@ -1,0 +1,546 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.attendance')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceReports')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.attendanceReports')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label>{{$t('modal.reports.feeReports.reports')}}</label>
+          <select v-model="check" @change="selectReport" class="form-control" required>
+            <option value="Attendance Report" v-if="canRead">Attendance Report</option>
+            <option value="El Attendance Report" v-if="canRead">El Attendance Report</option>
+            <option value="Attendance Detail Report" v-if="canRead">Attendance Detail Report</option>
+            <option value="Subject Wise Attendance Report" v-if="canRead">Subject Wise Report</option>
+            <option value="Attendance Status Report" v-if="canAdd">Attendance Status Report</option>
+            <option value="Attendance Summary" v-if="canAdd">Attendance Summary</option>
+            <option value="Attendance Individual Summary" v-if="canAdd">Attendance Individual Summary</option>
+            <option value="Teacher Marked Attendance" v-if="canEdit">Teacher Marked Attendance</option>
+            <option value="Student Attendance Status" v-if="canDelete">Student Attendance Status</option>
+            <option value="Student Attendance Status Subject Wise" v-if="canDelete">Student Attendance Status Subject Wise</option>
+            <option value="Attendance Register" v-if="canDelete">Attendance Register</option>
+            <option value="Attendance Register Absent" v-if="canDelete">Attendance Register (Absent)</option>
+            <option value="Teacher Wise Attendance Status Report" v-if="canRead">Teacher Wise Attendance Status Report</option>
+
+          </select>
+        </div>
+        <div class="col-md-3" v-if="checkbutton3">
+
+          <div class="form-group">
+            <div class="row">
+              <label class="form-control-label">{{$t('modal.reports.feeReports.rollNoEnter')}}</label>
+              <!-- <input type="text" class="form-control form-control-sm" v-model="filterString"
+                v-on:keydown.enter="getAttendanceIndividSummary"> -->
+              <input type="text" class="form-control form-control-sm" v-model="filterString"
+                v-on:keydown.enter="getAttendanceIndividSummary">
+              <!-- <label> Enter Roll No/ Name </label> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="checkbutton2">
+        <div class="col-md-3 mt-2">
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('modal.reports.feeReports.session')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex :options="sessionModel" keyValue="sessionId" displayValue="fullName" v-model="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2" v-if="checkcity1">
+          <div class="form-group">
+            <label class="form-control-label">{{$t('modal.reports.feeReports.city')}}<span style="color:red">
+                *</span></label>
+            <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId"
+              @input="loadSubCity">
+            </select-ex>
+          </div>
+        </div>
+
+        <div class="col-md-3 mt-2" v-if="checksubcityEx">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.subCity')}}<span style="color:red"> *</span></label>
+            <select-ex :options="subCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId"
+               >
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3" v-if="checkbutton4Ex">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.campus')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkcampus,'CampusId')"
+                      v-model="checkcampus">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="campusCityListEx" keyValue="campusId" displayValue="campusName" v-model="campusId"
+              groupBy="cityName" :disabled="!checkcampus" @input="addParam(checkcampus,'CampusId')">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2" v-if="checkcity" >
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.campus')}}<span
+              style="color:red">
+              *</span></label>
+            <select-ex @input="loadPrograms" :options="campusCityList" keyValue="campusId" displayValue="campusName"
+              v-model="campusId" groupBy="cityName" required>
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.program')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkprogram,'ProgramId')"
+                      v-model="checkprogram">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="programList" keyValue="programId" displayValue="programName" v-model="programId"
+              @input="addParam(checkprogram,'ProgramId')" :disabled="!checkprogram" required>
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.programDetail')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkProg,'ProgramDetailId')"
+                      v-model="checkProg">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <!-- <select-ex :options="programDetailList" keyValue="programDetailId" displayValue="description"
+              groupBy="fullName" v-model.trim="programDetailId" @input="addParam(checkProg,'ProgramDetailId')"
+              :disabled="!checkProg">
+            </select-ex> -->
+            <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+              v-model="programDetailId" @input="addParam(checkProg,'ProgramDetailId')" :disabled="!checkProg"
+              groupBy="programName">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3" v-if="checkbutton25">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.class')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkclass,'ClassId')"
+                      v-model="checkclass">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId" 
+              @input="addParam(checkclass,'ClassId')" :disabled="!checkclass">
+            </select-ex>
+          </div>
+      </div>
+    
+      </div>
+      <div class="row" v-if="checkbutton19" >
+      <div class="col-md-3 mt-2" >
+        <div class="form-group">
+          <label>Date <span
+            style="color:red">
+            *</span></label>
+          <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+            lang="en" v-mask="'##/##/####'"></date-picker>
+        </div>
+      </div>
+    </div>
+      <div class="row" v-if="checkbutton22">
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.class')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkclass,'ClassId')"
+                      v-model="checkclass">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId" 
+              @input="addParam(checkclass,'ClassId')" :disabled="!checkclass">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3"  v-if="checkbutton20">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.section')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checksection,'SectionId')"
+                      v-model="checksection">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="sectionList" keyValue="sectionId" displayValue="sectionName" v-model.trim="sectionId"
+              @input="addParam(checksection,'SectionId')" :disabled="!checksection">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2" v-if="checkbutton11">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.from')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2" v-if="checkbutton11">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.to')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-3 mt-2" v-if="checkbutton19">
+          <div class="form-group">
+            <label>Date</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div> -->
+        
+        <div class="col-md-3" v-if="checkstatus">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.from')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkdatebutton,'FromDate')"
+                      v-model="checkdatebutton">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" :disabled="!checkdatebutton"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3" v-if="checkstatus">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.to')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkdatebutton,'ToDate')"
+                      v-model="checkdatebutton">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'" :disabled="!checkdatebutton"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2"   v-if="checkbutton12">
+          <div class="form-group">
+            <label>Date</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="eldate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+          <span style="color:red;">All selection mandatory for this report</span>
+        </div>
+
+      </div>
+     
+      <!-- <div class="row" v-if="checkbutton2">
+      </div> -->
+      <div class="row" v-if="checkbutton4">
+        <div class="col-md-3 mt-2">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.from')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3 mt-2">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.to')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+              lang="en" v-mask="'##/##/####'"></date-picker>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" v-if="checkbutton15">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.examBulk.course')}}<span style="color:red"> *</span></label>
+            <select-ex :options="courseLists"  keyValue="courseId" displayValue="courseName"
+              v-model.trim="courseid" >
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        
+        <div class="col-md-12 text-right">
+          <button v-if="checkbuttonteacher" class="btn btn-light btn-hover btn-sm btn-primary"
+          @click="generateteacherrep">Generate 
+        </button>
+          <button v-if="checkbutton" class="btn btn-light btn-hover btn-sm btn-primary"
+            @click="generate">Generate</button>
+            <button v-if="checkbutton15 && checkbutton==false" class="btn btn-light btn-hover btn-sm btn-primary"
+            @click="generate3">Generate Subject Wise Attendence</button>
+        </div>
+      </div>
+      <div v-if="checkbutton3">
+        <grid :data="displayList" :columns="columns" pre="modal.attendanceReports.">
+
+          <template slot="action" slot-scope="item">
+            <button @click="viewReport(item.row)" v-if="canEdit" title="View Report" type="button"
+              class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+              <i class="la la-file-text"></i>
+            </button>
+          
+
+
+          </template>
+
+
+        </grid>
+      </div>
+
+    </template>
+  </portlet-area>
+  <!-- <report-engine :data="reportData" :path="report"></report-engine> -->
+</page-area>
+
+
+
+
+
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+        
+      <div class="card-title">
+        Attendance Report
+      </div>
+      <div class="card-body">
+        <div class="row mt-4">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select v-model="check" @change="selectReport" class="form-control form-control-sm" required>
+
+                <option value="Attendance Report" v-if="canRead">Attendance Report</option>
+                <option value="Attendance Detail Report" v-if="canRead">Attendance Detail Report</option>
+                <option value="Subject Wise Attendance Report" v-if="canRead">Subject Wise Report</option>
+
+                <option value="Attendance Status Report" v-if="canAdd">Attendance Status Report</option>
+                <option value="Attendance Summary" v-if="canAdd">Attendance Summary</option>
+                
+                <option value="Teacher Marked Attendance" v-if="canEdit">Teacher Marked Attendance</option>
+                
+                <option value="Student Attendance Status" v-if="canDelete">Student Attendance Status</option>
+              </select>
+              </select>
+              <label>Reports</label>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="form-control form-control-sm" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionModel" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadPrograms">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <select @change="loadProgramsOfCampus" :disabled="!checkprogram" class="form-control form-control-sm"
+                    v-model="programId" required>
+                    <option :key="index" :value="model.programId" v-for="(model,index) in programList">
+                      {{model.programName}}
+                    </option>
+                  </select>
+                  <label>Program</label>
+                </div>
+              </div>
+              <div class="col-md-3 mt-1">
+                <input type="checkbox" @change="addParam(checkprogram,'ProgramId')" v-model="checkprogram"
+                  class="switch">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <select :disabled="!checkshift" class="form-control form-control-sm" v-model="shiftId"
+                    @change="addParam(checkshift,'ShiftId')" required>
+                    <option :key="index" :value="model.shiftId" v-for="(model,index) in shiftList">
+                      {{model.fullName}}
+                    </option>
+                  </select>
+                  <label>Shift</label>
+                </div>
+              </div>
+              <div class="col-md-3 mt-1">
+                <input type="checkbox" @change="addParam(checkshift,'ShiftId')" v-model="checkshift" class="switch">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <select @change="addParam(checkProg,'ProgramDetailId')" Placeholder="Program" :disabled="!checkProg"
+                    v-model="programDetailId" class="form-control form-control-sm" required>
+                    <template v-for="(item,index) in programDDL">
+                      <template v-if="item.group">
+                        <option value="item.id" class="bold-option" disabled>
+                          <strong>{{item.title}}</strong>
+                        </option>
+                        <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                          <span v-html="'&#8680; ' + chItem.text"></span>
+                        </option>
+                      </template>
+                    </template>
+                  </select>
+                  <label>Program Detail</label>
+                </div>
+              </div>
+              <div class="col-md-3 mt-1">
+                <input type="checkbox" class="switch" @change="addParam(checkProg,'ProgramDetailId')"
+                  v-model="checkProg">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <select :disabled="!checkclass" class="form-control form-control-sm" v-model="classId"
+                    @change="addParam(checkclass,'ClassId')" @click.prevent="loadSection" required>
+                    <option :key="index" :value="model.classId" v-for="(model,index) in classList">
+                      {{model.fullName}}
+                    </option>
+                  </select>
+                  <label>Class</label>
+                </div>
+              </div>
+              <div class="col-md-3 mt-1">
+                <input type="checkbox" @change="addParam(checkclass,'ClassId')" v-model="checkclass" class="switch">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <select :disabled="!checksection" class="form-control form-control-sm" v-model="sectionId"
+                      @change="addParam(checksection,'SectionId')" required>
+                      <option :key="index" :value="model.sectionId" v-for="(model,index) in sectionList">
+                        {{model.sectionName}}
+                      </option>
+                    </select>
+                    <label>Section</label>
+                  </div>
+                </div>
+                <div class="col-md-3 mt-1">
+                  <input type="checkbox" @change="addParam(checksection,'SectionId')" v-model="checksection"
+                    class="switch">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="date" v-model="fromDate" class="form-control form-control-sm" />
+              <label>From: </label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="date" v-model="toDate" class="form-control form-control-sm" />
+              <label>To: </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <button v-if="checkbutton" class="btn btn-primary" @click="generate">Generate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <report-engine :data="reportData" :path="report"></report-engine>
+</div> -->

@@ -1,0 +1,118 @@
+<modal name="view-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">Academic Calendar</h3>
+                <p>View Details</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="row mb-3" v-if="calendarviewList[0]?.holidayType==null">
+                <div class="col-md-12 text-right"> {{calendarviewList[0]?.holidayType}}
+                    <!-- <button title="Edit" type="button" @click="edit" 
+                        class="btn btn-outline-primary btn-icon btn-sm btn-circle" v-if="calendarviewList.length"><i
+                            class="la la-edit"></i></button>  --> 
+                    <button title="Delete" type="button" @click="remove" v-if="calendarviewList.length==0"
+                        class="btn btn-outline-danger btn-icon btn-sm btn-circle"><i class="la la-trash"></i></button>
+                </div>
+            </div>
+
+            <div class="row" v-if="calendarviewList.length==0">
+                <div class="col-md-6">
+                    <h6>
+                        Exam Type
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    {{model?.schedule?.title}}
+                </div>
+                <div class="col-md-6">
+                    <h6>From Date</h6>
+                </div>
+                <div class="col-md-6">
+                    {{model?.schedule?.start?._date | formatDMY}}
+                </div>
+                <div class="col-md-6">
+                    <h6>To Date</h6>
+                </div>
+                <div class="col-md-6">
+                    {{model?.schedule?.end?._date | formatDMY}}
+                </div>
+            </div>
+
+            <div class="row" v-for="item in calendarviewList">
+                <div class="col-md-6">
+                    <h6> Sub-City</h6>
+                </div>
+                <div class="col-md-6">
+                    {{item.subCity}}
+                </div>
+                <div class="col-md-6" v-if="item.topic">
+                    <h6>Topic</h6>
+                </div>
+                <div class="col-md-6" v-if="item.topic">
+                    {{item.topic}}
+                </div>
+                <div class="col-md-6" v-if="item.course">
+                    <h6>Course</h6>
+                </div>
+                <div class="col-md-6" v-if="item.course">
+                    {{item.course}}
+                </div>
+                <div class="col-md-6" v-if="item.chapter">
+                    <h6>Chapter</h6>
+                </div>
+                <div class="col-md-6" v-if="item.chapter">
+                    {{item.chapter}}
+                </div>
+                <div class="col-md-6">
+                    <h6>Session</h6>
+                </div>
+                <div class="col-md-6">
+                    {{item.session}}
+                </div>
+                <div class="col-md-6">
+                    <h6>Class</h6>
+                </div>
+                <div class="col-md-6">
+                    {{item.class}}
+                </div>
+                <div class="col-md-6" v-if="item.holidayType">
+                    <h6> Holiday Type</h6>
+                </div>
+                <div class="col-md-6" v-if="item.holidayType">
+                    {{item.holidayType}}
+                </div>
+                <div class="col-md-6">
+                    <h6>From Date</h6>
+                </div>
+                <div class="col-md-6">
+                    {{item.fromDate | formatDMY}}
+                </div>
+                <div class="col-md-6">
+                    <h6>To Date</h6>
+                </div>
+                <div class="col-md-6">
+                    {{item.toDate | formatDMY}}
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

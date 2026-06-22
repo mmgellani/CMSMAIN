@@ -1,0 +1,23 @@
+<li :class="menuToggled" aria-haspopup="true" data-ktmenu-submenu-toggle="hover" v-if="hasChildrens">
+    <a href="javascript:;" class="kt-menu__link kt-menu__toggle" @click.prevent="isOpened = !isOpened">
+        <span class="kt-menu__link-icon">
+            <div v-html="userMenu.svgPath"></div>
+        </span>
+        <span class="kt-menu__link-text">{{$t('navigation.' + userMenu.name)}}</span>
+        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+    </a>
+    <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+        <ul class="kt-menu__subnav">
+            <nav-link v-for="link in userMenu.children" :userMenu="link" :key="link.name" />
+        </ul>
+    </div>
+</li>
+<li :class="activeLink" aria-haspopup="true" v-else>
+    <router-link :to="userMenu.route" class="kt-menu__link " v-if="userMenu.isVisable">
+        <span class="kt-menu__link-icon" v-if="userMenu.isHeader">
+            <div v-html="userMenu.svgPath"></div>
+        </span>
+        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot" v-else><span></span> </i>
+        <span class="kt-menu__link-text">{{$t('navigation.' + userMenu.name)}}</span>
+    </router-link>
+</li>

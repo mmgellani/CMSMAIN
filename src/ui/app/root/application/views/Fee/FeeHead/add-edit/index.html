@@ -1,0 +1,137 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="FeeHead-add-edit-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="bounce"  top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.feeFeeHead')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fee Type<span style="color:red"> *</span></label>
+                            <select class="form-control  " v-model="data.feeType">
+                                <option :value="1">One Time</option>
+                                <option :value="2">Recursive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group validated">
+                            <label class="left-p form-control-label">{{$t('modal.setupFeeHead.challanType')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <select-ex :options="FeeChallanTypeList" keyValue="challanTypeId" displayValue="fullName"
+                                v-model.trim="data.challanTypeId">
+                            </select-ex>
+                            <div class="invalid-feedback" v-show="$v.data.challanTypeId.$error">
+                                <span v-if="!$v.data.challanTypeId.required">{{$t('validation.required')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select v-model="data.challanTypeId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.challanTypeId"
+                                        v-for="(model,index) in FeeChallanTypeList">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Challan Type<span style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewChallanType">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadChallanType">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.setupFeeHead.fullName')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control  "
+                                :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                                @input="$v.data.fullName.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.setupFeeHead.description')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control  "
+                                :class="{'is-invalid': $v.data.description.$error}" v-model.trim="data.description"
+                                @input="$v.data.description.$touch()">
+                            <div class="invalid-feedback" v-show="$v.data.description.$error">
+                                {{$t('validation.required')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group validated">
+                            <label class="form-control-label"> {{$t('modal.setupFeeHead.orderBy')}}<span
+                                    style="color:red">
+                                    *</span></label>
+                            <input type="text" class="form-control  "
+                                :class="{'is-invalid': $v.data.orderBy.$error}" v-model.trim="data.orderBy">
+                            <div class="invalid-feedback" v-show="$v.data.orderBy.$error">
+                                {{$t('validation.required')}}
+                            </div>
+
+
+                            <!-- <input class="form-control form-control-sm" v-model="data.orderBy" required>
+                            <label>Order By</label> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <ChallanType-add-edit-model v-on:submit="loadChallanType"></ChallanType-add-edit-model> -->
+</modal>

@@ -1,0 +1,505 @@
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.fee')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.financeReports')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.financeReports')">
+    <template slot="portlet-body">
+      <div class="row" >
+        <div class="form-group col-md-3">
+          <label>{{$t('modal.reports.feeReports.reports')}}</label>
+          <select v-model="check" @change="selectReport" class="form-control form-control-sm" required>
+            <!-- <option value="Daily Fee Report" v-if="canRead">Daily Fee Report</option> -->
+            <!-- <option value="Daily Fee Statement" v-if="canRead">Daily Fee Statement</option> -->
+            <option value="Student Finance Report" v-if="canRead">Student Ledger Report </option>
+                        <option value="Program Wise  Finance Report" v-if="canRead">Program Wise Report </option>
+            <option value="Campus Wise  Finance Report" v-if="canRead">Campus Wise Report </option>
+            <option value="Campus Wise Student  Finance Report" v-if="canRead">Campus Wise Student Register Report </option>
+            <option value="Campus Wise Student  Finance Report(Difference Format)" v-if="canRead">Campus Wise (Difference Format) Report </option>
+
+            <option value="City Wise  Finance Report" v-if="canRead">City Wise Report</option>
+            <option value="City Wise Student Finance Report" v-if="canRead">City Wise Student Register Report </option>
+            <option value="City wise Consolidated API Collection Report" v-if="canRead">City Wise Consolidated Report </option>
+            <option value="City wise Bank Consolidated API Collection Report" v-if="canRead">City And Bank Wise Consolidated Report </option>
+            <option value="Business Unit wise  Finance Report" v-if="canRead"> Company Wise Consolidated Report </option>
+                                    <option value="Program_Wise Student Register Report" v-if="canRead">Program Wise Student Register Report </option>
+
+
+
+
+          </select>
+        </div>
+      </div>
+
+      <div class="row"v-if="flage1">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.studentDetails.enterRefNoRoLLNoStudentName')}}<span style="color:red"> *</span></label>
+            <input type="text" class="form-control" v-model="filterString"
+              v-on:keydown.enter="getstudents()">
+          </div>
+        </div>
+        <div class="col-md-3" v-if="flage88">
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.class')}}</label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName"
+              v-model="classId" @input="getstudents">
+            </select-ex>
+          </div>
+      
+        </div>
+
+
+        
+    </div>
+    <div class="row" v-if="showdata">
+      <div class="col-md-3">
+        <div class="form-group ">
+          <div class="kt-input-icon kt-input-icon--left"><input type="text" id="grid_search" placeholder="Search..." class="form-control"> <span class="kt-input-icon__icon kt-input-icon__icon--left"><span><i class="la la-search"></i></span></span></div>
+       
+    </div>
+  </div>
+  <div class="col-md-3"> &nbsp;</div>
+      <div class="col-md-6 text-right">
+        <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+        </button> 
+        
+        <!-- <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+          Export to Excel  </button> -->
+
+      </div>
+    </div>
+
+    <div class="row">
+
+
+    
+
+   
+        
+       <div class="col-md-3 mt-2" v-if="flage3">
+        <div class="form-group">
+          <label>{{$t('modal.reports.feeReports.city')}}<span style="color:red"> *</span></label>
+          <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId">
+          </select-ex>
+        </div>
+      </div>
+    
+
+            </div>
+
+  <div class="row">
+      <div class="col-md-3 mt-2" v-if="checkbutton4 ">
+        <div class="form-group">
+          <label>{{$t('modal.reports.feeReports.session')}}<span style="color:red"> *</span></label>
+          <select-ex :options="sessionModel" keyValue="sessionId" displayValue="fullName" v-model="sessionId">
+          </select-ex>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2" v-if="flage">
+        <div class="form-group">
+          <label>{{$t('modal.reports.feeReports.city')}}<span style="color:red"> *</span></label>
+          <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId"  @input="loadSubCity()">
+          </select-ex>
+        </div>
+      </div>
+      <div class="col-md-3 mt-2" v-if="flage55">
+        <div class="form-group">
+          <label>{{$t('modal.reports.feeReports.subCity')}}<span style="color:red"> *</span></label>
+          <select-ex :options="subCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId" @input="loadCityCampus()">
+          </select-ex>
+        </div>
+         </div>
+
+                <div class="col-md-3" v-if="flage59">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.subCity')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkshift,'subCityId')"
+                      v-model="checkshift">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="subCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId"
+              @input="addParam(checkshift,'subCityId')" :disabled="!checkshift">
+            </select-ex>
+          </div>
+        </div>
+
+           <div class="col-md-3 mt-2" v-if="checkbutton3 ">
+      <div class="form-group">
+        <label>{{$t('modal.reports.feeReports.campus')}}<span style="color:red"> *</span></label>
+        <select-ex :options="campusCityListEx" keyValue="campusId" displayValue="campusName" v-model="campusId"
+          groupBy="cityName" @input="addParam(checkcampus,'CampusId')">
+        </select-ex>
+      </div>
+
+     
+    </div>
+
+     
+   
+
+   <div class="col-md-3" v-if="checkbutton25">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>{{$t('modal.reports.feeReports.class')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkclass,'ClassId')"
+                      v-model="checkclass">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId" 
+              @input="addParam(checkclass,'ClassId')" :disabled="!checkclass">
+            </select-ex>
+          </div>
+      </div>
+      <div class="col-md-3" v-if="checkinstPaid">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+
+                <label>{{$t('modal.helper.Concession.installmentNo')}}</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkinstallment,'InstallmentNo')"
+                      v-model="checkinstallment">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex @input="addParam(checkinstallment,'InstallmentNo')" :options="maxInstallments" keyValue="item"
+              displayValue="item" v-model="installNo" :disabled="!checkinstallment">
+            </select-ex>
+          </div>
+        </div>
+ <!-- <div class="col-md-3" v-if="checktranport">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <label>Gender</label>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                  <label class="m-0">
+                    <input type="checkbox" checked="checked" @change="addParam(checkgender,'GenderId')"
+                      v-model="checkgender">
+                    <span></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            <select-ex :options="genderModel" keyValue="genderId" displayValue="description" v-model="genderId"
+              @input="addParam(checkgender,'GenderId')" :disabled="!checkgender">
+            </select-ex>
+          </div>
+        </div> -->
+    
+ </div>
+        
+
+  <diV class="row">
+
+    <div class="col-md-3" v-if="checkbutton5">
+      <div class="form-group">
+
+        <label>{{$t('modal.reports.feeReports.program')}}<span style="color:red"> *</span></label>
+
+        <select-ex :options="programList" keyValue="programId" displayValue="programName" v-model="programId"
+          @input="addParam(true,'ProgramId')">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3" v-if="checkStdRevenueEx">
+      <div class="form-group">
+
+        <label>{{$t('modal.reports.feeReports.programDetail')}}<span style="color:red"> *</span></label>
+
+        <select-ex :options="campusProgramLinkList" keyValue="programDetailId" displayValue="description"
+          v-model="programDetailId" @input="addParam(true,'ProgramDetailId')" groupBy="programName">
+        </select-ex>
+      </div>
+    </div>
+
+    <div class="col-md-3" v-if="checkclassEnr">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+            <label>{{$t('modal.reports.feeReports.class')}}<span style="color:red"> *</span></label>
+          </div>
+        </div>
+        <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model="classId"
+          >
+        </select-ex>
+      </div>
+    </div>
+
+
+    <div class="col-md-3 mt-2" v-if="showSection">
+      <div class="form-group">
+        <label>{{$t('modal.reports.examinationReports.section')}}<span style="color:red">
+            *</span></label>
+        <select-ex :options="sectionList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+          v-model="sectionCourseLinkId" required>
+        </select-ex>
+      </div>
+    </div>
+
+
+    <div class="col-md-3" v-if="checktranport">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+            <label>Gender</label>
+          </div>
+          <div class="col-md-4 text-right">
+            <span class="kt-switch kt-switch--sm kt-switch--icon">
+              <label class="m-0">
+             <input type="checkbox"   @change="addParam(checkgender,'genderId')"
+                  v-model="checkgender">  
+                <span></span>
+              </label>
+            </span>
+          </div>
+        </div>
+        <select-ex :options="genderModel" keyValue="genderId" displayValue="description" v-model="genderId"
+         @input="addParam(checkgender,'genderId')"  :disabled="!checkgender" >
+        </select-ex>
+      </div>
+    </div>
+ <div class="col-md-3 mt-2" v-if="flage33">
+        <div class="form-group">
+          <label>{{$t('modal.reports.feeReports.city')}}<span style="color:red"> *</span></label>
+          <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="cityId">
+          </select-ex>
+        </div>
+      </div>
+    
+  <div class="col-md-3 mt-2" v-if="checkDated">
+      <div class="form-group">
+        <label>Dated<span style="color:red"> *</span></label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+          lang="en" v-mask="'##/##/####'"></date-picker>
+      </div>
+    </div>
+    <div class="col-md-3 mt-2" v-if="checkfromDate">
+      <div class="form-group">
+        <label>From Date<span style="color:red"> *</span></label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+          lang="en" v-mask="'##/##/####'" @change="changedate"></date-picker>
+      </div>
+    </div>
+    <div class="col-md-3 mt-2" v-if="checktoDate">
+      <div class="form-group">
+        <label>To Date<span style="color:red"> *</span></label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate"  format="DD/MM/YYYY"
+          lang="en" v-mask="'##/##/####'"  :not-before="fromDate"></date-picker>
+      </div>
+    </div>
+
+  </diV>
+  <div class="row"style="display: flex;
+  justify-content: space-between;" v-if="checkexcel">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+    <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+    </button> 
+     -->
+    <button @click="getcityfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate </button>
+
+  </div>
+</div>
+
+
+<div class="row"style="display: flex;
+  justify-content: space-between;" v-if=" checkStdexcel">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+    <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+    </button>  -->
+    
+    <button @click="getcitystudentfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate </button>
+
+  </div>
+</div>
+<div class="row"style="display: flex;
+  justify-content: space-between;" v-if=" checkbankexcel">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+    <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+    </button>  -->
+    
+    <button @click="getbankcitycondilfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate </button>
+
+  </div>
+</div>
+
+<div class="row"style="display: flex;
+  justify-content: space-between;" v-if=" checkStddifferenceexcel">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+    <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+    </button>  -->
+    
+    <button @click="generate()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate  </button>
+
+  </div>
+</div>
+<div class="row"style="display: flex;
+  justify-content: space-between;" v-if="checkbusnes">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+   
+    <button @click="getbusniessunitfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate   </button>
+
+  </div>
+</div>
+
+<div class="row"style="display: flex;
+  justify-content: space-between;" v-if="citycondil">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+
+    
+    <button @click="getcitycondilfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate  </button>
+
+  </div>
+</div>
+
+<div class="row"style="display: flex;
+justify-content: space-between;" v-if="checkprogm">
+<div class="col-md-3"> &nbsp;</div>
+<div class="col-md-6 text-right" >
+  <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+  </button>  -->
+  
+  <button @click="getprogramfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+   Generate  </button>
+
+</div>
+</div>
+
+
+<div class="row"style="display: flex;
+justify-content: space-between;" v-if="checkprogmlatest">
+<div class="col-md-3"> &nbsp;</div>
+<div class="col-md-6 text-right" >
+  <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+  </button>  -->
+  
+  <button @click="getprogramfinancelatest()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+   Generate  </button>
+
+</div>
+</div>
+<div class="row" style="display: flex;
+justify-content: space-between;" v-if="checkcamp">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+   
+    
+    <button @click="getcampusfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate  </button>
+
+  </div>
+</div>
+
+<div class="row" style="display: flex;
+justify-content: space-between;" v-if="checkstudcamp">
+  <div class="col-md-3"> &nbsp;</div>
+  <div class="col-md-6 text-right" >
+    <!-- <button  @click="reset" class="btn btn-light btn-hover btn-sm btn-outline-primary"><i class="la la-refresh"></i> Reload
+    </button>  -->
+    
+    <button @click="getcampusstudentfinance()" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+      Generate  </button>
+
+  </div>
+</div>
+
+         <div class="row" v-if="showdata" > 
+        <div class="col-md-12">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr role="row">
+                <th class="align-middle">{{$t('modal.studentFinance.ref_No')}}  </th>
+                <th class="align-middle">{{$t('modal.studentFinance.Reg_No')}}</th>
+                <th class="align-middle">{{$t('modal.studentFinance.student_Name')}}</th>
+                <th class="align-middle">{{$t('modal.studentFinance.father_Name')}}</th>
+                <th class="align-middle">{{$t('modal.studentFinance.program')}}</th>
+            <th class="align-middle">{{$t('modal.studentFinance.action')}}</th>  
+          
+              </tr>
+            </thead>
+            <tbody>
+             <tr v-if="studentRecordnew.length === 0">
+  <td colspan="6" class="text-center text-dark">No Record Found</td>
+</tr>
+              <tr v-for="item in studentRecordnew">
+                <td>{{item.ref_No}}</td>
+                <td>{{item.reg_No}}</td>
+                <td>{{item.student_Name}}</td>
+                <td>{{item.father_Name}}</td>
+                <td>{{item.program}}</td>
+                <td> <button @click="getstudentsty(item.ref_No)" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                  Generate </button></td>
+                <!-- <td>
+                  <div v-for="phone in getPhone(item.guardians)">{{phone.section}}</div>
+                </td> -->
+                <!-- <td>
+                  <button @click="editStudent(item)" class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                    data-toggle="tooltip" data-placement="top" title="Edit Student">
+                    <i class="la la-edit"></i>
+                  </button>
+                  <button @click="editModel(item)" class="btn btn-outline-success btn-icon btn-sm btn-circle"
+                    data-toggle="tooltip" data-placement="top" title="Student Profile">
+                    <i class="la la-user"></i>
+                  </button>-->
+                  <!-- <button v-if="item.rollNo.length>0" class="btn btn-outline-info btn-icon btn-sm btn-circle"
+                    @click="ShowPassword(item)" data-toggle="tooltip" data-placement="top" title="ShowPassword">
+                    <i class="la la-envelope-o"></i>
+                  </button> 
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </template>
+  </portlet-area>
+</page-area>

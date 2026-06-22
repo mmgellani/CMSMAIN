@@ -1,0 +1,71 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.registration')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.ssatStudentData')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.ssatStudentData')">
+    <template slot="portlet-body">
+      <div class="row"> 
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="col-md-9">
+              Data Type <span style="color:red"> *</span>
+            </label>
+            <select-ex :options="campusTypeList" keyValue="fullName" displayValue="fullName" v-model="typeId"
+            @input="clear"
+               >
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.date')}}<span style="color:red"> *</span></label>
+            <!-- <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="dated" format="DD/MM/YYYY"
+                lang="en" @input="refreshData"></date-picker> -->
+
+            <date-picker @input="refreshData" class="input-28" id="change-width" ref="changeWidth" v-model="dated"
+              format="DD/MM/YYYY" lang="en"></date-picker>
+          </div>
+        </div>
+        <div class="col-md-3"></div> 
+        <div class="col-md-3 pt-12">
+          <div class="form-group  ">
+            <label>  </label>
+            <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary btn-light"  style="margin-top: 35px;" >
+              Generate 
+            </button>
+              <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary"  style="margin-top: 35px;" >
+                {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+              </button>
+             </div>
+        </div>
+      </div>
+      <div v-if="check">
+
+        <grid :data="allstudentdata" :columns="columns"  pre="modal.ssatStudents." >
+          
+        </grid>
+ 
+       
+      </div>
+
+    </template>
+
+
+
+
+  </portlet-area>
+</page-area>

@@ -1,0 +1,303 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="modal-title">
+
+                        {{title}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body ModeColor">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select @change="loadCity" class="form-control form-control-sm" v-model="zoneId">
+                                    <option :value="item.zoneId" v-for="(item,index) in zoneList"> {{item.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Zone</label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewZone">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadZone">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="sessionId">
+                                    <option :value="item.sessionId" v-for="(item,index) in sessionList">
+                                        {{item.fullName}}
+                                    </option>
+                                </select>
+                                <label style="margin-left:15px;">Session</label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewSession">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadSession">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" v-model="installmentNo" required>
+                                <option :value="n" v-for="n in 12"> {{n}} </option>
+                            </select>
+                            <label>Installment<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <h1>City in Selected Zone</h1>
+                        <ul class="custom">
+                            <li v-for="(model, index) in cityList"> {{model.fullName}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h1>Fee Heads<span style="color:red"> *</span></h1>
+                        <ul>
+                            <li v-for="(model, index) in feeHeadListCB">
+                                <input class="switch" type="checkbox" @change="reloadFeaHead(model)"
+                                    v-model="model.isChecked">
+                                {{model.fullName}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h1>Class<span style="color:red"> *</span></h1>
+                        <ul>
+                            <li v-for="(model, index) in ClassDataListCB">
+                                <input class="switch" type="checkbox" @change="reloadClassList(model)"
+                                    v-model="model.isChecked">
+                                {{model.fullName}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs" role="tablist" data-init-reponsive-tabs="dropdownfx">
+                            <li class="nav-item" v-for="(model, index) in programList">
+                                <a class="nav-link" :class="index == 0 ? 'active' : ''" data-toggle="tab" role="tab"
+                                    :data-target="'#' + index" href="#">{{model.fullName}}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div v-for="(model, index) in programList"
+                                :class="index == 0 ? 'tab-pane active show' : 'tab-pane'" :id="index">
+                                <fee-detail :zoneId="zoneId" :sessionId="sessionId" :feeHeadList="feeHeadDataListCB"
+                                    :installmentNo="installmentNo" :program="model" :shiftList="shiftList"
+                                    :classList="TempClassDataListCB" :tempCheckStatus="tempCheckStatus"
+                                    :tempFeeHead="tempFeeHead" :saveTrigger="isSave">
+                                </fee-detail>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Zone v-on:submit="loadZone"></Zone>
+    <Session v-on:submit="loadSession"></Session>
+</modal>
+ -->
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="70%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.feeFeeStructure.feeGeneration')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.feeFeeStructure.zone')}}</label>
+                        <select-ex :options="zoneList" keyValue="zoneId" displayValue="fullName" v-model.trim="zoneId"
+                            @input="loadCity">
+                        </select-ex>
+                        <!-- <select @change="loadCity" class="form-control form-control-sm" v-model="zoneId">
+                            <option :value="item.zoneId" v-for="(item,index) in zoneList"> {{item.fullName}}
+                            </option>
+                        </select> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.feeFeeStructure.session')}}</label>
+                        <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName"
+                            v-model.trim="sessionId">
+                        </select-ex>
+                        <!-- <select class="form-control form-control-sm" v-model="sessionId">
+                            <option :value="item.sessionId" v-for="(item,index) in sessionList">
+                                {{item.fullName}}
+                            </option>
+                        </select> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.feeFeeStructure.installment')}}</label>
+                        <select-ex :options="maxInstallments" keyValue="item" displayValue="item"
+                            v-model.trim="installmentNo">
+                        </select-ex>
+
+                        <!-- <select class="form-control form-control-sm" v-model="installmentNo" required>
+                            <option :value="n" v-for="n in 12"> {{n}} </option>
+                        </select> -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>{{$t('modal.feeFeeStructure.program')}}</h6>
+                        </div>
+                        <!-- <div class="col-md-4 text-right">
+                            <label class="kt-checkbox kt-checkbox--brand" title="check all"
+                                style="margin-bottom:20px ;">
+                                <input type="checkbox">
+                                <span></span>
+                            </label>
+                        </div> -->
+                    </div>
+                    <div class="fee-structure-square">
+                        <div class="row">
+                            <div class="col-md-12" v-for="data in programList">
+                                <label class="kt-checkbox kt-checkbox--brand"> {{data.fullName}}
+                                    <input @change="insertIntoTab(data)" type="checkbox" v-model.trim="data.isChecked">
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>{{$t('modal.feeFeeStructure.feeType')}}</h6>
+                        </div>
+                    </div>
+                    <div class="fee-structure-square">
+                        <div class="row">
+                            <div class="col-md-12" v-for="data in feeHeadListCB">
+                                <label class="kt-checkbox kt-checkbox--brand"> {{data.fullName}}
+                                    <input type="checkbox" @change="reloadFeaHead(data)" v-model.trim="data.isChecked">
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>{{$t('modal.feeFeeStructure.class')}}</h6>
+                        </div>
+                    </div>
+                    <div class="fee-structure-square">
+                        <div class="row">
+                            <div class="col-md-12" v-for="data in ClassDataListCB">
+                                <label class="kt-checkbox kt-checkbox--brand"> {{data.fullName}}
+                                    <input v-model="data.isChecked" type="checkbox" @change="reloadClassList(data)">
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <tabs>
+                        <tab v-for="(model, index) in programListTb" :name="model.fullName" :selected="true">
+                                <fee-detail v-on:enableSave="changeIsSave" :indexId="index" :zoneId="zoneId" :sessionId="sessionId" :feeHeadList="feeHeadDataListCB"
+                                :installmentNo="installmentNo" :program="model" :shiftList="shiftList"
+                                :classList="TempClassDataListCB" :tempCheckStatus="tempCheckStatus"
+                                :tempFeeHead="tempFeeHead" :saveTrigger="isSave">
+                            </fee-detail>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+
+            </div>
+        </div>
+    </div>
+</modal>

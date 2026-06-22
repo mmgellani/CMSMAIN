@@ -1,0 +1,1234 @@
+{
+  "ReportVersion": "2018.2.1.0",
+  "ReportGuid": "b1dee7f04aae4508ada40c638afbece5",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(1603272245000+0500)/",
+  "ReportChanged": "/Date(1605787687484+0500)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "PreviewSettings": 268435455,
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "DataSources": {
+      "0": {
+        "Ident": "StiDataTableSource",
+        "Name": "root",
+        "Alias": "root",
+        "Columns": {
+          "0": {
+            "Name": "lazyLoader",
+            "Index": -1,
+            "NameInSource": "lazyLoader",
+            "Alias": "lazyLoader",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "examDetailId",
+            "Index": -1,
+            "NameInSource": "examDetailId",
+            "Alias": "examDetailId",
+            "Type": "System.Guid"
+          },
+          "2": {
+            "Name": "admissionFormId",
+            "Index": -1,
+            "NameInSource": "admissionFormId",
+            "Alias": "admissionFormId",
+            "Type": "System.Guid"
+          },
+          "3": {
+            "Name": "examName",
+            "Index": -1,
+            "NameInSource": "examName",
+            "Alias": "examName",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "code",
+            "Index": -1,
+            "NameInSource": "code",
+            "Alias": "code",
+            "Type": "System.Char"
+          },
+          "5": {
+            "Name": "sectionName",
+            "Index": -1,
+            "NameInSource": "sectionName",
+            "Alias": "sectionName",
+            "Type": "System.String"
+          },
+          "6": {
+            "Name": "campusName",
+            "Index": -1,
+            "NameInSource": "campusName",
+            "Alias": "campusName",
+            "Type": "System.String"
+          },
+          "7": {
+            "Name": "sectionCourseLinkId",
+            "Index": -1,
+            "NameInSource": "sectionCourseLinkId",
+            "Alias": "sectionCourseLinkId",
+            "Type": "System.Guid"
+          },
+          "8": {
+            "Name": "examMasterId",
+            "Index": -1,
+            "NameInSource": "examMasterId",
+            "Alias": "examMasterId",
+            "Type": "System.Guid"
+          },
+          "9": {
+            "Name": "totalMarks",
+            "Index": -1,
+            "NameInSource": "totalMarks",
+            "Alias": "totalMarks",
+            "Type": "System.Double"
+          },
+          "10": {
+            "Name": "obtainedMarks",
+            "Index": -1,
+            "NameInSource": "obtainedMarks",
+            "Alias": "obtainedMarks",
+            "Type": "System.Double"
+          },
+          "11": {
+            "Name": "passStatus",
+            "Index": -1,
+            "NameInSource": "passStatus",
+            "Alias": "passStatus",
+            "Type": "System.Char"
+          },
+          "12": {
+            "Name": "courseName",
+            "Index": -1,
+            "NameInSource": "courseName",
+            "Alias": "courseName",
+            "Type": "System.String"
+          },
+          "13": {
+            "Name": "courseId",
+            "Index": -1,
+            "NameInSource": "courseId",
+            "Alias": "courseId",
+            "Type": "System.Guid"
+          },
+          "14": {
+            "Name": "className",
+            "Index": -1,
+            "NameInSource": "className",
+            "Alias": "className",
+            "Type": "System.String"
+          },
+          "15": {
+            "Name": "description",
+            "Index": -1,
+            "NameInSource": "description",
+            "Alias": "description",
+            "Type": "System.String"
+          },
+          "16": {
+            "Name": "sessionName",
+            "Index": -1,
+            "NameInSource": "sessionName",
+            "Alias": "sessionName",
+            "Type": "System.Double"
+          },
+          "17": {
+            "Name": "rollNo",
+            "Index": -1,
+            "NameInSource": "rollNo",
+            "Alias": "rollNo",
+            "Type": "System.String"
+          },
+          "18": {
+            "Name": "fullName",
+            "Index": -1,
+            "NameInSource": "fullName",
+            "Alias": "fullName",
+            "Type": "System.String"
+          },
+          "19": {
+            "Name": "matricObtainMarks",
+            "Index": -1,
+            "NameInSource": "matricObtainMarks",
+            "Alias": "matricObtainMarks",
+            "Type": "System.Double"
+          },
+          "20": {
+            "Name": "matricTotalMarks",
+            "Index": -1,
+            "NameInSource": "matricTotalMarks",
+            "Alias": "matricTotalMarks",
+            "Type": "System.Double"
+          },
+          "21": {
+            "Name": "staffName",
+            "Index": -1,
+            "NameInSource": "staffName",
+            "Alias": "staffName",
+            "Type": "System.String"
+          },
+          "22": {
+            "Name": "passStats",
+            "Index": -1,
+            "NameInSource": "passStats",
+            "Alias": "passStats",
+            "Type": "System.Double"
+          },
+          "23": {
+            "Name": "gradesStat",
+            "Index": -1,
+            "NameInSource": "gradesStat",
+            "Alias": "gradesStat",
+            "Type": "System.String"
+          },
+          "24": {
+            "Name": "val",
+            "Index": -1,
+            "NameInSource": "val",
+            "Alias": "val",
+            "Type": "System.Double"
+          }
+        },
+        "NameInSource": "root.root"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiJsonDatabase",
+        "Name": "root",
+        "Alias": "root",
+        "PathData": "C:\\Users\\CMS\\Desktop\\file.json"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "70e5a2cb28bca88b2cf2cb66e62a741e",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageFooterBand",
+          "Name": "PageFooterBand1",
+          "ClientRectangle": "0,20.8,27.7,2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text14",
+              "Guid": "f88ccdebd25f416ca41933c70e7e8d1a",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0,1.4,4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Time}"
+              },
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;7;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "SystemVariables"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text22",
+              "Guid": "20476341e3aa4834b64e8e543f6be7c0",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "24.8,1.4,2.4,0.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{PageNofM}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;7;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text17",
+              "Guid": "fe91434dacc144ec98b430605e4b4287",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "21.6,0,6,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Signature"
+              },
+              "VertAlignment": "Center",
+              "Font": ";11;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiGroupHeaderBand",
+          "Name": "GroupHeaderBand1",
+          "ClientRectangle": "0,0.4,27.7,4.2",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "724ec5f96fcf390beea4c3cabe180698",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.4,0.2,26.67,1.02",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.campusName}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;18;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "9f32f6125a5503e3667b26cec87b928b",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "1.67,2.74,7.62,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.description}-{root.className}-{root.sessionName}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "2": {
+              "Ident": "StiText",
+              "Name": "Text3",
+              "Guid": "f76be96f1fff1ba20f5773cab07dbec7",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.4,2.74,1.27,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Class:"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "3": {
+              "Ident": "StiText",
+              "Name": "Text4",
+              "Guid": "ba2def546f27f58a8abc7a2b5e9a3f14",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "10.89,2.74,1.78,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.sectionName}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "4": {
+              "Ident": "StiText",
+              "Name": "Text5",
+              "Guid": "2f4508ccb5d8f2068a9d8e018584469b",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "9.62,2.74,1.27,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Section:"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "5": {
+              "Ident": "StiText",
+              "Name": "Text6",
+              "Guid": "4c5ec651e542e13a1f2d343377bbdf9d",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.4,1.22,26.67,1.01",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "SUBJECT WISE AWARD LIST"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Times New Roman;14;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "6": {
+              "Ident": "StiText",
+              "Name": "Text7",
+              "Guid": "6790068867cf4a2e9ee9c864568a65ac",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "14.47,2.74,1.98,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{CountDistinct(root.admissionFormId)}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "7": {
+              "Ident": "StiText",
+              "Name": "Text8",
+              "Guid": "f0340bedd4a24210934d5c5c81ce319c",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "12.8,2.74,1.67,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Strength:"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "8": {
+              "Ident": "StiText",
+              "Name": "Text9",
+              "Guid": "a299deaa682d4be29f1fdfea0f91a4a9",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "18.07,2.74,2.78,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.courseName}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "DataColumn",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "9": {
+              "Ident": "StiText",
+              "Name": "Text10",
+              "Guid": "56ab7dd1a1bd41a79bdaeac65a34b4cd",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "16.8,2.74,1.27,0.51",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Subject:"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "10": {
+              "Ident": "StiText",
+              "Name": "Text11",
+              "Guid": "520241a177054af0802822a20c84e18b",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "23.6,2.74,3,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.staffName}"
+              },
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "DataColumn",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "11": {
+              "Ident": "StiText",
+              "Name": "Text12",
+              "Guid": "259177f6e52f43f98461939e2799602c",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "21.8,2.74,1.8,0.6",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Prof. Name:"
+              },
+              "HorAlignment": "Right",
+              "VertAlignment": "Center",
+              "Font": ";;Bold;",
+              "Border": ";155,155,155;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "Margins": {
+                "Left": 3.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0
+              }
+            },
+            "12": {
+              "Ident": "StiHorizontalLinePrimitive",
+              "Name": "HorizontalLinePrimitive1",
+              "Guid": "0941fd94ef878d39dcb55321125c502e",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.4,2.49,26.67,0.0254",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "StartCap": ";;;",
+              "EndCap": ";;;"
+            },
+            "13": {
+              "Ident": "StiHorizontalLinePrimitive",
+              "Name": "HorizontalLinePrimitive2",
+              "Guid": "2ce9d8d506c065d07f28324a6a983045",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.4,3.5,26.67,0.0254",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "StartCap": ";;;",
+              "EndCap": ";;;"
+            }
+          },
+          "PrintOnAllPages": true,
+          "Condition": {
+            "Value": "{root.sessionName}"
+          }
+        },
+        "2": {
+          "Ident": "StiDataBand",
+          "Name": "DataBand1",
+          "ClientRectangle": "0,5.4,27.7,7.6",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiCrossTab",
+              "Name": "CrossTab1",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,0,22.2,7.4",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:",
+              "Components": {
+                "0": {
+                  "Ident": "StiCrossRowTotal",
+                  "Name": "CrossTab1_RowTotal1",
+                  "Guid": "aa834f98d7023ab776185d148150893e",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,2.5,3.8,0.4",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Appeared Students|Percentage|Pass Students"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:Black",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "1": {
+                  "Ident": "StiCrossTitle",
+                  "Name": "CrossTab1_Row1_Title",
+                  "Guid": "fff77c595e158643a17b8b337731fb20",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0.45,1.6,1.6",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Student ID"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TypeOfComponent": "Row:CrossTab1_Row1"
+                },
+                "2": {
+                  "Ident": "StiCrossRowTotal",
+                  "Name": "CrossTab1_RowTotal2",
+                  "Guid": "1db8fa013794ef26b0a4fd28b76a503a",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "1.6,2.5,0.2,0.2",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Enabled": false,
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:Black"
+                },
+                "3": {
+                  "Ident": "StiCrossTitle",
+                  "Name": "CrossTab1_Row2_Title",
+                  "Guid": "3b8ccb28082d6c45c054ff3839d9ed03",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "1.6,0.45,1.2,1.6",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Name"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TypeOfComponent": "Row:CrossTab1_Row2"
+                },
+                "4": {
+                  "Ident": "StiCrossRowTotal",
+                  "Name": "CrossTab1_RowTotal3",
+                  "Guid": "e13122992a5c5c70ea6c171dabddb153",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "2.8,2.5,0.2,0.2",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Enabled": false,
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "Border": "All;;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:Black"
+                },
+                "5": {
+                  "Ident": "StiCrossTitle",
+                  "Name": "CrossTab1_Row3_Title",
+                  "Guid": "1e240388ded51365d83a11d09ff1bd0c",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "2.8,0.45,1,1.6",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Matric\r\n %|G"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression",
+                  "TypeOfComponent": "Row:CrossTab1_Row3"
+                },
+                "6": {
+                  "Ident": "StiCrossTitle",
+                  "Name": "CrossTab1_LeftTitle",
+                  "Guid": "b34a466808c6dc5e7b9b665a00f67bb5",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,0,3.8,0.4",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Enabled": false,
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "root"
+                  },
+                  "Border": "All;155,155,155;;;;;;solid:Black",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:105,105,105",
+                  "TypeOfComponent": "LeftTitle"
+                },
+                "7": {
+                  "Ident": "StiCrossColumnTotal",
+                  "Name": "CrossTab1_ColTotal1",
+                  "Guid": "f0c41963330a79de092a4f55395a8cd8",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "8.05,0.85,0.2,0.2",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Enabled": false,
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "Border": "All;155,155,155;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:Black"
+                },
+                "8": {
+                  "Ident": "StiCrossColumnTotal",
+                  "Name": "CrossTab1_ColTotal2",
+                  "Guid": "105c1c63e0bc14d2f95b308b09b5c293",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "8.05,1.25,0.2,0.2",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Enabled": false,
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "Total"
+                  },
+                  "Border": "All;155,155,155;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:Black"
+                },
+                "9": {
+                  "Ident": "StiCrossSummaryHeader",
+                  "Name": "CrossTab1_SumHeader1",
+                  "Guid": "3391275bf75191db62e41896b5b5d60e",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "3.85,1.25,0.8,0.8",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "OM"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "Top, Left, Bottom;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:White",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression"
+                },
+                "10": {
+                  "Ident": "StiCrossSummaryHeader",
+                  "Name": "CrossTab1_SumHeader2",
+                  "Guid": "e265ad98b1f21b0ec9c4247afffaba79",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "4.65,1.25,1,0.8",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "OM"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "Top, Right, Bottom;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Type": "Expression",
+                  "HorAlignment": "Left"
+                },
+                "11": {
+                  "Ident": "StiCrossSummaryHeader",
+                  "Name": "CrossTab1_SumHeader3",
+                  "Guid": "2c46946df0a545a591757137eef04e93",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "6.05,1.25,0.6,0.8",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "%Age"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "Top, Left, Bottom;;;;;;;solid:Black",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:Black",
+                  "Type": "Expression",
+                  "HorAlignment": "Right"
+                },
+                "12": {
+                  "Ident": "StiCrossSummaryHeader",
+                  "Name": "CrossTab1_SumHeader4",
+                  "Guid": "42ae7123435d482282dbde16566183b5",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "6.65,1.25,0.4,0.8",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "4"
+                  },
+                  "Border": "Top, Right, Bottom;;;;;;;solid:Black",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:White"
+                },
+                "13": {
+                  "Ident": "StiCrossTitle",
+                  "Name": "CrossTab1_RightTitle",
+                  "Guid": "a14ec920aaa2443fa0f593a7e6a57a18",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.85,0,3.2,0.4",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "examName, totalMarks"
+                  },
+                  "Border": "All;155,155,155;;;;;;solid:Black",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:105,105,105",
+                  "TypeOfComponent": "RightTitle"
+                },
+                "14": {
+                  "Ident": "StiCrossRow",
+                  "Name": "CrossTab1_Row1",
+                  "Guid": "65d1f4780650c9ee03fc2c42f26e3d47",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "0,2.1,1.6,0.4",
+                  "Alias": "rollNo",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiCrossHeaderInteraction"
+                  },
+                  "Text": {
+                    "Value": "rollNo"
+                  },
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "Value": {
+                    "Value": "{root.rollNo}"
+                  },
+                  "DisplayValue": {
+                    "Value": "{root.rollNo}"
+                  },
+                  "TotalGuid": "aa834f98d7023ab776185d148150893e"
+                },
+                "15": {
+                  "Ident": "StiCrossRow",
+                  "Name": "CrossTab1_Row2",
+                  "Guid": "dd19c14961bba652d5ff1d58fb4f47ba",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "1.6,2.1,1.2,0.4",
+                  "Alias": "fullName",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiCrossHeaderInteraction"
+                  },
+                  "Text": {
+                    "Value": "fullName"
+                  },
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "HorAlignment": "Left",
+                  "Value": {
+                    "Value": "{root.fullName}"
+                  },
+                  "DisplayValue": {
+                    "Value": "{root.fullName}"
+                  },
+                  "TotalGuid": "1db8fa013794ef26b0a4fd28b76a503a"
+                },
+                "16": {
+                  "Ident": "StiCrossRow",
+                  "Name": "CrossTab1_Row3",
+                  "Guid": "75af63cc9dd18dd0b73aa4f614c92bc5",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "2.8,2.1,1,0.4",
+                  "Alias": "matricObtainMarks",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiCrossHeaderInteraction"
+                  },
+                  "Text": {
+                    "Value": "matricObtainMarks"
+                  },
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "Value": {
+                    "Value": "{root.gradesStat}"
+                  },
+                  "DisplayValue": {
+                    "Value": "{root.gradesStat}"
+                  },
+                  "TotalGuid": "e13122992a5c5c70ea6c171dabddb153"
+                },
+                "17": {
+                  "Ident": "StiCrossColumn",
+                  "Name": "CrossTab1_Column1",
+                  "Guid": "74c1d3ac24e2032f05b983e083337f4e",
+                  "MinSize": "0,0",
+                  "MaxSize": "2,0",
+                  "ClientRectangle": "3.85,0.45,2,0.4",
+                  "Alias": "examName",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiCrossHeaderInteraction"
+                  },
+                  "Text": {
+                    "Value": "examName"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Value": {
+                    "Value": "{root.examName}"
+                  },
+                  "DisplayValue": {
+                    "Value": "{root.examName}"
+                  },
+                  "TotalGuid": "f0c41963330a79de092a4f55395a8cd8"
+                },
+                "18": {
+                  "Ident": "StiCrossColumn",
+                  "Name": "CrossTab1_Column2",
+                  "Guid": "dcd0868112a6c30ee49522303a250c61",
+                  "MinSize": "0,0",
+                  "MaxSize": "2,0",
+                  "ClientRectangle": "3.85,0.85,2,0.4",
+                  "Alias": "totalMarks",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiCrossHeaderInteraction"
+                  },
+                  "Text": {
+                    "Value": "totalMarks"
+                  },
+                  "Font": ";;Bold;",
+                  "Border": "All;;;;;;;solid:0,0,0",
+                  "Brush": "solid:White",
+                  "TextBrush": "solid:0,0,0",
+                  "TextOptions": {
+                    "WordWrap": true
+                  },
+                  "Value": {
+                    "Value": "{root.totalMarks}"
+                  },
+                  "DisplayValue": {
+                    "Value": "{root.totalMarks}"
+                  },
+                  "TotalGuid": "105c1c63e0bc14d2f95b308b09b5c293"
+                },
+                "19": {
+                  "Ident": "StiCrossSummary",
+                  "Name": "CrossTab1_Sum1",
+                  "Guid": "961cb24676d44167906c8f3c3dfdb316",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "3.85,2.1,0.8,0.4",
+                  "Alias": "obtainedMarks",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "0"
+                  },
+                  "Border": "Top, Left, Bottom;;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:White",
+                  "Value": {
+                    "Value": "{root.val}"
+                  },
+                  "SummaryValues": "SkipZerosAndNulls"
+                },
+                "20": {
+                  "Ident": "StiCrossSummary",
+                  "Name": "CrossTab1_Sum2",
+                  "Guid": "b01340f9820e486428bb9ab02c7ea2e8",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "4.65,2.1,1,0.4",
+                  "Alias": "obtainedMarks",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "0"
+                  },
+                  "Border": "Top, Right, Bottom;;;;;;;solid:0,0,0",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:0,0,0",
+                  "Value": {
+                    "Value": "{root.obtainedMarks}"
+                  },
+                  "HorAlignment": "Left",
+                  "HideZeros": false,
+                  "Summary": "None"
+                },
+                "21": {
+                  "Ident": "StiCrossSummary",
+                  "Name": "CrossTab1_Sum3",
+                  "Guid": "d22e2926bdf20204ff390b61a0e8d218",
+                  "MinSize": "0,0",
+                  "MaxSize": "1,0",
+                  "ClientRectangle": "6.05,2.1,0.6,0.4",
+                  "Alias": "percentage",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "0"
+                  },
+                  "Border": "Top, Left, Bottom;;;;;;;solid:0,0,0",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:0,0,0",
+                  "Value": {
+                    "Value": "{Round(((root.obtainedMarks /root.totalMarks)*100),2)}"
+                  },
+                  "HideZeros": false,
+                  "Summary": "Average"
+                },
+                "22": {
+                  "Ident": "StiCrossSummary",
+                  "Name": "CrossTab1_Sum4",
+                  "Guid": "0906174985e74ed4a0263b5830ec69a4",
+                  "MinSize": "0,0",
+                  "MaxSize": "0,0",
+                  "ClientRectangle": "6.65,2.1,0.4,0.4",
+                  "Alias": "passStats",
+                  "Restrictions": "AllowMove, AllowResize, AllowSelect, AllowChange",
+                  "Interaction": {
+                    "Ident": "StiInteraction"
+                  },
+                  "Text": {
+                    "Value": "0"
+                  },
+                  "Border": "Top, Right, Bottom;;;;;;;solid:Black",
+                  "Brush": "solid:255,255,255",
+                  "TextBrush": "solid:White",
+                  "Value": {
+                    "Value": "{root.passStats}"
+                  }
+                }
+              },
+              "DataSourceName": "root",
+              "SummaryDirection": "LeftToRight"
+            }
+          },
+          "DataSourceName": "root"
+        }
+      },
+      "PaperSize": "A4",
+      "Orientation": "Landscape",
+      "PageWidth": 29.7,
+      "PageHeight": 21.0,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 1.0,
+        "Right": 1.0,
+        "Top": 1.0,
+        "Bottom": 1.0
+      }
+    }
+  }
+}

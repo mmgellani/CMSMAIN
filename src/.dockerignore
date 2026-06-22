@@ -1,0 +1,17 @@
+*/bin
+*/obj
+.dockerignore
+.env
+.git
+.gitignore
+.vs
+.vscode
+**/.toolstarget
+.idea
+bin\
+obj\
+*/node_modules
+.git
+*Dockerfile
+**docker-compose
+*node_modules

@@ -1,0 +1,74 @@
+
+
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title"> {{$t('navigation.bsetup')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+               Push Notification </a>
+        </div>
+    </template>
+    <portlet-area action="1" title="Push Notification">
+        <template slot="portlet-body">
+          
+                    
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group validated">
+                                    <label class="form-control-label">Hub</label>
+                                    <select-ex :options="tempdepartmentlist" keyValue="hub" displayValue="hub"
+                                        v-model.trim="hubmodel">
+                                    </select-ex>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tag</label>
+                                    <input  class="form-control form-control-sm"
+                                        v-model="tag"></input>
+                                    <!-- <label>Note : Message Should be less than 480 Characters</label> -->
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input  class="form-control form-control-sm"
+                                        v-model="title"></input>
+                                    <!-- <label>Note : Message Should be less than 480 Characters</label> -->
+                                </div>
+                            </div>
+                        </div>
+
+              
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{$t('modal.customSms.message')}}</label>
+                                    <textarea  class="form-control form-control-sm" rows="5"
+                                        v-model="messageText"></textarea>
+                                    <!-- <label>Note : Message Should be less than 480 Characters</label> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="row text-right">
+                                <div class="col-md-12 text-right">
+                                 
+                                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel" :disabled="CheckValidate()" ><i
+                                            class="la la-floppy-o"></i> Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+
+        </template>
+    </portlet-area>
+</page-area>

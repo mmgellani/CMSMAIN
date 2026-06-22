@@ -1,0 +1,69 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="body-content off-canvas">
+  <div class="m-subheader">
+    <ol class="breadcrumb breadcrumb-alt">
+      <li class="breadcrumb-item active">Sections</li>
+    </ol>
+  </div>
+  <div class="m-content">
+    <div class="m-portlet m-portlet--bordered">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+          <ul>
+            <li><a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                @click="refreshData"><i class="la la-refresh"></i></a></li>
+            <li v-if="canAdd"><a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                @click="insertModel"><i class="la  la-plus"></i></a></li>
+          </ul>
+        </div>
+        <form class="col-lg-4">
+          <div class="form-group form-group-default required" ref="filters">
+            <label>Search</label>
+            <input class="form-control input-sm" type="text" v-model="filterString" @focus="$refs.filters.className = 'form-group form-group-default required focused'"
+              @blur="$refs.filters.className = 'form-group form-group-default required'">
+          </div>
+        </form>
+      </div>
+      <div class="card-body no-padding">
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>SectionId</th>
+                  <th>FullName</th>
+                  <th>StatusId</th>
+                  <th>LoggerId</th>
+
+                  <th>Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in data">
+                  <td class="v-align-middle">{{item.sectionId}}</td>
+                  <td class="v-align-middle">{{item.fullName}}</td>
+                  <td class="v-align-middle">{{item.statusId}}</td>
+                  <td class="v-align-middle">{{item.loggerId}}</td>
+
+                  <td>
+                    <a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                      @click="editModel(item)" v-if="canEdit"><i class="la la-edit"></i></a>
+                    <a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                      @click="deleteModel(item)" v-if="canDelete"><i class="la la-trash"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

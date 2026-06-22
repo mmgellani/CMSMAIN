@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label for="provided-id">{{place}}</label>
+    <select id="provided-id" class="select2 form-control form-control-sm" :placeholder="place" :value="value"
+        v-model="tempVmodel" @input="processClick($event.target.value)" required>
+        <template v-if="isGroup">
+            <optgroup :label="head" v-for="head in groupHeader">
+                <option :value="item[selected]" v-for="(item, index) in loadChilds(head)">
+                    {{item[display]}}
+                </option>
+            </optgroup>
+        </template>
+        <option :value="item[selected]" v-for="(item, index) in loadChilds" @click="processClick(index)" v-else>
+            {{item[display]}}</option>
+    </select>
+</div>

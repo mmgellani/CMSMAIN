@@ -1,0 +1,325 @@
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+ 
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.refundchallan')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr role="row">
+                        <th><b>Fee Head</b></th>
+                        <th style="width:170px;"><b>Refund Amount</b></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Fee Head Rows -->
+                    <tr v-for="items in visibleStudentFeeData"
+                        :key="items.feeHeadId">
+
+                        <td class="align-middle">
+                            {{ items.feeHead }}
+                        </td>
+
+                        <td class="align-middle" style="width:170px;">
+                            <input
+                                type="number"
+                                class="form-control form-control-sm ext-left"
+                                style="width:170px;"
+                                v-model.number="items.stfeeamount"
+                                min="0"
+                                @input="calculateTotal"
+                                @keypress="if (['.', ',', 'e'].includes($event.key)) $event.preventDefault()"
+                            />
+                        </td>
+                    </tr>
+
+                    <!-- 🔹 TOTAL REFUND ROW -->
+                    <tr class="font-weight-bold bg-light">
+                        <td class="align-middle">
+                            Total Refund Amount <span class="text-danger">*</span>
+                        </td>
+
+                        <td class="align-middle" style="width:170px;">
+                            <input
+                                type="number"
+                                class="form-control form-control-sm ext-left font-weight-bold"
+                                style="width:170px;"
+                                v-model="data.refundAmount"
+                                disabled
+                            />
+                        </td>
+                    </tr>
+
+                    <!-- 🔹 REFUND DATE ROW -->
+                    <!-- <tr>
+                        <td class="align-middle">
+                            Refund Date <span class="text-danger">*</span>
+                        </td>
+
+                        <td class="align-middle" style="width:170px;">
+                            <date-picker
+                                class="input-28"
+                                v-model="data.refundDate"
+                                format="DD/MM/YYYY"
+                                lang="en">
+                            </date-picker>
+
+                           <div class="invalid-feedback d-block"
+     v-if="$v.data.refundDate.$dirty && $v.data.refundDate.$error">
+    {{$t('validation.required')}}
+</div>
+
+                        </td>
+                    </tr> -->
+
+                </tbody>
+            </table>
+                            <div class="row">
+
+                                  <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label for="zone-id">Refund Date <span style="color:red">
+                                                *</span></label>
+                                        <date-picker                                v-model="data.refundDate"
+ format="DD/MM/YYYY" lang="en"
+                                           >
+                                        </date-picker>
+                                       
+                                    </div>
+                                </div>
+                  <div class="col-md-4">
+
+                                    <div class="form-group validated" >
+                                        <label class="form-control-label"> Cheque Number <span style="color:red">
+                                                *</span></label>
+                                        <input type="text" class="form-control" v-model="chequeNo" maxlength="12" />
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group validated" style="margin-left: 10px;">
+                                        <label class="form-control-label"> Payee Name <span style="color:red">
+                                                *</span></label>
+                                        <input type="text" class="form-control" v-model="payeeName" maxlength="25" />
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="zone-id">Bank <span style="color:red">
+                                                *</span></label>
+                                        <select-ex :options="campusBankList" keyValue="campusBankLinkId"
+                                            displayValue="bankName" v-model="campusBankLinkId">
+                                        </select-ex>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label for="zone-id">Cheque Issue Date <span style="color:red">
+                                                *</span></label>
+                                        <date-picker v-model="chequeIssueDate" format="DD/MM/YYYY" lang="en"
+                                            >
+                                        </date-picker>
+                                       
+                                    </div>
+                                </div>
+
+                                    <!-- <div class="col-md-4">
+
+                                    <div class="form-group validated" style="margin-left: 10px;">
+                                        <label class="form-control-label"> Payee Name <span style="color:red">
+                                                *</span></label>
+                                        <input type="text" class="form-control" v-model="payeeName" maxlength="12" />
+                                        <div class="invalid-feedback"
+                                            v-if="$v.data.refundAmount.$dirty && !$v.data.refundAmount.required">
+                                            {{$t('validation.required')}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                               -->
+                                                                </div>
+
+
+        </div>
+    </div>
+</div>
+
+        <!-- <div class="modal-body">
+             <div class="row">
+                        <div class="col-md-12">
+                         <table class="table">
+    <thead class="thead-light">
+        <tr role="row">
+            <th>Fee Head</th>
+            <th style="width:170px;">Fee Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="items in visibleStudentFeeData"
+            :key="items.feeHeadId">
+
+            <td class="align-middle">
+                {{ items.feeHead }}
+            </td>
+
+            <td class="align-middle" style="width:170px;">
+                <input
+                    type="number"
+                    class="form-control form-control-sm ext-left"
+                    style="width:170px;"
+                    v-model.number="items.stfeeamount"
+                    min="0"
+                    @input="calculateTotal"
+                    @keypress="if (['.', ',', 'e'].includes($event.key)) $event.preventDefault()"
+                />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+                         
+
+                        <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-md-6 font-weight-bold">
+                                            Total Refund Amount <span class="text-danger">*</span>
+                                        </label>
+
+                                        <div class="col-md-6">
+                                            <input type="number" class="form-control ext-left font-weight-bold"
+                                                  v-model="data.refundAmount"
+disabled />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                               <div class="row">
+
+ <div class="col-md-6">
+                            <div class="form-group validated">
+                                <label class="form-control-label">Refund Date<span style="color:red">
+                                        *</span></label>                      
+                                <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="data.refundDate" format="DD/MM/YYYY"
+                                lang="en"  ></date-picker>
+                                <div class="invalid-feedback" v-show="$v.data.refundDate.$error">
+                                    {{$t('validation.required')}}
+                                </div>
+                            </div>
+                        </div>
+                                                </div>
+                          
+                            <div class="row">
+                                <!-- <div class="col-md-4">
+                                    <div class="form-group validated">
+                                        <label for="zone-id">Refund Date <span style="color:red">
+                                                *</span></label>
+                                        <date-picker v-model="paidDate" format="DD/MM/YYYY" lang="en"
+                                            :disabled="RefundChallan.length > 0">
+                                        </date-picker>
+                                        <div class="invalid-feedback" v-show="$v.data.paidDate.$error">
+                                            {{$t('validation.required')}}
+                                        </div>
+                                    </div>
+                                </div> -->
+
+
+
+
+
+
+                                <!-- <div class="col-md-3" style="margin-top: 10px;">
+                                    <template v-if="canAdd">
+                                        <button class="btn btn-light btn-hover btn-sm btn-primary mt-4"
+                                            @click="InsertPaidDate" :disabled="RefundChallan.length > 0">Save</button>
+
+                                    </template>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+            <!-- <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> Refund Amount <span style="color:red">
+                                *</span></label>
+                  
+                        <input type="number" class="form-control" v-model.trim="data.refundAmount"
+                        @keypress="if(['.',',','e'].includes($event.key)) $event.preventDefault()"
+                        @input="$v.data.refundAmount.$touch()"
+                        :class="{'is-invalid': $v.data.refundAmount.$error}"
+                       
+                        />
+                        <div class="invalid-feedback" v-show="$v.data.refundAmount.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                       
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group validated">
+                                <label class="form-control-label">Due Date<span style="color:red">
+                                        *</span></label>                      
+                                <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="data.refundDate" format="DD/MM/YYYY"
+                                lang="en"  ></date-picker>
+                                <div class="invalid-feedback" v-show="$v.data.refundDate.$error">
+                                    {{$t('validation.required')}}
+                                </div>
+                            </div>
+                        </div>
+                        </div> -->
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+ 
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+ 
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

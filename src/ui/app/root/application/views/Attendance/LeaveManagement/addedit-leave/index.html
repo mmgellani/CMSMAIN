@@ -1,0 +1,126 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- <div class="form-group" v-if="!roleadmin">
+                <label>{{$t('modal.leaveManagement.fromDate')}}</label><span style="color:red"> *</span>
+                <date-picker  id="change-width" 
+                v-model="model.fromDate" format="DD/MM/YYYY" lang="en" @change="selectDate(model.fromDate)"
+                :not-before="duedate"   :editable="false"></date-picker>
+           
+            </div> -->
+            <!-- v-if="roleadmin" -->
+            <div class="form-group" >
+                <label>{{$t('modal.leaveManagement.fromDate')}}</label><span style="color:red"> *</span>
+                <date-picker  id="change-width" 
+                v-model="model.fromDate"  format="DD/MM/YYYY" lang="en" @change="selectDate()"
+                :editable="false"></date-picker>
+           
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group text-left">
+                <label>{{$t('modal.leaveManagement.toDate')}}</label><span style="color:red"> *</span>
+                <date-picker id="change-width" ref="changeWidth"
+                v-model="model.toDate" format="DD/MM/YYYY"   lang="en" 
+                :editable="false" :not-before="model.fromDate" ></date-picker>
+               
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group text-left">
+                <label>{{$t('modal.leaveManagement.leaveDescription')}}<span style="color:red"> *</span></label>
+                <textarea rows="4" cols="50" class="form-control form-control-sm"
+                v-model.trim="remarks" placeholder="Enter Description"
+                >
+
+            </textarea>
+                <!-- <input type="text" class="form-control form-control-sm" v-model="remarks"> -->
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <div class="form-group text-left">
+                <label>{{$t('modal.leaveManagement.course')}}</label>
+                <div class="fee-structure-square" style="max-height:128px !important;">
+                    <div class="row">
+                        <div class="col-md-12" v-for="item in ProgramCourseListSelected">
+                            <label class="kt-checkbox kt-checkbox--brand">{{item.courseName}}
+                                <input type="checkbox" v-model="item.isSelected">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <table class="table">
+                        <tbody>
+                            <tr v-for="item in ProgramCourseListSelected">
+
+                                <td class="v-align-middle" style="text-align: left;">
+                                    <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom:14px;">
+                                        <input type="checkbox" v-model="item.isSelected">
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td class="v-align-middle" style="text-align: left;">
+                                    {{item.courseName}}</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group text-left">
+                <label>{{$t('modal.leaveManagement.leaveType')}}</label>
+                <div class="leaveDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="kt-checkbox kt-checkbox--brand"> {{$t('modal.leaveManagement.partial')}}
+                                <input type="checkbox" v-model="model.isPartial" @change="CheckAll(model.isPartial)">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" v-if="!IsNewRecord">
+                        <div class="col-md-12">
+                            <label class="kt-checkbox kt-checkbox--brand"> {{$t('modal.leaveManagement.approved')}}
+                                <input type="checkbox"   v-model="model.isApproved">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="v-align-middle" style="text-align: left;">
+                                    <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom:14px;">
+                                        <input type="checkbox" v-model="model.isPartial"
+                                            @change="CheckAll(model.isPartial)">
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td class="v-align-middle" style="text-align: left;">
+                                    {{$t('modal.leaveManagement.partial')}}</td>
+                            </tr>
+                            <tr>
+                                <td class="v-align-middle" style="text-align: left;">
+                                    <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom:14px;">
+                                        <input type="checkbox" v-model="model.isApproved">
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td class="v-align-middle" style="text-align: left;">
+                                    {{$t('modal.leaveManagement.approved')}}</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

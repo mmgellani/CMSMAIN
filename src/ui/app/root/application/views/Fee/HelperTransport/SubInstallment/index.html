@@ -1,0 +1,134 @@
+<div class="modal-content">
+  <!-- <div class="modal-header"> -->
+  <div class="row">
+
+    <div class="col-md-3 text-center">
+      <h5>
+        <u>Sub-Installment</u>
+      </h5>
+    </div>
+
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <select @change="filterData" placeholder="SubInstallment" v-model="installNo" class="form-control form-control-sm">
+          <option v-for="item in 6" :value="item">{{item}}</option>
+        </select>
+        <label>Installment</label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" v-if="manualSubinstallment==false">
+        <select @change="GetSubinstallmentNo" v-model="subIntallmentNo" class="form-control form-control-sm" require>
+          <option v-for="item in 12" :value="item">{{item}}</option>
+        </select>
+        <label>Total Sub-Installments</label>
+      </div>
+    </div>
+    <div class="col-md-3 text-right">
+      <input type="checkbox" class="float-right" v-model="manualSubinstallment" style="margin-top: 3px;">
+      <label class="ModeColor" style="margin-bottom: 0; margin-right:6px">Manual</label>
+      </input>
+    </div>
+  </div>
+  <!-- </div> -->
+  <div class="modal-body ModeColor">
+    <div class="form-group m-form__group m--margin-top-10">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="mt-3">RefNo: {{RefrenceNo}}
+          </h3>
+          <h3> Name: {{fullName}}</h3>
+          <h3 style="margin-top: 10px">Program:{{program}}</h3>
+        </div>
+        <div class="col-md-8">
+          <table class="table">
+            <thead>
+              <tr role="row">
+                <th>FeeHeads</th>
+                <th>FeeAmount</th>
+                <th>PayableAmount</th>
+                <th v-if="manualSubinstallment==false">SubInstallment Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in Tempdata">
+                <td class="v-align-middle">{{item.feeHead}}</td>
+                <td class="v-align-middle">{{item.feeAmount}}</td>
+                <td class="v-align-middle">{{item.payableAmount}}</td>
+                <td class="v-align-middle" v-if="manualSubinstallment==false">
+                  <template v-if="showSubinstallment==true">
+                    {{Math.round(item.payableAmount/subIntallmentNo)}}
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr role="row">
+            <th>
+              Challan No
+            </th>
+            <th>
+              Paid Date
+            </th>
+            <th>
+              Due Date
+            </th>
+            <th>
+              Challan Amount
+            </th>
+            <th v-if="manualSubinstallment==true">
+              Sub Installment Amount
+            </th>
+            <th v-if="manualSubinstallment==true">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr v-for="(item,index) in TempChallandata ">
+            <td>
+              {{item.challanNo}}
+            </td>
+            <td>
+              {{item.paidDate | formatDMY}}
+            </td>
+            <td v-if="hasSubInst">
+              {{item.dueDate | formatDMY}}
+            </td>
+            <td v-else>
+              <date-picker v-model="item.dueDate" format="DD/MM/YYYY" lang="en" v-if="manualSubinstallment"></date-picker>
+              <!--<input type="date" v-model="item.dueDate">-->
+            </td>
+            <td>
+              {{item.feeAmount}}
+            </td>
+            <td v-if="manualSubinstallment==true">
+
+              <template v-if="!isPaid(item.paidDate)">
+                <input :disabled="hasSubInst" v-model="item.subInstallmentAmount" @change="checkAmount" type="number">
+              </template>
+            </td>
+            <td v-if="manualSubinstallment==true">
+              <button v-if="index==TempChallandata.length-1 && !hasSubInst" class="btn btn-primary" :disabled="item.feeAmount<item.subInstallmentAmount || item.dueDate==null || item.subInstallmentAmount < 10"
+                @click="calculateRemaining(item.feeAmount,item.subInstallmentAmount)">Done</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row text-right">
+      <div class="col-md-12">
+        <button class="btn btn-primary" v-if="manualSubinstallment != true" :disabled="subIntallmentNo > 1 || TempChallandata.length == 1" @click="SaveSubInstallment">Revert Sub-Installments</button>
+        <button class="btn btn-primary" v-if="firstTime" :disabled="!shouldSave" @click="SaveSubInstallment">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

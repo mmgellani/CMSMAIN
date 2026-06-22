@@ -1,0 +1,75 @@
+<modal name="helper-modal" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="false" :adaptive="false" transition="bounce" width="70%" top="10" height="auto">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.helper.studentFee.studentFee')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-body programcourse" v-if="studentInfo">
+
+            <div class="row mb-4">
+                <div class="col-md-3 text-center">
+                    <h6>{{$t('modal.helper.studentFee.reference')}}</h6>
+                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                    color: black; font-size: 1rem;">
+                        {{studentInfo.refferenceNo}}</span>
+                </div>
+                <div class="col-md-3 text-center">
+                    <h6>{{$t('modal.helper.studentFee.roll')}}</h6>
+                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                    color: black; font-size: 1rem;"> {{studentInfo.rollNo}}</span>
+                </div>
+                <div class="col-md-3 text-center">
+                    <h6>{{$t('modal.helper.studentFee.name')}}</h6>
+                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                    color: black; font-size: 1rem;">{{studentInfo.fullName}}</span>
+                </div>
+                <div class="col-md-3 text-center">
+                    <h6>{{$t('modal.helper.studentFee.program')}}</h6>
+                    <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                    color: black; font-size: 1rem;">{{studentInfo.description}}</span>
+                </div>
+            </div>
+
+            <tabs>
+                <tab name='Student Challan' :selected="true" force="true">
+                    <challan :id="indexed+1"></challan>
+                </tab>
+                <tab name='Grant Concession' v-if="canRead" force="true">
+                    <concession :id="indexed+2"></concession>
+                </tab>
+                <tab name='Apply Exemption' v-if="canAdd" force="true">
+                    <exemption :id="indexed+3"></exemption>
+                </tab>
+                <tab name='Create Sub-Installment' v-if="canEdit" force="true">
+                    <subInstallment id="indexed+4"></subInstallment>
+                </tab>
+                <tab name='Change Due Date' v-if="canDelete" force="true">
+                    <DueDate :id="indexed+5"></DueDate>
+                </tab>
+            </tabs>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <!-- <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" disabled><i class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

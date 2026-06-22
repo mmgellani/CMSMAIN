@@ -1,0 +1,123 @@
+<div id="kt_demo_panel" class="kt-demo-panel kt-demo-panel--on" style="overflow-y: hidden!important;">
+    <div class="kt-demo-panel__head" kt-hidden-height="49">
+        <h3 class="kt-demo-panel__title">
+            Select A Widget
+            <!--<small>5</small>-->
+        </h3>
+        <a class="kt-demo-panel__close" @click="closeDashboardWidget"><i class="flaticon2-delete"></i></a>
+
+    </div>
+    <div class="kt-demo-panel__body dashboard-widget-sidebar">
+        <div class="kt-demo-panel__item" v-if="dashboardwidget">
+            <div class="kt-demo-panel__item-title">
+                Dashboard Widget
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/dashboard.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('dashboardwidget')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item" v-if="todolist">
+            <div class="kt-demo-panel__item-title">
+                ToDoList
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/todolist.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('todolist')">Add</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="kt-demo-panel__item" >
+            <div class="kt-demo-panel__item-title">
+                Admission Count
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/admissioncount.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('admissionCountWidget')">Add</a>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="kt-demo-panel__item" v-if="approvedVsUnapproved">
+            <div class="kt-demo-panel__item-title">
+                Approved Vs Un-Approved
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/approved.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('approvedVsUnapproved')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="heldVsUnheld">
+            <div class="kt-demo-panel__item-title">
+                Held Vs Un-Held
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/held.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('heldVsUnheld')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="concessionGraph">
+            <div class="kt-demo-panel__item-title">
+                Concession
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/concession.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('concessionGraph')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="admissionTrend">
+            <div class="kt-demo-panel__item-title">
+                Admission Trend
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/trend.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('admissionTrend')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="formcollectionsingle">
+            <div class="kt-demo-panel__item-title">
+                Form Collection-Fee Paid-Enrolled
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/admissionpic.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('form-collection-single')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="yearlyAdmission">
+            <div class="kt-demo-panel__item-title">
+                Yearly Admission
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/yearly.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('yearlyAdmission')">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="kt-demo-panel__item " v-if="revenueGraph">
+            <div class="kt-demo-panel__item-title">
+                Revenue per city
+            </div>
+            <div class="kt-demo-panel__item-preview">
+                <img src="../../assets/images/dashboard/revenue.png">
+                <div class="kt-demo-panel__item-preview-overlay">
+                    <a class="btn btn-brand btn-elevate" @click="loadcheck('revenueGraph')">Add</a>
+                </div>
+            </div>
+        </div> -->
+     
+    </div>
+</div>

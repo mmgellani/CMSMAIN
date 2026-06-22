@@ -1,0 +1,55 @@
+//    Auther: H.Muhammad Kamran
+//    email: hmuhdkamran@gmail.com
+//    contact: +92 (313 / 333) 9112 845
+
+$flag-icon-css-path: '~assets/images/flags' !default;
+
+.flag-icon-background {
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.flag-icon {
+    @extend .flag-icon-background;
+    position: relative;
+    display: inline-block;
+    width: (4 / 3) * 1em;
+    line-height: 1em;
+
+    &:before {
+        content: '\00a0';
+    }
+
+    &.flag-icon-squared {
+        width: 1em;
+    }
+}
+.bordered-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .scrollable-content {
+    max-height: 200px; /* Adjust this value as needed */
+    overflow-y: auto;
+  }
+  .scrollable-popup-body {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto;
+  }
+  
+@mixin flag-icon($country) {
+    .flag-icon-#{$country} {
+        background-image: url(#{$flag-icon-css-path}/#{$country}.svg);
+
+        &.flag-icon-squared {
+            background-image: url(#{$flag-icon-css-path}/#{$country}.svg);
+        }
+    }
+}
+
+@include flag-icon(en);
+@include flag-icon(fr);
+@include flag-icon(ur);

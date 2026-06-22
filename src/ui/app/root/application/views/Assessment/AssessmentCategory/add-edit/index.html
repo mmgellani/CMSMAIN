@@ -1,0 +1,271 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="50%" height="auto"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+
+        <div class="modal-header clearfix text-left">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h5>
+                        <span class="semi-bold">{{title}}</span>
+                    </h5>
+
+
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-body" style="height: 450px;overflow: auto;">
+            <div class="row" v-for="(item,index) in Status">
+                <div class="col-md-2"><strong>Total: </strong>{{item.scheduled}}</div>
+                <div class="col-md-3"><strong>Present: </strong>{{item.held}}</div>
+                <div class="col-md-2"><strong>Absent: </strong>{{item.approved}}</div>
+                <div class="col-md-2"><strong>Leave: </strong>{{item.unApproved}}</div>
+                <div class="col-md-3"><strong>%: </strong>{{item.percentage}}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12"><strong>DeviceInfo: </strong>{{Info}}</div>
+
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper no-footer">
+                        <table class="table">
+                            <thead>
+                                <tr role="row">
+                                    <th>Sr#</th>
+                                    <th>Roll No</th>
+                                    <th>Name</th>
+                                    <th>Attendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item,index) in data">
+                                    <td>{{index+1}}</td>
+                                    <td class="v-align-middle">{{item.rollNo}}</td>
+                                    <td class="v-align-middle">{{item.fullName}}</td>
+                                    <td class="v-align-middle">
+                                        <strong>
+                                            <span v-if="item.status == 'Absent'"
+                                                style="color:red;">{{item.status}}</span>
+                                            <span v-if="item.status == 'Leave'"
+                                                style="color:blue;">{{item.status}}</span>
+                                            <span v-if="item.status == 'Present'"
+                                                style="color:green;">{{item.status}}</span>
+                                        </strong> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-block" type="submit" @click="cancel()">Close</button>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.attendanceAttendenceDashboard.attendanceRecord')}}</h3>
+                <p> {{$t('modal.attendanceAttendenceDashboard.viewDetail')}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="row" v-for="(item,index) in Status">
+
+                <div class="col-md-2 offset-md-1 text-center">
+                    <label>{{$t('modal.attendanceAttendenceDashboard.total')}}</label>
+                    <div class="attendance-circle" style="background: #d4d5ff;">{{item.scheduled}}</div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <label>{{$t('modal.attendanceAttendenceDashboard.present')}}</label>
+                    <div class="attendance-circle" style="background: #0abb87;">{{item.held}}</div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <label>{{$t('modal.attendanceAttendenceDashboard.approved')}}</label>
+                    <div class="attendance-circle" style="background: #ffcc38;">{{item.approved}}</div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <label>{{$t('modal.attendanceAttendenceDashboard.unApproved')}}</label>
+                    <div class="attendance-circle" style="background: #fd397a;">{{item.unApproved}}</div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <label>{{$t('modal.attendanceAttendenceDashboard.percentage')}}</label>
+                    <div class="attendance-circle" style="background:  #5578eb; ">{{item.percentage}}</div>
+                </div>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div style="height: 40vh; overflow:scroll;">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr role="row">
+                                    <th>{{$t('modal.attendanceAttendenceDashboard.srNo')}}</th>
+                                    <th>{{$t('modal.attendanceAttendenceDashboard.rollNo')}}</th>
+                                    <th>{{$t('modal.attendanceAttendenceDashboard.name')}}</th>
+                                    <th>{{$t('modal.attendanceAttendenceDashboard.attendance')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item,index) in data">
+                                    <td class="align-middle">{{index+1}}</td>
+                                    <td class="align-middle">{{item.rollNo}}</td>
+                                    <td class="align-middle">{{item.fullName}}</td>
+                                    <td class="align-middle">
+                                        <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+                                            v-if="item.status == 'Absent'">{{item.status}}</span>
+                                        <span class="kt-badge  kt-badge--info kt-badge--inline kt-badge--pill"
+                                            v-if="item.status == 'Leave'">{{item.status}}</span>
+                                        <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+                                            v-if="item.status == 'Present'">{{item.status}}</span>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</modal> -->
+
+<modal name="AssessmentCategory-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.assessmentCategory')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.assessmentCategory.grid.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                                <!-- <input class="form-control form-control-sm" v-model.trim="data.fullName" /> -->
+                              
+                       
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-restrict.alpha v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.assessmentCategory.grid.code')}}<span
+                                style="color:red">
+                                *</span></label>
+                                <!-- <input class="form-control form-control-sm" v-model.trim="data.code" /> -->
+                              
+                       
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.code.$error}" v-model.trim="data.code"
+                            @input="$v.data.code.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.code.$error">
+                            <span v-if="!$v.data.code.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.code.maxLength">Field Length Must not Exceed more then 3</span>
+                            <span v-if="!$v.data.code.noWhiteSpace">Whitespace not allowed</span>
+                        </div>
+                    </div>
+                </div>
+
+    
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

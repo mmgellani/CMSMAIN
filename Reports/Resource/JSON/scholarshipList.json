@@ -1,0 +1,12 @@
+[{
+    "fullName": "FullName",
+    "referrenceNo": "referrenceNo",
+    "percentage": 100,
+    "scholarshipName": "scholarshipName",
+    "from": 50.00,
+    "to": 99.99,
+    "admissionType": "Scholarship",
+    "campus": "CampusName",
+    "session": 2019,
+    "program": "ProgramName"
+}]

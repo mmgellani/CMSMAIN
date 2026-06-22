@@ -1,0 +1,104 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<modal name="attendance-student" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="70%" top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        Attendance Teacher&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+
+                <div v-if="mergeSectionList.length>1" class="col-md-12">
+                    <strong>Merged Sections</strong>&nbsp;&nbsp;
+                    <span style="margin-right: 5px;" v-for="item in mergeSectionList"
+                        class="badge badge-primary">{{item.sectionName}}</span>
+                    <!-- <label v-for="item in mergeSectionList">{{item.sectionName}}, </label> -->
+                </div>
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper no-footer">
+                        <table class="table">
+                            <thead>
+                                <tr role="row">
+                                    <th>Roll No</th>
+                                    <th>Name</th>
+                                    <th>Slot Timming</th>
+                                    <th>Attendance</th>
+                                    <input type="checkbox" @change="markFullDayAbsent" class="mt-2"
+                                        v-model="fullDayAbsent">All
+                                    Absent</input>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in Ddata">
+                                    <td class="v-align-middle">{{item.rollNo}}</td>
+                                    <td class="v-align-middle">{{item.fullName}}</td>
+                                    <td class="v-align-middle">{{item.startTime}} - {{item.endTime}}</td>
+                                    <td class="v-align-middle">
+                                        <div class="form-group">
+                                            <select :disabled="isApproved == true" class="form-control form-control-sm"
+                                                v-model="item.attendenceStatusId">
+                                                <option v-for="(model,index) in attendanceStatusList"
+                                                    :value="model.attendenceStatusId">
+                                                    {{model.fullName}}</option>
+                                            </select>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn  btn-primary" :disabled="isApproved == true" @click="saveModel">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</modal>

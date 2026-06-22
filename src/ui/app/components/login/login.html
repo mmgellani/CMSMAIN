@@ -1,0 +1,72 @@
+<div class="kt-grid kt-grid--ver kt-grid--root" style="height: 100%;">
+
+    <status-bar :clear-after="5" :locale-prefix="'validation.login'"></status-bar>
+
+    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v1" id="kt_login">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+            <div class="kt-grid__item kt-grid__item--order-tablet-and-mobile-2 kt-grid kt-grid--hor kt-login__aside login-background">
+                <div class="kt-heading_logo">
+                    <h2>A COMPREHENSIVE</h2>
+                    <h1>CAMPUS MANAGEMENT SOLUTION</h1>
+                    <!-- <h1>Educational Management System</h1> -->
+                </div>
+                <div class="kt-grid__item">
+                    <div class="left-img">
+                        <img src="~assets/images/leftbg.png" />
+                    </div>
+                </div>
+                <div class="bottom-img">
+                    <img src="~assets/images/bgstrip.png">
+                </div>
+                <!-- <div class="bg-logo">
+          <img src="~assets/images/EMSLogoWhite.png">
+        </div> -->
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper" style="height: 100%;">
+                <div class="kt-login__body">
+                    <div class="kt-login__form">
+                        <div class="kt-grid__item text-center">
+                            <img src="~assets/images/ic_logo.svg" />
+                        </div>
+                        <div class="kt-login__title">
+                            <h1 class="mt-3 mb-2" style="color:#B3CED6">Sign In</h1>
+                        </div>
+                        <form class="kt-form" action="" novalidate="novalidate" id="kt_login_form">
+                            <div class="form-group validated">
+                                <input class="form-control" type="text" name="username" autocomplete="off" :placeholder="$t('login.placeholder.email')" v-model.trim="data.username" @input="$v.data.username.$touch()">
+                                <span class="la la-user kt-icon"></span>
+                            </div>
+                            <span v-show="$v.data.username.$error">
+                <span v-if="!$v.data.username.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.username.email">{{$t('validation.email')}}</span>
+                            </span>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" autocomplete="off" :placeholder="$t('login.placeholder.password')" v-model.trim="data.password" @input="$v.data.password.$touch()">
+                                <span class="la la-search kt-icon"></span>
+                            </div>
+                            <span v-show="$v.data.password.$error">
+                <span v-if="!$v.data.password.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.password.minLength">{{$t('validation.minLength', 4)}}</span>
+                            </span>
+                            <div class="mt-4">
+                                <label class="kt-checkbox" style="font-size: 10px; padding-top:2px">
+                  <input type="checkbox">Remember me
+                  <span></span>
+                </label>
+                            </div>
+                            <div class="kt-login__actions text-center">
+                                <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary btn-block" @click.prevent="login()">LOGIN</button>
+                            </div>
+                        </form>
+                        <div class="kt-login__options" v-if="hasExternalProviders">
+                            <a href="#" class="btn btn-primary kt-btn" v-for="(provider,index) in externalProviders" @click.prevent="loginExternal(provider.providerId)">
+                                <i :class="'fa ' + [externalProviders[index].iconClass]"></i> {{$t(provider.localeKeys.name)}}
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

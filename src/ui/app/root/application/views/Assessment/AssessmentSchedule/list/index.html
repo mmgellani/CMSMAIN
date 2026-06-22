@@ -1,0 +1,202 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.assessment')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('Assessment Schedule')}}
+      </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.assessmentSchedule')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3 mx-auto" style=" position: fixed; top: 10px; z-index: 999; right: 0px;text-align: center;">
+          <div class="alert alert-danger text-center" v-if="Scheduleture == true"   role="alert">
+            <p class="mb-0 text-center" style="width:100%"> {{msgShow}}</p>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('navigation.setupSession')}}<span style="color:red"> *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId"
+              @input="loadCityCampus">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('navigation.setupCampus')}}<span style="color:red"> *</span></label>
+            <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" groupBy="cityName"
+              v-model="campusId" @input="loadlevel2"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Level<span style="color:red"> *</span></label>
+            <select-ex :options="levelList" keyValue="levelId" displayValue="fullName"
+               v-model="levelId" @input="loadProgramDetail"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Program Detail<span style="color:red"> *</span></label>
+            <select-ex
+                :options="programDetailList"
+                groupBy="programName"
+                keyValue="programDetailId"
+                displayValue="description"
+                v-model.trim="programDetailId"
+                @input="loadClassesOfLevelProgramClassMap"
+              ></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Class<span style="color:red"> *</span></label>
+            <select-ex :options="classLevelList" keyValue="classId" displayValue="className"
+              v-model="classId" @input="loadAssessmentScheme"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Assessment Scheme</label><span style="color:red"> *</span></label>
+            <select-ex :options="assessmentSchemeList" @input="loadAssessment" keyValue="assessmentSchemeMasterId" displayValue="assessmentMaster" v-model="assessmentSchemeMasterId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Assessment Name<span style="color:red"> *</span></label>
+            <select-ex :options="assessmentNameList" @input="loadAssessmentSections" keyValue="assessmentSchedulingDetailId" displayValue="fullName" v-model="assessmentSchedulingDetailId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+            <div class="col-md-8">
+            <label>Section</label>
+          </div>
+            <div class="col-md-4 text-right">
+              <span class="kt-switch kt-switch--sm kt-switch--icon">
+                <label class="m-0">
+                  <input type="checkbox" checked="checked" v-model="checkProgram"
+                    @change="addParam()">
+                  <span></span>
+                </label>
+              </span>
+            </div>
+            </div>
+            <!-- <date-picker @input="refreshData" v-model="dateMonth" lang="en" type="month" format="YYYY-MM">
+            </date-picker> -->
+            <select-ex :options="assessmentSectionList" keyValue="assessmentSectionMapId" multiple
+            :disabled="checkProgram" displayValue="sectionName" v-model="assessmentSectionMapId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="row">
+            <div class="col-md-8">
+            <label>Status</label>
+          </div>
+            <div class="col-md-4 text-right">
+              <span class="kt-switch kt-switch--sm kt-switch--icon">
+                <label class="m-0">
+                  <input type="checkbox" checked="checked" v-model="checkStatus"
+                    @change="checkStatusData()">
+                  <span></span>
+                </label>
+              </span>
+            </div>
+            </div>
+            <select-ex :options="statusList" keyValue="idd" multiple
+            :disabled="checkStatus" displayValue="text" v-model="id1"
+            @input="refreshData">
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.assessmentSchedule.">
+        <template slot="action-area">
+         
+          <!-- <button :disabled="!canSave" v-if="canAdd" data-toggle="modal" data-target="#myModal" title="Save"
+            class="btn btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i> {{$t('button.save')}}
+          </button> -->
+          <button  @click="insertModel" :disabled="!(sessionId.length>0 && levelId.length>0 && campusId.length>0 && programDetailId.length>0 && classId.length>0&& assessmentSchemeMasterId.length>0 && assessmentSchedulingDetailId.length>0) "
+          class="btn btn-light btn-hover btn-sm btn-primary">
+          <i class="la la-plus"></i>{{$t('button.insert')}}
+        </button>
+          <button @click="refreshData" title="Reload" class="btn btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="dated" slot-scope="item">
+          {{item.row.examDate && item.row.examDate.toString().split('T')[0]}}
+        </template>
+        <template slot="isApproved" slot-scope="item">
+          <span class="kt-switch kt-switch--sm kt-switch--icon">
+            <label class="m-0">
+              <input type="checkbox" checked="checked" v-model="item.row.isApproved">
+              <span></span>
+            </label>
+          </span>
+        </template>
+        <template slot="action" slot-scope="item">
+          <button
+            @click="editModel(item.row)"
+            v-if="canEdit"
+            title="Edit"
+            type="button"
+            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+          >
+            <i class="la la-edit"></i>
+          </button>
+
+          <button
+            @click="deleteModel(item.row)"
+            v-if="canDelete"
+            title="Delete"
+            type="button"
+            class="btn btn-outline-danger btn-icon btn-sm btn-circle"
+          >
+            <i class="la la-trash"></i>
+          </button>
+        </template>
+        <template slot="assessmentStatus" slot-scope="item">
+          <span
+            class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.assessmentStatus == 6"
+            >Approved</span
+          >
+          <span
+            class="kt-badge  kt-badge--info kt-badge--inline kt-badge--pill"
+            v-if="item.row.assessmentStatus == 7">
+            Marked</span>
+            <span
+            class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+            v-if="item.row.assessmentStatus == 8">
+            Scheduled</span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+  <ExamSchedule-add-edit-model v-on:submit="refreshData"></ExamSchedule-add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+
+</page-area>

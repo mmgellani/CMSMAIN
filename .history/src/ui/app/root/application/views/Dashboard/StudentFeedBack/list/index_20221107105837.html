@@ -1,0 +1,147 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Student Feedback</a>
+    </div>
+  </template>
+  
+  <div class="row">
+   
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>From Date</label>
+        <date-picker class="input-28" v-model="fromDate" format="DD/MM/YYYY" lang="en" :not-after="dueDate"
+          @input="loadData">
+        </date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>To Date</label>
+        <date-picker class="input-28" v-model="toDate" format="DD/MM/YYYY" lang="en" :not-after="dueDate"
+          @input="loadData">
+        </date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>User</label>
+        <select v-model="uservalue" class="form-control form-control-sm" required>
+          <option v-for="item in User" :value="items">{{item.value}}</option>
+      </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+      <button @click="reset" class="btn btn-blue btn-hover btn-sm btn-outline-primary ml-6">
+        <i class="la la-refresh"></i> Reset
+      </button>
+    </div>
+    <div class="col-md-2">
+      <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary" :disabled="!isDisabled">
+        {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="table-responsive mt-3">
+      <div class="fixed-header-table ">
+        <table style="width:100%;" class="customTable1" v-if="show">
+          <thead>
+            <tr>
+              <th style="width: 150px;">
+                Date
+              </th>
+              <th style="width: 180px;">
+                PlateForm
+              </th>
+              <th rowspan="3">
+                FeedBack
+              </th>
+            </tr>
+          </thead>
+
+
+
+
+          <tbody>
+
+            <tr v-for="item,index in data" class="rowHover" style="cursor: pointer;"
+              @click="Savedata(item.admissionFormId,index)">
+              <td style="width: 150px;">
+                <span v-html="item.date"></span>
+              </td>
+              <td style="width: 180px;">
+                {{item.plateForm}}
+              </td>
+              <td rowspan="3" style=" text-align: left;">
+                {{item.feedBack}}
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modelOuter" v-if="showmodel">
+    <div class="overlay"></div>
+    <div height="auto" class="w-50" style="position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-left: -358px;
+    z-index: 111;">
+      <div class="modal-content" b-alert :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+        :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h5 class="modal-title">Student Detail</h5>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="toggel()">
+              <i class="la la-close"></i>
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered" v-for="item in dataex">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">SubCity</th>
+                <th scope="col">Program</th>
+                <th scope="col">Roll No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Student Contact#</th>
+                <th scope="col">Parent Contact#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{item.subCity}}</td>
+                <td>{{item.program}}</td>
+                <td>{{item.rollNo}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.studentNo}}</td>
+                <td>{{item.parentNo}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+  </div>
+  </div>
+</page-area>

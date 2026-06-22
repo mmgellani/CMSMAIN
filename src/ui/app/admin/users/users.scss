@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.paging-splice{
+	display: inline-block;
+	font-weight: bold;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	font-style: italic;
+}
+
+.paging-of{
+	font-weight: normal;
+}
+
+.filter-label{
+	font-weight: lighter;
+	font-style: italic;
+}
+

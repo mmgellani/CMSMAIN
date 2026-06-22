@@ -1,0 +1,74 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Survey Dashboard</a>
+    </div>
+  </template>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label class="form-control-label">{{$t('modal.reports.feeReports.session')}}
+      </label>
+      <select-ex :options="sessionModel" keyValue="sessionId" displayValue="fullName" v-model="sessionId">
+      </select-ex>
+    </div>
+    <div class="col-md-3 form-group">
+      <label class="form-control-label">{{$t('modal.setupCampus.subCity')}}
+      </label>
+      <select-ex :options="citySubCityList" keyValue="subCityId" displayValue="subCityName" v-model="subCityId"
+        groupBy="cityName">
+      </select-ex>
+    </div>
+    <div class="col-md-6 text-right">
+      <div class="form-group">
+        <button class="btn btn-light btn-hover btn-sm btn-primary" @click="clearSelection()" data-dismiss="modal"
+          type="submit">
+          Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right mb-5">
+      <button @click="loadcsv" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+        {{$t('button.exporttoexcel')}}<i class="la la-file-excel-o"></i>
+      </button>
+    </div>
+  </div>
+  <div class="position-relative">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="survey-nav">
+          <input type="text" placeholder="Tap to Search" v-on:keyup.enter="querySearch(search)" v-model="search">
+          <div class="d-flex" v-for="(item,index) in searchArr">
+            <div class="hightlight-div">
+              {{item}} &nbsp;
+              <i class="fa fa-times" @click.prevent="deleteSearch(index)"></i>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <grid :data="filterArr" :columns="columns" pre="modal.notificationDashboard.">
+        <template slot="dated" slot-scope="item">
+          {{item.row.dated | formatDMY}}
+        </template>
+        <template slot="campusCode" slot-scope="item">
+          {{item.row.campusCode.substring(0,item.row.campusCode.length - 3)}}
+        </template>
+      </grid>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <span v-if="filterArr.length==0">
+      There is no record.
+    </span>
+  </div>
+</page-area>

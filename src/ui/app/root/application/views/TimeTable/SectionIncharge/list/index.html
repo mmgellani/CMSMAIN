@@ -1,0 +1,89 @@
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title">{{$t('navigation.timetable')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.Sectionincharge')}} </a></a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.Sectionincharge')">
+        <template slot="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>{{$t('navigation.setupSession')}}</label>
+                    <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionid"
+                      @input="loadCityCampus"></select-ex>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label>{{$t('navigation.setupCampus')}}</label>
+                  <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" groupBy="cityName"
+                    v-model="campusid" @input="loadProgramsOfCampus"></select-ex>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>{{$t('modal.concessionRenew.program')}}</label>
+                    <select-ex :options="campusProgramLinkList" keyValue="campusProgramId" displayValue="description"
+                      groupBy="programName" v-model="campusProgramId"  @input="loadProgramSection" ></select-ex>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>{{$t('modal.concessionRenew.class')}}</label>
+                    <select-ex :options="classList" keyValue="classId" @input="loadProgramSection" displayValue="fullName" v-model="classid"></select-ex>
+                    </select>
+                  </div>
+                </div>
+        
+              </div>
+              <div class="row">
+
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>{{$t('modal.examBulk.section')}}</label>
+                    <select-ex :options="sectionCourseLinkList" keyValue="sectionCourseLinkId" displayValue="sectionName"
+                      v-model.trim="sectionCourseLinkId"></select-ex>
+                  </div>
+                </div>
+
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.examBulk.course')}}</label>
+                      <select-ex :options="courseList" keyValue="courseId" displayValue="courseName"
+                        v-model.trim="courseid" @input="GetHOdList">
+                      </select-ex>
+                    </div>
+                  </div> -->
+
+              </div>
+
+              <grid :data="Staffhodlist" :columns="columns" pre="modal.Teacherhod.">
+                <template slot="action-area">
+                  <button @click="insertModel"  :disabled="!Addmore"   class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                    <i class="la la-plus"></i>{{$t('button.insert')}}
+                  </button>
+                  <button @click="GetSectionList" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+                    <i class="la la-refresh"></i> {{$t('button.reload')}}
+                  </button>
+                </template>
+
+                <template slot="action" slot-scope="item">
+                   
+                    <button @click="deleteModel(item.row)"  title="Delete" type="button"
+                      class="btn btn-outline-danger btn-icon btn-sm btn-circle">
+                      <i class="la la-trash"></i>
+                    </button>
+                  </template>
+              
+              </grid>
+        </template>
+       
+    </portlet-area>
+    <staff-record  v-on:submit="GetSectionList"  ></staff-record>
+</page-area>

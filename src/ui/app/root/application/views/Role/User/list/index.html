@@ -1,0 +1,71 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        User
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <vs-select placeholder="Campus" v-model="campusId">
+              <div :key="index" v-for="item,index in cityDDL">
+                <vs-select-group :title="item.title" v-if="item.group">
+                  <vs-select-item :key="index" :value="item.id" :text="item.text" v-for="item,index in item.group" />
+                </vs-select-group>
+              </div>
+            </vs-select>
+
+
+          </div>
+          <div class="col-md-3">
+
+            <select style="width: 250px;height:31px;" v-model="UserType">
+              <option value="" disabled>Choose One Option </option>
+              <option value='E'>Employee </option>
+              <option value='S'>Student </option>
+            </select>
+
+          </div>
+
+
+
+        </div>
+
+        <!-- <div v-if="canRead">
+  
+            <grid :data="data" :columns="columns">
+              <template slot="operation-links">
+                <button v-if="canAdd" @click="insertModel" class="b-add">
+                  <feather icon="plus-circle"></feather>
+                </button>
+                <button @click="refreshData" class="b-refresh">
+                  <feather icon="refresh-ccw" ></feather>
+                </button>
+              </template>
+              <template slot="statusId" slot-scope="item">
+                {{item.row.statusId==1?'Active':'InActive'}}
+              </template>
+              <template slot="action" slot-scope="item">
+                <a @click="editModel(item.row)" v-if="canEdit">
+                  <feather icon="edit" xclass="b-edit"></feather>
+                </a>
+                <a @click="deleteModel(item.row)" v-if="canDelete">
+                 <feather icon="trash" xclass="b-delete"></feather>
+                </a>
+              </template>
+              
+            </grid>
+          </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- <add-edit-model v-on:submit="refreshData"></add-edit-model>
+    <delete-model v-on:submit="refreshData"></delete-model> -->
+</div>

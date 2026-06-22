@@ -1,0 +1,201 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="body-content off-canvas">
+  <div class="m-subheader">
+    <ol class="breadcrumb breadcrumb-alt">
+      <li class="breadcrumb-item active">Fee Activity</li>
+    </ol>
+  </div>
+  <div class="m-content">
+    <div class="m-portlet m-portlet--bordered">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+          <ul>
+            <li><a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only" @click="refreshData"><i class="la la-refresh"></i></a></li>
+            <li v-if="canAdd"><a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only" @click="insertModel"><i class="la  la-plus"></i></a></li>
+          </ul>
+        </div>
+        <form class="col-lg-4">
+          <div class="form-group form-group-default required" ref="filters">
+            <label>Search</label>
+            <input class="form-control input-sm" type="text" v-model="filterString" 
+                @focus="$refs.filters.className = 'form-group form-group-default required focused'"
+                @blur="$refs.filters.className = 'form-group form-group-default required'">
+          </div>
+        </form>
+      </div>
+      <div class="card-body no-padding">
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>FeeActivityId</th>
+<th>StudentChallanId</th>
+<th>Dated</th>
+<th>Description</th>
+<th>StatusId</th>
+<th>LoggerId</th>
+
+                  <th>Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in data">
+                  <td class="v-align-middle">{{item.feeActivityId}}</td>
+<td class="v-align-middle">{{item.studentChallanId}}</td>
+<td class="v-align-middle">{{item.dated}}</td>
+<td class="v-align-middle">{{item.description}}</td>
+<td class="v-align-middle">{{item.statusId}}</td>
+<td class="v-align-middle">{{item.loggerId}}</td>
+
+                  <td>
+                    <a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only" @click="editModel(item)" v-if="canEdit"><i class="la la-edit"></i></a>
+                    <a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only" @click="deleteModel(item)" v-if="canDelete"><i class="la la-trash"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div> -->
+
+
+<!-- <div class="body-content off-canvas">
+  <div class="m-subheader ">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="m-subheader__title m-subheader__title--separator">
+          Fee Activity
+        </h3>
+        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+          <li class="m-nav__item">
+            <div class="m-input-icon m-input-icon--left">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Search...">
+              <span class="m-input-icon__icon m-input-icon__icon--left">
+                <span>
+                  <i class="fa fa-search"></i>
+                </span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+        data-dropdown-toggle="hover" aria-expanded="true">
+        <a href="#" @click="refreshData" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+          <i class="fa fa-refresh m--hide"></i>
+          <feather icon="refresh-ccw" ></feather>
+        </a>
+        <a href="#" @click="insertModel" v-if="canAdd" class="btn m-btn--pill m-btn--air btn-outline-primary m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only">
+          <i class="fa fa-plus m--hide"></i>
+          <feather icon="plus-circle"></feather>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="m-content">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet m-portlet--tabs">
+          <div class="m-portlet__body" style="overflow-x: auto;">
+            <div class="table-responsive" v-if="canRead">
+              <div class="dataTables_wrapper no-footer">
+                <table class="table">
+                  <thead>
+                    <tr role="row">
+                      <th>FeeActivityId</th>
+                      <th>StudentChallanId</th>
+                      <th>Dated</th>
+                      <th>Description</th>
+                      <th>StatusId</th>
+                      <th>LoggerId</th>
+
+                      <th>Operation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in data">
+                      <td class="v-align-middle">{{item.feeActivityId}}</td>
+                      <td class="v-align-middle">{{item.studentChallanId}}</td>
+                      <td class="v-align-middle">{{item.dated}}</td>
+                      <td class="v-align-middle">{{item.description}}</td>
+                      <td class="v-align-middle">{{item.statusId}}</td>
+                      <td class="v-align-middle">{{item.loggerId}}</td>
+
+                      <td>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-success m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="editModel(item)" v-if="canEdit"><i class="la la-edit"></i></a>
+                        <a href="#" class="btn m-btn--pill m-btn--air btn-outline-danger m-btn m-btn--outline-2x m-btn--icon m-btn--icon-only"
+                          @click="deleteModel(item)" v-if="canDelete"><i class="la la-trash"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div> -->
+
+
+<!-- new.. -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Fee Activity
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                <div class="col-md-2 offset-10">
+                  <button v-if="canAdd" @click="insertModel" class="b-add">
+                    <feather icon="plus-circle"></feather>
+                  </button>
+                  <button @click="refreshData" class="b-refresh">
+                    <feather icon="refresh-ccw" ></feather>
+                  </button>
+                </div>
+              </div>
+
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+               <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+            </template>
+
+          </grid>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

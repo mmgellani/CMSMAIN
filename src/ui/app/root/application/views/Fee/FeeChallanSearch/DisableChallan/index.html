@@ -1,0 +1,151 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-title">
+                Student Disable Challan Detail
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-sm" v-model="filterString" placeholder="Enter Here "
+                    v-on:keydown.enter="getrecord">
+                <label>Challan No</label>
+            </div>
+
+
+            <div class="card-body">
+                <div v-if="canRead">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive" v-if="canRead ">
+                                <div class="dataTables_wrapper no-footer">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Installment No</th>
+                                                <th></th>
+                                                <th>Challan No.</th>
+                                                <th> </th>
+                                                <th>Due Date</th>
+                                                <th> </th>
+                                                <th>Paid Date</th>
+                                                <th> </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in disablechallanlist">
+
+                                                <td>{{item.installmentNo}}</td>
+                                                <td></td>
+
+                                                <td> {{item.challanNo}} </td>
+                                                <td> </td>
+                                                <td> {{item.dueDate }}</td>
+                                                <td> </td>
+                                                <td> {{item.paidDate}}</td>
+                                                <td> </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control " v-model="filterString" placeholder="Enter Here "
+                    v-on:keydown.enter="getrecord">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr role="row">
+                        <th>DisplayName</th>
+                        <th>Student Name</th>
+                        <th>Refference No</th>
+                        <th>Roll No</th>
+                        <th>InstallmentNo</th>
+                        <th>Amount</th>
+                        <th>challanNo</th>
+                        <th>Due Date</th>
+                        <th>Paid Date</th>
+                        <th>Operation</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in disablechallanlist">
+                        <td class="v-align-middle">{{item.displayName}}</td>
+                        <td class="v-align-middle">{{item.fullName}}</td>
+                        <td class="v-align-middle">{{item.refferenceNo}}</td>
+                        <td class="v-align-middle">{{item.rollNo}}</td>
+                        <td class="v-align-middle">{{item.installmentNo}}</td>
+                        <td class="v-align-middle">{{item.amount}}</td>
+                        <td class="v-align-middle">{{item.challanNo}}</td>
+                        <td class="v-align-middle">{{item.dueDate}}</td>
+                        <td class="v-align-middle"> {{item.paidDate}}</td>
+                        <td class="v-align-middle"> {{item.operation1}}</td>
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="row">
+
+        <div class="table-responsive" >
+                <div class="dataTables_wrapper no-footer">
+                  <table class="table">
+                    <thead>
+                      <tr role="row">
+                        <th>installmentNo</th>
+                        <th>challanNo</th>
+                        <th>Due Date</th>
+                        <th>Paid Date</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in disablechallanlist">
+                        <td class="v-align-middle">{{item.installmentNo}}</td>
+                        <td class="v-align-middle">{{item.challanNo}}</td>
+                        <td class="v-align-middle">{{item.dueDate}}</td>
+                        <td class="v-align-middle"> {{item.paidDate}}</td>
+                       
+                      
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+</div> -->

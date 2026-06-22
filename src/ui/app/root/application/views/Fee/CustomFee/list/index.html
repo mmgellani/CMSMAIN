@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Custom Student Fee
+      </div>
+      <div class="card-body">
+        <grid :data="model" :columns="columns">
+          <template slot="operation-links">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select @change="loadCityCampus" v-model="session" class="form-control form-control-sm" required>
+                    <option :value="item.sessionId" v-for="item in sessionModel">{{item.fullName}}
+                    </option>
+                  </select>
+                  <label>Session</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select @change="loadProgramsOfCampus" v-model="campus" class="form-control form-control-sm" required>
+                    <template v-for="(item,index) in cityDDL">
+                      <template v-if="item.group">
+                        <option value="item.id" class="bold-option" disabled>
+
+                          <strong>{{item.title}}</strong>
+                        </option>
+                        <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                          <span v-html="'&#8680; ' + chItem.text"></span>
+                        </option>
+                      </template>
+                    </template>
+                  </select>
+                  <label>Campus</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select @change="loadData" v-model="program" class="form-control form-control-sm" required>
+                    <template v-for="(item,index) in programDDL">
+                      <template v-if="item.group">
+                        <option value="item.id" class="bold-option" disabled>
+
+                          <strong>{{item.title}}</strong>
+                        </option>
+                        <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                          <span v-html="'&#8680; ' + chItem.text"></span>
+                        </option>
+                      </template>
+                    </template>
+                  </select>
+                  <label>Program</label>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template slot="action" slot-scope="item">
+            <a class="btn btn-primary btn-sm tbl-btn">
+              <i class="fa fa-edit" @click="insert(item.row)"></i>
+            </a>
+          </template>
+        </grid>
+      </div>
+    </div>
+  </div>
+  <add-edit-model v-on:submit="loadData"></add-edit-model>
+</div>

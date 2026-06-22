@@ -1,0 +1,1215 @@
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="80%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title mb-5">{{$t('modal.studentDetails.studentDetails')}}</h3>
+
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body roleModel">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="kt-grid__item" id="kt_user_profile_aside">
+                        <div class="kt-portlet kt-portlet--height-fluid">
+                            <div class="kt-portlet__body kt-portlet__body--fit-y mt-5">
+                                <div class="kt-widget kt-widget--user-profile-1">
+                                    <div class="text-center">
+                                        <div class="kt-widget__media">
+                                            <img v-if="!datas.image" src="~assets/images/users/default.jpg" alt="image"
+                                                style="border-radius: 14px;">
+                                            <img v-else :src="datas.image" alt="image" style="border-radius: 14px;">
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget__body">
+                                        <template v-if="datas.fullName.length>0">
+                                            <div class="row mt-3">
+                                                <div class="col-md-12 text-center">
+                                                    <span class="std-heading">{{datas.fullName}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3 mt-2">
+                                                <div class="col-md-4">
+                                                    <span class="std-heading">{{$t('modal.studentDetails.roll')}}</span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <span class="std-sub-heading" style="word-break: break-all;">
+                                                        {{ datas.rollNo }} </span>
+                                                    <span
+                                                        class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill ml-2"
+                                                        v-if="datas.shouldAbsent">Struck
+                                                        Off</span>
+
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <div class="kt-widget__items" style="max-height: 310px; overflow-y: scroll;">
+                                            <a v-for="(item, index) in navItems" @click="setActive(item,index)"
+                                                :class="{ 'kt-widget__item--active':  activeIndex === index}"
+                                                class="kt-widget__item">
+                                                <span class="kt-widget__section">
+                                                    <span class="kt-widget__icon">
+                                                        <span v-html="item.icon"></span>
+                                                    </span>
+                                                    <span class="kt-widget__desc">
+                                                        {{item.name}}
+                                                        <!-- {{$t('modal.studentDetails.personal')}} -->
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9" v-if="shouldDisplay">
+                    <div class="kt-portlet" v-if="activeIndex == 0" :class="{ 'animation-Delay':  activeIndex === 0}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.personal')}}</h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <template v-if="datas.fullName.length>0">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.reference')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ datas.refferenceNo }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.section')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span v-for=" phone in getPhone(datas.guardians)" class="std-sub-heading">
+                                            {{phone.section}}
+                                            <!-- <span
+                                                class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill ml-2"
+                                                v-if="datas.shouldAbsent">Struck
+                                                Off</span> -->
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.program')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ datas.description }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.campus')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ datas.campusName }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.studentCnic')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ datas.studentCNIC }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.studentContact')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span v-for="phone in getPhone(datas.studentContactNo)" class="std-sub-heading">
+                                            {{phone.phoneNo}}
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.address')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span v-for="phone in getAddress(datas.address)" class="std-sub-heading">
+                                            {{phone.address}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-5 pb-3" style="border-bottom: 1px solid #ebedf2;">
+                                    <div class="col-md-12">
+                                        <h2 style="font-size: 1.2rem;" class="std-heading">
+                                            {{$t('modal.studentDetails.parentInfo')}}</h2>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.guardianName')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading">
+                                            {{ datas.fatherName }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.guardianCnic')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        {{ datas.parentCNIC }}
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <span class="std-heading">{{$t('modal.studentDetails.guardianContact')}}</span>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="std-sub-heading" v-for="phone in getPhone(datas.parentContactNo)">
+                                            {{phone.phoneNo}},
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </template>
+                        </div>
+                    </div>
+                    <div  class="kt-portlet" v-if="activeIndex == 1" :class="{ 'animation-Delay':  activeIndex === 1}">
+                        <div  v-if="!showAttachmentPopup" class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.feeInformation')}}</h3>
+                            </div>
+                        </div>
+                      <!-- Include Font Awesome 6 in your index.html or main template -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<tabs>
+  <!-- Paid Tab -->
+  <tab name="Paid" :selected="true" v-if="!showAttachmentPopup">
+    <div class="kt-portlet__body" >
+      <div class="row" v-if="data.length > 0">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th>Challan Type</th>
+                  <th>Challan No</th>
+                  <th>Concession</th>
+                  <th>Installment</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Paid Date</th>
+                  <th>Attachments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in data" :key="item.challanNo">
+                  <td>{{ item.fullName }}</td>
+                  <td>{{ item.challanNo }}</td>
+                  <td>{{ item.concession }}</td>
+                  <td>{{ item.installmentNo }}</td>
+                  <td>{{ getcomma(item.feeAmount) }}</td>
+                  <td>{{ item.dueDate | formatDMY }}</td>
+                  <td>{{ item.paidDate | formatDMY }}</td>
+                  <td class="text-center">
+                    <div  v-if="item.image && item.fullName === 'Education'"  class="attachment-icons">
+                       <span style="color: #4cb572;  cursor:pointer;">  <i class="fa-solid fa-eye"
+                         title="View Attachments"
+                         @click="viewAttachment(item)"></i></span>
+
+                      <span style="color: #4cb572;  cursor:pointer;"> <i class="fa-solid fa-download"
+                         title="Download Attachments"
+                         @click="downloadAttachment(item)"></i></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div v-else>There is no record</div>
+    </div>
+  </tab>
+
+  <!-- Un-paid Tab -->
+  <tab name="Un-paid" v-if="!showAttachmentPopup">
+    <div class="kt-portlet__body" >
+      <div class="row" v-if="data2.length > 0">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th>Challan Type</th>
+                  <th>Challan No</th>
+                  <th>Concession</th>
+                  <th>Installment</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Paid Date</th>
+                  <th>Attachments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in data2" :key="item.challanNo">
+                  <td>{{ item.fullName }}</td>
+                  <td>{{ item.challanNo }}</td>
+                  <td>{{ item.concession }}</td>
+                  <td>{{ item.installmentNo }}</td>
+                  <td>{{ getcomma(item.feeAmount) }}</td>
+                  <td>{{ item.dueDate | formatDMY }}</td>
+                  <td>{{ item.paidDate | formatDMY }}</td>
+                  <td class="text-center">
+                    <div v-if="item.image && item.fullName === 'Education'"  class="attachment-icons">
+                    
+                         <span style="color: #4cb572;">  <i class="fa-solid fa-eye"
+                         title="View Attachments"
+                         @click="viewAttachment(item)"></i></span>
+
+                      <span style="color: #4cb572;"> <i class="fa-solid fa-download"
+                         title="Download Attachments"
+                         @click="downloadAttachment(item)"></i></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div v-else>There is no record</div>
+    </div>
+  </tab>
+
+  <div v-if="showAttachmentPopup" class="custom-modal-overlay">
+  <div class="custom-modal">
+    <!-- <div class="custom-modal-header">
+     <h3 class="kt-portlet__head-title"> Attachments
+                                </h3>
+  <button @click="closeAttachmentModal"
+                                class="btn btn-hover btn-sm btn-outline-primary" style="height: 31px !important;
+                                margin-top: 16px;"> <i class="la la-arrow-left"></i>
+                                {{$t('button.back')}}</button>   </div>  -->
+
+
+
+   <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> Attachments
+                                </h3>
+                            </div>
+                            <button @click="closeAttachmentModal"
+                                class="btn btn-hover btn-sm btn-outline-primary" style="height: 31px !important;
+                                margin-top: 16px;"> <i class="la la-arrow-left"></i>
+                                {{$t('button.back')}}</button>
+                        </div>
+
+    <div class="custom-modal-body">
+      <div class="d-flex flex-wrap">
+        <div v-for="(img, idx) in selectedAttachments" :key="idx" class="m-2">
+          <img v-if="!img.endsWith('.pdf')" :src="img" class="preview-img" />
+          <div v-else class="pdf-box">
+            <i class="fa fa-file-pdf fa-3x text-danger"></i>
+            <div>PDF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ 
+  </div>
+</div>
+</tabs>
+
+<!-- Attachment Modal -->
+
+
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 2" :class="{ 'animation-Delay':  activeIndex === 1}">
+                        <div class="row">
+                            <div class="col-md-6" v-if="matData.length>0">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">Matric Academic Info</h3>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <table class="table">
+                                        <thead>
+                                            <th class="text-center">
+                                                Course
+                                            </th>
+                                            <th class="text-center">
+                                                Total Marks
+                                            </th>
+                                            <th class="text-center">
+                                                Obtained Marks
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in matData">
+                                                <td>
+                                                    {{item.courseName}}
+                                                </td>
+                                                <td>
+                                                    {{item.totalMarks}}
+                                                </td>
+                                                <td>
+                                                    {{item.obtainedMarks}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6" v-if="intData.length>0" style="border-left: solid;">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">1st-Year Academic Info</h3>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <table class="table">
+                                        <thead>
+                                            <th class="text-center">
+                                                Course
+                                            </th>
+                                            <th class="text-center">
+                                                Total Marks
+                                            </th>
+                                            <th class="text-center">
+                                                Obtained Marks
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in intData">
+                                                <td>
+                                                    {{item.courseName}}
+                                                </td>
+                                                <td>
+                                                    {{item.totalMarks}}
+                                                </td>
+                                                <td>
+                                                    {{item.obtainedMarks}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5" v-if="matData.length==0 && intData.length==0">
+                            No Record Found
+                        </div>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 3" :class="{ 'animation-Delay':  activeIndex === 2}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.attendanceInformation')}}
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- <div class="row mt-2">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Date</label>
+                                      <date-picker @input="AttendencePercentage" class="input-28" id="dated"  v-model="listDate"
+                                        format="DD/MM/YYYY" lang="en" ></date-picker>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3" v-if="Showattendence" >
+                                    <div class="form-group">
+                                      <label>Attendance Percentage</label>
+                                      <div class="btn btn-sm fw-bold btn-primary mt-1">
+                                      {{attedataperc.attendencePercentage}}%
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                            </div> -->
+
+                        <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive" v-if="attedata.length>0">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                                <tr role="row">
+                                                    <th>{{$t('modal.studentDetails.month')}}</th>
+                                                    <th>{{$t('modal.studentDetails.total')}}</th>
+                                                    <th>{{$t('modal.studentDetails.present')}}</th>
+                                                    <th>{{$t('modal.studentDetails.absent')}}</th>
+                                                    <th>{{$t('modal.studentDetails.leave')}}</th>
+                                                    <th>
+                                                        {{$t('modal.studentDetails.attendencePercentage')}}
+                                                    </th>
+                                                    <th>
+                                                        Aggregate Percentage
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.details')}}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in attedata" class="rowHover">
+
+                                                    <td class="align-middle">{{item.month}}</td>
+                                                    <td class="align-middle"> {{item.total}} </td>
+                                                    <td class="align-middle"> {{item.presents}}</td>
+                                                    <td class="align-middle"> {{item.absents}}</td>
+                                                    <td class="align-middle"> {{item.leave}}</td>
+                                                    <td class="align-middle"> {{item.attendencePercentage}} </td>
+                                                    <td class="align-middle"> {{item.aggrePercentage}} </td>
+                                                    <td class="align-middle">
+                                                        <button @click="ShowDetailLeave(item.startDate,item.endDate)"
+                                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Show Detail">
+                                                            <i class="la la-info"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-else>
+                                        There is no record
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 4" :class="{ 'animation-Delay':  activeIndex === 3}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.assessmentInformation')}}
+                                </h3>
+                            </div>
+                        </div>
+
+                        <tabs>
+                            <tab name='Approved' :selected="true">
+                                <div class="kt-portlet__body">
+
+                                    <div class="table-responsive" v-if="studentProfileApproved.length>0">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>{{$t('modal.studentDetails.month')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentName')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentweightage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmenttotalMarks')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentObtainedMarks')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentWeightedScore')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentWeightedage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentAggregateage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentResultDetail')}}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in studentProfileApproved" class="rowHover">
+
+                                                    <td class="align-middle">{{item.month}}</td>
+                                                    <td class="align-middle"> {{item.assessmentName}}</td>
+                                                    <td class="align-middle"> {{item.weightage}}</td>
+                                                    <td class="align-middle"> {{item.totalMarks}}</td>
+                                                    <td class="align-middle"> {{item.obtainMarks}} </td>
+                                                    <td class="align-middle"> {{item.weightedScore}} </td>
+                                                    <td class="align-middle"> {{item.weightedPercentage}}% </td>
+                                                    <td class="align-middle"> {{item.aggregatePercentage}}% </td>
+                                                    <td class="align-middle">
+                                                        <button @click="StudentProfileCourseView(item.assessmentName)"
+                                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Show Detail">
+                                                            <i class="la la-info"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-else class="mb-16">
+                                        There is no record
+                                    </div>
+
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div class="table-responsive">
+                                        <p> <b>i) Weighted Score: </b> Obtained Marks out of Total Marks multiply by
+                                            Exam Weightage.</p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <p> <b> ii) Aggregate Weighted %age: </b> Sum of the Weighted Score out of Sum
+                                            of the Weightage of Exams multiply by 100.</p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <p> <b> iii) Achieved Weighted %age: </b> Weighted Score out of Exam Weightage
+                                            multiply by 100.</p>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab name='Un-Approved'>
+                                <div class="kt-portlet__body">
+
+                                    <div class="table-responsive" v-if="studentProfileUnApproved.length>0">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>{{$t('modal.studentDetails.month')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentName')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentweightage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmenttotalMarks')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentObtainedMarks')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentWeightedScore')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentWeightedage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.assessmentResultDetail')}}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in studentProfileUnApproved" class="rowHover">
+
+                                                    <td class="align-middle">{{item.month}}</td>
+                                                    <td class="align-middle"> {{item.assessmentName}}</td>
+                                                    <td class="align-middle"> {{item.weightage}}</td>
+                                                    <td class="align-middle"> {{item.totalMarks}}</td>
+                                                    <td class="align-middle"> {{item.obtainMarks}} </td>
+                                                    <td class="align-middle"> {{item.weightedScore}} </td>
+                                                    <td class="align-middle"> {{item.weightedPercentage}}% </td>
+                                                    <td class="align-middle">
+                                                        <button
+                                                            @click="StudentProfileCourseViewUnApproved(item.assessmentName)"
+                                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Show Detail">
+                                                            <i class="la la-info"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-else class="mb-16">
+                                        There is no record
+                                    </div>
+
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div class="table-responsive">
+                                        <p><b> i) Weighted Score: </b> Obtained Marks out of Total Marks multiply by
+                                            Exam Weightage.</p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <p> <b> ii) Achieved Weighted %age: </b> Weighted Score out of Exam Weightage
+                                            multiply by 100.</p>
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabs>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 5" :class="{ 'animation-Delay':  activeIndex === 4}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.examInformation')}}
+                                </h3>
+                            </div>
+                        </div>
+
+                        <tabs>
+                            <tab name='Approved' :selected="true">
+                                <div class="kt-portlet__body">
+
+                                    <div class="table-responsive" v-if="examdata.length>0">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>{{$t('modal.studentDetails.month')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.examType')}}
+                                                    </th>
+                                                    <th>
+                                                        Exam Name
+                                                        <!-- {{$t('modal.studentDetails.examScheduleName')}} -->
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.obtained')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.total')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.percentage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.passCount')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.failCount')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.details')}}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in examdata" class="rowHover">
+
+                                                    <td class="align-middle">{{item.month}}</td>
+                                                    <td class="align-middle"> {{item.examType}}</td>
+                                                    <td class="align-middle"> {{item.examScheduleName}}</td>
+                                                    <td class="align-middle"> {{item.obtained}}</td>
+                                                    <td class="align-middle"> {{item.total}} </td>
+                                                    <td class="align-middle"> {{item.percentage}}% </td>
+                                                    <td class="align-middle"> {{item.passCount}} </td>
+                                                    <td class="align-middle"> {{item.failCount}} </td>
+                                                    <td class="align-middle">
+                                                        <button
+                                                            @click="ShowExamDetail(item.examTypeId,item.dated,item.examScheduleName)"
+                                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Show Detail">
+                                                            <i class="la la-info"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-else>
+                                        There is no record
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab name='Un-Approved'>
+                                <div class="kt-portlet__body">
+
+                                    <div class="table-responsive" v-if="examdataUn.length>0">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>{{$t('modal.studentDetails.month')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.examType')}}
+                                                    </th>
+                                                    <th>
+                                                        Exam Name
+                                                        <!-- {{$t('modal.studentDetails.examScheduleName')}} -->
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.obtained')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.total')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.percentage')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.passCount')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.failCount')}}
+                                                    </th>
+                                                    <th>{{$t('modal.studentDetails.details')}}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in examdataUn" class="rowHover">
+
+                                                    <td class="align-middle">{{item.month}}</td>
+                                                    <td class="align-middle"> {{item.examType}}</td>
+                                                    <td class="align-middle"> {{item.examScheduleName}}</td>
+
+                                                    <td class="align-middle"> {{item.obtained}}</td>
+                                                    <td class="align-middle"> {{item.total}} </td>
+                                                    <td class="align-middle"> {{item.percentage}}% </td>
+                                                    <td class="align-middle"> {{item.passCount}} </td>
+                                                    <td class="align-middle"> {{item.failCount}} </td>
+                                                    <td class="align-middle">
+                                                        <button
+                                                            @click="ShowExamDetailUn(item.examTypeId,item.dated,item.examScheduleName)"
+                                                            class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Show Detail">
+                                                            <i class="la la-info"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div v-else>
+                                        There is no record
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabs>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 6" :class="{ 'animation-Delay':  activeIndex === 5}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.struckOff')}}
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="table-responsive" v-if="Struckofflist.length>0">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{$t('modal.studentDetails.struckoffdate')}}
+                                            </th>
+                                            <th>{{$t('modal.studentDetails.struckoffRemarks')}}
+                                            </th>
+                                            <th>{{$t('modal.studentDetails.reinstatedate')}}
+                                            </th>
+                                            <th>{{$t('modal.studentDetails.reinstateRemarks')}}
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in Struckofflist" class="rowHover">
+
+                                            <td class="align-middle">{{item.struckoffDate | formatDMY}}</td>
+                                            <td class="align-middle"> {{item.struckoffReason}} </td>
+                                            <td class="align-middle"> {{item.reinstateDate | formatDMY}}</td>
+                                            <td class="align-middle"> {{item.reinstateReason}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div v-else>
+                                There is no record
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 7" :class="{ 'animation-Delay':  activeIndex === 6}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">Transfer/ Migration Status
+                                </h3>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="table-responsive" v-if="migraiontransferlist.length>0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Sr.#
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                From
+                                            </th>
+                                            <th>
+                                                To
+                                            </th>
+
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(itemList,index) in migraiontransferlist">
+                                            <td>
+                                                {{index + 1}}
+                                            </td>
+                                            <td>
+                                                {{itemList.type}}
+                                            </td>
+                                            <td v-html="itemList.fromCampus">
+
+                                            </td>
+
+                                            <td v-html="itemList.toCampus"></td>
+                                            <!-- {{itemList.toCampus}} -->
+
+                                            <td>
+                                                {{itemList.dateTime}}
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <!-- <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="std-heading">Transfer</span>
+                                </div>
+                                <div class="col-md-9">
+                                    <span class="std-sub-heading">
+                                        {{transferprogrec}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-3">
+                                    <span class="std-heading">Migration</span>
+                                </div>
+                                <div class="col-md-9">
+                                    <span class="std-sub-heading">
+                                        {{migratedrec}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 8" :class="{ 'animation-Delay':  activeIndex === 7}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">SMS History
+                                </h3>
+
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-md-3 mt-4">
+                                    <span class="std-heading">SMS Sent</span> <span class="std-sub-heading ml-5">
+                                        {{messagesend}}
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    From Date
+                                    <date-picker class="input-28" id="change-width" ref="changeWidth"
+                                        v-model="messageDate" lang="en">
+                                    </date-picker>
+                                </div>
+                                <div class="col-md-3">
+                                    To Date
+                                    <date-picker class="input-28" id="change-width" ref="changeWidth"
+                                        v-model="messageDate2" lang="en" :not-before="messageDate"
+                                        @input="GetMessageDetail(messageDate,messageDate2)">
+                                    </date-picker>
+                                </div>
+                                <div class="col-md-3 text-center mt-4">
+                                    <button class="btn btn-outline-info btn-icon btn-sm btn-circle"
+                                        @click="GetMessageDetail(messageDate,messageDate2)" data-toggle="tooltip"
+                                        data-placement="top">
+                                        <i class="la la-refresh"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="table-responsive" v-if="msgdetaillist.length>0">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    SMS No
+                                                </th>
+                                                <th>
+                                                    SMS Text
+                                                </th>
+                                                <th>
+                                                    Sent Date
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in dataPerPage">
+                                                <td>
+                                                    {{item.messageNo}}
+                                                </td>
+                                                <td>
+                                                    {{item.messageText}}
+                                                </td>
+                                                <td>
+                                                    {{item.sendDate|formatDMY}}
+                                                </td>
+                                                <td>
+                                                    <span v-if="item.status==0"
+                                                        class="kt-badge  kt-badge--primary kt-badge--inline kt-badge--pill h-auto">In
+                                                        Queue</span>
+                                                    <span v-if="item.status==1"
+                                                        class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill h-auto">Sent</span>
+                                                    <span v-if="item.status==3"
+                                                        class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill h-auto">Not
+                                                        Send</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="row" v-if="msgdetaillist.length>0">
+                                <div class="col-md-4 mt-2">
+                                    <div class="kt-pagination kt-pagination--brand">
+                                        <ul class="kt-pagination__links">
+
+                                            <li class="kt-pagination__link--next" @click.prevent="movePages(-1)"
+                                                title="Previous">
+                                                <a href="#"><i class="fa fa-angle-left kt-font-brand"></i></a>
+                                            </li>
+                                            <li class="kt-pagination__link--active" style="width: 40px;">
+                                                <a href="#">
+                                                    {{startRow / rowsPerPage + 1}} /
+                                                    {{Math.ceil(msgdetaillist.length
+                                                    / rowsPerPage)}}
+                                                </a>
+                                            </li>
+                                            <li class="kt-pagination__link--prev" @click.prevent="movePages(1)"
+                                                title="Next">
+                                                <a href="#"><i class="fa fa-angle-right kt-font-brand"></i></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 offset-md-2 mt-3">
+                                    Showing <strong>{{startRow + 1}} to {{Math.ceil(msgdetaillist.length)< 3 ?
+                                            Math.ceil(msgdetaillist.length) : startRow + rowsPerPage}}</strong> of
+                                            {{Math.ceil(msgdetaillist.length)}}
+                                            </span>{{Math.ceil(msgdetaillist.length)==1 ? ' entry' : ' entries'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet" v-if="activeIndex == 9" :class="{ 'animation-Delay':  activeIndex === 9}">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">Certificates & Letters
+                                </h3>
+
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="Bonafide()">Bonafide</button>
+                                </div>
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="LetterofRecommendation()">Letter of Recommendation</button>
+                                </div>
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="EnglishProficienyCertificate()">English Proficiency Certificate</button>
+                                </div>
+
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="CollegeLeavingCertificate">College Leaving Certificate</button>
+                                </div>
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="InterCampusMigrationTemporary">Inter Campus Migration
+                                        (Temporary)</button>
+                                </div>
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="InterCampusMigrationPermanent">Inter Campus Migration
+                                        (Permanent)</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break"
+                                        @click="StruckOfLetter">Struck Of Letter</button>
+                                </div>
+
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break"
+                                        @click="SuspensionLetter">Suspension Letter</button>
+                                </div>
+
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break"
+                                        @click="poorattendance">Poor Attendance</button>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break"
+                                        @click="umc">UMC-Case</button>
+                                </div>
+
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break"
+                                        @click="frequentlatearrival">Frequent Late Arrival</button>
+                                </div>
+
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="characterLetter">Character Certificate</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="hopeLetter">Hope Certificate</button>
+                                </div>
+
+                                <div class="col-md-4 text-center mb-2">
+                                    <button class="btn btn-outline-primary w-100 text-break" :disabled="paidCount != 0"
+                                        @click="InternshipLetter">Internship</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-9" v-if="displayAttendance">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.attendanceDetail')}}
+                                </h3>
+                            </div>
+                            <button @click="displayAttendance = !displayAttendance"
+                                class="btn btn-hover btn-sm btn-outline-primary" style="height: 31px !important;
+                                margin-top: 16px;"> <i class="la la-arrow-left"></i>
+                                {{$t('button.back')}}</button>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <delete-model :data="Data"></delete-model>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9" v-if="displayExamination">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> {{$t('modal.studentDetails.examDetail')}}
+                                </h3>
+                            </div>
+                            <button @click="displayExamination = !displayExamination"
+                                class="btn btn-hover btn-sm btn-outline-primary" style="height: 31px !important;
+                                    margin-top: 16px;"> <i class="la la-arrow-left"></i>
+                                {{$t('button.back')}}</button>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <exam-model :data="ExamData"></exam-model>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9" v-if="displayAssessment">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title"> Assessment Detail
+                                </h3>
+                            </div>
+                            <button @click="displayAssessment = !displayAssessment"
+                                class="btn btn-hover btn-sm btn-outline-primary" style="height: 31px !important;
+                                    margin-top: 16px;"> <i class="la la-arrow-left"></i>
+                                {{$t('button.back')}}</button>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <assessment-model :data="studentProfileCourseView"></assessment-model>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+            </div>
+        </div>
+    </div>
+    <!-- <edit-model v-on:submit="getstudentFee"></edit-model> -->
+<style>
+
+
+
+
+
+.attachment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.attachment-icons i {
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.attachment-icons i:hover {
+  color: #0056b3;
+  transform: scale(1.2);
+}
+
+.pdf-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+</style>
+</modal>

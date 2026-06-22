@@ -1,0 +1,1381 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="2">
+      <root Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>root</Alias>
+        <Key>5023711b28bb478ebd4e4bd76c343a30</Key>
+        <Name>root</Name>
+        <PathData>C:\Users\ahmad.raza.PG\Downloads\deprtmentwise.json</PathData>
+      </root>
+      <root1 Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>root1</Alias>
+        <Key />
+        <Name>root1</Name>
+        <PathData>C:\Users\ahmad.raza\OneDrive - Campus Managment System\Pictures\report1.json</PathData>
+      </root1>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <root Ref="4" type="DataTableSource" isKey="true">
+        <Alias>root</Alias>
+        <Columns isList="true" count="24">
+          <value>pId,System.String</value>
+          <value>grade,System.String</value>
+          <value>courseTypeId,System.String</value>
+          <value>courseTypeName,System.String</value>
+          <value>count,System.Decimal</value>
+          <value>rollNo,System.String</value>
+          <value>sessionName,System.String</value>
+          <value>campusName,System.String</value>
+          <value>description,System.String</value>
+          <value>className,System.String</value>
+          <value>courseId,System.String</value>
+          <value>courseName,System.String</value>
+          <value>staffName,System.String</value>
+          <value>sectionCourseLinkId,System.String</value>
+          <value>sectionName,System.String</value>
+          <value>range,System.String</value>
+          <value>flag,System.Decimal</value>
+          <value>hodId,System.String</value>
+          <value>hodName,System.String</value>
+          <value>dated,System.String</value>
+          <value>sessionId,System.String</value>
+          <value>campusId,System.String</value>
+          <value>programDetailId,System.String</value>
+          <value>sectionStrength,System.Int32</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>49f52475426c4c4c87ede2e9161d3b3e</Key>
+        <Name>root</Name>
+        <NameInSource>root.root</NameInSource>
+      </root>
+      <root2 Ref="5" type="DataTableSource" isKey="true">
+        <Alias>root2</Alias>
+        <Columns isList="true" count="27">
+          <value>ORIGINAL,lazyLoader,lazyLoader,lazyLoader,System.String,f4dfaf9b3c0c4ac094d1e09d58510838</value>
+          <value>newID,System.String</value>
+          <value>sessionName,System.String</value>
+          <value>campusName,System.String</value>
+          <value>description,System.String</value>
+          <value>staffName,System.String</value>
+          <value>sectionCourseLinkId,System.String</value>
+          <value>programCourseLinkId,System.String</value>
+          <value>examName,System.String</value>
+          <value>sectionName,System.String</value>
+          <value>course,System.String</value>
+          <value>className,System.String</value>
+          <value>program,System.String</value>
+          <value>hodName,System.String</value>
+          <value>sectionStrenth,System.Decimal</value>
+          <value>courseId1,System.String</value>
+          <value>grade,System.String</value>
+          <value>gradeCount,System.Decimal</value>
+          <value>rollNo,System.String</value>
+          <value>gradePercentage,System.Decimal</value>
+          <value>totalAppear,System.Decimal</value>
+          <value>toptalAbsent,System.Decimal</value>
+          <value>failCount,System.Decimal</value>
+          <value>degreeName,System.String</value>
+          <value>totalPass,System.Decimal</value>
+          <value>passPercentage,System.Decimal</value>
+          <value>gpa,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>9ce96c033fab47ae89c8df1647efaa7a</Key>
+        <Name>root2</Name>
+        <NameInSource>root1.root</NameInSource>
+      </root2>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>47f6901366fb49c69b0b65a11d7eb995</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <PageFooterBand1 Ref="7" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,16.1,40,11.6</ClientRectangle>
+          <Components isList="true" count="13">
+            <Text22 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>37.4,8.7,2.4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,7,Bold</Font>
+              <Guid>fc0c9217f3df4bb2bda4fdca7f970780</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{PageNofM}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text20 Ref="9" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>3.6,0.1,15.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>af7857cca6ee4154a79fcb306bd55feb</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>= Number of students against obtained marks have been entered as per their academic information.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text19 Ref="10" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,0.1,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>07995cd0ad264d218738dd67858b6b9c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>T.A (Total Appeared)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text23 Ref="11" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>3.6,1.7,13.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>896df704669d4816b8057bc15846cf4f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>= Number of enrolled students in section.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text25 Ref="12" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>3.6,2.5,13.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>4a0a5df1ebf348b6b74e55614557323c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>= Number of students (Student strength - Total Appeared).</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text27 Ref="13" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,3.3,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>b98c1209906f4228a942fd864279561a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>G.S (Grade Strength)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text29 Ref="14" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>3.6,3.3,13.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>50c4ab9f45c74b19b5ca71c8fba76d65</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>= Number of students received grade as per their academic information.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text29>
+            <Text21 Ref="15" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,0.9,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>5b63a2aec1a64f2893bbf3053087f084</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>T.P (Total Pass)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text24 Ref="16" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>3.6,0.9,13.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>c0706c82a9e54ce1b5895b603a078913</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>= Number of student fall under A+ to E grade</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text26 Ref="17" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,1.7,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>2a4e35f6290f4a4ab5cd33c4555f2c1f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>T.S (Total Strength)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+            <Text28 Ref="18" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,2.5,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>268ac0f4bf9c442188790f8d26c2fc9a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>Absent</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+            <Text30 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,4.3,23.4,2.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>76d663546e51465ca4c5950d110517de</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text30</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>(No of A+ Students * 9) + (No of A Students * 8) + (No of B+ Students * 7) + (No of A Students * 6) + (No of C+ Students * 5) + (No of C Students * 4) + (No of D+ Students * 3) + (No of D Students * 2) + (No of E Students * 1) + (No of F Students * 0) / Total Appeared Student Strength</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text30>
+            <Text31 Ref="20" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>9.2,4.5,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>4e9d2f25f07c48e48ef8f85f99851332</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text31</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>GPA Formula =</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text31>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageFooterBand1>
+        <Text11 Ref="21" type="Text" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>-0.2,27,4,0.4</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Font>Arial,7,Bold</Font>
+          <Guid>7d9de513de234d73b2396a22cc9ed9ba</Guid>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text11</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Text>{Time}</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>SystemVariables</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text11>
+        <GroupHeaderBand1 Ref="22" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,40,3.4</ClientRectangle>
+          <Components isList="true" count="17">
+            <Text1 Ref="23" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>8.4,0.2,23,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Subject Wise GPA (Grade Point Average) Report</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text5 Ref="24" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>34.4,1,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>3897fc3164834c8f89de60767697726f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root.className}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="25" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>32.6,1.6,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>ac8dde4e325b4e899a3f5d3988ada043</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>HOD Name:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text8 Ref="26" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>19.4,0.8,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>aa3247b282b34c80959e4ed13ff91462</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Course:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="27" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>21,0.8,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>e59113433a9045afbcfe8ccd0dcd01d3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root2.course}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text2 Ref="28" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>34.8,1.6,4.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>3d3c20a27a0b48c4a83d75e7e8e9b9d8</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root.hodName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text4 Ref="29" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>2.8,2.8,6.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>4ea46fd95721494e81c7f567464a16a9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root2.description}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text7 Ref="30" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,1,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>a23e39fa5cee4300a6f6fa4e3a5b6d4b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Session:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text10 Ref="31" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>1.6,1,1.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>99d5f5bf50094910abdb1ece84e0bb79</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root2.sessionName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text12 Ref="32" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>1.8,2.2,6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>003b071dbf1a4dc8aaf2b26bc0c9a4d7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root2.program}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="33" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>36.2,2.2,3.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>06a751065e3144febd53d24ba46781df</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root2.degreeName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="34" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,1.6,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>439fa7d6ce9049e8b564b8b12c58c31f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Campus:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="35" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>1.6,1.6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>4dc5bfc989d843eb943a2141fb725429</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>{root.campusName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="36" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>32.2,1,2.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>ae793e62e15445f99203ae3acb33fa39</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Class:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text3 Ref="37" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>32.6,2.2,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>753b38a9199a4c9488c3f0b88d5050fa</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Pre Academic Class:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text17 Ref="38" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,2.2,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>6c4c70711dbb4fcea6bc64f7e4578ea5</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Program:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="39" type="Text" isKey="true">
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,2.8,2.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>76a8375438074be394cf9489eaa2ff10</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="6" />
+              <Parent isRef="22" />
+              <Text>Program Detail:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+          </Components>
+          <Condition>{root.campusName}</Condition>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <PrintOnAllPages>True</PrintOnAllPages>
+        </GroupHeaderBand1>
+        <DataBand1 Ref="40" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <CanBreak>True</CanBreak>
+          <ClientRectangle>0,4.6,40,0</ClientRectangle>
+          <Components isList="true" count="1">
+            <CrossTab1 Ref="41" type="Stimulsoft.Report.CrossTab.StiCrossTab" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0,0,23.8,3.4</ClientRectangle>
+              <Components isList="true" count="35">
+                <CrossTab1_RowTotal1 Ref="42" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>0,2.1,13.8,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>a314626192f84029a8d5044e8798747d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal1>
+                <CrossTab1_Row1_Title Ref="43" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,0.45,1.6,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>d3cd3946c4f843448da0f68d400fbdfa</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row1_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Prof.Name</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row1</TypeOfComponent>
+                </CrossTab1_Row1_Title>
+                <CrossTab1_Row2_Title Ref="44" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>1.6,0.45,1.8,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>4b7950bd24624315b7b80ab7e1c2a575</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row2_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Section</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row2</TypeOfComponent>
+                </CrossTab1_Row2_Title>
+                <CrossTab1_RowTotal3 Ref="45" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>3.2,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>7d7a0816e97944649c421b4bb6d2c38d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal3</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal3>
+                <CrossTab1_Row3_Title Ref="46" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>3.4,0.45,1.6,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>9f2f70a7e13c4d3c8ebb581fb34b7f80</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row3_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Exam</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row3</TypeOfComponent>
+                </CrossTab1_Row3_Title>
+                <CrossTab1_ColTotal1 Ref="47" type="CrossColumnTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>6.05,0.45,0,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>3e2a624fa52a4f2aaa4e5dc2ec68643b</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_ColTotal1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_ColTotal1>
+                <CrossTab1_LeftTitle Ref="48" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,0,15.2,0.4</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,9,Bold</Font>
+                  <Guid>ac9224b7c51c4e67a0bbb06fe334b829</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_LeftTitle</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>                  Analysis                      </Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>LeftTitle</TypeOfComponent>
+                </CrossTab1_LeftTitle>
+                <CrossTab1_RowTotal4 Ref="49" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>4.8,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>f88ae644bbc14c3d8500dd0b337f8b1f</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal4</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal4>
+                <CrossTab1_Row4_Title Ref="50" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>5,0.45,1,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>77bb3ae4ffbf49adabf4a89be203c4a0</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row4_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>T.S</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row4</TypeOfComponent>
+                </CrossTab1_Row4_Title>
+                <CrossTab1_RowTotal5 Ref="51" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>6.8,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>9b900db74ea8495d8963eddb221247ee</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal5</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal5>
+                <CrossTab1_Row5_Title Ref="52" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>7,0.45,1,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>573aa758b2ad4caa849248f08857fffd</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row5_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Absent</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row5</TypeOfComponent>
+                </CrossTab1_Row5_Title>
+                <CrossTab1_RowTotal6 Ref="53" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>8.6,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>10cd426762fb4c8199a25cf990709b85</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal6</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal6>
+                <CrossTab1_Row6_Title Ref="54" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>8.8,0.45,1,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>b1e93975c22142a8abe64cee23a3ff6a</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row6_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>T.A</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row6</TypeOfComponent>
+                </CrossTab1_Row6_Title>
+                <CrossTab1_RowTotal7 Ref="55" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>10.2,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>a2520c12109c43d284f9f252819698bc</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal7</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal7>
+                <CrossTab1_Row7_Title Ref="56" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>10.8,0.45,1,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>1a9102da707440e792e9a5cedb206759</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row7_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>T.P</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row7</TypeOfComponent>
+                </CrossTab1_Row7_Title>
+                <CrossTab1_RowTotal8 Ref="57" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>11.6,1.7,0,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>8c1d9e5e2bce432a85b43ac8f063bf11</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal8</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal8>
+                <CrossTab1_SumHeader1 Ref="58" type="Stimulsoft.Report.CrossTab.StiCrossSummaryHeader" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>15.25,0.85,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>865d9ed0013f41d4a6313e72ca84367e</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_SumHeader1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>G.S</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                </CrossTab1_SumHeader1>
+                <CrossTab1_SumHeader2 Ref="59" type="Stimulsoft.Report.CrossTab.StiCrossSummaryHeader" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>15.85,0.85,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>f17039dafd34492eaeca50efeac028ea</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_SumHeader2</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>%age</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                </CrossTab1_SumHeader2>
+                <CrossTab1_RowTotal2 Ref="60" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>1.4,1.7,12.4,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>7c7003ab5d9d4a278223397fa002e53a</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal2</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal2>
+                <CrossTab1_Row8_Title Ref="61" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>12.4,0.45,1,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>0061e2206c8246bfb4df41256a8c9fd3</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row8_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Pass%</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+                  <Type>Expression</Type>
+                  <TypeOfComponent>Row:CrossTab1_Row8</TypeOfComponent>
+                </CrossTab1_Row8_Title>
+                <CrossTab1_RowTotal9 Ref="62" type="CrossRowTotal" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>14.6,1.7,0.8,0</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Enabled>False</Enabled>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>5248191d3c3145228415e98db7368e1d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RowTotal9</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>Total</Text>
+                  <TextBrush>Black</TextBrush>
+                </CrossTab1_RowTotal9>
+                <CrossTab1_Row9_Title Ref="63" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>14.6,0.45,0.6,0.8</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>486d90945bbf4baba436165417af064d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row9_Title</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>GPA</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TypeOfComponent>Row:CrossTab1_Row9</TypeOfComponent>
+                </CrossTab1_Row9_Title>
+                <CrossTab1_RightTitle Ref="64" type="CrossTitle" isKey="true">
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>15.25,0,1.6,0.4</ClientRectangle>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8,Bold</Font>
+                  <Guid>feecd0d803944d96acdf9de726b13a00</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_RightTitle</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>BISE Grading Policy</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TypeOfComponent>RightTitle</TypeOfComponent>
+                </CrossTab1_RightTitle>
+                <CrossTab1_Row1 Ref="65" type="CrossRow" isKey="true">
+                  <Alias>staffName</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>0,1.3,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.staffName}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>848c1bd898ec421084e9d11f6bd35287</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <SortDirection>Desc</SortDirection>
+                  <Text>staffName</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>a314626192f84029a8d5044e8798747d</TotalGuid>
+                  <Value>{root2.staffName}</Value>
+                </CrossTab1_Row1>
+                <CrossTab1_Row2 Ref="66" type="CrossRow" isKey="true">
+                  <Alias>sectionName</Alias>
+                  <AllowHtmlTags>True</AllowHtmlTags>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>1.6,1.3,1.8,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.sectionName}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>eff57fa658b74ce1bbfbf88b6777f51f</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row2</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>sectionName</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TextQuality>Wysiwyg</TextQuality>
+                  <TotalGuid>7c7003ab5d9d4a278223397fa002e53a</TotalGuid>
+                  <Value>{root2.sectionName}</Value>
+                </CrossTab1_Row2>
+                <CrossTab1_Row3 Ref="67" type="CrossRow" isKey="true">
+                  <Alias>examName</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>3.4,1.3,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.examName}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>14c9ad6aadb8419da05c02b1ecb8c011</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row3</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>examName</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>7d7a0816e97944649c421b4bb6d2c38d</TotalGuid>
+                  <Value>{root2.examName}</Value>
+                </CrossTab1_Row3>
+                <CrossTab1_Row4 Ref="68" type="CrossRow" isKey="true">
+                  <Alias>sectionStrenth</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>5,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.sectionStrenth}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>7deda93bf5b9472388c55b265a902f10</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row4</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>sectionStrenth</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>f88ae644bbc14c3d8500dd0b337f8b1f</TotalGuid>
+                  <Value>{root2.sectionStrenth}</Value>
+                </CrossTab1_Row4>
+                <CrossTab1_Row5 Ref="69" type="CrossRow" isKey="true">
+                  <Alias>toptalAbsent</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>7,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.toptalAbsent}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>3fa632455b9643d3950ffc0c1965dca4</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row5</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>toptalAbsent</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>9b900db74ea8495d8963eddb221247ee</TotalGuid>
+                  <Value>{root2.toptalAbsent}</Value>
+                </CrossTab1_Row5>
+                <CrossTab1_Row6 Ref="70" type="CrossRow" isKey="true">
+                  <Alias>totalAppear</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>8.8,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.totalAppear}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>abb86e9e857c4853bb7dc61e2330db53</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row6</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>totalAppear</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>10cd426762fb4c8199a25cf990709b85</TotalGuid>
+                  <Value>{root2.totalAppear}</Value>
+                </CrossTab1_Row6>
+                <CrossTab1_Row7 Ref="71" type="CrossRow" isKey="true">
+                  <Alias>totalPass</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>10.8,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.totalPass}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>cd04ead614fa46f095138f4aefe712ef</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row7</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>totalPass</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>a2520c12109c43d284f9f252819698bc</TotalGuid>
+                  <Value>{root2.totalPass}</Value>
+                </CrossTab1_Row7>
+                <CrossTab1_Row8 Ref="72" type="CrossRow" isKey="true">
+                  <Alias>passPercentage</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>12.4,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.passPercentage}%</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>178aaa5e9b3a43aba012376d1caf349d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <MaxSize>1,0</MaxSize>
+                  <Name>CrossTab1_Row8</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>passPercentage</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>8c1d9e5e2bce432a85b43ac8f063bf11</TotalGuid>
+                  <Value>{root2.passPercentage}%</Value>
+                </CrossTab1_Row8>
+                <CrossTab1_Row9 Ref="73" type="CrossRow" isKey="true">
+                  <Alias>gpa</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>14.6,1.3,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{root2.gpa}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>a0ea6be804574c00882865bdc7918b17</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Row9</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>gpa</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>5248191d3c3145228415e98db7368e1d</TotalGuid>
+                  <Value>{root2.gpa}</Value>
+                </CrossTab1_Row9>
+                <CrossTab1_Column1 Ref="74" type="CrossColumn" isKey="true">
+                  <Alias>grade</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>White</Brush>
+                  <ClientRectangle>15.25,0.45,1.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DisplayValue>{Substring(root2.grade,2,12)}</DisplayValue>
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,9,Bold</Font>
+                  <Guid>104d444a288d449caadead129b79e29b</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Column1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <SortType>ByValue</SortType>
+                  <Text>grade</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <TotalGuid>3e2a624fa52a4f2aaa4e5dc2ec68643b</TotalGuid>
+                  <Value>{root2.grade}</Value>
+                </CrossTab1_Column1>
+                <CrossTab1_Sum1 Ref="75" type="CrossSummary" isKey="true">
+                  <Alias>gradeCount</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>15.25,1.3,0.6,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>42da9b0ad2e4427289ac88df87ce233e</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Sum1</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Text>0</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Value>{root2.gradeCount}</Value>
+                </CrossTab1_Sum1>
+                <CrossTab1_Sum2 Ref="76" type="CrossSummary" isKey="true">
+                  <Alias>gradePercentage</Alias>
+                  <Border>All;[155:155:155];1;Solid;False;4;Black</Border>
+                  <Brush>[255:255:255]</Brush>
+                  <ClientRectangle>15.85,1.3,1,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Expressions isList="true" count="0" />
+                  <Font>Arial,8</Font>
+                  <Guid>ef544851e1c347299d1278e8f2b12a52</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>CrossTab1_Sum2</Name>
+                  <Page isRef="6" />
+                  <Parent isRef="41" />
+                  <Restrictions>AllowMove, AllowResize, AllowSelect, AllowChange</Restrictions>
+                  <Summary>None</Summary>
+                  <Text>0</Text>
+                  <TextBrush>[0:0:0]</TextBrush>
+                  <Value>{root2.gradePercentage}%</Value>
+                </CrossTab1_Sum2>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <DataRelationName />
+              <DataSourceName>root2</DataSourceName>
+              <EmptyValue />
+              <Expressions isList="true" count="0" />
+              <Filters isList="true" count="0" />
+              <HorAlignment>Width</HorAlignment>
+              <Name>CrossTab1</Name>
+              <Page isRef="6" />
+              <Parent isRef="40" />
+              <Sort isList="true" count="0" />
+              <SummaryDirection>LeftToRight</SummaryDirection>
+            </CrossTab1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root2</DataSourceName>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <GroupFooterBand1 Ref="77" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,5.4,40,2.4</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </GroupFooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
+      <Guid>63df06ca48eb4b62a969193a3f7a5a48</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>42</PageWidth>
+      <PaperSize>A3</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>4/6/2023 2:06:37 PM</ReportChanged>
+  <ReportCreated>2/18/2020 4:18:47 PM</ReportCreated>
+  <ReportFile>C:\Users\ahmad.raza\Videos\subjectwisegradegpareport.mrt</ReportFile>
+  <ReportGuid>eb3c4449cdda41799ffa1486c3e11dd0</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2021.3.2.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

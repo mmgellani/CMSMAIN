@@ -1,0 +1,160 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<page-area>
+
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title"> {{$t('navigation.attendance')}} </h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.dailyAttendanceStatus')}} </a>
+    </div>
+  </template>
+  <portlet-area action="1" :title="$t('navigation.dailyAttendanceStatus')">
+    <template slot="portlet-body">
+      <div v-if="canRead">
+        <div class="col-md-3 pt-1" >
+          <div class="form-group mb-0">
+            <span class="form-control form-control-sm"
+              style="background-color: #444997;width: 195px; height: 42px;border-color: black;font-size: medium;color: white;text-align: center;">
+              Time Left {{displayTime}}</span>
+          </div>
+        </div>
+
+        <div class="modal-body mt-1 ">
+          <span ><b>Disclaimer:</b> After 10:00 PM, all unmarked lectures will be considered as absent. </span>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceApproval.date')}}</label>
+            <date-picker class="input-28" id="change-width" ref="changeWidth" format="DD/MM/YYYY" lang="en"
+              v-mask="'##/##/####'" disabled v-model="datestring">
+            </date-picker>
+          </div>
+        </div>
+
+        <grid :data="listofTimeTableData" :columns="columns" pre="modal.dailyAttendanceStatus.">
+          <template slot="isChecked" slot-scope="item">
+            <button @click="viewdata(item.row.staffId,item.row.teacherName,item.row.contactNo)" title="view" type="button"
+              v-if="item.row.isChecked" class="btn btn-outline-success btn-icon btn-sm btn-circle">
+              <i class="la la-eye"></i>
+            </button>
+          </template>
+
+          <template slot="action-area">
+            <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+              <i class="la la-refresh"></i> {{$t('button.reload')}}
+            </button>
+          </template>
+        </grid>
+      </div>
+    </template>
+  </portlet-area>
+  <div class="modelOuter" v-if="showmodel">
+    <div class="overlay"></div>
+    <div height="auto" class="" style="position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -358px;
+    z-index: 111; width: 900px;">
+      <div class="modal-content" b-alert :pivot-y="0.5" :reset="true" :scrollable="true" :adaptive="false"
+        transition="bounce" top="10">
+        <div class="modal-header">
+          <div class="col-md-7 modal_heading">
+            <h5 class="modal-title">Detail</h5>
+             <div class="modal-body "><span>Teacher Name: {{teachername}} (
+              <strong v-if="contactnumber.startsWith('92')">+92{{contactnumber}}</strong>
+               <strong  v-else>
+
+                <span v-if="contactnumber.startsWith('0')">{{contactnumber}}</span>
+                <span v-else>0{{contactnumber}}</span>
+               </strong> )
+              
+              </span></div>
+          </div>
+
+        
+          
+          
+          <div class="col-md-2 text-right">
+            <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="toggel()">
+              <i class="la la-close"></i>
+            </button>
+          </div>
+        </div>
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <div class="d-flex ">
+             
+              <button title="Save" class="btn btn-hover btn-sm btn-outline-primary mr-3 " v-bind:class="{ activated: markflag }"
+
+              @click="CheckDataDetail('Marked')">
+              <i class="la la-butto"></i> Marked
+            </button>
+
+              
+              <button title="Save" class="btn btn-hover btn-sm btn-outline-primary " v-bind:class="{ activated: flagg }"
+
+              @click="CheckDataDetail('Un-Marked')">
+              <i class="la la"></i> Un-Marked
+            </button>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="container">
+          <br>
+          <div class="row" style="height:400px; width: 900px;">
+            <div class="col-xs-10">
+              <div class=table-wrapper style="height:300px;width: 900px;
+            overflow: auto;
+            display:inline-block;">
+                <table class="table table-earnings table-earnings__challenge">
+                  <thead class="thead" style="background-color: #ebedf2;">
+                    <tr style="color:#212529;">
+                      <th scope="col">Sr. #</th>
+                      <th scope="col">Section</th>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                      <th scope="col">Course</th>
+                      <th scope="col">Program Detail</th>
+                      <th scope="col">Class</th>
+                      <th scope="col">Location</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item,index) in TeacherDetailList">
+                      <td>{{index+1}}</td>
+                      <td>{{item.sectionName}}</td>
+                      <td>{{item.startTime}}</td>
+                      <td>{{item.endTime}}</td>
+                      <td>{{item.courseName}}</td>
+                      <td>{{item.programDetail}}</td>
+                      <td>{{item.class}}</td>
+                      <td>{{item.location}}</td>
+                      <td class="text-danger font-weight-bold" v-if="item.status === 'Un-Marked'">{{item.status}}</td>
+                      <td class="text-success font-weight-bold" v-if="item.status === 'Marked'">{{item.status}}</td>
+
+                    </tr>
+                    
+                  </tbody>              
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</page-area>

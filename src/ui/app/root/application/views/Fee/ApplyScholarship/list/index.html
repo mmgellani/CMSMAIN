@@ -1,0 +1,129 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Apply Scholarship Bulk
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control form-control-sm" v-model="sessionId" required>
+                <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">{{model.fullName}}
+                </option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+
+            <select @change="loadProgramsOfCampus" class="form-control form-control-sm" v-model="campusId" required>
+              <option :key="index" :value="model.campusId" v-for="(model,index) in campusCityList">{{model.campusName}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+
+            <select @change="refreshData" class="form-control form-control-sm" v-model="campusProgramId" required>
+              <option :key="index" :value="model.campusProgramId" v-for="(model,index) in campusProgramLinkList">{{model.description}}
+              </option>
+            </select>
+          
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="refreshData" class="form-control form-control-sm" v-model="admissionTypeId" required>
+                <option :key="index" :value="model.admissionTypeId" v-for="(model,index) in admissionTypeList">
+                  {{model.fullName}}</option>
+              </select>
+              <label>Admission Type</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+              data-dropdown-toggle="hover" aria-expanded="true"> -->
+            <a href="#" @click="refreshData" class="b-refresh" style="font-size: 20px">
+              <i class="fa fa-refresh m--hide"></i>
+            </a>
+            <button data-toggle="modal" data-target="#myModal" :disabled="datas.length==0" href="#"
+              class="btn btn-primary btn-sm tbl-btn" style="margin-left:8px; margin-top: 5px;">
+              <i class="fa fa-save"></i>
+            </button>
+            <!-- </div> -->
+          </div>
+        </div>
+
+
+
+        <div class="m-content">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="m-portlet m-portlet--tabs">
+                <div class="m-portlet__body" style="overflow-x: auto;">
+                  <div class="table-responsive" v-if="canRead">
+                    <div class="dataTables_wrapper no-footer">
+                      <table class="table">
+                        <thead>
+                          <tr role="row">
+                            <th>Scholarship</th>
+                            <th>No of Students</th>
+                            <th>Detail</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="item in scholarhipList">
+
+                            <td class="v-align-middle">{{item.scholarshipName}}</td>
+                            <td class="v-align-middle">{{item.count}}</td>
+                            <td>
+                              <a href="#" class="btn btn-primary rounded-circle" @click="editModel(item)"
+                                v-if="canEdit">
+                                <i class="fa fa-info"></i>
+                              </a>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <add-edit-model v-on:submit="refreshData"></add-edit-model>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to apply shcolarhip ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" @click="insertModel" class="btn btn-primary" data-dismiss="modal">Yes</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

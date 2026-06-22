@@ -1,0 +1,31 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+<!-- <div class="row">
+    <div class="col-md-3 mx-auto" style=" position: fixed; top: 10px; z-index: 999; right: 0px;text-align: center;">
+      <div class="alert alert-danger text-center" v-if="activeDayoff==true"   role="alert">
+        <p class="mb-0 text-center" style="width:100%"> {{msgShow}}</p>
+        </div>
+     </div>
+  </div> -->
+
+<modal name="delete-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="30%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+            <h5> <span class="semi-bold">{{title}}</span></h5>
+        </div>
+       
+        
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-danger btn-block" type="submit" @click="deleteModel">Delete</button>
+                    <button class="btn btn-primary btn-block" type="submit" @click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

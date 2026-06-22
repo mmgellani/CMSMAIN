@@ -1,0 +1,12 @@
+<span id="app">
+  <area-sidebar></area-sidebar>
+  <area-header></area-header>
+  <!-- <theme-helper></theme-helper> -->
+  <div class="content-wrap" data-find="_6">
+    <v-touch class="content" @swipeleft="handleSwipe" @swiperight="handleSwipe"
+      :swipe-options="{direction: 'horizontal', threshold: 100}">
+      <router-view />
+      <area-footer></area-footer>
+    </v-touch>
+  </div>
+</span>

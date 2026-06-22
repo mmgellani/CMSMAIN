@@ -1,0 +1,131 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Student Fee Challan
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+          <tabs>
+            <div class="row mt-4"></div>
+            <tab name='Students' :selected="true">
+              <grid :data="data" :columns="columns">
+                <template slot="operation-links">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <select v-model="sessionId" class="form-control form-control-sm" required>
+                          <option :key="index" :value="model.sessionId" v-for="(model,index) in sessionList">
+                            {{model.fullName}}</option>
+                        </select>
+                        <label>Session</label>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                        display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+                      </drop-down>
+                    </div>
+
+                    <div class="col-md-3">
+                      <drop-down v-model="campusProgramId" :data="campusProgramLinkList" group-by="programName"
+                        key-value="campusProgramId" display-value="description" placeholder="Programs"
+                        @change="GetAllFilterData"></drop-down>
+                    </div>
+                    <div class="col-md-3">
+                      <button @click="GetAllFilterData" class="b-refresh">
+                        <feather icon="refresh-ccw"></feather>
+                      </button>
+                    </div>
+                  </div>
+                </template>
+                <template slot="statusId" slot-scope="item">
+                  {{item.row.statusId==1?'Active':'InActive'}}
+                </template>
+                <template slot="action" slot-scope="item">
+                  <a @click="editModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip" data-placement="top"
+                    title="Print Challan">
+                    <feather icon="printer" xclass="b-edit color1"></feather>
+                  </a>
+                  <a @click="installmentModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip"
+                    data-placement="top" title="Make Sub-Installments">
+                    <feather icon="layers" xclass="b-edit color2"></feather>
+                  </a>
+                  <a @click="concessionModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip"
+                    data-placement="top" title="Apply Concesssion">
+                    <feather icon="arrow-down-circle" xclass="b-edit color3"></feather>
+                  </a>
+                  <a @click="feeExemptionModel(item.row.refferenceNo)" v-if="canEdit" data-toggle="tooltip"
+                    data-placement="top" title="Apply Exemption">
+                    <feather icon="tag" xclass="b-edit color4"></feather>
+                  </a>
+                </template>
+              </grid>
+            </tab>
+            <br>
+            <tab name='Search Student'>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input v-on:keydown.enter="find" type="text" v-model="search" class="form form-control btn-sm"
+                      required>
+                    <label>Search</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-sm" @click="find">Search</button>
+                </div>
+              </div>
+              <div class="row">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+
+                      <th>RefferenceNo</th>
+                      <th>Student Name</th>
+                      <th>Parent Name</th>
+                      <th>Program Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="model in searchdata">
+                      <td>{{model.refferenceNo}}</td>
+                      <td>{{model.fullName}}</td>
+                      <td>{{model.fatherName}}</td>
+                      <td>{{model.description}}</td>
+                      <td>
+                        <a class="btn btn-primary btn-sm tbl-btn" @click="editModel(model.refferenceNo)" v-if="canEdit">
+                          <feather icon="edit" xclass="b-edit"></feather>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </tab>
+          </tabs>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <student-challan-add-edit-model v-on:submit="GetAllFilterData"></student-challan-add-edit-model>
+  <delete-model v-on:submit="GetAllFilterData"></delete-model>
+  <student-sub-installment-add-edit-model v-on:submit="GetAllFilterData"> </student-sub-installment-add-edit-model>
+  <fee-student-exemption-add-edit-model v-on:submit="GetAllFilterData"> </fee-student-exemption-add-edit-model>
+  <apply-concession-model v-on:submit="GetAllFilterData"> </apply-concession-model>
+
+</div>

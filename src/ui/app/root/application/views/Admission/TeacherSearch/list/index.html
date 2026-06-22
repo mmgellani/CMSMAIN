@@ -1,0 +1,128 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        Survey Dashboard</a>
+    </div>
+  </template>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>From Date</label>
+        <date-picker class="input-28" id="change-width"  ref="changeWidth" v-model="fromDate" format="DD/MM/YYYY"
+          lang="en" :not-after="dueDate">
+        </date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>To Date</label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="toDate" format="DD/MM/YYYY"
+          lang="en" :not-after="dueDate">
+        </date-picker>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-control-label">Enter Teacher Name</label>
+      <input type="text" class="form-control" v-model="filterString"
+        v-on:keydown.enter="loadTeacherSearch">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <table class="table">
+        <thead>
+          <th class="text-center">
+            Name
+          </th>
+          <th class="text-center">
+            Sub-City
+          </th>
+          <!-- <th class="text-center">
+            Campus
+          </th> -->
+          <th class="text-center">
+            Courses
+          </th>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in data"
+            @click="pushData(item),loadTeacherData(item.teacherId,index), MonthlySummary(item.teacherId), MonthlyRating(item.teacherId)"
+            class="rowHover" :class="currIndex===index?'highlightRow':''" style="cursor: pointer;">
+            <td class="highlightRow">
+              <strong v-html="item.teacherName"></strong>
+            </td>
+            <td>
+              {{item.subcity}}
+            </td>
+            <!-- <td>
+              {{item.campusName}}
+            </td> -->
+            <td>
+              {{item.courseName}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section v-if="checkSurvey" class="row mt-5">
+    <div class="col-md-12" id="id">
+      <div class="card-box" style="background: #273b73eb;">
+        <div class="inner">
+          <p class="mb-4"> Teacher Summary </p>
+          <div class="row" v-for="item in dataSurvey">
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.totalSurvey}} </h3>
+              <span>Total Surveys</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{ item.totalSubmitted }} </h3>
+              <span>Total Submitted</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.average}} % </h3>
+              <span>Response Rate</span>
+            </div>
+            <div class="col-md-3 text-center">
+              <h3 class="text-center"> {{item.groupAverage }} / 5</h3>
+              <span>Average Rating </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="icon">
+          <i class="la la-file-text" aria-hidden="true"></i>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="col-md-12 mt-5" v-if="checkSurvey">
+      <collapsible-widget>
+        <template slot="title">
+          Rating: Month Wise
+        </template>
+        <template slot="content">
+          <Highcharts :options="optionsEx" />
+        </template>
+      </collapsible-widget>
+    </div>
+    <div class="col-md-12 mt-5" v-if="checkSurvey">
+      <collapsible-widget>
+        <template slot="title">
+          Rating: Section Wise
+        </template>
+        <template slot="content">
+          <Highcharts :options="options" />
+        </template>
+      </collapsible-widget>
+    </div>
+  </section>
+</page-area>

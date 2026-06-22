@@ -1,0 +1,21 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-title">
+                {{title}}
+            </div>
+            <div class="card-body">
+                <div v-if="canRead">
+                    <grid :data="data" :columns="columns" ref="grid"></grid>
+                </div>
+            </div>
+        </div>
+    </div>
+    <slot name='extra-modules'></slot>
+</div>

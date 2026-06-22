@@ -1,0 +1,251 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="City-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+                       City&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="data.provinceId" required>
+                                    <option v-for="(model,index) in provinceList" :value="model.provinceId">
+                                        {{model.fullName}}</option>
+                                </select>
+                                <label :class="!$v.model.provinceId.required" style="margin-left:15px;">Province<span
+                                        style="color:red"> *</span></label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewProvince">
+                                        <i class="fa fa-plus m--hide success"></i>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadProvince">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select class="form-control form-control-sm" v-model="data.zoneId" required>
+                                    <option v-for="(model,index) in zoneList" :value="model.zoneId">
+                                        {{model.fullName}}</option>
+                                </select>
+                                <label :class="!$v.model.zoneId.required" style="margin-left:15px;">Zone<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewZone">
+                                        <i class="fa fa-plus m--hide success"></i>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadZone">
+                                        <i class="fa fa-refresh m--hide"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="255" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" :maxlength="3" v-model="data.cityCode" required>
+                            <label :class="!$v.model.cityCode.required">City Code<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Province v-on:submit="loadProvince"></Province>
+    <Zone v-on:submit="loadZone"></Zone>
+</modal> -->
+
+
+<modal name="City-add-edit-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10"  height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.setupCity')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="from-group validated">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="left-p form-control-label">{{$t('navigation.setupProvince')}}<span
+                                        style="color:red">*</span></label>
+                            </div>
+                            <!-- <div class="col-md-4 text-right">
+                                <a href="#" @click="addNewProvince" title="Add Province" v-if="canAdd">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                &nbsp;
+                                <a href="#" @click="loadProvince" title="Refresh Province">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div> -->
+                        </div>
+                        <select-ex :options="provinceList" keyValue="provinceId" displayValue="fullName"
+                            v-model="data.provinceId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.provinceId.$error">
+                            <span v-if="!$v.data.provinceId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="from-group validated">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="left-p form-control-label">{{$t('navigation.setupZone')}}<span
+                                        style="color:red">*</span></label>
+                            </div>
+                            <!-- <div class="col-md-4 text-right">
+                                <a href="#" @click="addNewZone" title="Add Zone" v-if="canAdd">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                &nbsp;
+                                <a href="#" @click="loadZone" title="Refresh Zone">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div> -->
+                        </div>
+                        <select-ex :options="zoneList" keyValue="zoneId" displayValue="fullName" v-model="data.zoneId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.zoneId.$error">
+                            <span v-if="!$v.data.zoneId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupCity.grid.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control "
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.fullName.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupCity.grid.cityCode')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control " v-model.trim="data.cityCode"
+                            :class="{'is-invalid': $v.data.cityCode.$error}" @input="$v.data.cityCode.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.cityCode.$error">
+                            <span v-if="!$v.data.cityCode.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.cityCode.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.cityCode.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Province v-on:submit="loadProvince"></Province>
+    <Zone v-on:submit="loadZone"></Zone>
+</modal>

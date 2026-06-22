@@ -1,0 +1,294 @@
+<!-- * Auther: H.Muhammad Kamran
+* email: hmuhdkamran@gmail.com
+* contact: +92 (313 / 333) 9112 845 -->
+
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="60%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+                </div>
+                <div class="col-md-8 text-centre">
+                    <div class="modal-title">
+
+                        BulitanSale&nbsp;-&nbsp;<span class="font12">{{title}}</span> 
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group m-form__group m--margin-top-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.fullName" required>
+                            <label :class="!$v.model.fullName.required">Full Name<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.fatherName" required>
+                            <label :class="!$v.model.fatherName.required">Father Name<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.mobileNumber" v-mask="'(9999) 999 9999'" required>
+                            <label :class="!$v.model.mobileNumber.required">Mobile Number<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select v-model="data.programDetailId" class="form-control form-control-sm" required>
+                                <option :key="index" :value="model.programDetailId" v-for="(model,index) in programDetailList">{{model.description}}
+                                </option>
+                            </select>
+                            <label :class="!$v.model.programDetailId.required">Choose Course<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select v-model="data.genderId" class="form-control form-control-sm" required>
+                                <option :key="index" :value="model.genderId" v-for="(model,index) in genderList">{{model.description}}
+                                </option>
+                            </select>
+                            <label :class="!$v.model.genderId.required">Gender<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                                <select v-model="data.saleTypeId" class="form-control form-control-sm" required>
+                                    <option :key="index" :value="model.saleTypeId" v-for="(model,index) in saleTypeList">{{model.fullName}}
+                                    </option>
+                                </select>
+                                <label :class="!$v.model.saleTypeId.required" style="margin-left:15px;">Sale Type<span
+                                        style="color:red"> *</span></label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row" style="margin-bottom:-6px; margin-top:-5px">
+                                    <a href="#" @click="addNewSaleType">
+                                        <i class="fa fa-plus m--hide success"></i>
+
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <a href="#" @click="loadSaleType">
+                                        <i class="fa fa-refresh m--hide"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.saleDate" required>
+                            <label>Sale Date</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" v-model="data.formNumber" required>
+                            <label :class="!$v.model.formNumber.required">Form Number<span style="color:red"> *</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12">
+                    <button class="btn  btn-danger ripple" @click="cancel">Close</button>
+
+                    <button class="btn btn-primary" :disabled="!allowSubmit" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <SaleType v-on:submit="loadSaleType"></SaleType>
+</modal> -->
+
+
+<modal name="add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10"   height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.admissionBulitanSale')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.admissionBulitanSale.grid.fullName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input  type="text" v-restrict.alpha class="form-control  "
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.fullName.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.admissionBulitanSale.grid.fatherName')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input v-restrict.alpha type="text" class="form-control  " v-model.trim="data.fatherName"
+                            :class="{'is-invalid': $v.data.fatherName.$error}" @input="$v.data.fatherName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fatherName.$error">
+                            <span v-if="!$v.data.fatherName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fatherName.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.fatherName.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.admissionBulitanSale.grid.mobileNumber')}}</label>
+                        <span style="color:red"> *</span>
+                        <the-mask :class="{'is-invalid': $v.data.mobileNumber.$error}" :mask="'(####) ### ####'"
+                            v-model.trim="data.mobileNumber" class="form-control  "
+                            @input="$v.data.mobileNumber.$touch()" />
+                        <div class="invalid-feedback" v-show="$v.data.mobileNumber.$error">
+                            <span v-if="!$v.data.mobileNumber.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.mobileNumber.minLength">{{$t('validation.minLength')}} <br>Field Length:
+                                {{$v.data.mobileNumber.$params.minLength.min}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('navigation.setupGender')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="genderList" keyValue="genderId" displayValue="description"
+                            v-model.trim="data.genderId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.genderId.$error">
+                            <span v-if="!$v.data.genderId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('navigation.setupProgramDetails')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="programDetailList" keyValue="programDetailId" displayValue="description"
+                            v-model.trim="data.programDetailId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.programDetailId.$error">
+                            <span v-if="!$v.data.programDetailId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.admissionBulitanSale.grid.formNumber')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.formNumber"
+                            :class="{'is-invalid': $v.data.formNumber.$error}" @input="$v.data.formNumber.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.formNumber.$error">
+                            <span v-if="!$v.data.formNumber.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.formNumber.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.formNumber.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('navigation.admissionSaleType')}}</label> <span
+                            style="color:red"> *</span>
+                        <select-ex :options="saleTypeList" keyValue="saleTypeId" displayValue="fullName"
+                            v-model.trim="data.saleTypeId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.saleTypeId.$error">
+                            <span v-if="!$v.data.saleTypeId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.admissionBulitanSale.grid.saleDate')}}</label>
+                        <span style="color:red">
+                            *</span>{{data.saleDate}}
+                        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model.trim="data.saleDate"
+                            format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'" @input="$v.data.saleDate.$touch()">
+                        </date-picker>
+                        <!-- <div class="invalid-feedback" v-show="$v.data.saleDate.$error">
+                            <span v-if="!$v.data.saleDate.required">{{$t('validation.required')}}</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

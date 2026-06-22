@@ -1,0 +1,103 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="Shift-add-edit-model" :clickToClose="false" :width="614" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="bounce" top="10"   height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.setupShift')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupShift.grid.fullName')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control "
+                            :class="{'is-invalid': $v.data.fullName.$error}" v-model.trim="data.fullName"
+                            @input="$v.data.fullName.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.fullName.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.setupShift.grid.code')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.code"
+                            :class="{'is-invalid': $v.data.code.$error}" @input="$v.data.code.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.code.$error">
+                            <span v-if="!$v.data.code.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.code.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.code.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupShift.grid.description')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  " v-model.trim="data.description"
+                            :class="{'is-invalid' : $v.data.description.$error}" @input="$v.data.description.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.description.$error">
+                            <span v-if="!$v.data.description.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.description.maxLength">{{$t('validation.maxLength')}} <br>Field Length:
+                                {{$v.data.description.$params.maxLength.max}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,261 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('Date Period Comparison Campus Wise Admission Date')}}
+      </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.admissionComaprisonDashboardCampusWiseClone')">
+    <template slot="portlet-body">
+      <div class="row">
+        <!-- <div class="col-md-3 ">
+          <div class="form-group">
+             <div class="row">
+                <label class="col-md-8 mb-3">
+                   {{$t('navigation.setupPossessionType')}}<span style="color:red">
+                    *</span>
+                </label>
+                
+             </div>
+             <select-ex :options="campusTypeList"
+
+                        keyValue="fullName"
+
+                        displayValue="fullName"
+
+                        v-model="typeId"
+ 
+
+                        >
+
+             </select-ex>
+          </div>
+       </div> -->
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label class="mb-3">{{$t('modal.concessionDashboard.session')}}<span style="color:red">
+                *</span></label>
+            <select-ex   :options="sessionList" keyValue="sessionId" displayValue="fullName"
+              v-model="sessionId">
+            </select-ex>
+          </div>
+        </div> -->
+        <div class="col-md-3" style="margin-top: 8px;">
+          <div class="form-group">
+            <label class="form-control-label">Date</label>
+            <span style="color:red">*</span>
+            <date-picker
+              class="input-28"
+              id="change-width"
+              ref="changeWidth"
+              v-model="toDateEx"
+              format="DD/MM/YYYY"
+              lang="en"
+              v-mask="'##/##/####'"
+              @change="refresh()"
+              :not-after="currDate"
+            ></date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-6  control" style="text-align:right" v-show="newloader" v-model="newloader1">
+        <section class="loaders loaders-bg-1"><span class="loader loader-double"> </span> Loading...</section>
+      </div> -->
+       
+        
+
+      </div>
+      <div class="row">
+      <div class="col-md-3" style="text-align:left">
+        <button class="btn btn-block btn-primary"  @click="refresh()">Generate</button>
+      </div>
+      </div>
+      <div class="row">
+        <div class="row mt-5">
+          <div class="col-md-12" style="text-align:right">
+            <button class="btn btn-primary btn-sm" v-if="backList.length>0" @click="goBack()">GO BACK</button>
+
+          </div>
+          <div class="col-md-12">
+            <!-- class="fixed-header-table" -->
+            <div >
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                      <th></th>
+                      <th style="border: solid white; background: #ebedf2;" colspan="3"><b>Day {{dayNumber}} of 2024 Admissions</b>: {{currentadmissiondate}}</th>
+                      <th style="border: solid white; background: #ebedf2;" colspan="2"><b>Day {{dayNumber}} of 2023 Admissions</b>: {{lastadmissiondate}}</th>
+                      <th colspan="3"></th>
+                  </tr>
+                  <tr>
+                    <th>  </th>
+                    <th> Form Submission (2024) </th>
+                    <th> Admission (2024) </th>
+                    <th> Conversion Rate </th>
+                    <th> Admission (2023)</th>
+                    <th> Total Admission (2023) </th>
+                    <th> Difference </th>
+                    <th> % </th>
+                    <th> Selected Date (2024) </th>
+                    <!-- <th> Previous Form Conversion </th> -->
+                    <!-- <th> Same day (2020) </th> -->
+                    
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="cursor: pointer;" v-for="item in myData" @click="getData('city', item.id)">
+                    <td >                      
+                      {{item.fullName}}
+                    </td>
+                    <td>
+                      {{item.currentFormSubmission}}
+                    </td>
+                    <td>
+                      {{item.currentAdmission}}
+                      
+                    </td>
+                    <td>
+                      {{item.currentFormConversion}} %
+                    </td>
+                    <td>
+                      {{item.previousAdmissionEx}}
+                    </td>
+                    <td>
+                      {{item.previousAdmission}}
+                    </td>
+                    <td v-if="item.differenceValue<0" style="color: red;">
+                      {{item.differenceValue}}
+                    </td>
+                    <td v-else style="color: green;">
+                      {{item.differenceValue}}
+                    </td>
+                    <td v-if="item.differencePercentage<0" style="color: red;">
+                      {{Math.round(item.differencePercentage)}} %
+                    </td>
+                    <td v-else style="color: green;">
+                      {{Math.round(item.differencePercentage)}} %
+                    </td>
+                    <!-- <td>
+                      {{item.previousFormConversion}} %
+                    </td> -->
+                    <td>
+                      {{item.currentNDateAdmission}}
+                    </td>
+                    <!-- <td>
+                      {{item.previousNDateAdmission}}
+                    </td> -->
+                    
+                    
+                  </tr>
+                  <tr v-if="myData.length > 0">
+                    <td style="font-weight: 600;">                      
+                    Total
+                    </td>
+                    <td>
+                      {{currentFormSubmissionTotal}}
+                    </td>
+                    <td>
+                      {{currentAdmissionTotal}}
+                      
+                    </td>
+                    <td>
+                      {{Math.round((currentAdmissionTotal/currentFormSubmissionTotal) * 100)}} %
+                    </td>
+                    <td>
+                      {{previousAdmissionTotalEx}}
+                    </td>
+                    <td>
+                      {{previousAdmissionTotal}}
+                    </td>
+                    <!-- <td>
+                      {{item.previousFormConversion}} %
+                    </td> -->
+                    <td>
+                      {{differenceValueTotal}}
+                    </td>
+                    <td>
+                      {{Math.round((differenceValueTotal/previousAdmissionTotal) * 100)}} %
+
+                    </td>
+                    <td>
+                      {{currentNDateAdmissionTotal}}
+                    </td>
+                    <!-- <td>
+                      {{previousNDateAdmissionTotal}}
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- <div v-if="isShowDrill" class="fixed-header-table">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      City
+                    </th>
+                    <th>
+                      Class
+                    </th>
+                    <th>
+                      Fee Paid
+                    </th>
+                    <th>
+                      Enrolled
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in cityDrillList">
+                    <td>
+                      {{item.cityName}}
+                    </td>
+                    <td>
+                      {{item.className}}
+                    </td>
+                    <td>
+                      {{item.feePaid}}
+                    </td>
+                    <td>
+                      {{item.enrolled}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+
+            <!-- <grid :data="CityMult" :columns="columns" pre="modal.setupCityProgram.">
+          </grid> -->
+            <!-- </template>
+        <template slot="graphContent">
+          <Highcharts :options="programchart" />
+        </template>
+      </table-graph> -->
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+    </template>
+  </portlet-area>
+
+</page-area>

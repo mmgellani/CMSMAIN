@@ -1,0 +1,113 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.academiccalendar')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.academiccalendar')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.academiccalendar')">
+
+
+    <template slot="portlet-body">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <div class="form-group validated">
+            <label class="form-control-label">{{$t('modal.reports.feeReports.session')}}<span style="color:red">
+                *</span></label>
+            <select-ex @input="loadAcademicCalendarMaster" :options="sessionList" keyValue="sessionId"
+              displayValue="fullName" v-model="sessionId">
+            </select-ex>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-3">
+        
+          <div class="form-group">
+            <label>{{$t('modal.reports.feeReports.campus')}}<span style="color:red">
+                *</span></label>
+            <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName" v-model="campusId"
+              groupBy="cityName" @input="GetCalendarData" required>
+            </select-ex>
+
+          </div>
+
+        </div> -->
+        <div class="col-md-3 form-group">
+          <label class="form-control-label">{{$t('modal.setupCampus.subCity')}}<span style="color:red">
+              *</span>
+          </label>
+          <select-ex @input="loadAcademicCalendarMaster" :options="citySubCityList" keyValue="subCityId"
+            displayValue="subCityName" v-model="subCityId" groupBy="cityName">
+          </select-ex>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.notification.class')}}</label><span style="color:red">
+              *</span>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model.trim="classId"
+              @input="loadAcademicCalendarMaster"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Academic Calendar Master<span style="color:red">
+                *</span>
+
+            </label>
+            <!-- <label>{{$t('navigation.boards')}}</label> -->
+            <select-ex :options="academicCalendarMasterList" keyValue="academicCalendarMasterId" displayValue="fullName"
+              v-model="academicCalendarMasterId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group validated m-0">
+            <label class="form-control-label">Course<span style="color:red">
+                *</span></label>
+            <select-ex :options="programCourse" keyValue="courseId" displayValue="fullName" v-model.trim="courseId"
+              @input="GetAcadmicCaldenview(1)">
+            </select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 mt-3" v-if="viewBtn">
+
+        <div class="col-md-3">
+          <button type="button" class="btn btn-outline-primary btn-icon btn-sm btn-circle" @click.delegate="moveTo(0)"
+            title="previous">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-outline-primary btn-sm " @click.delegate="today()" title="today">
+            Current Month
+          </button>
+          <button type="button" class="btn btn-outline-primary btn-icon btn-sm btn-circle" @click.delegate="moveTo(1)"
+            title="next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col-md-2 offset-md-7 text-center">
+          <h5 class=" mt-2">{{monthText}}</h5>
+        </div>
+
+      </div>
+      <calendar v-if="allowshow()" ref="tuiCalendar" id="tuiCalendar" view="month" :schedules="scheduleList"
+        :taskView="taskView" :scheduleView="scheduleView" :template="template" :useCreationPopup="useCreationPopup"
+        :useDetailPopup="useDetailPopup" @beforeCreateSchedule="onBeforeCreateSchedule($event)" :timezones="timezones"
+        @beforeUpdateSchedule="onBeforeUpdateSchedule($event)" @beforeDeleteSchedule="onBeforeDeleteSchedule($event)"
+        @clickSchedule="clickSchedule($event)">
+      </calendar>
+    </template>
+  </portlet-area>
+  <add-edit v-on:submit="GetAcadmicCaldenview(0)"></add-edit>
+  <view-Popup ></view-Popup>
+  <delete-model v-on:submit="GetAcadmicCaldenview(0)"></delete-model>
+</page-area>

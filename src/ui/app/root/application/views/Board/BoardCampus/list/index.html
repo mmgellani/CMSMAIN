@@ -1,0 +1,58 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Board Campus
+      </div>
+      <div class="card-body">
+        <div v-if="canRead">
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <select @change="refreshData" class="form-control" v-model="boardId" required>
+                      <option :key="index" :value="model.boardId" v-for="(model,index) in boardList">{{model.fullName}}
+                      </option>
+                    </select>
+                    <label>Board</label>
+                  </div>
+                </div>
+                <div class="col-md-3 offset-6">
+                  <button v-if="canAdd" @click="insertModel" class="b-add">
+                    <feather icon="plus-circle"></feather>
+                  </button>
+                  <button @click="refreshData" class="b-refresh">
+                    <feather icon="refresh-ccw"></feather>
+                  </button>
+                </div>
+              </div>
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+            <template slot="action" slot-scope="item">
+              <a @click="editModel(item.row)" v-if="canEdit">
+                <feather icon="edit" xclass="b-edit"></feather>
+              </a>
+              <a @click="deleteModel(item.row)" v-if="canDelete">
+                <feather icon="trash" xclass="b-delete"></feather>
+              </a>
+            </template>
+
+          </grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <BoardCampus-add-edit-model v-on:submit="refreshData"></BoardCampus-add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

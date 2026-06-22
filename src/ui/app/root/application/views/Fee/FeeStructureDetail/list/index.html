@@ -1,0 +1,76 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Fee Structure Detail
+      </div>
+      <div class="card-body">
+
+        <div v-if="canRead">
+
+
+
+          <grid :data="data" :columns="columns">
+            <template slot="operation-links">
+
+              <button @click="refreshData" class="b-refresh">
+                <feather icon="refresh-ccw"></feather>
+              </button>
+            </template>
+            <template slot="statusId" slot-scope="item">
+              {{item.row.statusId==1?'Active':'InActive'}}
+            </template>
+          </grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.ssetup')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.fsetup')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.feeFeeStructureDetail')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.feeFeeStructureDetail')">
+    <template slot="portlet-body">
+      <div class="row">
+      </div>
+      <grid :data="data" :columns="columns" pre="modal.setupFeeStructureDetail.">
+        <template slot="action-area">
+          <button @click="refreshData" class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+        </template>
+        <template slot="statusId" slot-scope="item">
+          <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.statusId == 1">Active</span>
+          <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill" v-else>InActive</span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+</page-area>

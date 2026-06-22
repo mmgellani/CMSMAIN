@@ -1,0 +1,93 @@
+
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="40%" height="auto"
+    @before-open="beforeModalOpen" @before-close="beforeModalClose">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-10 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.TopicVideoChapterLink')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row" v-if="!IsNewRecord">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupClass.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>{{$t('modal.TopicVideoChapterLink.topicName')}}</label>
+                            <select-ex :options="topicList" keyValue="topicsId" displayValue="name" v-model="data.topicsId"
+                              @input="refreshData()">
+                            </select-ex>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label>{{$t('modal.TopicVideoChapterLink.video')}}</label>
+                              <select-ex :options="videoList" keyValue="videosId" displayValue="name" v-model="data.videosId"
+                                @input="refreshData()">
+                              </select-ex>
+                            </div>
+                          </div>
+                        
+                      </div>
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.TopicVideoChapterLink.name')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.name.$error}" v-model.trim="data.name"
+                            @input="$v.data.name.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.name.$error">
+                            <span v-if="!$v.data.name.required">{{$t('validation.required')}}</span>
+                          
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button :disabled="!allowSubmit" class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

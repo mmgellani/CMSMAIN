@@ -1,0 +1,494 @@
+// ═══════════════════════════════════════════════════════════════
+//  EMS Login  —  Photo backgrounds + floating education particles
+//  Left:  Academic Gold  #F5C518  over graduation photo
+//  Right: Deep Navy  #2D2B6F  over campus/library photo
+// ═══════════════════════════════════════════════════════════════
+
+$navy:       #2D2B6F;
+$navy-deep:  #1e1c56;
+$navy-mid:   #3d3aa0;
+$gold:       #F5C518;
+$gold-deep:  #E8A800;
+$white:      #ffffff;
+$text-dark:  #1a1a3e;
+$text-mid:   #4b4980;
+$text-soft:  #9997c8;
+$error:      #e53e5e;
+
+// reset old classes
+.login-wrapper, .login-body, .section-left, .section-right { all: unset; }
+
+// ── Floating particle keyframes ───────────────────────────────
+@keyframes floatUp {
+    0%   { transform: translateY(0px)   rotate(0deg);   opacity: 0.7; }
+    50%  { transform: translateY(-18px) rotate(8deg);   opacity: 1;   }
+    100% { transform: translateY(0px)   rotate(0deg);   opacity: 0.7; }
+}
+@keyframes floatSway {
+    0%   { transform: translateY(0px)   translateX(0px)  rotate(0deg);  }
+    33%  { transform: translateY(-14px) translateX(8px)  rotate(6deg);  }
+    66%  { transform: translateY(-6px)  translateX(-6px) rotate(-4deg); }
+    100% { transform: translateY(0px)   translateX(0px)  rotate(0deg);  }
+}
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1);   opacity: 0.5; }
+    50%       { transform: scale(1.6); opacity: 0.9; }
+}
+@keyframes spinSlow {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+// ── Wrapper ───────────────────────────────────────────────────
+.ems-login-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  LEFT PANEL — Gold over graduation photo
+// ═══════════════════════════════════════════════════════════════
+.ems-left-panel {
+    position: relative;
+    width: 46%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 48px 40px;
+    overflow: hidden;
+}
+
+// Photo background
+.ems-left-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center top;
+    z-index: 0;
+}
+
+// Gold overlay
+.ems-left-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        155deg,
+        rgba(#F5C518, 0.88) 0%,
+        rgba(#E8A800, 0.82) 45%,
+        rgba(#c47d00, 0.75) 100%
+    );
+    z-index: 1;
+}
+
+// Particles container
+.ems-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+// Each floating particle — spread across the full panel
+.ems-particle { position: absolute; }
+
+// P1: Diploma — top-left corner
+.ems-p1 { top: 6%;    left: 5%;   animation: floatSway 7s ease-in-out infinite; }
+// P2: Graduation cap — top-right area
+.ems-p2 { top: 4%;    right: 8%;  animation: floatUp   6s ease-in-out infinite; }
+// P3: Open book — middle-left
+.ems-p3 { top: 42%;   left: 3%;   animation: floatSway 9s ease-in-out infinite 1.2s; }
+// P4: Trophy — upper-middle-right
+.ems-p4 { top: 24%;   right: 4%;  animation: floatUp   5.5s ease-in-out infinite 0.4s; }
+// P5: Pencil+ruler — centre (slightly right)
+.ems-p5 { top: 60%;   right: 6%;  animation: floatSway 8.5s ease-in-out infinite 0.8s; }
+// P6: Student figure — lower-left
+.ems-p6 { bottom: 22%; left: 4%;  animation: floatUp   8s ease-in-out infinite 2s; }
+// P7: Apple — lower-right
+.ems-p7 { bottom: 10%; right: 5%; animation: floatSway 7s ease-in-out infinite 1.5s; }
+
+// Small glowing dots
+.ems-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba($white, 0.6);
+    animation: pulseDot 3s ease-in-out infinite;
+}
+.ems-d1 { width: 8px;  height: 8px;  top: 15%;  left: 30%;  animation-delay: 0s; }
+.ems-d2 { width: 6px;  height: 6px;  top: 32%;  right: 22%; animation-delay: 0.7s; }
+.ems-d3 { width: 10px; height: 10px; top: 50%;  left: 18%;  animation-delay: 1.3s; }
+.ems-d4 { width: 5px;  height: 5px;  top: 68%;  right: 30%; animation-delay: 0.4s; }
+.ems-d5 { width: 7px;  height: 7px;  bottom: 30%; left: 40%; animation-delay: 1.8s; }
+.ems-d6 { width: 9px;  height: 9px;  bottom: 18%; right: 18%; animation-delay: 0.9s; }
+
+// Left content
+.ems-left-content {
+    position: relative;
+    z-index: 3;
+    animation: fadeInUp 0.7s ease both;
+}
+
+// Brand logo
+.ems-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+}
+.ems-brand-name { display: flex; flex-direction: column; gap: 3px; }
+.ems-brand-ems {
+    font-size: 28px;
+    font-weight: 900;
+    color: $navy;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow:
+        0 1px 0   rgba($white, 0.6),
+        0 2px 8px rgba(darken($gold-deep, 25%), 0.4);
+}
+.ems-brand-tagline {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: rgba($navy, 0.78);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-shadow: 0 1px 3px rgba($white, 0.45);
+}
+
+// Headline
+.ems-brand-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: $navy;
+    line-height: 1.18;
+    margin: 0 0 14px;
+    letter-spacing: -0.8px;
+    // Dark drop shadow so navy text pops on any gold/photo combo
+    text-shadow:
+        0 1px 0   rgba($white, 0.55),
+        0 2px 6px rgba(darken($gold-deep, 30%), 0.35);
+
+    .ems-title-highlight {
+        display: inline-block;
+        color: $navy-deep;
+        background: rgba($white, 0.32);
+        border-radius: 7px;
+        padding: 0 8px;
+        // subtle inner glow so it lifts off the background
+        box-shadow: 0 2px 10px rgba($white, 0.25);
+        text-shadow: none;
+    }
+}
+.ems-brand-subtitle {
+    font-size: 14.5px;
+    // Pure navy with stronger opacity — legible on gold
+    color: rgba($navy, 0.82);
+    margin: 0 0 38px;
+    line-height: 1.65;
+    max-width: 310px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba($white, 0.4);
+}
+
+// Features
+.ems-features { display: flex; flex-direction: column; gap: 12px; }
+.ems-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: $navy;
+    text-shadow: 0 1px 2px rgba($white, 0.4);    .ems-feature-icon {
+        width: 40px; height: 40px;
+        border-radius: 11px;
+        background: rgba($white, 0.3);
+        border: 1.5px solid rgba($white, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        backdrop-filter: blur(4px);
+        svg { stroke: $navy; }
+    }
+}
+
+// Stats footer
+.ems-left-footer {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 28px;
+    border-top: 1.5px solid rgba($navy, 0.2);
+    animation: fadeInUp 0.9s ease both;
+}
+.ems-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ems-stat-num {
+    font-size: 22px; font-weight: 900; color: $navy; line-height: 1;
+    text-shadow: 0 1px 0 rgba($white,0.5), 0 2px 6px rgba(darken($gold-deep,25%),0.3);
+    sup { font-size: 12px; vertical-align: super; }
+}
+.ems-stat-label {
+    font-size: 10.5px; font-weight: 800;
+    color: rgba($navy, 0.72);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    text-shadow: 0 1px 2px rgba($white,0.35);
+}
+.ems-stat-divider { width: 1px; height: 34px; background: rgba($navy, 0.25); }
+
+// ═══════════════════════════════════════════════════════════════
+//  RIGHT PANEL — Deep Navy over library photo
+// ═══════════════════════════════════════════════════════════════
+.ems-right-panel {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 36px;
+    overflow: hidden;
+}
+
+// Campus library photo
+.ems-right-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=900&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+// Navy overlay
+.ems-right-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        145deg,
+        rgba(#2D2B6F, 0.93) 0%,
+        rgba(#1e1c56, 0.90) 55%,
+        rgba(#0d0c35, 0.88) 100%
+    );
+    z-index: 1;
+}
+
+// Right particles
+.ems-r-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+.ems-r-particle { position: absolute; }
+.ems-rp1 { top: 10%;  right: 8%;  animation: floatUp   8s ease-in-out infinite; }
+.ems-rp2 { top: 30%;  left: 5%;   animation: floatSway 10s ease-in-out infinite 1s; }
+.ems-rp3 { bottom: 20%; right: 10%; animation: floatSway 7s ease-in-out infinite 0.5s; }
+
+.ems-r-dot {
+    position: absolute;
+    border-radius: 50%;
+    animation: pulseDot 4s ease-in-out infinite;
+}
+.ems-rd1 { width: 6px;  height: 6px;  top: 20%;    left: 15%;   background: rgba($gold,0.4);  animation-delay: 0s;   }
+.ems-rd2 { width: 8px;  height: 8px;  top: 55%;    right: 12%;  background: rgba($white,0.2); animation-delay: 1s;   }
+.ems-rd3 { width: 5px;  height: 5px;  bottom: 35%; left: 8%;    background: rgba($gold,0.3);  animation-delay: 1.7s; }
+.ems-rd4 { width: 7px;  height: 7px;  bottom: 12%; right: 25%;  background: rgba($white,0.15); animation-delay: 0.5s; }
+
+// Form container
+.ems-form-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 420px;
+    animation: fadeInUp 0.65s ease both 0.1s;
+}
+
+// Form header
+.ems-form-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+}
+.ems-form-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba($gold, 0.45);
+    svg { stroke: $navy; }
+}
+.ems-form-title {
+    font-size: 23px; font-weight: 800; color: $white;
+    margin: 0 0 3px; letter-spacing: -0.3px;
+}
+.ems-form-desc {
+    font-size: 13px; color: rgba($white, 0.5); margin: 0;
+}
+
+// Glass form card
+.ems-form-card {
+    background: rgba($white, 0.06);
+    border: 1.5px solid rgba($white, 0.11);
+    border-radius: 20px;
+    padding: 30px 28px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    margin-bottom: 18px;
+    box-shadow:
+        0 8px 40px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba($white, 0.07);
+}
+
+// Field group
+.ems-field-group {
+    margin-bottom: 18px;
+
+    &.ems-field-error {
+        .ems-input-wrap { border-color: rgba($error,0.7); background: rgba($error,0.07); }
+        .ems-input-icon svg { stroke: lighten($error, 10%); }
+    }
+}
+.ems-label {
+    display: block;
+    font-size: 11.5px; font-weight: 700;
+    color: rgba($white, 0.65);
+    margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.8px;
+}
+.ems-input-wrap {
+    display: flex; align-items: center;
+    background: rgba($white, 0.07);
+    border: 1.5px solid rgba($white, 0.11);
+    border-radius: 12px;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+
+    &:focus-within {
+        border-color: $gold;
+        background: rgba($white, 0.1);
+        box-shadow: 0 0 0 3px rgba($gold, 0.2);
+    }
+}
+.ems-input-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 46px; flex-shrink: 0;
+    svg { stroke: rgba($white, 0.32); transition: stroke 0.2s; }
+}
+.ems-input-wrap:focus-within .ems-input-icon svg { stroke: $gold; }
+
+.ems-input {
+    flex: 1; height: 46px;
+    border: none; background: transparent; outline: none;
+    font-size: 14px; font-weight: 500; color: $white;
+    padding: 0 4px; caret-color: $gold;
+
+    &::placeholder { color: rgba($white, 0.25); font-size: 13.5px; font-weight: 400; }
+}
+.ems-input-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 46px; flex-shrink: 0; cursor: pointer;
+    svg { stroke: rgba($white, 0.28); transition: stroke 0.2s; }
+    &:hover svg { stroke: $gold; }
+}
+.ems-error-msg {
+    display: block; font-size: 11.5px;
+    color: lighten($error, 14%);
+    margin-top: 6px; padding-left: 2px;
+}
+
+// Options row
+.ems-form-options {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 22px;
+}
+.ems-remember {
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer; font-size: 13px;
+    color: rgba($white, 0.55); user-select: none;
+
+    input[type="checkbox"] { width: 15px; height: 15px; accent-color: $gold; cursor: pointer; }
+}
+.ems-forgot-link {
+    font-size: 12.5px; font-weight: 700; color: $gold;
+    text-decoration: none; opacity: 0.85;
+    transition: opacity 0.2s;
+    &:hover { opacity: 1; text-decoration: underline; }
+}
+
+// Sign-in button
+.ems-btn-signin {
+    width: 100%; height: 50px;
+    background: linear-gradient(135deg, $gold 0%, $gold-deep 100%);
+    color: $navy; border: none; border-radius: 12px;
+    font-size: 15px; font-weight: 800; letter-spacing: 0.2px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: transform 0.15s, box-shadow 0.2s, filter 0.15s;
+    box-shadow: 0 6px 22px rgba($gold, 0.42);
+    position: relative; overflow: hidden;
+
+    svg { stroke: $navy; flex-shrink: 0; }
+
+    &::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba($white,0.2) 0%, transparent 55%);
+        border-radius: inherit; pointer-events: none;
+    }
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba($gold, 0.52);
+        filter: brightness(1.05);
+    }
+    &:active { transform: translateY(0); box-shadow: 0 4px 14px rgba($gold, 0.35); }
+}
+
+// Trust badges
+.ems-trust-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.ems-trust-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600;
+    color: rgba($white, 0.42);
+    background: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.07);
+    border-radius: 20px; padding: 4px 11px;
+    svg { stroke: rgba($gold, 0.65); flex-shrink: 0; }
+}
+.ems-copyright {
+    text-align: center; font-size: 11px;
+    color: rgba($white, 0.22); margin: 0;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═══════════════════════════════════════════════════════════════
+@media (max-width: 960px) {
+    .ems-login-wrapper { flex-direction: column; }
+
+    .ems-left-panel { width: 100%; min-height: auto; padding: 36px 28px 28px; }
+    .ems-left-footer { display: none; }
+    .ems-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ems-brand-title { font-size: 28px; }
+    .ems-brand-subtitle { margin-bottom: 22px; }
+
+    .ems-right-panel { padding: 32px 20px; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+    .ems-form-card { padding: 22px 16px; }
+    .ems-features { grid-template-columns: 1fr; }
+    .ems-brand-title { font-size: 22px; }
+    .ems-trust-row { gap: 6px; }
+}

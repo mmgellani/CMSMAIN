@@ -1,0 +1,31 @@
+[{
+        "day": "Monday",
+        "startTime": "01:00 p.m",
+        "endTime": "02:00 p.m",
+        "period": "1st Period",
+        "sectionName": "Secton A",
+        "description": "Medical Morning",
+        "class": "Part-1",
+        "room": "Room 1",
+        "roomType": "Class Room",
+        "staff": "Omer",
+        "course": "English",
+        "campusName": "Main Campus",
+        "sessionName": "2019"
+    },
+    {
+        "day": "Tuesday",
+        "startTime": "02:00 p.m",
+        "endTime": "03:00 p.m",
+        "period": "2st Period",
+        "sectionName": "Secton A",
+        "description": "Medical Morning",
+        "class": "Part-1",
+        "room": "Room 2",
+        "roomType": "Computer Lab",
+        "staff": "Khan",
+        "course": "Computer",
+        "campusName": "Main Campus",
+        "sessionName": "2019"
+    }
+]

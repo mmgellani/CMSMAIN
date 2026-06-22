@@ -1,0 +1,172 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"
+        ><i class="flaticon2-shelter"></i
+      ></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link"> CMS Student Survey / January 2026 </a>
+    </div>
+  </template>
+  <portlet-area action="1" title="CMS Student Survey / January 2026">
+    <template slot="portlet-body">
+        <tabs>
+        <tab name="Overall Statistics" :selected="true" >
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <div class="card-box" style="background: #273b73eb;">
+                    <div class="inner">
+                      <p class="mb-4">Summary</p>
+                      <a href="javascript:void(0)"   @click="loadTotalSurvey()" style="color: #fff; position: absolute; right: 10px; top: 10px;"><i class="fa fa-refresh" aria-hidden="true"></i>   </a>
+                      <div class="row" v-for="item in survey">
+                        <div class="col-md-4 text-center">
+                          <h3 class="text-center">{{item.totalStudents}}</h3>
+                          <span>Total Students</span>
+                        </div>
+                        <div class="col-md-4 text-center">
+                          <h3 class="text-center">{{item.totalSubmitted}}</h3>
+                          <span>Total Submitted</span>
+                        </div>
+                        <div class="col-md-4 text-center">
+                          <h3 class="text-center">{{item.average}}%</h3>
+                          <span>Response Rate</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-8">
+              <nav aria-label="breadcrumb" v-show="breadcrums.length>0">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item" v-for="(val,index) in breadcrums">
+                    <a
+                      @click.prevent="returnBack(index)"
+                      style="cursor: pointer;"
+                      :class="breadcrums.length-1==index?'font-weight-bold':''"
+                      >{{val}}</a
+                    >
+                  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-md-4 text-right mb-2">
+         
+              <button
+              type="button"
+              class="btn btn-hover btn-sm btn-outline-primary"
+              @click="refreshdata"
+            >
+              ReFresh
+            </button>
+          
+              <button
+                type="button"
+                class="btn btn-hover btn-sm btn-outline-primary"
+                @click="loadPrevious"
+                style="margin-right: 10px;"
+              >
+                <i class="la la-arrow-left"></i> Go Back
+              </button>
+             
+            </div>
+            <div class="col-md-12">
+              <div class="table-responsive mt-3">
+                <div class="fixed-header-table ">
+                  <table style="width:100%;" class="customTable">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">
+                          Description
+                        </th>
+                        <th>
+                          Total Survey
+                        </th>
+                        <th>
+                          Total Submitted
+                        </th>
+                        <th>
+                          Response Rate
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        v-if="checkCity"
+                        v-for="item in surveyStatistics"
+                        class="rowHover"
+                        style="cursor: pointer;"
+                        @click="loadSubCityData(item.iddd,item.next,item.fullName)"
+                      >
+                        <td>
+                          <span v-html="item.fullName"></span>
+                        </td>
+                        <td>
+                          {{item.total}}
+                        </td>
+                        <td>
+                          {{item.submitted}}
+                        </td>
+                        <td>
+                          {{item.response}} %
+                        </td>
+                      </tr>
+                      <tr
+                        v-if="checkSubCity"
+                        v-for="item in subCityData"
+                        class="rowHover"
+                        style="cursor: pointer;"
+                        @click="loadCampusData(item.iddd,item.next,item.fullName)"
+                      >
+                        <td>
+                          <span v-html="item.fullName"></span>
+                        </td>
+                        <td>
+                          {{item.total}}
+                        </td>
+                        <td>
+                          {{item.submitted}}
+                        </td>
+                        <td>
+                          {{item.response}} %
+                        </td>
+                      </tr>
+                      <tr
+                        v-if="checkCampus"
+                        v-for="item in subCampusData"
+                        class="rowHover"
+                        style="cursor: pointer;"
+                      >
+                        <td>
+                          <span v-html="item.fullName"></span>
+                        </td>
+                        <td>
+                          {{item.total}}
+                        </td>
+                        <td>
+                          {{item.submitted}}
+                        </td>
+                        <td>
+                          {{item.response}} %
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+       
+      </tabs>
+    </template>
+  </portlet-area>
+</page-area>

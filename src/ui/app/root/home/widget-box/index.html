@@ -1,0 +1,17 @@
+<div v-if="visible">
+    <div class="card">
+        <div class="card-body">
+            <div class="button-options">
+                <i id="up" v-if="bodyVisible" class="fa fa-chevron-up" @click.prevent="collapseBody()"></i>
+                <i id="down" v-if="!bodyVisible" class="fa fa-chevron-down" @click.prevent="openBody()"></i>
+                <i class="fa fa-times" @click.prevent="closeWindow()"></i>
+            </div>
+            <div class="title">
+                <slot name="title"></slot>
+            </div>
+            <div class="content-body" v-if="bodyVisible">
+                <slot name="content" ></slot>
+            </div>
+        </div>
+    </div>
+</div>

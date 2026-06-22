@@ -1,0 +1,4063 @@
+{
+  "admin": {
+    "navigation": {
+      "users": "Users"
+    },
+    "role": {
+      "claims": "Permissions",
+      "parentRoleId": "Inherits From",
+      "isSystemRole": "System Role",
+      "lastUpdated": "Last Update",
+      "created": "A new role was created",
+      "updated": "An existing role was updated"
+    }
+  },
+  "dict": {
+    "all": "All",
+    "cancel": "Cancel",
+    "copy": "Copy",
+    "clock": "Clock",
+    "culture": "Culture",
+    "create": "Create",
+    "delete": "Delete",
+    "deny": "Deny",
+    "email": "Email",
+    "errors": {
+      "unanticipated": "An unanticipated error has occured"
+    },
+    "enabled": "Enabled",
+    "header": "Header",
+    "heading": "Heading",
+    "hello": "Hello",
+    "key": "Key",
+    "logo": "Site logo",
+    "label": "Label",
+    "link": "Link",
+    "name": "Name",
+    "no": "No.",
+    "none": "None",
+    "notImplemented": "Not Implemented",
+    "of": "of",
+    "origin": "Origin",
+    "project": "Project",
+    "read": "View",
+    "readonly": "Read-Only",
+    "reports": "Reports",
+    "role": "Role",
+    "search": "Search",
+    "security": "Security",
+    "secureContent": "Displaying secure content for registered users only",
+    "settings": "Settings",
+    "stranger": "Stranger",
+    "submit": "Submit",
+    "success": "Success",
+    "update": "Update",
+    "value": "Value",
+    "verified": "Verified",
+    "description": "Description",
+    "warnings": {
+      "stub": "Illustration purposes only"
+    },
+    "yes": "Yes"
+  },
+  "forbidden": {
+    "title": "Access Denied",
+    "content": "Insufficent permissions"
+  },
+  "home": {
+    "text": "Earth English. Round Trip Time {0}",
+    "body": [
+      "<p>When has justice ever been as simple as a rule book?</p>",
+      "<p>I think you've let your personal feelings cloud your judgement.</p>"
+    ]
+  },
+  "login": {
+    "title": "Log In",
+    "instruction": "Log in to your account.",
+    "invalid_token": "Invalid token",
+    "secureRoute": "Log in to continue",
+    "accessDenied": "Insufficient permission",
+    "provider": {
+      "local": "local",
+      "google": "google",
+      "microsoft": "microsoft",
+      "external": "external"
+    },
+    "placeholder": {
+      "email": "Enter your email",
+      "password": "Enter your password"
+    },
+    "button": {
+      "submit": "Access"
+    }
+  },
+  "navigation": {
+    "quiz": "Weekly Quiz",
+    "cityConfigurationQuiz": "Quiz Configuration",
+    "leagueConfigurationQuiz": "League Configuration",
+    "comparisonDashboard": "Admission Comparison Dashboard",
+    "elearning": "E-Learning",
+    "chapter": "Chapter",
+    "question": "Question",
+    "boards": "Boards",
+    "chapterLinks": "Chapter Mapping",
+    "videos": "Videos",
+    "topics": "Topics",
+    "topicsVideo": "TopicsVideo",
+    "answers": "Answers",
+    "TopicVideoChapterLink": "Topic Video Chapter Mapping",
+    "StudentFeeDetailDescription": "Fee Detail Description",
+    "preAcademicInfo": "Pre Academic Info",
+    "admin": "Admin",
+    "dashboard": "Dashboard",
+    "datePeriodComparison": "Date Period Comparison-Inter (Part-I)",
+    "datePeriodComparisonCampusWise": "Date Period Comparison-Campus Wise",
+    "yearoverYearComparison": "Year over Year Comparison-Inter (Part-I)",
+    "elMigration": "El Migration",
+    "KinshipStudent": "Online Concession Approval",
+    "ConcessStudent": "Concession Student",
+    "OnlineFormApproval": "Online Form Approval",
+    "BulkScholarship": "Bulk Scholarship",
+    "elUpdation": "El Updation",
+    "home": "Home",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "My Profile",
+    "signup": "Sign Up",
+    "bsetup": "Campus Setup",
+    "ssetup": "System Setup",
+    "rsetup": "Admission",
+    "rstdservay": "CMS student survey",
+    "qserup": "Student",
+    "creditNotes": "Refund Date Entry",
+    "withdrawnConcessionReversal": "Withdrawn Concession Reversal",
+    "applyConcessionOnInstallment": "Re-Apply Concession",
+    "sessionDuration": "Session Duration",
+    "studentChallanDetail": "Student Challan Detail",
+    "setupSession": "Session",
+    "setupCampusProgramLink": "Campus Program Map",
+    "admissionEligibilityCriteria": "Eligibility Criteria",
+    "registrationProgramCourseLink": "Program Course Map",
+    "gsetup": "General",
+    "setupBusinessGroup": "Business Group",
+    "setupBusinessUnit": "Business Unit",
+    "assessmentType": "Assessment Type",
+    "assessmentSchemeDefinition": "Assessment Scheme Definition",
+    "setupInstitution": "Institution",
+    "setupCampus": "Campus",
+    "setupZone": "Zone",
+    "admissionDuplicateRemove": "Duplicate Remove",
+    "setupClass": "Class",
+    "setupSubCity": "Sub-City",
+    "setupProgram": "Program",
+    "setupProgramDetails": "Program Details",
+    "setupCountry": "Country",
+    "setupProvince": "Province",
+    "setupCity": "City",
+    "setupAddress": "Building Address",
+    "setupAdmissionType": "Admission Type",
+    "setupBloodGroup": "Blood Group",
+    "setupBoard": "Board / University",
+    "setupBoardType": "Board Type",
+    "franchise": "Campus Status",
+    "setupGender": "Gender",
+    "setupInstitutionType": "Institution Type",
+    "setupExtraCourse": "Extra Course",
+    "ConcessionStudent": "Concession/KinshipStudent",
+    "setupMedium": "Medium",
+    "setupMonth": "Month",
+    "setupNationality": "Nationality",
+    "setupPossession": "Possession",
+    "setupPossessionType": "Possession Type",
+    "setupReligion": "Religion",
+    "setupPassStatus": "Pass Status",
+    "admissionSaleType": "Sale Type",
+    "programFeeAdjustment": "Program Fee Adjustment",
+    "timeTableSlots": "Shift Timings",
+    "timeTableSlotTimings": "Lecture Slot Timings",
+    "messageSMSAPIList": "Messages API",
+    "blsetup": "Building",
+    "setupBuilding": "Building Info",
+    "assessmentScheduling": "Assessment Scheme Scheduling",
+    "admissionRollNoSlip": "Admission / Roll No Slip",
+    "setupCampusBuildingLink": "Campus Building Map",
+    "setupRoom": "Room",
+    "setupRoomBuildingLink": "Room Building Map",
+    "setupRoomType": "Room Type",
+    "csetup": "Academic",
+    "setupSection": "Section",
+    "registrationCourse": "Course",
+    "emailTemplate": "Email Template",
+    "CampusEmailMapping": "Email Mapping",
+    "setupShift": "Shift",
+    "setupTerm": "Term",
+    "smstostudent": "Custom Message",
+    "setupGroup": "Group",
+    "setupDegree": "Degree",
+    "fsetup": "Fee",
+    "feeFeeHead": "Fee Head",
+    "setupConcessionRemarks": "Concession Remarks",
+    "feeFeeStructureSingle": "Fee Structure Single",
+    "feeFeeStructure": "Fee Structure",
+    "feeContinuationPolicy": "Continuation Policy",
+    "feeTBLGrades": "Grades",
+    "feeConcessionBulk": "Batch Concession",
+    "feeConcession": "Concession",
+    "feeConcessionDetail": "Concession Detail",
+    "feeFeeStructureApproval": "Fee Structure Approval",
+    "minimumPaidDate": "Paid Date Restriction",
+    "setupCollector": "Collector",
+    "feeBank": "Bank Definition",
+    "feeCampusBankLink": "Campus Bank Map",
+    "adhocChallanLink" : "Adhoc Challan",
+    "feeCampusChallanNoteLink": "Campus Challan Note Map",
+    "feeChallanNote": "Challan Note",
+    "examUpdationlist2": "Individual Exam Result Update",
+    "feeChallanType": "Challan Type",
+    "feeChallanValidity": "Challan Validity",
+    "feeFeeStructureDetail": "Fee Structure Detail",
+    "feeScholarshipCriteria": "Scholarship Criteria",
+    "feeReverseConcessionList": "Revoke Concession",
+    "board": "Board/University",
+    "BoardRegistrationCode": "Registration Code",
+    "boardCampus": "Campus",
+    "boardCampusStudentLink": "Campus Student Map",
+    "SessionBoardExamTypeList": "Board/University Exam Type",
+    "returnType": "Board/University Return Type",
+    "BoardStudentBoardLinkList": "Board/Univeristy Registration",
+    "boardStudentRegistrationNo": "Board/Univeristy Registration No",
+    "boardUniversityExamEntry": "Board/UniversityExamEntry",
+    "BoardUniversitySearchStudent": "Board/University Search Student",
+    "boardUniversityRollNo": "Board/UniversityRollNo",
+    "boardUniversityResultCard": "Board/University Result Card",
+    "smartattendence": "Smart Attendance",
+    "sessionBoardFee": "Session Board Fee",
+    "boardFee": "Board Fee",
+    "academicCalendarType": "Calendar Content Type",
+    "academicCalendarReport": "Academic Calendar Reports",
+    "BoardProgramCampusList": "Board Program Campus",
+    "admission": "Admissions",
+    "admissionDashboard": "Admission Dashboard – Inter (Part 1)",
+    "admissionComaprisonDashboard": "Admission Comparison Dashboard",
+    "assessmentCategory": "Assessment Category",
+    "assessmentSchedule": "Assessment Schedule",
+    "assessment": "Assessment",
+    "admissionComaprisonDashboardCampusWise": "Admission Comparison Dashboard Campus Wise",
+    "admissionComaprisonDashboardCampusWiseClone": "  Date Period Comparison Campus Wise Admission Date ",
+    "creditnotes": "Refund Date Entry",
+    "notificationDashboard": "Daily Feedback Survey",
+    "studentfeedback": "Student Feedback",
+    "survey": "Survey Master",
+    "surveydetail": "Survey Detail",
+    "notificationDash": "Notification Dashboard2",
+    "feePaidDashboard": "Fee Paid Dashboard",
+    "admissionAdmissionForm": "Admission Form",
+    "admissionAdmissionFormBr": "Class Transfer Individual",
+    "bulkCopyProgramDetail": "Sesion Based Copy Bulk Program Detail",
+    "bulkCopyProgramDetailName": "Copy Bulk Program Detail",
+    "admissionBulitanSale": "Bulletin Sale",
+    "admissionInquiry": "Inquiry",
+    "admissionStudents": "Student Profile",
+    "programTransfer": "Change Program",
+    "programTransferBulk": "Change Program Bulk",
+    "campusTransferBulk": "Change Campus Bulk",
+    "StateChange": "Change Admission Type",
+    "admissionReports": "Admission Reports",
+    "fee": "Fee Management",
+    "TimeTableDayOffBulkList": "Apply Day Off",
+    "RemoveDayOffBulkList": "Remove Day Off",
+    "feeStudentChallanPaidList": "Remove Paid Date",
+    "feeExemptionManually": "Manual Exemption",
+    "mulitplesubinstallments": "Multiple SubInstallments",
+    "feeApplyConcessionBulk": "Bulk Concession",
+    "feeApplyConcession": "Apply Concession",
+    "feeApplyScholarship": "Apply Scholarship Bulk",
+    "feeSubInstallment": "Fee Installments",
+    "feeExemption": "Full Fee Challan",
+    "singleConcession": "Single Concession",
+    "changeDueDate": "Change Due Date",
+    "feeConfirmation": "Fee Confirmation",
+    "challanReversal": "Challan Reversal",
+     "refundchallan":"Refund Challan",
+    "FeeConfirmationAllChallans": "Fee Confirmation All Challans",
+    "challanCancel": "Cancel Challan",
+    "feeChallanSearch": "Challan Search",
+    "studentFeeDetailDescription": "Paid Fee List",
+    "sectionFine": "Generate Batch Challan",
+    "changePaidDate": "Change Paid Date",
+    "attendanceFineGenerate": "Attendance Fine Generate",
+    "concessionReports": "Concession Reports",
+    "previousFee": "Pre 1st Year Adjustment",
+    "customChallan": "Other Fee Challan",
+    "educationChallan": "Education Challan",
+    "feeChallanValidityUpdate": "Update Challan Validity",
+    "concessionRenew": "Concession Continuation",
+    "Survey": "Survey",
+    "feeReports": "Fee Reports",
+    "financeReports": "Finance Reports",
+
+    "transportationReports": "Transportation Reports",
+    "timetable": "Time Table",
+    "timetableclose": "Time Table Close",
+    "timeTableTimeTable": "Time Table",
+    "timeTableTimeTableMerge": "Merge Time Table",
+    "dayOff": "Slot Wise Day Off",
+    "concessionDashboard": "Concession Dashboard",
+    "quizDashboard": "Quiz Dashboard",
+    "attendanceAttendenceDashboard": "Attendance Dashboard",
+    "attendanceAttendenceDashboard2": "Attendance Dashboard 2",
+    "revenueDashboard": "Revenue Dashboard",
+    "attendance": "Attendance",
+    "attendanceAttendenceMaster": "Attendance Master",
+    "attendanceAttendenceStatus": "Attendance Status",
+    "attendanceBulk": "Mark Attendance",
+    "markdayendBulk": "Mark Day End",
+    "attendanceTeacher": "Mark Attendance",
+    "attendanceTeacherBulk": "Mark Attendance (Bulk)",
+    "attendanceTeacherUser": "Mark Attendance (Section)",
+    "dayClose": "Mark Day End",
+    "markDayEnd": "Mark Day End",
+    "dailyAttendanceStatus": "Daily Attendance Status",
+    "leaveManagement": "Mark Leave",
+    "leaveApproval": "Approve Leave",
+    "attendanceBulkDetail": "Batch Attendance",
+    "attendanceApproval": "Attendance Approval",
+    "financeData": "Finance Data",
+    "attendanceApprovalRemove": "Attendance Approval Remove",
+    "struckoffReinstate": "Struckoff / Reinstate",
+    "attendanceHistory": "Attendance Device Log",
+    "createStudentUser": "Create Student User",
+    "attendanceReports": "Attendance Reports",
+    "registration": "Enrollments",
+    "registrationSectionCourseLink": "Campus Section Map",
+    "enrollmentBulk": "Class Enrollment",
+    "MicrosoftStudentPassword": "Microsoft Student Password",
+    "enrollmentReverse": "Enrollment Reverse",
+    "enrollmentBatch": "Batch Enrollment",
+    "microsoftStdPassword": "Microsoft Student Password",
+    "ssatStudentData": "Step Assesment Students Data",
+    "sectionChange": "Change Section",
+    "sectionChangeBulk": "Bulk Section Change",
+    "transferClass": "Class Transfer",
+    "classpromotion": "Class Promotion",
+    "classPromotion": "Class Promotion",
+    "enrolledReports": "Enrollment Reports",
+    "transportation": "Transportation",
+    "routeInfo": "Route",
+    "routeDetailInfo": "Route Detail",
+    "vehicleInfo": "Vehicle Information",
+    "routeStudentLink": "Assign Student Route",
+    "feeConfirmationEx": "Fee Confirmation (Admin Accounts)",
+    "examination": "Examination",
+    "examination2": "Examination (New)",
+    "examinationExamType": "Exam Type",
+    "levelDefinition": "Level Definition",
+    "AssessmentReport": "Assessment Report",
+    "examBulk": "Batch Exam",
+    "examScheduleDetail": "Exam Marking",
+    "examinationExamSchedule": "Exam Schedule",
+    "examApproval": "Exam Approval",
+    "examdeletion": "Exam Deletion",
+    "examSMSApproval": "Monthly Student Performance Report",
+    "examUnApproval": "Exam UnApproval",
+    "gradingPolicyBulk": "Define Grading Policy ",
+    "examinationExamSectionLink": "Building Section Link",
+    "campusFailCriteriaMapping": "Campus Fail Criteria",
+    "campusGradingMapping": "Campus Grading Mapping",
+    "failCriteria": "Define Fail Criteria",
+    "teacherEvaluation": "Student Survey",
+    "teacherExam": "Teacher Exam",
+    "teacherExam2": "Teacher Exam New",
+    "examinationReports": "Exam Reports",
+    "examinationReports2": "Exam Reports (NEW)",
+    "Message": "Message",
+    "customSms": "Create Messages",
+    "approvesms": "Approve Message",
+    "notification": "Notification",
+    "CMSStudentCount": "CMS Student Survey",
+    "CMSStudentCountDecember2021": "CMS Student Survey December 2021",
+    "CMSStudentCountApril2022": "CMS Student Survey April 2022",
+    "CMSStudentCountDecember2022": "CMS Student Survey January 2023",
+    "CMSStudentCountJan2022": "CMS Student Survey Jan 2023",
+    "SurveyDashboardJanuary25": "CMS Student Survey January 2025",
+    "SurveyDashboardJanuary24": "CMS Student Survey January 2024",
+    "SurveyDashboardJanuary26": "CMS Student Survey January 2026",
+
+    "CMSStudentCountJuly2023Statistics": "CMS Student Survey July 2023 Statistics",
+    "CMSStudentCountjuly2023": "CMS Student Survey July 2023",
+    "CMSStudentCountjune2024": "CMS Student Survey June 2024",
+    "CMSStudentCountEbook2024": "ARVO Books and Digital content feedback",
+    "LevelProgramClassMap": "Level Program Class Map",
+    "AssessmentSectionMap": "Assessment Scheme Section Map",
+    "Assessment": "Assessment",
+    "CMSStudentCountJune2024Statistics": "CMS Student Survey June 2024 Statistics",
+    "CMSStudentCountJan2025Statistics": "CMS Student Survey January 2025 Statistics",
+    "CMSStudentCountJan2026Statistics": "CMS Student Survey January 2026 Statistics",
+    "CMSStudentCountEbook2024Statistics": "ARVO Books and Digital content feedback Statistics",
+    "notificationApproval": "View/Recall Notifications",
+    "notificationSummary": "Notification Summary Report",
+    "messageTemplate": "Messages Template",
+    "el": "EL",
+    "elChapters": "Chapters",
+    "boardProgramClassCourseLink": "Board Program Class Course Mapping",
+    "elModelPapers": "Model Papers",
+    "elModelPapersQuestions": "Model Paper Questions",
+    "elQuestions": "Questions",
+    "elTopics": "Topics",
+    "hr": "Staff Management",
+    "humanResourceDepartments": "Departments",
+    "humanResourceDesignations": "Designations",
+    "staffCourse": "Staff Course Mapping",
+    "staffProfile": "Staff Profile",
+    "humanResourceStaff": "Staff",
+    "UpdateMicrosoftPass": "UpdateMicrosoftPass",
+    "Teacherhod": "Teacher HOD",
+    "Sectionincharge": "Section Incharge",
+    "role": "User Management",
+    "RolePrevilages": "Role Privilages",
+    "UserLog": "User Log",
+    "SecurityClaims": "Security Claims",
+    "SectionRightLink": "Section Right Map",
+    "MaskRightLink": "Mask Right Map",
+    "migrate": "Migrate",
+    "enrollmentBulkWithoutPaid": "Hadaf Migration",
+    "enrollmentBulkWithoutPaidEx": "Cms Migration",
+    "admissionAdmissionFormDirectEnroll": "Admission Enrollment",
+    "classTransfer": "Class Transfer",
+    "attendancePercentage": "Attendance Percentage",
+    "deleteModal": "Are you sure you want to delete this record?",
+    "profileDescription": "Profile Description",
+    "teachermng": "Teacher Activity",
+    "viewTimeTable": "Time Table",
+    "teacherAttendanceReport": "Attendance Reports",
+    "examReports": "Exam Result",
+    "academiccalendar": "Define Academic Calendar",
+    "academiccalendarNew": "Define Academic Calendar New",
+    "academiccalendarmain": "Academic Calendar",
+    "academiccalendarmaster": "Create Academic Calendar",
+    "academicSectionMap": "Academic Section Map",
+    "calendarConfirmation": "Approve Academic Calendar",
+    "holidaytype": "Holiday Type",
+    "holidays": "Holidays",
+    "events": "Define Events/Holidays",
+    "studentRoster": "Students Roster",
+    "ulog": "Log Management",
+    "seatingPlan": "Seating Plan",
+    "seatingPlanDateSheetList": "Define Date Sheet",
+    "seatingPlanDateSheetDetailList": "Schedule Date Sheet",
+    "SeatingPlanStudent": "Seating Plan",
+    "studentAttendanceReport": "Student Attendance Report",
+    "attendanceRegister": "Attendance Register",
+    "studentAttendance": "Student Attendance",
+    "userList": "Users List",
+    "listRoles": "List Roles",
+    "editRole": "Edit Roles",
+    "ApplyConcessionBulk": "Bulk Concession",
+    "applyBulkChallanPre": "Bulk Challan Pre",
+    "uCreation": "User Creation",
+    "leagueConfigurationQuizgrid": {
+      "sessionName": "SessionName",
+      "cityName": "CityName",
+      "className": "ClassName",
+      "leagueName": "LeagueName",
+      "quizName": "QuizName",
+      "statusId": "Status",
+      "fromDate": "FromDate",
+      "toDate": "ToDate"
+    },
+    "cityConfigurationQuizgrid": {
+      "sessionName": "SessionName",
+      "cityName": "CityName",
+      "className": "ClassName",
+      "quizName": "QuizName",
+      "statusId": "Status",
+      "fromDate": "FromDate",
+      "toDate": "ToDate",
+      "calendarFromDate": "CalendarFromDate",
+      "calendarToDate": "CalendarToDate",
+      "isProcessed": "Processed",
+      "isActive": "IsActive",
+      "processedOn": "ProcessedOn",
+      "timePerQuestion": "TimePerQuestion",
+      "marksPerQuestion": "MarksPerQuestion"
+    }
+  },
+  "notfound": {
+    "title": "Page Not Found",
+    "instruction": "Unfortunate circumstances"
+  },
+  "search": {
+    "title": "Search Results for '{0}'",
+    "instruction": "Not implemented"
+  },
+  "signup": {
+    "title": "Sign Up",
+    "instruction": "Sign up for an account.",
+    "placeholder": {
+      "displayName": "Enter your display name",
+      "userName": "Enter your user name",
+      "password": "Enter your password",
+      "confirmPassword": "Confirm your password"
+    },
+    "button": {
+      "submit": "Submit"
+    },
+    "grid": {
+      "fullName": "Full Name",
+      "statusId": "Status",
+      "action": "Action",
+      "category": "Company"
+    },
+    "registered": "Already registered",
+    "complexity": "Does not meet complexity requirements",
+    "password": "password"
+  },
+  "site": {
+    "copyright": "© Copyright 2026"
+  },
+  "token": {
+    "expiresAt": "Your login token expires at {0}",
+    "expired": "Your login token has expired"
+  },
+  "user": {
+    "updated": "User updated"
+  },
+  "validation": {
+    "alphaNum": "Numbers and letters only",
+    "duplicate": "Duplicate",
+    "email": "Must be a valid email address",
+    "required": "Required Field.",
+    "minLength": "Field Length Too Short",
+    "maxLength": "Field Length Must not Exceed",
+    "sameAs": "Must match {0}",
+    "login": {
+      "EmailAddressInUse": "Email address is already being used",
+      "InvalidAccessToken": "Invalid access token",
+      "InvalidNonce": "Invalid nonce",
+      "InvalidUsernameOrPassword": "Invalid username or password",
+      "FailedToVerifyUser": "Failed to verify user",
+      "Network": "Network error"
+    },
+    "unknownCulture": "Unknown culture",
+    "unknownUser": "Unknown user"
+  },
+  "verify": {
+    "title": "Verification",
+    "sendCode": "Send verification code",
+    "enterCode": "Enter verification code",
+    "codeAck": "Code acknowledged"
+  },
+  "button": {
+    "submit": "Submit",
+    "insert": "Insert",
+    "reload": "Reload",
+    "close": "Close",
+    "save": "Save",
+    "transfer": "Transfer",
+    "approve": "Approve",
+    "delete": "Delete",
+    "enter": "Enter",
+    "send": "Send",
+    "back": "Back",
+    "yes": "Yes",
+    "assign": "Assign",
+    "exporttoexcel": "Export to Excel  "
+  },
+  "modal": {
+    "assessmentCategory": {
+      "grid": {
+        "fullName": "Assessment Category",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "timeTableClose": {
+      "grid": {
+        "description": "Description",
+        "programName": "Program Name",
+        "shiftName": "Shift Name",
+        "isChecked": "Select"
+      }
+    },
+    "assessmentScheduling": {
+      "grid": {
+        "assessmentName": "Assessment Name",
+        "totalWeightage": "Total Weightage",
+        "gradingPolicy": "Grading Policy",
+        "failCriteris": "Fail Criteria",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "admissionRollNoSlip": {
+      "grid": {
+        "assessmentName": "Assessment Name",
+        "totalWeightage": "Total Weightage",
+        "gradingPolicy": "Grading Policy",
+        "failCriteris": "Fail Criteria",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "notificationApproval": {
+      "grid": {
+        "messageText": "Notification Text Preview",
+        "qdate": "Date",
+        "charCount": "Character Count",
+        "url": "Attachement Preview",
+        "notificationCount": "Recipient Count",
+        "title": "Notification Title",
+        "subCity": "SubCity",
+        "approvalStatus": "Status",
+        "userName": "User",
+        "action": "Recall Notification",
+        "receiverType": "Receiver"
+      }
+    },
+    "staffCourse": {
+      "grid": {
+        "course": "Course",
+        "campusBuilding": "Campus Building",
+        "statusId": "Status",
+        "campusName": "Campus Name",
+        "buildingName": "Building Name",
+        "staffName": "Staff Name",
+        "action": "Action",
+        "isPrimary": "Primary Status"
+      },
+      "course": "Course",
+      "campusBuilding": "Campus Building",
+      "statusId": "Status",
+      "campusName": "Campus Name",
+      "buildingName": "Building Name",
+      "staffName": "Staff Name",
+      "action": "Action",
+      "isPrimary": "Primary Status"
+    },
+    "levelDefinition": {
+      "grid": {
+        "fullName": "Level Name",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Full Name",
+      "code": "Code",
+      "statusId": "Status",
+      "action": "Action"
+    },
+    "assessmentSchemeDefinition": {
+      "grid": {
+        "fullName": "Assessment Scheme Name",
+        "totalWeightage": "Total Weightage",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Assessment Scheme Name",
+      "totalWeightage": "Total Weightage",
+      "statusId": "Status",
+      "gradingMaster": "Grading Master",
+      "failMaster": "FailMaster"
+    },
+    "chapterLinks": {
+      "grid": {
+        "board": "Board",
+        "program": "Program",
+        "statusId": "Status",
+        "action": "Action",
+        "class": "Class",
+        "course": "Course",
+        "orderNo": "Order No",
+        "chapter": "Chapter",
+        "alias": "Mapping"
+      },
+      "board": "Board",
+      "program": "Program",
+      "statusId": "Status",
+      "action": "Action",
+      "class": "Class",
+      "course": "Course",
+      "orderNo": "Order No",
+      "chapter": "Chapter",
+      "alias": "Mapping"
+    },
+    "boardProgramClassCourseLink": {
+      "grid": {
+        "board": "Board",
+        "program": "Program",
+        "statusId": "Status",
+        "action": "Action",
+        "class": "Class",
+        "course": "Course"
+      },
+      "board": "Board",
+      "program": "Program",
+      "statusId": "Status",
+      "action": "Action",
+      "class": "Class",
+      "course": "Course"
+    },
+    "chapter": {
+      "grid": {
+        "fullName": "Title",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action",
+        "orderNo": "Order No",
+        "abbreviation": "Abbreviation"
+      },
+      "title": "Title",
+      "description": "Description",
+      "orderNo": "Order No",
+      "abbreviation": "Abbreviation"
+    },
+    "question": {
+      "grid": {
+        "question": "Question",
+        "statusId": "Status",
+        "action": "Action",
+        "answers": "Answers"
+      },
+      "question": "Question",
+      "answers": "Answers",
+      "description": "Description"
+    },
+    "boards": {
+      "grid": {
+        "fullName": "Name",
+        "abbreviation": "Abbreviation",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Name",
+      "abbreviation": "Abbreviation"
+    },
+    "videos": {
+      "grid": {
+        "name": "Name",
+        "description": "Description",
+        "tags": "Tags",
+        "links": "Links",
+        "server": "Server",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "name": "Name",
+      "description": "Description",
+      "tags": "Tags",
+      "links": "Links",
+      "server": "Server"
+    },
+    "topics": {
+      "grid": {
+        "title": "Title",
+        "description": "Description",
+        "videos": "Video",
+        "videoLinks": "Video Links",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "description": "Description",
+      "videos": "Video",
+      "question": "Question",
+      "videoLinks": "Video Links"
+    },
+    "topicsVideo": {
+      "grid": {
+        "title": "Title",
+        "description": "Description",
+        "videos": "Video",
+        "videoLinks": "Video Links",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "description": "Description",
+      "videos": "Video",
+      "question": "Question",
+      "videoLinks": "Video Links"
+    },
+    "answers": {
+      "grid": {
+        "optionId": "Option",
+        "isTrue": "Answer Status",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "optionId": "Option",
+      "isTrue": "Answer Status"
+    },
+    "TopicVideoChapterLink": {
+      "grid": {
+        "topicName": "Topic",
+        "videoName": "Video Title",
+        "chapterName": "Chapter",
+        "orderBy": "Order By",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "topicName": "Topic",
+      "videoName": "Video Title",
+      "chapterName": "Chapter",
+      "orderBy": "Order By",
+      "video": "Video"
+    },
+    "ApplyConcessionBulk": {
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "shift": "Shift",
+      "admissionType": "Admission Type",
+      "concessionCriteriaList": "Concession Criteria List",
+      "precentageFrom": "Precentage From",
+      "precentageTo": "Precentage To",
+      "generateList": "Generate List",
+      "grid": {
+        "referrenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "percentage": "%",
+        "isChecked": "Select",
+        "obtainedMarks": "Obtained Marks",
+        "totalMarks": "Total Marks",
+        "gender": "Gender"
+      }
+    },
+    "todoList": {
+      "gird": {
+        "status": "Status",
+        "activity": "Activity",
+        "date": "Date",
+        "time": "Time",
+        "action": "Action"
+      },
+      "todoList": "Todo List",
+      "description": "Description",
+      "date": "Date"
+    },
+    "listRoles": {
+      "grid": {
+        "name": "Role Name",
+        "assignedUserCount": "Total Users",
+        "enabled": "Enabled",
+        "action": "Action"
+      }
+    },
+    "userList": {
+      "grid": {
+        "displayName": "User Name",
+        "email": "Email",
+        "action": "Action"
+      }
+    },
+    "studentRoster": {
+      "section": "Section",
+      "subject": "Subject"
+    },
+    "studentAttendance": {
+      "section": "Section",
+      "dateFrom": "Date From",
+      "dateTo": "Date To"
+    },
+    "studentAttendanceReport": {
+      "enterStudentID": "Enter Student ID"
+    },
+    "teacherTimeTable": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    },
+    "viewTimeTable": {
+      "staffName": "Staff Name",
+      "course": "Course",
+      "room": "Room",
+      "day": "Day",
+      "slot": "Slot"
+    },
+    "migrateAdmission": {
+      "title": "Add",
+      "campus": "Campus",
+      "admissionType": "Admission Type",
+      "program": "Program",
+      "gender": "Gender",
+      "fullname": "Full Name",
+      "studentContact": "Student Contact",
+      "studentCNIC": "Student CNIC",
+      "DOB": "Date Of Birth",
+      "fatherName": "Father's Name",
+      "fatherCNIC": "Father's CNIC",
+      "parentContact": "Parent Contact",
+      "religion": "Religion",
+      "mailingAddress": "Mailing Address",
+      "permanentAddress": "Permanent Address",
+      "class": "Class",
+      "section": "Section",
+      "CMSrollNo": "CMS Roll No.",
+      "CMSreferenceNo": "CMS Reference No.",
+      "generateFee": "Generate Fee",
+      "enrollStudent": "Enroll Student",
+      "degree": "Degree",
+      "group": "Group",
+      "boardRollNo": "Board Roll No.",
+      "boardName": "Board Name",
+      "passingYear": "Passing Year",
+      "obtainedMarks": "Obtained Mark's",
+      "totalMarks": "Total Mark's"
+    },
+    "concessionDashboard": {
+      "session": "Session",
+      "program": "Program",
+      "cities": "Cities",
+      "subcities": "Sub_Cities",
+      "preference": "View Preference",
+      "level": "Level",
+      "programDetail": "ProgramDetail"
+    },
+    "LevelProgramClassMap": {
+      "grid": {
+        "levelName": "Level Name",
+        "programName": "Program",
+        "className": "Class",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "levelName": "Level",
+      "programName": "Program",
+      "className": "Class",
+      "statusId": "Status",
+      "action": "Action"
+    },
+    "AssessmentSectionMap": {
+      "grid": {
+        "campusName": "Campus",
+        "programName": "Program Detail",
+        "className": "Class",
+        "assessmentMaster": "Assessment Scheme",
+        "sectionName": "Section",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "campusName": "Campus",
+      "programName": "Program Detail",
+      "className": "Class",
+      "assessmentMaster": "Assessment Scheme",
+      "sectionName": "Section",
+      "statusId": "Status",
+      "action": "Action"
+    },
+    "attendanceHistory": {
+      "deviceInfo": "Device Info",
+      "to": "To",
+      "count": "Count",
+      "insertedBy": "Inserted By",
+      "insertedTime": "Inserted Time",
+      "slotTime": "Slot Time",
+      "approvedBy": "Approved By",
+      "approvalTime": "Approval Time"
+    },
+    "attendanceTeacher": {
+      "date": "Date",
+      "campus": "Campus",
+      "program": "Program Detail",
+      "class": "Class",
+      "attendanceStatus": "Attendance Status"
+    },
+    "attendanceTeacherUser": {
+      "date": "Date",
+      "campus": "Campus",
+      "program": "Program Detail",
+      "class": "Class",
+      "attendanceStatus": "Attendance Status"
+    },
+    "SectionRightLink": {
+      "grid": {
+        "name": "User",
+        "type": "Type",
+        "action": "Action"
+      },
+      "title": "User Management",
+      "session": "Session",
+      "campus": "Campus"
+    },
+    "MaskRightLink": {
+      "grid": {
+        "name": "User",
+        "type": "Type",
+        "action": "Action"
+      },
+      "title": "User Management",
+      "session": "Session",
+      "campus": "Campus"
+    },
+    "UserLog": {
+      "grid": {
+        "dateTime": "Time",
+        "user": "User Name",
+        "publicIpPort": "Client Info",
+        "controllerAction": "Operation",
+        "action": "Action"
+      },
+      "from": "From",
+      "to": "To",
+      "userName": "User Name",
+      "ipAddress": "IP Address",
+      "browser": "Browser",
+      "actionNo": "Action No.",
+      "date": "Date - time",
+      "parameter": "Parameter"
+    },
+    "RolePrevilages": {
+      "grid": {
+        "name": "User",
+        "type": "Type",
+        "action": "Action"
+      },
+      "title": "User Management",
+      "role": "Role",
+      "privileges": "Privileges",
+      "session": "Session",
+      "selectRole": "Select Role(s)",
+      "selectSession": "Select Session(s)",
+      "grantPrivileges": "Grant Privileges",
+      "assignSession": "Assign Session",
+      "userRole": "User Role"
+    },
+    "SecurityClaims": {
+      "grid": {
+        "securityClaimId": "Security Claim",
+        "description": "Description",
+        "action": "Action"
+      },
+      "fullName": "Full Name",
+      "description": "Description"
+    },
+    "messageTemplate": {
+      "grid": {
+        "type": "Type",
+        "title": "Title",
+        "description": "Description",
+        "status": "Status",
+        "action": "Action"
+      },
+      "templateType": "Template type",
+      "title": "Title",
+      "message": "Message",
+      "useTheFollowingNotationToDisplay": "Use the following notation to display"
+    },
+    "customSms": {
+      "importList": "Import List Of Contacts",
+      "messageMask": "Message Mask",
+      "uploadExcelFile": "Upload Excel File",
+      "contactList": "Contact List",
+      "message": "Message",
+      "sendMessage": "Send Message",
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "shift": "Shift",
+      "template": "Template"
+    },
+    "feeConcessionBulk": {
+      "grid": {
+        "zoneName": "Zone",
+        "sessionName": "Session",
+        "programName": "Program",
+        "shiftName": "Shift",
+        "challanTypeName": "Challan Type",
+        "fullName": "Concession Name",
+        "statusId": "Status"
+      },
+      "program": "Program",
+      "zone": "Zone",
+      "session": "Session",
+      "shift": "Shift",
+      "class": "Class",
+      "challanType": "Challan Type",
+      "concession": "Concession %",
+      "attendance": "Attendance %",
+      "AdmissionType": "Admission Type",
+      "feeType": "Fee Head",
+      "continuationPolicy": "Continuation Policy",
+      "concessionName": "Concession Name",
+      "totalAmount": "Total Amount",
+      "concessionPercentage": "Concession %",
+      "concessionAmount": "Concession Amount"
+    },
+    "feeConcession": {
+      "grid": {
+        "zoneName": "Zone",
+        "sessionName": "Session",
+        "programName": "Program",
+        "shiftName": "Shift",
+        "challanTypeName": "Challan Type",
+        "fullName": "Concession Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "zone": "Zone",
+      "program": "Program",
+      "fullName": "Concession Name",
+      "challanType": "Challan Type",
+      "shift": "Shift"
+    },
+    "feeConcessionDetail": {
+      "grid": {
+        "fullName": "Concession",
+        "feeHeadName": "Fee Type",
+        "percentage": "Percentage",
+        "feeAmount": "Fee Amount",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "zone": "Zone",
+      "session": "Session",
+      "program": "Program",
+      "shift": "Shift",
+      "concession": "Concession",
+      "feeType": "Fee Type",
+      "feeAmount": "Fee Amount",
+      "percentage": "Concession Percentage (%)",
+      "discountAmount": "Concession Amount"
+    },
+    "attendanceAttendenceDashboard": {
+      "session": "Session",
+      "date": "Date",
+      "class": "Class",
+      "description": "Description",
+      "scheduled": "Scheduled",
+      "held": "Held",
+      "approved": "Approved",
+      "unApproved": "Un-Approved",
+      "total": "Total",
+      "present": "Present",
+      "absent": "Absent",
+      "leave": "Leave",
+      "percentage": "Percentage",
+      "attendanceRecord": "Attendance Record",
+      "srNo": "Sr No.",
+      "rollNo": "Roll No.",
+      "name": "Name",
+      "attendance": "Attendance",
+      "viewDetail": "View Details"
+    },
+    "quizDashboard": {
+      "session": "Session",
+      "city": "City",
+      "class": "Class",
+      "league": "League",
+      "quizDashboard": "Quiz Dashboard",
+      "date": "Date",
+      "description": "Description",
+      "held": "Held",
+      "total": "Total",
+      "present": "Present",
+      "absent": "Absent",
+      "leave": "Leave",
+      "percentage": "Percentage",
+      "srNo": "Sr No.",
+      "rollNo": "Roll No.",
+      "name": "Name",
+      "viewDetail": "View Details"
+    },
+    "timetable": {
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "viewTimeTable": "View Time Table",
+      "staffName": "Staff Name",
+      "room": "Room",
+      "course": "Course",
+      "days": "Days"
+    },
+    "TimeTableDayOffBulkList": {
+      "grid": {
+        "fullName": "Name",
+        "sectionName": "Section",
+        "staffName": "Staff",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "dayName": "Day",
+        "ischeck": "Select"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "fromDate": "From Date",
+      "toDate": "To Date"
+    },
+    "RemoveDayOffBulkList": {
+      "grid": {
+        "fullName": "Name",
+        "sectionName": "Section",
+        "staffName": "Staff",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "dayName": "Day",
+        "ischeck": "Select"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "fromDate": "From Date",
+      "toDate": "To Date"
+    },
+    "timetableTimeTableMerge": {
+      "grid": {
+        "fullName": "Time Table Merge",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "action": "Action"
+      },
+      "fullName": "Time Table Merge",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "timeTable": "Time Table",
+      "mergeSection": "Merge Sections"
+    },
+    "createStudentUser": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "isSelected": "Selected",
+        "selectAll": "Select All"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section"
+    },
+    "enrolledReports": {
+      "reports": "Reports",
+      "session": "Session",
+      "program": "Program",
+      "campus": "Campus",
+      "programDetail": "Program Detail",
+      "class": "Class",
+      "section": "Section",
+      "gender": "Gender",
+      "boardName": "Board Name",
+      "religion": "Religion",
+      "generate": "Generate",
+      "shift": "Shift"
+    },
+    "studentChallanDetail": {
+      "grid": {
+        "installmentNo": "Installment No.",
+        "className": "Class",
+        "challanNo": "Challan No",
+        "dueDate": "Due Date",
+        "fullName": "Challan Type",
+        "concession": "Concession/Remarks",
+        "feeAmount": "Amount",
+        "paidDate": "Paid Date",
+        "exemptionAmount": "Exemption",
+        "action": "Action"
+      },
+      "studentName": "Name",
+      "fatherName": "Father's Name",
+      "rollNo": "Roll No",
+      "description": "Program"
+    },
+    "sectionChange": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "sectionId": "Section",
+        "action": "Action",
+        "fatherName": "Father's Name",
+        "isChecked": "Select",
+        "contactNo": "ContactNo",
+        "boardRollNo": "Board RollNo.",
+        "rollNo": "RollNo",
+        "percentage": "Percentage",
+        "formNo": "Form No",
+        "isSelected": "Select",
+        "admissionDate": "Date",
+        "type": "Concession Type",
+        "city": "City",
+        "session": "Session",
+        "program": "Program",
+        "section": "Section",
+        "obtainMarks": "Obtain Marks",
+        "totalMarks": "Total Marks",
+        "apllicationStatus": "Status",
+        "range": "Range",
+        "newRollNo": "Roll #"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Programs",
+      "class": "Class",
+      "section": "Section"
+    },
+    "transferClass": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "sectionId": "Section",
+        "action": "Action",
+        "fatherName": "Father's Name",
+        "isChecked": "Select",
+        "contactNo": "ContactNo",
+        "boardRollNo": "Board RollNo.",
+        "rollNo": "RollNo",
+        "percentage": "Percentage",
+        "formNo": "Form No",
+        "isSelected": "Select",
+        "admissionDate": "Date",
+        "type": "Concession Type",
+        "city": "City",
+        "session": "Session",
+        "program": "Program",
+        "section": "Section",
+        "obtainMarks": "Obtain Marks",
+        "totalMarks": "Total Marks",
+        "apllicationStatus": "Status",
+        "range": "Range",
+        "newRollNo": "Roll #"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Programs",
+      "class": "Class",
+      "section": "Section"
+    },
+    "notification": {
+      "grid": {
+        "qDate": "Qued Date",
+        "title": "Title",
+        "messageText": "Notification",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Programs",
+      "class": "Class",
+      "section": "Section",
+      "notificationMessage": "Notification"
+    },
+    "enrollmentReverse": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "sectionName": "Section",
+        "rollNo": "Roll No.",
+        "className": "Class Name",
+        "action": "Action"
+      },
+      "enterRollNoRefNo": "Enter Roll No./Ref No."
+    },
+    "enrollmentBulk": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "sectionId": "Section",
+        "range": "Range",
+        "rollNo": "Roll No.",
+        "isSelected": "Selected",
+        "obtainedMarks": "Obtain Marks",
+        "action": "Action",
+        "percentage": "Percentage %"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Programs",
+      "class": "Class",
+      "gender": "Gender",
+      "admissionType": "Admission Type",
+      "section": "Section",
+      "sectionName": "Section",
+      "percentage": "Percentage %"
+    },
+    "registrationSectionCourseLink": {
+      "grid": {
+        "className": "Class",
+        "sectionName": "Section",
+        "fromSerial": "From Serial",
+        "toSerial": "To Serial",
+        "statusId": "Status",
+        "action": "Action",
+        "buildingRooms": "Room"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Programs",
+      "class": "Class",
+      "section": "Section",
+      "fromSerial": "From Serial",
+      "toSerial": "To Serial",
+      "buildingRooms": "Building Rooms"
+    },
+    "academicSectionMap": {
+      "grid": {
+        "academicMaster": "Academic Calendar",
+        "sectionName": "Section",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Programs",
+      "class": "Class",
+      "section": "Section"
+    },
+    "feeChallanSearch": {
+      "information": "Personal Information",
+      "reference": "Reference No.",
+      "fatherName": "Father's Name",
+      "studentName": "Student's Name",
+      "rollno": "Roll No.",
+      "campusName": "Campus Name",
+      "program": "Program",
+      "feeParticulars": "Fee Particulars",
+      "particulars": "Particulars",
+      "feeAmount": "Fee Amount",
+      "Concession": "Concession",
+      "payable": "Payable",
+      "totalAmount": "Total Amount",
+      "collectorName": "Collector Name",
+      "dueDate": "Due Date",
+      "paidStatus": "Paid Status",
+      "paidDate": "Paid Date",
+      "changePaidDate": "Change Paid Date",
+      "collector": "Collector",
+      "challanPaid": "Paid",
+      "unpaid": "Unpaid",
+      "feeStatus": "Fee Status",
+      "enterChallanNo": "Enter Challan No.",
+      "installment": "Installment#",
+      "challanStatus": "Status"
+    },
+    "feeSubInstallment": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "description": "Program",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "manual": "Manual",
+      "installment": "Installment No.",
+      "totalSubInstallment": "Total Sub Installment",
+      "referenceNo": "Reference No.",
+      "name": "Name",
+      "feeType": "Fee Type",
+      "feeAmount": "Fee Amount",
+      "payableAmount": "Payable Amount",
+      "subinstallmentAmount": "Sub Installment Amount",
+      "challanNo": "Challan No.",
+      "paidDate": "Paid Date",
+      "dueDate": "Due Date",
+      "challanAmount": "Challan Amount",
+      "action": "Action"
+    },
+    "feeFeeStructure": {
+      "grid": {
+        "programName": "Program Name",
+        "className": "Class Name",
+        "shiftName": "Shift Name",
+        "feeHeadName": "Fee Type",
+        "feeAmount": "Fee Amount",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "zone": "Zone",
+      "session": "Session",
+      "installment": "Installment No.",
+      "program": "Program",
+      "feeType": "Fee Head",
+      "class": "Class",
+      "chooseProgram": "Choose Program",
+      "feeGeneration": "Fee Generation"
+    },
+    "studentFinance": {
+    
+      "ref_No": "Reference No.",
+      "Reg_No": "Roll No.",
+      "student_Name": "Name",
+      "father_Name": "Father Name",
+      "program": "Program",
+      "action": "Action"
+    },
+    "studentDetails": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "rollNo": "Roll No.",
+        "fullName": "Name",
+        "fatherName": "Father's Name",
+        "description": "Program",
+        "action": "Action"
+      },
+      "studentDetails": "Student Profile",
+      "enterRefNoRoLLNoStudentName": "Enter Ref No./ Roll No./ Student Name",
+      "reference": "Reference No.",
+      "roll": "Roll No.",
+      "name": "Name",
+      "fatherName": "Father's Name",
+      "program": "Program",
+      "section": "Section",
+      "action": "Action",
+      "fullName": "Student's Name",
+      "studentCnic": "Student's CNIC",
+      "guardianName": "Guardian's Name",
+      "guardianCnic": "Parent's/Guardian's CNIC",
+      "GuardianCnic": "Guardian's CNIC",
+      "guardianContact": "Guardian's Contact",
+      "dateOfBirth": "Student's DOB",
+      "bloodGroup": "Blood Group",
+      "religion": "Religion",
+      "gender": "Gender",
+      "studentImage": "Student's Image",
+      "contact": "Contact",
+      "address": "Address",
+      "academics": "Academics",
+      "studentContact": "Student's Contact",
+      "parentContact": "Parent's Contact",
+      "mailing": "Mailing Address",
+      "permanent": "Permanent Address",
+      "temporary": "Temporary Address",
+      "degree": "Degree",
+      "group": "Group",
+      "rollNo": "Roll No.",
+      "passingYear": "Passing Year",
+      "obtainedMarks": "Obtained Mark's",
+      "totalMarks": "Total Mark's",
+      "percentage": "OverAll Percentage",
+      "passCount": "Pass",
+      "failCount": "Fail",
+      "boardName": "Board Name",
+      "institute": "Institute",
+      "registration": "Registration No.",
+      "challanNo": "Challan No.",
+      "dueDate": "Due Date",
+      "challanType": "Challan Type",
+      "concessionName": "Concession Name",
+      "amount": "Amount",
+      "paidDate": "Paid Date",
+      "month": "Month",
+      "total": "Total",
+      "present": "Present",
+      "absent": "Absent",
+      "leave": "Leave",
+      "attendencePercentage": "Attendance Percentage",
+      "showDetail": "Show Detail",
+      "srNo": "Sr No.",
+      "course": "Course",
+      "dated": "Dated",
+      "time": "Time",
+      "status": "Status",
+      "password": "Password",
+      "sendMessage": "Send Message",
+      "personal": "Personal Info",
+      "feeInformation": "Fee Info",
+      "attendanceInformation": "Attendance Info",
+      "examInformation": "Exam Info",
+      "assessmentInformation": "Assessment Info",
+      "campus": "Campus",
+      "installment": "Installment No.",
+      "parentInfo": "Guardian's Info",
+      "examType": "Exam Type",
+      "obtained": "Obtained",
+      "details": "Details",
+      "sendPassword": "Send Password",
+      "examDetail": "Exam Detail",
+      "struckOff": "Struck Off",
+      "attendanceDetail": "Attendance Detail",
+      "areyousurethatyouwanttosendthispasswordtothisstudent": "Are you sure that you want to send this password to this student?",
+      "struckoffdate": "Struck Off Date",
+      "struckoffRemarks": "Remarks",
+      "reinstatedate": "Reinstate Date",
+      "reinstateRemarks": "Reinstate Reason",
+      "examScheduleName": "Exam Schedule",
+      "assessmentName": "Assessment Name",
+      "assessmentweightage": "Weightage",
+      "assessmenttotalMarks": "Total Marks",
+      "assessmentObtainedMarks": "Obtained Marks",
+      "assessmentWeightedScore": "Weightage Score",
+      "assessmentWeightedage": "Acheived Weighted %age",
+      "assessmentAggregateage": "Aggregated Weighted %age",
+      "assessmentResultDetail": "ResultDetail"
+    },
+    "preAcademicInfo": {
+      "preAcademicInfo": "Pre Academic Info"
+    },
+    "customChallan": {
+      "grid": {
+        "refferenceNo": "Reference No",
+        "rollNo": "Roll No",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "description": "Program",
+        "section": "Section",
+        "action": "Action"
+      },
+      "enterRefNoRoLLNoStudentName": "Enter Ref No./ Roll No./ Student Name",
+      "reff": "Reference No.",
+      "roll": "Roll No.",
+      "name": "Name",
+      "fatherName": "Father's Name",
+      "program": "Program",
+      "section": "Section",
+      "action": "Action",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Type",
+      "class": "Class",
+      "fineFee": "Fine Fee",
+      "challanDueDate": " Challan Due Data",
+      "remarks": "Remarks"
+    },
+    "feeConfirmation": {
+      "information": "Personal Information",
+      "reference": "Reference No.",
+      "fatherName": "Father's Name",
+      "studentName": "Student's Name",
+      "rollno": "Roll No.",
+      "campusName": "Campus Name",
+      "program": "Program",
+      "feeParticulars": "Fee Particulars",
+      "particulars": "Particulars",
+      "feeAmount": "Fee Amount",
+      "Concession": "Concession",
+      "payable": "Payable",
+      "totalAmount": "Total Amount",
+      "collectorName": "Collector Name",
+      "dueDate": "Due Date",
+      "paidStatus": "Paid Status",
+      "paidDate": "Paid Date",
+      "changePaidDate": "Paid Date",
+      "collector": "Collector",
+      "challanPaid": "Paid",
+      "unpaid": "Unpaid",
+      "feeStatus": "Fee Status",
+      "enterChallanNo": "Enter Challan No.",
+      "installment": "Installment No."
+    },
+    
+    "adhocChallanLink": {
+      "grid": {
+        "No": "Sr #",
+        "challanNo": "Challan No",
+        "email": "Email",
+        "feeHead": "Fee Head",
+        "staffName": "Staff Name",
+        "feeAmount": "Amount",
+        "dueDate": "Due Date",
+        "status": "Status",
+        "action": "Action"
+      }
+    },
+   
+    "refundchallan":{
+       "grid": {
+        "challanNo": "Challan No",
+        "challanType":"Challan Type",
+        "installmentNo":"Installment #",
+        "class":"Class",
+        "studentName": "Student Name",
+        "programDetail": "Program",
+        
+        "action": "Action"
+      },
+       "grid2": {
+        "challanNo": "Challan No",
+        "refundAmount":"Refund Amount",
+        "refundDate": "Refund Date"
+        
+      },
+
+      "information": "Personal Information",
+      "reference": "Reference No.",
+      "fatherName": "Father's Name",
+      "studentName": "Student's Name",
+      "rollno": "Roll No.",
+      "campusName": "Campus Name",
+      "program": "Program",
+      "feeParticulars": "Fee Particulars",
+      "particulars": "Particulars",
+      "feeAmount": "Fee Amount",
+      "Concession": "Concession",
+      "payable": "Payable",
+      "totalAmount": "Total Amount",
+      "collectorName": "Collector Name",
+      "dueDate": "Due Date",
+      "paidStatus": "Paid Status",
+      "paidDate": "Paid Date",
+      "changePaidDate": "Paid Date",
+      "collector": "Collector",
+      "challanPaid": "Paid",
+      "unpaid": "Unpaid",
+      "feeStatus": "Fee Status",
+      "enterChallanNo": "Enter Challan No.",
+      "installment": "Installment No.",
+      "refundAmount":"Refund Amount"
+    },
+    "paidDateRemoval": {
+      "grid": {
+        "No": "no",
+        "refferenceNo": "Reference No.",
+        "fullName": "Student Name",
+        "fatherName": "Father's Name",
+        "description": "Program",
+        "action": "Action"
+      },
+      "search": "Search",
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Programs",
+      "installno": "Installment No"
+    },
+    "setupCampusProgramLink": {
+      "grid": {
+        "description": "Program",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Program Detail"
+    },
+    "setupProgramCourseLink": {
+      "grid": {
+        "description": "Program Detail",
+        "className": "Class Name",
+        "courseName": "Course Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "courseName": "Courses"
+    },
+    "setupBusinessGroup": {
+      "grid": {
+        "fullName": "Business Group",
+        "url": "URL",
+        "uan": "UAN",
+        "email": "Email",
+        "slogan": "Slogan",
+        "logo": "Logo",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "groupLogo": "Upload Group Logo",
+      "fullName": "Business Group Name",
+      "slogan": "Slogan",
+      "email": "Email",
+      "url": "URL",
+      "uan": "UAN",
+      "recordStatus": "Record Status"
+    },
+    "assessmentTypeGroup": {
+      "grid": {
+        "assessmentCategory": "Assessment Category",
+        "assessmentType": "Assessment Type",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "assessmentCategory": "Assessment Category",
+      "assessmentType": "Assessment Type",
+      "code": "Code",
+      "statusId": "Status"
+    },
+    "setupCityProgram": {
+      "grid": {
+        "cityName": "City",
+        "description": "Program Detail",
+        "formCollection": "Form Collection",
+        "feePaid": "Fee Paid"
+      }
+    },
+    "admissionAgingData": {
+      "grid": {
+        "studentRno": "Roll#",
+        "studentName": "Candidate Name",
+        "fatherName": "Father's Name",
+        "formNo": "Form#",
+        "email": "Email",
+        "phoneNo": "Phone#",
+        "regdate": "Admission Date",
+        "fatherCnicCheck": "Father CNIC",
+        "studentCnic": "Student CNIC",
+        "studentPic": "Student Picture",
+        "resultCard": "Result Card",
+        "admissionStatus": "Status"
+      }
+    },
+    "setupBusinessUnit": {
+      "grid": {
+        "fullName": "Business Unit",
+        "description": "Description",
+        "logo": "Logo",
+        "statusId": "Status",
+        "action": "Action",
+        "digitCode": "DigitCode"
+      },
+      "groupLogo": "Upload Group Logo",
+      "fullName": "Business Unit Name",
+      "description": "Description",
+      "address": "Address",
+      "businessGroup": "Business Group",
+      "recordStatus": "Record Status"
+    },
+    "setupInstitution": {
+      "grid": {
+        "fullName": "Institution Name",
+        "code": "Code",
+        "businessUnitName": "Business Unit",
+        "institutionTypeName": "Institution Type",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "code": "Code",
+      "fullName": "Institution Name",
+      "description": "Description",
+      "businessUnit": "Business Unit",
+      "institutionTypeList": "Institution Type",
+      "recordStatus": "Record Status"
+    },
+    "setupCampus": {
+      "grid": {
+        "fullName": "Campus Name",
+        "code": "Code",
+        "description": "Description",
+        "digitCode": "Digit Code",
+        "logo": "Logo",
+        "statusId": "Status",
+        "emailPrefix": "Email Prefix",
+        "action": "Action"
+      },
+      "groupLogo": "Group Logo",
+      "institution": "Institution",
+      "BusinessUnit": "Business Unit",
+      "city": "City",
+      "subCity": "Sub-City",
+      "recordStatus": "Record Status",
+      "fullName": "Campus Name",
+      "code": "Campus Code",
+      "digitCode": "Campus Digit Code",
+      "description": "Description",
+      "customerCode": "Customer Code",
+      "ownership": "Ownership",
+      "isTestCampus": "Allow Campus Testing",
+      "SmsMask": "Sms Mask",
+      "isEbook": "Bind Ebook",
+      "isMerchandise": "CMS Store"
+    },
+    "setupZone": {
+      "grid": {
+        "fullName": "Zone Name",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Zone Name",
+      "description": "Description",
+      "recordStatus": "Record Status"
+    },
+    "setupClass": {
+      "grid": {
+        "fullName": "Class Name",
+        "description": "Description",
+        "classCode": "Class Code",
+        "isAdmissionTest": "Take Admission Test",
+        "isInterview": "Take Interview",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Class Name",
+      "description": "Description",
+      "classCode": "Class Code",
+      "isAdmissionTest": "Take Admission Test",
+      "isInterview": "Take Interview",
+      "recordStatus": "Record Status"
+    },
+    "setupSubCity": {
+      "grid": {
+        "name": "Sub-City Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "city": "City",
+      "code": "Sub-City Code",
+      "subCity": "Sub-City",
+      "recordStatus": "Record Status"
+    },
+    "setupProgram": {
+      "grid": {
+        "fullName": "Program Name",
+        "description": "Description",
+        "code": "Program Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Program Name",
+      "description": "Description",
+      "code": "Program Code",
+      "recordStatus": "Record Status"
+    },
+    "setupProgramDetails": {
+      "grid": {
+        "description": "Program Detail",
+        "code": "Code",
+        "shiftName": "Shift",
+        "mediumName": "Medium",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "program": "Program",
+      "shift": "Shift",
+      "medium": "Medium",
+      "code": "Code",
+      "description": "Description",
+      "recordStatus": "Record Status"
+    },
+    "setupCountry": {
+      "grid": {
+        "fullName": "Country Name",
+        "nationality": "Nationality",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Country Name",
+      "nationality": "Nationality",
+      "recordStatus": "Record Status"
+    },
+    "setupBuilding": {
+      "grid": {
+        "buildingName": "Building Name",
+        "address": "Address",
+        "postalCode": "Postal Code",
+        "fullName": "Possession",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Building Name",
+      "address": "Address",
+      "possession": "Possession",
+      "phoneNo": "Phone No.",
+      "googleCoordinats": "Google Coordinates",
+      "recordStatus": "Record Status"
+    },
+    "setupCampusBuildingLink": {
+      "grid": {
+        "fullName": "Building Name",
+        "campusName": "Campus Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "campus": "Campus",
+      "building": "Building",
+      "recordStatus": "Record Status"
+    },
+    "setupRoom": {
+      "grid": {
+        "fullName": "Room Name",
+        "description": "Description",
+        "capacity": "Capacity",
+        "roomTypeName": "Room Type",
+        "buildingName": "Building",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "campus": "Campus",
+      "description": "Description",
+      "capacity": "Capacity",
+      "fullName": "Room Name",
+      "roomTypeName": "Room Type",
+      "building": "Building",
+      "recordStatus": "Record Status"
+    },
+    "setupRoomBuildingLink": {
+      "grid": {
+        "fullName": "Building Name",
+        "name": "Room Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "room": "Room",
+      "campus": "Campus",
+      "building": "Building",
+      "remarks": "Remarks",
+      "recordStatus": "Record Status"
+    },
+    "setupRoomType": {
+      "grid": {
+        "fullName": "Room Type",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "name": "Room Type",
+      "description": "Description",
+      "recordStatus": "Record Status"
+    },
+    "examinationExamSectionLink": {
+      "grid": {
+        "campusName": "Campus",
+        "className": "Class",
+        "sectionName": "Section",
+        "description": "Program",
+        "statusId": "Status"
+      }
+    },
+    "setupSection": {
+      "grid": {
+        "fullName": "Section Name",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "registrationCourse": {
+      "grid": {
+        "title": "Course Title",
+        "fullName": "Course Name",
+        "departmentName": "Department",
+        "subDepartmentName": "Sub Department",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "name": "Course Name"
+    },
+    "ssatStudents": {
+      "grid": {
+        "refferenceNo": "RefferenceNo",
+        "date": "Date",
+        "studentName": "StudentName",
+        "fatherName": "FatherName",
+        "phoneNo": "PhoneNo",
+        "email": "Email",
+        "programDetail": "ProgramDetail",
+        "provinceName": "ProvinceName",
+        "cityName": "CityName"
+      },
+      "title": "Title",
+      "name": "SSAT Students"
+    },
+    "emailTemplate": {
+      "grid": {
+        "subject": "Subject",
+        "body": "Body",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "subject": "Subject",
+      "body": "Body"
+    },
+    "setupShift": {
+      "grid": {
+        "fullName": "Shift Name",
+        "code": "Code",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupTerm": {
+      "grid": {
+        "fullName": "Term Name",
+        "sessionName": "Session",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "fullName": "Term Name",
+      "code": "Code"
+    },
+    "setupGroup": {
+      "grid": {
+        "fullName": "Group Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Group Name"
+    },
+    "setupDegree": {
+      "grid": {
+        "fullName": "Degree Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Degree Name"
+    },
+    "setupMedium": {
+      "grid": {
+        "fullName": "Medium Name",
+        "description": "Description",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Medium Name",
+      "description": "Description",
+      "code": "Code"
+    },
+    "attendencesmart": {
+      "grid": {
+        "cityName": "City Name",
+        "subCityName": "SubCity",
+        "campusName": "Campus",
+        "action": "Action"
+      }
+    },
+    "setupMonth": {
+      "grid": {
+        "fullName": "Month Name",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Month Name",
+      "code": "Code"
+    },
+    "setupNationality": {
+      "grid": {
+        "fullName": "Nationality Name",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Nationality Name",
+      "description": "Description"
+    },
+    "setupPossession": {
+      "grid": {
+        "fullName": "Possession Name",
+        "description": "Description",
+        "name": "Possession Type",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "possessionType": "Possession Type",
+      "fullName": "Possession Name",
+      "description": "Description"
+    },
+    "setupPossessionType": {
+      "grid": {
+        "fullName": "Possession Type",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Possession Type Name"
+    },
+    "setupReligion": {
+      "grid": {
+        "fullName": "Religion Name",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Religion Name",
+      "description": "Description"
+    },
+    "setupPassStatus": {
+      "grid": {
+        "fullName": "Pass Status",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Pass Status"
+    },
+    "setupSaleTypes": {
+      "grid": {
+        "fullName": "Sale Types",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Sale Types Name"
+    },
+    "CampusEmailMapping": {
+      "grid": {
+        "email": "Email",
+        "password": "Password",
+        "statusId": "Status",
+        "mailBox": "Mail Box",
+        "action": "Action"
+      }
+    },
+    "programFeeAdjustment": {
+      "grid": {
+        "description": "Program Detail",
+        "isEnabled": "Enable Status",
+        "program": "Program",
+        "medium": "Medium",
+        "shift": "Shift",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "description": "Program Detail",
+      "isEnabled": "Enable Status",
+      "program": "Program",
+      "medium": "Medium",
+      "shift": "Shift",
+      "statusId": "Status",
+      "action": "Action"
+    },
+    "setupSlots": {
+      "grid": {
+        "name": "Shift Name",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Shift",
+      "startTime": "Start Time",
+      "endTime": "End Time"
+    },
+    "setupSlotTimings": {
+      "grid": {
+        "campusStartTime": "Slot Start",
+        "campusEndTime": "Slot End",
+        "fullName": "Lecture Name",
+        "startTime": "Lecture Start",
+        "endTime": "Lecture End",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "slot": "Slot",
+      "fullName": "Lecture Slot Name",
+      "startTime": "Start Time",
+      "endTime": "End Time"
+    },
+    "holidaytype": {
+      "grid": {
+        "name": "Holiday Type",
+        "description": "Description",
+        "statusId": "Status",
+        "isRecursive": "IsRecursive",
+        "action": "Action"
+      },
+      "name": "Name",
+      "description": "Description"
+    },
+    "holidays": {
+      "grid": {
+        "name": "Holiday Type",
+        "description": "Description",
+        "statusId": "Status",
+        "dates": "Date",
+        "action": "Action"
+      },
+      "name": "Name",
+      "description": "Description",
+      "date": "Date",
+      "day": "Day",
+      "month": "Month"
+    },
+    "events": {
+      "grid": {
+        "holidayType": "Holiday Type",
+        "description": "Description",
+        "statusId": "Status",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "action": "Action"
+      },
+      "name": "Name",
+      "description": "Description",
+      "date": "Date",
+      "day": "Day",
+      "month": "Month"
+    },
+    "setupSmsAPI": {
+      "grid": {
+        "loginId": "Login ID",
+        "password": "Password",
+        "shortCodePref": "Code",
+        "isUnicode": "Uni Code",
+        "mask": "Mask"
+      }
+    },
+    "setupFeeHead": {
+      "grid": {
+        "fullName": "Fee Head",
+        "description": "Description",
+        "feeType": "Fee Type",
+        "orderBy": "Order By",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "feetype": "Fee Type",
+      "challanType": "Challan Type",
+      "fullName": "Fee Head Name",
+      "description": "Description",
+      "orderBy": "Order By"
+    },
+    "feePaidDashboard": {
+      "grid": {
+        "refferenceNo": "Refference #",
+        "fullName": "Full Name",
+        "challanNo": "Challan #",
+        "feeAmount": "FeeAmount",
+        "installmentNo": "Installment #",
+        "dueDate": "Due Date",
+        "paidDate": "Paid Date",
+        "challanType": "ChallanType",
+        "collector": "Collector",
+        "campus": "Campus",
+        "description": "Description"
+      },
+      "feetype": "Fee Type",
+      "challanType": "Challan Type",
+      "fullName": "Fee Head Name",
+      "description": "Description",
+      "orderBy": "Order By"
+    },
+    "setupConcessionRemarks": {
+      "grid": {
+        "campusName": "Campus Name",
+        "remarks": "Remarks",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "remarks": "Remarks"
+    },
+    "setupContinuationPolicy": {
+      "grid": {
+        "fullName": "Continuation Policy",
+        "code": "Code",
+        "maxInstallmentNo": "Max Installment No.",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Continuation Policy Name",
+      "code": "Continuation Policy Code",
+      "maxInstallmentNo": "Max Installment No."
+    },
+    "setupGrades": {
+      "grid": {
+        "grades": "Grade Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Grade Name"
+    },
+    "setupCollector": {
+      "grid": {
+        "description": "Collector Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Collector Name"
+    },
+    "setupBank": {
+      "grid": {
+        "fullName": "Bank Name",
+        "address": "Address",
+        "accountTitle": "Account Title",
+        "accountNo": "Account No.",
+        "statusId": "Status",
+        "cityName": "City",
+        "action": "Action"
+      },
+      "fullName": "Bank Name",
+      "address": "Address",
+      "accountTitle": "Account Title",
+      "accountNo": "Account No."
+    },
+    "setupFeeStructureApproval": {
+      "grid": {
+        "programName": "Program",
+        "className": "Class",
+        "shiftName": "Shift",
+        "feeHeadName": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "isApproved": "Approved"
+      }
+    },
+    "setupMinimumPaidDate": {
+      "grid": {
+        "city": "City",
+        "subCity": "Sub-City",
+        "minDays": "Minimum Days",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "city": "City",
+      "subCity": "Sub-City",
+      "minDays": "Minimum Days"
+    },
+    "setupCampusBankLink": {
+      "grid": {
+        "campusName": "Campus",
+        "description": "Program Detail",
+        "bankName": "Bank Name",
+        "accountNo": "Account Number",
+        "statusId": "Status",
+        "showInChallan": "ShownInChallan",
+        "action": "Action"
+      },
+      "program": "Program Detail",
+      "bank": "Bank",
+      "gender": "Gender"
+    },
+    "setupCampusChallanNoteLink": {
+      "grid": {
+        "campusName": "Campus",
+        "description": "Challan Note",
+        "installmentNo": "Installment No.",
+        "fullName": "Challan Type",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "campus": "Campus",
+      "challanNote": "Challan Note",
+      "installmentNo": "Installment No.",
+      "challanType": "Challan Type"
+    },
+    "setupChallanNote": {
+      "grid": {
+        "fullName": "Challan Note",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Challan Note",
+      "description": "Description"
+    },
+    "setupChallanType": {
+      "grid": {
+        "fullName": "Challan Type",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Challan Type",
+      "code": "Code"
+    },
+    "setupFeeStructureDetail": {
+      "grid": {
+        "feeHeadName": "Fee Structure",
+        "installmentNo": "Installment No.",
+        "fullName": "Challan Type",
+        "feeAmount": "Fee Amount",
+        "statusId": "Status"
+      }
+    },
+    "setupChallanValidity": {
+      "grid": {
+        "installmentNo": "Installment No.",
+        "fromDate": "Challan Generation Date",
+        "toDate": "Due Date",
+        "description": "Program Detail",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "program": "Program Detail",
+      "installmentNo": "Installment No.",
+      "fromDate": "Challan Generation Date",
+      "toDate": "Due Date"
+    },
+    "setupScholarshipCriteria": {
+      "grid": {
+        "fullName": "Scholarship Criteria",
+        "admissionTypeName": "Admission Type",
+        "continuationPolicyName": "Continuation Policy",
+        "concessionName": "Concession",
+        "attendancePercentage": "Attendance Percentage",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Scholarship Criteria",
+      "shift": "Shift",
+      "admissionType": "Admission Type",
+      "concession": "Concession",
+      "continuationPolicy": "Continuation Policy",
+      "attendancePercentage": "Attendance Percentage",
+      "grades": "Grades",
+      "enterPercentage": "Enter Percentage"
+    },
+    "boardReturnType": {
+      "grid": {
+        "fullName": "Board Return Type",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Board Return Type",
+      "description": "Description"
+    },
+    "RegistrationCode": {
+      "grid": {
+        "title": "Title",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "description": "Description"
+    },
+    "BoardUniversityDetails": {
+      "grid": {
+        "title": "Title",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "description": "Description"
+    },
+    "StudentBoardUnivertySearch": {
+      "grid": {
+        "rollNo": "Student ID",
+        "regNo": "Registration Number",
+        "student": "Student Name",
+        "fatherName": "Father's Name",
+        "examType": "Exam Type",
+        "year": "Exam Year",
+        "rolln": "Board/University Roll No"
+      },
+      "rollNo": "Student ID"
+    },
+    "boardSessionBoardFee": {
+      "grid": {
+        "session": "Session",
+        "board": "Board",
+        "feeHead": "Fee Head",
+        "amount": "Amount",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "board": "Board",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "amount": "Amount"
+    },
+    "boardBoardFee": {
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "programCampus": "Program Campus",
+      "board": "Board",
+      "boardExamType": " Board Exam Type",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "amount": "Amount",
+      "year": "Year",
+      "dueDate": "Due Date",
+      "rollNo": "Roll No",
+      "name": "Student's Name",
+      "selectAll": "Select All"
+    },
+    "attendanceAttendenceStatus": {
+      "grid": {
+        "code": "Attendance Status Code",
+        "fullName": "Attendance Status Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "code": "Attendance Status Code",
+      "fullName": "Attendance Status Name",
+      "recordStatus": "Record Status"
+    },
+    "searchLeave": {
+      "grid": {
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "days": "Days",
+        "isPartial": "Partial",
+        "isApproved": "Approved",
+        "action": "Action"
+      }
+    },
+    "leaveManagement": {
+      "grid": {
+        "fullName": "Student's Name",
+        "rollNo": "Roll No.",
+        "className": "Class",
+        "action": "Action"
+      },
+      "Enter": "Enter Ref No./ Roll No./ Student Name ",
+      "viewLeaves": "View Leaves",
+      "title": "View/Edit Record",
+      "addLeave": "Add Leave",
+      "insertRecord": "Insert Record",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "leaveDescription": "Leave Description",
+      "course": "Course (s)",
+      "leaveType": "Leave Type",
+      "partial": "Partial",
+      "approved": "Approved",
+      "day": "Days",
+      "action": "Action"
+    },
+    "attendanceReports": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "studentName": "Student's Name",
+        "className": "Class Name",
+        "action": "Action"
+      }
+    },
+    "examReports": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "studentName": "Student's Name",
+        "action": "Action"
+      }
+    },
+    "attendanceBulk": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "startTime": "Slot Timing",
+        "action": "Attendance"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Program",
+      "class": "Class",
+      "date": "Date",
+      "sectionCourse": "Section-Course"
+    },
+    "userAttendance": {
+      "grid": {
+        "campusName": "Campus",
+        "sectionName": "Section",
+        "startTime": "Slot Timing",
+        "status": "Status",
+        "action": "Action",
+        "description": "Program Detail",
+        "className": "Class",
+        "course": "Course",
+        "rollNo": "Roll No.",
+        "fullName": "Course Name"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Program",
+      "class": "Class",
+      "date": "Date",
+      "sectionCourse": "Section-Course"
+    },
+    "userAttendanceX": {
+      "grid": {
+        "campusName": "Campus",
+        "sectionName": "Section",
+        "startTime": "Slot Timing",
+        "status": "Status",
+        "action": "Action",
+        "description": "Program",
+        "className": "Class",
+        "course": "Course",
+        "rollNo": "Roll No.",
+        "fullName": "Student Name"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Program",
+      "class": "Class",
+      "date": "Date",
+      "sectionCourse": "Section-Course"
+    },
+    "teacherAttendance": {
+      "grid": {
+        "campusName": "Campus",
+        "sectionName": "Section",
+        "startTime": "Slot Timing",
+        "status": "Status",
+        "action": "Action",
+        "description": "Program",
+        "className": "Class",
+        "course": "Course",
+        "rollNo": "Roll No.",
+        "fullName": "Student Name"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Program",
+      "class": "Class",
+      "date": "Date",
+      "sectionCourse": "Section-Course"
+    },
+    "attendanceBulkDetail": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullname": "Student's Name"
+      },
+      "Confirmation": "Confirmation",
+      "session": "Session",
+      "campus": "Campus",
+      "programs": "Programs",
+      "class": "Class",
+      "date": "Date",
+      "sectionCourse": "sectionCourse",
+      "rollNo": "Roll No.",
+      "name": "Student's Name",
+      "slotTiming": "Slot Timing",
+      "attendance": "Attendance",
+      "fullDayAbsent": "Full Day Absent",
+      "markAttendance": "Mark Attendance"
+    },
+    "admissionAdmissionForm": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "rollNo": "Roll No",
+        "fullName": "Student Name",
+        "formNo": "Form No",
+        "fatherName": "Father's Name",
+        "admissionStatus": "Status",
+        "action": "Action"
+      },
+      "admissionType": "Admission Type",
+      "program": "Program Detail",
+      "fullName": "Student's Name",
+      "fatherName": "Father's Name",
+      "fatherCNIC": "Father's CNIC",
+      "dateOfBirth": "Date Of Birth",
+      "gender": "Gender",
+      "studentContact": "Student's Contact",
+      "studentCNIC": "Student's CNIC",
+      "campus": "Campus",
+      "parentContact": "Parent's Contact",
+      "religion": "Religion",
+      "mailingAddress": "Mailing Address",
+      "permanentAddress": "Permanent Address",
+      "degree": "Degree",
+      "group": "Group",
+      "roll": "Roll No.",
+      "passingYear": "Passing Year",
+      "obtainedMarks": "Obtained Marks",
+      "totalMarks": "Total Marks",
+      "boardName": "Board Name",
+      "studenttype": "Student Type",
+      "relationship": "Relationship",
+      "cmsRollNo": "CMS Roll #",
+      "cmssection": "CMS Section"
+    },
+    "transportRouteInfo": {
+      "grid": {
+        "routeTitle": "Route Title",
+        "maxInstallmentNo": "Max Installment No.",
+        "driverName": "Driver Name",
+        "driverPhoneNo": "Driver Phone No.",
+        "routeStartPoint": "Starting Point",
+        "routeEndPoint": "Ending Point",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "routeTitle": "Route Title",
+      "routeStartPoint": "Starting Point",
+      "routeEndPoint": "Ending Point",
+      "maxInstallmentNo": "Max Installment No.",
+      "driverName": "Driver Name",
+      "driverPhoneNo": "Driver Phone No.",
+      "vehicle": "Route Detail",
+      "recordStatus": "Record Status",
+      "longitude": "Longitude",
+      "latitude": "Latitude"
+    },
+    "transportDetailInfo": {
+      "grid": {
+        "routeTitle": "Route Title",
+        "stopName": "Stop Name",
+        "startingPoint": "Starting Point",
+        "endingPoint": "Ending Point",
+        "fare": "Fare",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "recordStatus": "Record Status",
+      "route": "Route Title",
+      "stopName": "Stop Name",
+      "startingPoint": "Starting Point",
+      "endingPoint": "Ending Point",
+      "fare": "Fare"
+    },
+    "vehicleInfo": {
+      "grid": {
+        "vehicleName": "Vehicle Name",
+        "vehicleCapacity": "Vehicle Capacity",
+        "vehicleNumberPlate": "Vehicle Number Plate",
+        "registrationNo": "Vehicle Registration No",
+        "parking": "Parking",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "vehicleName": "Vehicle Name",
+      "registrationNo": "Registration No.",
+      "vehicleNumberPlate": "Vehicle Number Plate",
+      "vehicleCapacity": "Vehicle Capacity",
+      "parking": "Parking",
+      "recordStatus": "Record Status"
+    },
+    "routeStudentLink": {
+      "grid": {
+        "campusName": "Campus Name",
+        "fullName": "Full Name",
+        "refferenceNo": "Reference No.",
+        "rollNo": "Roll No.",
+        "address": "Address",
+        "routeTitle": "Route Title",
+        "routeDetail": "Route Detail",
+        "stopName": "Stop Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "refferenceNoStudentNameRollNo": "Reference No: Student Name - Roll No.",
+      "routeInfo": "Route Title",
+      "routeDetailInfo": "Route Detail Info",
+      "startingDate": "Starting Date",
+      "challanDueDate": " Challan Due Date",
+      "recordStatus": "Record Status"
+    },
+    "reports": {
+      "feeReports": {
+        "reports": "Reports",
+        "session": "Session",
+        "rollNoEnter": "Enter Roll No/ Name",
+        "campus": "Campus",
+        "program": "Program",
+        "shift": "Shift",
+        "programDetail": "Program Detail",
+        "class": "Class",
+        "section": "Section",
+        "collector": "Collector",
+        "feeHead": "Fee Type",
+        "date": "Date",
+        "students": "Students",
+        "from": "From",
+        "to": "To",
+        "orderBy": "Order By",
+        "city": "City",
+        "subCity": "Sub-City",
+        "gender": "Gender",
+        "admissionType": "Admission Type",
+        "selectInstallment": "Select Installment",
+        "year": "Passing Year"
+      },
+      "examinationReports": {
+        "reports": "Reports",
+        "session": "Session",
+        "rollNoEnter": "Enter Roll No/ Name",
+        "campus": "Campus",
+        "program": "Program",
+        "shift": "Shift",
+        "programDetail": "Program Detail",
+        "class": "Class",
+        "section": "Section",
+        "collector": "Collector",
+        "feeHead": "Fee Type",
+        "date": "Date",
+        "students": "Students",
+        "from": "From",
+        "to": "To",
+        "orderBy": "Order By",
+        "city": "City",
+        "subCity": "Sub-City",
+        "gender": "Gender",
+        "admissionType": "Admission Type",
+        "selectInstallment": "Select Installment",
+        "examType": "Exam Type",
+        "month": "Month",
+        "course": "Courses",
+        "remarks": "Remarks"
+      }
+    },
+    "helper": {
+      "studentFee": {
+        "studentFee": "Student Fee",
+        "reference": "Reference No.",
+        "roll": "Roll No.",
+        "name": "Name",
+        "program": "Program",
+        "studentChallan": "Student Challan",
+        "grantConcession": "Grant Concession",
+        "applyExemption": "Apply Exception",
+        "createSubInstallment": "Create Sub Installment",
+        "changeDueDate": "Change Due Date",
+        "selectChallanNo": "Challan No.",
+        "selectInstallmentNo": "Installment No.",
+        "exemptedAmount": "Exempted Amount"
+      },
+      "studentChallan": {
+        "feeHeads": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "concession": "Remarks",
+        "payableAmount": "Payable Amount",
+        "challanNo": "Challan No.",
+        "dueDate": "Due Date",
+        "challanAmount": "Challan Amount",
+        "paidDate": "Paid Date",
+        "printChallan": "Print Challan",
+        "selectChallanType": "Challan Type",
+        "selectInstallment": "Installment No.",
+        "totalAmount": "Total Amount",
+        "removePaidDate": "Remove Paid Date"
+      },
+      "Concession": {
+        "special": "Special",
+        "referral": "Referral",
+        "general": "General",
+        "concessionCriteriaList": "Concession Criteria List",
+        "concessionRemarks": "Concession Remarks",
+        "installmentNo": "Installment No."
+      },
+      "Exemption": {
+        "feeHeads": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "concession": "Remarks",
+        "payableAmount": "Payable Amount",
+        "challanNo": "Challan No.",
+        "dueDate": "Due Date",
+        "challanAmount": "Challan Amount",
+        "paidDate": "Paid Date",
+        "selectInstallment": "Installment No.",
+        "exemptionAmount": "Exemption Amount",
+        "exemptionRemarks": "Exemption Remarks",
+        "selectChallanType": "Challan Type",
+        "totalAmount": "Total Amount",
+        "revertExemption": "Revert Exemption",
+        "save": "Save"
+      },
+      "subInstallment": {
+        "selectChallanType": "Challan Type",
+        "selectInstallment": "Installment No.",
+        "manual": "Manual",
+        "feeHeads": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "payableAmount": "Payable Amount",
+        "challanNo": "Challan No.",
+        "dueDate": "Due Date",
+        "paidDate": "Paid Date",
+        "challanAmount": "Challan Amount",
+        "subInstallmentAmount": "Sub Installment Amount",
+        "action": "Action",
+        "revertSubInstallment": "Revert Sub Installment",
+        "save": "Save"
+      },
+      "changeDueDate": {
+        "selectInstallment": "Installment No.",
+        "selectChallanType": "Challan Type",
+        "totalSubInstallment": "Total Sub Installment",
+        "feeHeads": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "concession": "Concession( if any)",
+        "payableAmount": "Payable Amount",
+        "challanNo": "Challan No.",
+        "dueDate": "Due Date",
+        "paidDate": "Paid Date",
+        "changeDueDate": "Change Due Date",
+        "challanAmount": "Challan Amount",
+        "saveDueDate": "Save Due Date",
+        "totalAmount": "Total Amount"
+      }
+    },
+    "examinationExamType": {
+      "grid": {
+        "fullName": "Exam Type",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Exam Type",
+      "recordStatus": "Record Status",
+      "code": "Code"
+    },
+    "examinationFailCriteria": {
+      "grid": {
+        "fullName": "Fail Criteria",
+        "fail_In": "Fail In",
+        "failMarks": "Fail Percentage",
+        "absentConsiderFail": "Absent Consider Fail",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Fail Criteria",
+      "failCount": "Exam Fail Count",
+      "failPercentage": "Fail Percentage",
+      "absentConsiderFail": "Consider Absent as Fail",
+      "criteriaDetail": "Criteria Detail",
+      "description": "Remarks"
+    },
+    "examinationCampusFailCriteria": {
+      "grid": {
+        "fail_In": "Fail In",
+        "failMarks": "Fail%",
+        "examType": "Exam Type",
+        "month": "Month",
+        "absentConsiderFail": "Absent Consider Fail",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Fail In - Fail Marks - Absent Consider",
+      "examType": "Exam Type",
+      "month": "Month"
+    },
+    "sessionDuration": {
+      "grid": {
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "fullName": "Fail In - Fail Marks - Absent Consider",
+      "examType": "Exam Type",
+      "month": "Month"
+    },
+    "examinationGradingPolicyBulk": {
+      "grid": {
+        "name": "Grading Policy Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "name": "Grading Policy Name",
+      "gradingDetail": "Grading policy Details",
+      "maximumMarks": "Maximum Marks",
+      "gradeLetter": "Letter Grade"
+    },
+    "examinationExamApproval": {
+      "grid": {
+        "courseName": "Course",
+        "dayname": "day Name",
+        "dated": "Date",
+        "totalMarks": "Total Marks",
+        "passCount": "Pass",
+        "failCount": "Fail",
+        "status": "Status",
+        "isApproved": "Approve",
+        "action": "Action"
+      },
+      "selectAll": "Select All"
+    },
+    "assessmentSchedule": {
+      "grid": {
+        "sectionName": "Section",
+        "assessmentName": "Exam Name",
+        "failCriteria": "Fail Criteria",
+        "gradingCriteria": "Grading Criteria",
+        "weightage": "Weightage",
+        "month": "Month",
+        "assessmentStatus": "Status",
+        "action": "Action"
+      }
+    },
+    "examinationExamApproval2": {
+      "grid": {
+        "courseName": "Course",
+        "month": "Month",
+        "dated": "Date",
+        "totalMarks": "Total Marks",
+        "passCount": "Pass",
+        "failCount": "Fail",
+        "absent": "Absent",
+        "status": "Status",
+        "isApproved": "Approve",
+        "action": "Action",
+        "examScheduleId": "Exam ScheduleId"
+      },
+      "selectAll": "Select All"
+    },
+    "examinationExamSMSApproval": {
+      "grid": {
+        "programDetail": "Program Detail",
+        "section": "Section",
+        "totalScheduledExams": "Scheduled",
+        "approvedExams": "Approved",
+        "status": "Status",
+        "action": "Action",
+        "ischeck": "Check All"
+      },
+      "selectAll": "Select All"
+    },
+    "examinationTeacherExam": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "attendanceStatusId": "Attendance",
+        "obtainMarks": "Marks Obtained"
+      },
+      "totalMarks": "Total Marks"
+    },
+    "departmentHr": {
+      "grid": {
+        "fullName": "Department Name",
+        "statusId": "Status",
+        "level": "Level",
+        "code": "Code",
+        "action": "Action"
+      },
+      "fullName": "Department Name",
+      "status": "Record Status"
+    },
+    "designationHr": {
+      "grid": {
+        "fullName": "Designation Name",
+        "category": "Company",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "designationTitle": "Designation Title",
+      "company": "Company",
+      "recordStatus": "Record Status"
+    },
+    "staffHr": {
+      "grid": {
+        "fullName": "Staff Name",
+        "fatherName": "Father's Name",
+        "cnic": "CNIC",
+        "dateOfBirth": "DOB",
+        "email": "Email",
+        "maritalStatus": "Marital Status",
+        "contactNo": "Contact No.",
+        "address": "Address",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Staff Name",
+      "fatherName": "Father's Name",
+      "email": "Email",
+      "cnic": "CNIC",
+      "contact": "Contact",
+      "gender": "Gender",
+      "maritalStatus": "Marital Status",
+      "address": "Permanent Address",
+      "addressm": "Mailing Address",
+      "country": "Country",
+      "bloodGroup": "Blood Group",
+      "employeeCode": "Employee Code",
+      "DOB": "DOB",
+      "religion": "Religion",
+      "city": "City",
+      "department": "Department",
+      "designation": "Designation"
+    },
+    "migrateHadafMigration": {
+      "grid": {
+        "RefrenceNo": "Reference No.",
+        "FullName": "Student's Name",
+        "FatherName": "Father's Name",
+        "RollNo": "Roll No.",
+        "IsSelected": "Selected"
+      }
+    },
+    "examinationupdlist": {
+      "grid": {
+        "examType": "Exam Type",
+        "fullName": "Course",
+        "total": "Total Marks",
+        "obtained": "Obtained Marks",
+        "month": "Month",
+        "action": "Action",
+        "checked": "Select"
+      }
+    },
+    "examinationupdlistES": {
+      "grid": {
+        "examTypeName": "Exam Schedule",
+        "fullName": "Course",
+        "attendanceStatusId": "Attendance",
+        "total": "Total Marks",
+        "obtained": "Obtained Marks",
+        "month": "Month",
+        "action": "Action",
+        "checked": "Select"
+      }
+    },
+    "migrateCmsMigration": {
+      "grid": {
+        "ReferenceNo": "Reference No.",
+        "StudentName": "Student's Name",
+        "FatherName": "Father's Name",
+        "Rollno": "Roll No.",
+        "IsSelected": "Selected"
+      },
+      "section": "Cms Section"
+    },
+    "migrateAttendancePercentage": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Name",
+        "percentage": "Attendance (%)"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "fromDate": "From Date",
+      "toDate": "To Date"
+    },
+    "notificationDashboard": {
+      "grid": {
+        "dated": "Date",
+        "subCity": "Sub City",
+        "sectionName": "Section",
+        "campusCode": "Campus",
+        "category":"Category",
+        "comment": "Comment"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "fromDate": "From Date",
+      "toDate": "To Date"
+    },
+    "migrateAdmissionFormEx": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "admissionStatus": "Status",
+        "action": "Action"
+      },
+      "admissionType": "Admission Type",
+      "program": "Program",
+      "fullName": "Full Name",
+      "fatherName": "Father's Name",
+      "fatherCNIC": "Father's CNIC",
+      "dateOfBirth": "Date Of Birth",
+      "gender": "Gender",
+      "studentContact": "Student Contact",
+      "studentCNIC": "Student CNIC",
+      "campus": "Campus",
+      "parentContact": "Parent Contact",
+      "religion": "Religion",
+      "mailingAddress": "Mailing Address",
+      "permanentAddress": "Permanent Address",
+      "degree": "Degree",
+      "group": "Group",
+      "roll": "Roll No.",
+      "passingYear": "Passing Year",
+      "obtainedMarks": "Obtained Marks",
+      "totalMarks": "Total Marks",
+      "boardName": "Board Name",
+      "refferenceNo": "Reference No.",
+      "generatefee": "Generate Fee",
+      "enrollStudent": "Enroll Student"
+    },
+    "setupAnualSession": {
+      "grid": {
+        "fullName": "Session Name",
+        "code": "Code",
+        "description": "Description",
+        "workingDays": "Working Days",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "Session Name",
+      "code": "Code",
+      "description": "Description",
+      "workingDays": "Working Days"
+    },
+    "admissionEligibilityCriteria": {
+      "grid": {
+        "description": "Campus Program Detail",
+        "fullName": "Admission Type",
+        "gender": "Gender",
+        "markPercentage": "Mark's Percentage",
+        "minPassingYear": "Min Passing Year",
+        "fromDob": "From DOB",
+        "toDob": "To DOB",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "campusProgram": "Program Detail",
+      "admissionType": "Admission Type",
+      "gender ": "Gender",
+      "marksPercentage": "Marks Percentage",
+      "passingYear": "Passing Year",
+      "fromDOB": "From Date of Birth",
+      "toDOB": "To Date of Birth"
+    },
+    "setupProvince": {
+      "grid": {
+        "countryName": "Country Name",
+        "fullName": "Province Name",
+        "code": "Code",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupCity": {
+      "grid": {
+        "fullName": "City Name",
+        "cityCode": "City Code",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupAddress": {
+      "grid": {
+        "address": "Campus Address",
+        "phoneNo": "Phone No.",
+        "postalCode": "Postal Code",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupAdmissionType": {
+      "grid": {
+        "fullName": "Admission Type",
+        "code": "Code",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupBloodGroup": {
+      "grid": {
+        "fullName": "Blood Group Type",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupBoard": {
+      "grid": {
+        "fullName": "Board Name",
+        "description": "Description",
+        "statusId": "Status",
+        "boardType": "Board Type",
+        "action": "Action"
+      }
+    },
+    "setupBoardType": {
+      "grid": {
+        "fullName": "Board Type",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "franchise": {
+      "grid": {
+        "description": "Description",
+        "companyOperated": "Company Operated",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupGender": {
+      "grid": {
+        "description": "Gender",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupInstitutionType": {
+      "grid": {
+        "name": "Institution Type",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "setupExtraCourse": {
+      "grid": {
+        "courseName": "Course",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "admissionBulitanSale": {
+      "grid": {
+        "saleDate": "Sale Date",
+        "formNumber": "Form No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "mobileNumber": "Mobile No.",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "admissionInquiry": {
+      "grid": {
+        "campusProgramId": "Program",
+        "inquiryNo": "Inquiry No",
+        "dated": "Date",
+        "fullName": " Name",
+        "fatherName": "Father's Name",
+        "reference": "Reference",
+        "institution": "Institution",
+        "area": "Area",
+        "contact": "Contact",
+        "email": "Email",
+        "academicInfo": "Marks Obtained",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "programTransfer": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "statusId": "Status",
+        "action": "Action",
+        "isChecked": "Select"
+      },
+      "removeRollNo": "Remove Roll No.",
+      "program": "Transfer to Program"
+    },
+    "StateChange": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "changeDueDate": {
+      "selectInstallment": "Installment No.",
+      "selectChallanType": "Challan Type",
+      "totalSubInstallment": "Total Sub Installment",
+      "feeHeads": "Fee Head",
+      "feeAmount": "Fee Amount",
+      "concession": "Concession( if any)",
+      "payableAmount": "Payable Amount",
+      "challanNo": "Enter Challan No.",
+      "dueDate": "Due Date",
+      "paidDate": "Paid Date",
+      "changeDueDate": "Change Due Date",
+      "challanAmount": "Challan Amount",
+      "saveDueDate": "Save Due Date",
+      "totalAmount": "Total Amount",
+      "refferenceNo": "Reference No.",
+      "studentName": "Student Name",
+      "amount": "Amount"
+    },
+    "previousFee": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "fatherName": "Father's Name",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "EMSStudentDetails": " EMS Student Details",
+      "CMSStudentDetails": "CMS Student Details",
+      "previousFee": "Pre -1st- Year Adjustment Fee",
+      "session": "Session",
+      "campus": "Campus",
+      "compareStudent": "Compare Student",
+      "studentDetail": "Student Detail",
+      "name": "Student's Name",
+      "fatherName": "Father's Name",
+      "fatherCnic": "Father's CNIC",
+      "referenceNo": "Reference No.",
+      "recordStatus": "Record Status",
+      "studentID": "Student's ID",
+      "challanNo": "Challan No.",
+      "amount": "Amount",
+      "submit": "Adjust Fee",
+      "comparedStudent": "Compared Student"
+    },
+    "attendanceApproval": {
+      "grid": {
+        "staffName": "Teacher",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "course": "Course",
+        "sectionName": "Section",
+        "isApproved": "Approve"
+      },
+      "date": "Date"
+    },
+    "financeData": {
+      "grid": {
+        "payDate": "PayDate",
+        "challan_Number": "Challan_Number",
+        "student_Name": "Student_Name",
+        "academic_Year": "Academic_Year",
+        "bank_Name": "Bank_Name",
+        "admission": "Admission",
+        "discountOnAdmission": "DiscountOnAdmission",
+        "tuition": "Tuition",
+        "activity": "Activity",
+        "activity_DateTime": "Activity_DateTime",
+        "status_ID": "Status_ID",
+        "payable_Date": "Payable_Date",
+        "father_Name": "Father_Name",
+        "class": "Class",
+        "ref_No": "Ref_No",
+        "reg_No": "Reg_No",
+        "section": "Section",
+        "fee_For": "Fee_For",
+        "legal_Entity": "Legal_Entity",
+        "cluster": "Cluster",
+        "city": "City",
+        "program": "Program",
+        "description": "Description",
+        "session": "Session",
+        "discountOnTuition": "DiscountOnTuition",
+        "misc_Charges": "Misc_Charges",
+        "discountOnBoardRegistration_Exam_Sport_CollegeCard_Building_Mis": "DiscountOnBoardRegistration",
+        "discountOnOtherFeeHeads": "DiscountOnOtherFeeHeads",
+        "discount": "Discount",
+        "fine": "Fine",
+        "late_Fee_Fine": "Late_Fee_Fine",
+        "total_Payable": "Total_Payable",
+        "due_Date": "Due_Date",
+        "over_Due_Amount": "Over_Due_Amount",
+        "print_Date": "Print_Date",
+        "bank_Account": "Bank_Account",
+        "modeOfPayment": "ModeOfPayment",
+        "campus_ID": "Campus_ID",
+        "generationDate": "GenerationDate",
+        "boardRegistrationSportsHouseCollegeExam": "BoardRegistrationSports",
+        "collegeFee": "CollegeFee",
+        "boardRegistrationFee": "BoardRegistrationFee",
+        "universityRegistrationFee": "DiscountOnTuition",
+        "boardExamFee": "BoardExamFee",
+        "universityExamFee": "UniversityExamFee",
+        "entryTestFee": "EntryTestFee"
+      },
+      "date": "Date"
+    },
+    "attendanceApprovalRemove": {
+      "grid": {
+        "staffName": "Teacher",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "course": "Course",
+        "sectionName": "Section",
+        "isApproved": "Approval Remove"
+      },
+      "date": "Date"
+    },
+    "dayClose": {
+      "grid": {
+        "staffName": "Teacher",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "fullName": "Course",
+        "sectionName": "Section",
+        "isChecked": "Check"
+      }
+    },
+    "markDayEnd": {
+      "grid": {
+        "sectionName": "Section",
+        "className": "Class",
+        "programDetail": "Program",
+        "lecturesApproved": "Lectures Approved",
+        "unApprovedLectures": "Lectures Un-Approved",
+        "unMarkedLectures": "Lectures Un-Marked",
+        "isChecked": "Select All"
+      }
+    },
+    "dailyAttendanceStatus": {
+      "grid": {
+        "teacherName": "Teacher Name",
+        "email": "Email",
+        "totalLecture": "Scheduled Lectures",
+        "lecturesMarked": "Marked Lectures",
+        "lecturesUnMarked": "Un-Marked Lectures",
+        "onTime": "On Time",
+        "offTime": "Off Time",
+        "isChecked": "Action"
+      }
+    },
+    "struckoffReinstate": {
+      "grid": {
+        "struckoffDate": "Struckoff Date",
+        "struckoffReason": "Struckoff Reason",
+        "reinstateDate": "Reinstate Date",
+        "reinstateReason": "Reinstate Reason",
+        "shouldAbsent": "Status",
+        "action": "Action"
+      },
+      "struckoffdate": "Struckoff Date",
+      "struckoffreason": "Struckoff Reason",
+      "reinstatedate": "Reinstate Date",
+      "reinstatereason": "Reinstate Reason"
+    },
+    "feeExemption": {
+      "grid": {
+        "selectInstallment": "Installment No.",
+        "selectChallanType": "Challan Type",
+        "feeHeads": "Fee Head",
+        "feeAmount": "Fee Amount",
+        "concession": "Concession( if any)",
+        "payableAmount": "Payable Amount",
+        "challanNo": "Challan No.",
+        "dueDate": "Due Date",
+        "paidDate": "Paid Date",
+        "challanAmount": "Challan Amount",
+        "totalAmount": "Total Amount",
+        "refferenceNo": "Reference No.",
+        "studentName": "Student Name",
+        "amount": "Amount",
+        "generateFullFeeChallan": "Save",
+        "revertFee": "Revert Full Fee"
+      }
+    },
+    "changePaidDate": {
+      "grid": {
+        "challanNo": "Enter Challan No.",
+        "changePaidDate": "Change Paid Date",
+        "collector": "Choose Collector",
+        "noPaidDate": "NO PAID CHALLAN DATA. GO TO FEE CONFIRMATION!"
+      },
+      "changePaidDateTo": "Change Paid Date To"
+    },
+    "feeExemptionManually": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "fullName": "Student Name",
+        "fatherName": "Father's Name",
+        "description": "Program",
+        "action": "Action"
+      },
+      "selectInstallment": "Installment"
+    },
+    "feeReverseConcessionList": {
+      "grid": {
+        "refferenceNo": "Reference No.",
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "action": "Action"
+      },
+      "installment": "Installment",
+      "enterInfo": "Ref No./ Roll No./ Student Name"
+    },
+    "singleConcession": {
+      "grid": {
+        "RefrenceNo": "Refferenco No.",
+        "Name": "Student's Name",
+        "FatherName": "Father's Name"
+      },
+      "enterRefNo": "Enter Reference No."
+    },
+    "StudentFeeDetailDescription": {
+      "grid": {
+        "ref_No": "Reference No.",
+        "reg_No": "RollNo",
+        "challan_Number": "ChallanNo",
+        "over_Due_Amount": "FeeAmount",
+        "payDate": "Paid Date"
+      },
+      "fromDate": "From Date",
+      "toDate": "To Date"
+    },
+    "challanCancel": {
+      "information": "Personal Information",
+      "reference": "Reference No.",
+      "fatherName": "Father's Name",
+      "studentName": "Student's Name",
+      "rollno": "Roll No.",
+      "campusName": "Campus Name",
+      "program": "Program",
+      "feeParticulars": "Fee Particulars",
+      "particulars": "Particulars",
+      "feeAmount": "Fee Amount",
+      "Concession": "Concession",
+      "payable": "Payable",
+      "totalAmount": "Total Amount",
+      "collectorName": "Collector Name",
+      "dueDate": "Due Date",
+      "paidStatus": "Paid Status",
+      "paidDate": "Paid Date",
+      "changePaidDate": "Change Paid Date",
+      "collector": "Collector",
+      "challanPaid": "Paid",
+      "unpaid": "Unpaid",
+      "feeStatus": "Fee Status",
+      "enterChallanNo": "Enter Challan No.",
+      "installment": "Installment No."
+    },
+    "sectionFine": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "refferenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "isChecked": "Select"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "challanAmount": "Challan Amount",
+      "challanDueDate": "Challan Due Date",
+      "remarks": "Remarks",
+      "printChallan": "Print Challan",
+      "checkAll": "Select All"
+    },
+    "attendanceFineGenerate": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "refferrenceNo": "Reference No.",
+        "fullName": "Student's Name",
+        "percentage": "Percentage",
+        "isSelected": "Select"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "fromPercentage": "From Percentage",
+      "toPercentage": "To Percentage",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "challanAmount": "Challan Amount",
+      "challanDueDate": "Challan Due Date",
+      "remarks": "Remarks",
+      "printChallan": "Print Challan",
+      "checkAll": "Select All"
+    },
+    "feeChallanValidityUpdate": {
+      "grid": {
+        "isSelected": "Select All",
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "installmentNo": "Installment No.",
+        "challanNo": "Challan No.",
+        "feeAmount": "Amount",
+        "dueDate": "Current Due Date",
+        "refferenceNo": "Reference No",
+        "newDueDate": "New Due Date"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program Detail",
+      "class": "Class",
+      "section": "Section",
+      "printChallan": "Print Challan",
+      "checkAll": "Check All",
+      "gender": "Gender"
+    },
+    "concessionRenew": {
+      "rollNo": "Roll No.",
+      "fullName": "Student's Name",
+      "admissionType": "Admission Type ",
+      "percentage": "Attendance Percentage",
+      "concession": "Concession",
+      "action": "Action",
+      "program": "Program Detail",
+      "class": "Class",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "section": "Section",
+      "installno": "Installment No",
+      "concessionContinutionRules":"Concession Continuation Rules",
+      "firstConcession": "First Concession"
+    },
+    "SessionBoardExamTypeList": {
+      "grid": {
+        "fullName": "Exam Type Name",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "fullName": "FullName",
+      "description": "Description"
+    },
+    "BoardProgramCampusList": {
+      "grid": {
+        "title": "Title",
+        "description": "Description",
+        "programName": "Program",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "title": "Title",
+      "description": "Description"
+    },
+    "BoardStudentBoardLinkList": {
+      "grid": {
+        "student": "Name",
+        "fatherName": "Father's Name",
+        "rollNo": "Roll No",
+        "fullName": "Board Return Type",
+        "boardName": "Board",
+        "amount": "Amount",
+        "dueDate": "DueDate",
+        "returnDate": "ReturnDate",
+        "description": "Registration Code",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "boardReturnType": "Board Return Type",
+      "programCampus": "Program Campus",
+      "returnDate": "Return Date",
+      "board": "Board",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "boardFee": "Board Fee",
+      "boardNo": "Board No.",
+      "assignBoard": "Assign Board"
+    },
+    "boardStudentRegistrationNo": {
+      "grid": {
+        "fatherName": "Father's Name",
+        "rollNo": "Roll No",
+        "fullName": "Name",
+        "boardUniversityNo": "Registration No",
+        "boardRollNo": "Board RollNo",
+        "passFailCriteria": "Pass Fail Criteria",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "class": "Class",
+      "section": "Section",
+      "boardReturnType": "Board Return Type",
+      "registrationCode": "Board Registration Code",
+      "programCampus": "Program Campus",
+      "returnDate": "Return Date",
+      "board": "Board",
+      "challanType": "Challan Type",
+      "feeHead": "Fee Head",
+      "boardFee": "Board Fee",
+      "boardNo": "Board No.",
+      "assignBoard": "Assign Board"
+    },
+    "campusGradingMapping": {
+      "grid": {
+        "name": "Name",
+        "session": "Session",
+        "campus": "Campus",
+        "examType": "Exam Type",
+        "month": "Month",
+        "description": "Program Detail",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "gradingMaster": "Grading Policy",
+      "examType": "Exam Type",
+      "month": "Month"
+    },
+    "examBulk": {
+      "grid": {
+        "rollNo": "Roll Number",
+        "fullName": "Name",
+        "attendanceStatusId": "Attendance",
+        "obtainMarks": "Marks Obtained"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program Detail",
+      "class": "Class",
+      "section": "Section",
+      "course": "Course",
+      "examType": "Exam Type",
+      "totalMarks": "Total Marks",
+      "month": "Month"
+    },
+    "examinationExamSchedule": {
+      "grid": {
+        "fullName": "Exam Name",
+        "examTypeName": "Exam Type",
+        "failMasterName": "Fail Criteria",
+        "name": "Grading Criteria",
+        "examDate": "Exam Date",
+        "totalMarks": "Total Marks ",
+        "courseName": "CourseName ",
+        "statusId": "Status",
+        "action": "Action",
+        "month": "Month"
+      }
+    },
+    "Teacherhod": {
+      "grid": {
+        "fullName": "Full Name",
+        "email": "Email ",
+        "isChecked": "isChecked",
+        "action": "Action"
+      }
+    },
+    "Sectionincharge": {
+      "grid": {
+        "fullName": "Full Name",
+        "email": "Email ",
+        "isChecked": "isChecked",
+        "action": "Action"
+      }
+    },
+    "seatingPlanDateSheetList": {
+      "grid": {
+        "examName": "Exam",
+        "roomName": "Room",
+        "buildingName": "Building",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "roomBuilding": "Room Building Map",
+      "examName": "Exam Name"
+    },
+    "seatingPlanDateSheetDetailList": {
+      "grid": {
+        "examName": "Exam Name",
+        "dateSheetDate": "Date",
+        "fromTime": "From Time",
+        "toTime": "To Time",
+        "statusId": "Status",
+        "action": "Action"
+      },
+      "session": "Session",
+      "campus": "Campus",
+      "program": "Program",
+      "dateSheetDate": "Date Sheet Date",
+      "fromTime": "From Time",
+      "toTime": "To Time"
+    },
+    "seatingSeatingPlan": {
+      "grid": {
+        "rollNo": "Roll No.",
+        "fullName": "Student's Name",
+        "action": "Action"
+      }
+    },
+    "teacherevaluation": {
+      "grid": {
+        "fullName": "Evaluation",
+        "description": "Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "leaveApproval": {
+      "Enter": "Enter RollNo"
+    },
+    "approvesms": {
+      "grid": {
+        "messageText": "Message Text",
+        "messageCount": "Message Count",
+        "mask": "Mask",
+        "recipients": "Recipients",
+        "displayName": "Display Name",
+        "username": "Username",
+        "action": "Action"
+      }
+    },
+    "studentcreditnotes": {
+      "grid": {
+        "refferenceNo": "Refference No.",
+        "studentName": "Student's Name",
+        "challanNo": "Challan No.",
+        "installmentNo": "Installment No.",
+        "amount": "Amount",
+        "refundDate": "Refund Date",
+        "isSelected": "Selected"
+      }
+    },
+    "studentfeedback": {
+      "grid": {
+        "date": "Date",
+        "plateForm": "Platform",
+        "feedBack": "FeedBack"
+      }
+    },
+    "studentconcessionreversal": {
+      "grid": {
+        "rollNo": "Roll No",
+        "studentName": "Student's Name",
+        "percentage": "Attendance %",
+        "currentConcession": "Current Concession",
+        "reConcession": "Re-Apply Concession",
+        "isSelected": "Selected"
+      }
+    },
+    "survey": {
+      "grid": {
+        "name": "Survey Name",
+        "description": "Survey Description",
+        "statusId": "Status",
+        "action": "Action"
+      }
+    },
+    "calendarConfirmation": {
+      "grid": {
+        "fullName": "Create Academic Calendar",
+        "subCity": "Sub City",
+        "isApproved": "Status",
+        "action": "Action"
+      }
+    },
+    "academiccalendarmaster": {
+      "grid": {
+        "fullName": "Create Academic Calendar",
+        "fromDate": "Start Date",
+        "statusId": "Status",
+        "toDate": "End Date",
+        "action": "Action"
+      }
+    },
+    "surveydetail": {
+      "grid": {
+        "surveyMaster": "Survey Name",
+        "surveyDescription": "Survey Description",
+        "statusId": "Status",
+        "question": "question",
+        "action": "Action"
+      }
+    },
+    "academicCalendarType": {
+      "grid": {
+        "fullName": "Full Name",
+        "code": "Code",
+        "statusId": "Status",
+        "isHoliday": "Holiday",
+        "action": "Action"
+      },
+      "recordStatus": "Record Status",
+      "fullName": "Full Name",
+      "code": "Code",
+      "isHoliday": "Holiday"
+    },
+    "staffProfile": {
+      "grid": {
+        "teacherName": "Teacher Name",
+        "email": "Email",
+        "action": "Action"
+      },
+      "enterNameEmail": "Enter Email/ Teacher Name"
+    },
+    "surveyComment": {
+      "grid": {
+        "comment": "Comments"
+      },
+      "enterNameEmail": "Enter Email/ Teacher Name"
+    },
+     "surveyComment26": {
+      "grid": {
+        "comment": "Comments",
+        "category": "Category"
+      },
+      "enterNameEmail": "Enter Email/ Teacher Name"
+    }
+  }
+}

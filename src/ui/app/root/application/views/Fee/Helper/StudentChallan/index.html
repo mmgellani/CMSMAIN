@@ -1,0 +1,113 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<section>
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.attendanceTeacherUser.class')}}</label>
+        <select-ex @input="loadClassData" :options="classList" keyValue="classId" displayValue="fullName"
+          v-model="classId">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>{{$t('modal.helper.studentChallan.selectChallanType')}}</label>
+        <select-ex :options="ChallanTypeList" keyValue="challanTypeId" displayValue="fullName" v-model="challanType">
+        </select-ex>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>{{$t('modal.helper.studentChallan.selectInstallment')}}</label>
+      <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installNo">
+      </select-ex>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr role="row">
+            <th>{{$t('modal.helper.studentChallan.feeHeads')}}</th>
+            <th>{{$t('modal.helper.studentChallan.feeAmount')}}</th>
+            <th>{{$t('modal.helper.studentChallan.concession')}}</th>
+            <th>{{$t('modal.helper.studentChallan.payableAmount')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in feeHeadData">
+            <td class="align-middle">{{item.feeHead}}</td>
+            <td class="align-middle">{{item.feeAmount | amount}}</td>
+            <td class="align-middle">
+              <span v-if="item.concessionFullName">
+                {{item.concessionFullName}} ({{item.remarks}})
+              </span>
+              <span v-else>
+                {{item.remarks}}
+              </span>
+            </td>
+            <td class="align-middle">{{item.payableAmount | amount}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="align-middle"><strong>Total Amount</strong></td>
+            <td class="align-middle"><strong>{{sumFeeHead('feeAmount') | amount}}</strong></td>
+            <td></td>
+            <td class="align-middle"><strong>{{sumFeeHead('payableAmount') | amount}}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr role="row">
+            <th>{{$t('modal.helper.studentChallan.challanNo')}}</th>
+            <th>{{$t('modal.helper.studentChallan.dueDate')}}</th>
+            <th>{{$t('modal.helper.studentChallan.challanAmount')}}</th>
+            <th>{{$t('modal.helper.studentChallan.paidDate')}}</th>
+            <th>{{$t('modal.helper.studentChallan.printChallan')}}</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in feeDetail">
+            <td class="align-middle"> {{item.challanNo}} </td>
+            <td class="align-middle"> {{item.dueDate | formatDMY}} </td>
+            <td class="align-middle"> {{item.feeAmount | amount}} </td>
+            <td class="align-middle"> {{item.paidDate | formatDMY}} </td>
+            <td class="align-middle">
+              <template v-if="item.paidDate == null && item.allowButton   && savedisable && canAdd">
+                <span class="btn btn-primary btn-light btn-hover  btn-sm" v-if="!getMinDate(item.dueDate)"><i
+                    class="fa fa-print"></i> Print Challan</span>
+                <button class="btn btn-primary btn-light btn-hover  btn-sm" href="#"
+                  @click="generateChallanReport(item.challanNo)" v-else>
+                  <i class="fa fa-print"></i> Print Challan
+                </button>
+              </template>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="align-middle"> <strong>Total Amount</strong> </td>
+            <td></td>
+            <td class="align-middle"> <strong>{{sumFee('feeAmount') | amount}}</strong> </td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</section>

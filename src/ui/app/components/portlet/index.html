@@ -1,0 +1,31 @@
+<div class="kt-portlet" :class="{' kt-portlet--collapse' : toggle}" data-ktportlet="true" id="kt_portlet_tools_1">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                <span v-html="title" v-if="title.length > 0"></span>
+                <slot name="title-header"></slot>
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar" v-if="action == 1">
+            <div class="kt-portlet__head-group">
+                <a href="#" data-ktportlet-tool="toggle" class="btn btn-sm btn-icon btn-clean btn-icon-md"
+                    @click.prevent="toggle = !toggle" data-toggle="tooltip" data-placement="top"
+                    title="Collapse">
+                    <i class="la la-angle-down"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="kt-form">
+        <div class="kt-portlet__body" kt-hidden-height="297" :class="{' cActive' : toggle}">
+            <div class="kt-portlet__content">
+                <slot name="portlet-body"></slot>
+            </div>
+        </div>
+        <!-- <div class="kt-portlet__foot kt-portlet__foot--right kt-portlet__foot--solid" :class="{' cActive' : toggle}">
+            <div class="kt-form__actions kt-form__actions--right">
+                <slot name="portlet-footer"></slot>
+            </div>
+        </div> -->
+    </div>
+
+</div>

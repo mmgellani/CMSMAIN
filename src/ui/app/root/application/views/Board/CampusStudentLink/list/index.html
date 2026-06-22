@@ -1,0 +1,94 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Campus Student Link
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadCityCampus" class="form-control" v-model="sessionId" required>
+                <option v-for="(model,index) in sessionList" :value="model.sessionId">{{model.fullName}}</option>
+              </select>
+              <label>Session</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+              display-value="campusName" placeholder="Campus" @change="loadProgramsOfCampus">
+            </drop-down>
+          </div>
+          <div class="col-md-3">
+            <drop-down v-model="programDetailId" :data="campusProgramLinkList" group-by="programName"
+              key-value="programDetailId" display-value="description" placeholder="Programs" @change="loadClass">
+            </drop-down>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="loadProgramSection" class="form-control" v-model="classId" required>
+                <option v-for="(model,index) in classList" :value="model.classId">{{model.fullName}}</option>
+              </select>
+              <label>Class</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <select @change="refreshData" v-model="sectionId" class="form-control" required>
+                <option :key="index" :value="model.sectionId" v-for="(model,index) in sectionCourseLinkList">
+                  {{model.sectionName}}
+                </option>
+              </select>
+              <label>Section</label>
+            </div>
+          </div>
+
+          <div class="col-md-3 offset-6">
+            <button v-if="canAdd" @click="insertModel" class="b-add">
+              <feather icon="plus-circle"></feather>
+            </button>
+            <button @click="" class="b-refresh">
+              <feather icon="refresh-ccw"></feather>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive" v-if="canRead">
+          <div class="dataTables_wrapper no-footer">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>No.</th>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Assign Campus</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr v-for="(item,index) in campusStudentList">
+                  <td> {{ index+1 }} </td>
+                  <td class="v-align-middle">{{item.rollNo}}</td>
+                  <td class="v-align-middle">{{item.studentName}}</td>
+                  <td class="v-align-middle">{{item.boardCampus}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <CampusStudentLink-add-edit-model></CampusStudentLink-add-edit-model>
+</div>

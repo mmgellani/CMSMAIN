@@ -1,0 +1,356 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<!-- <modal name="student-challan-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+  @before-open="beforeModalOpen">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-2">
+          <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="col-md-8 text-centre">
+          <div class="modal-title">
+            StudentChallan&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+          </div>
+        </div>
+        <div class="col-md-2 text-right">
+          <div class="row">
+            <div class="col-md-12">
+              <div v-if="manualSubinstallment==true">
+                <div class="form-group">
+                  <select @change="filterData" v-model="installNo" class="form-control" required>
+                    <option value="" disabled>Select Installment sdfsadfNo</option>
+                    <option v-for="item in 12" :value="item">{{item}}</option>
+                  </select>
+                </div>
+              </div>
+              <div v-if="manualSubinstallment==false">
+                <div class="form-group">
+                  <select  @change="filterData" v-model="installNo" class="form-control" required>
+                    <option value="" disabled>Select Installment No</option>
+                    <option v-for="item in 12" :value="item">{{item}}</option>
+                  </select>
+                   <select  @change="filterData"  v-model="challanType" class="form-control" required>
+                    <option v-for="item in ChallanTypeList" :value="item.challanTypeId">{{item.fullName}}</option>
+                  </select>
+                  <label>Select Challan Type</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="form-group m-form__group m--margin-top-10">
+        <div class="row ModeColor">
+          <div class="col-md-4 mt-4">
+            <h3 class="mt-3">RefNo: {{RefrenceNo}}
+            </h3>
+            <h3>Name: {{FullName}}</h3>
+            <h3 style="margin-top: 10px">Program:{{program}}</h3>
+          </div>
+          <div class="col-md-8">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>FeeHeads </th>
+                  <th>FeeAmount</th>
+                  <th>Concession (if any)</th>
+                  <th>PayableAmount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Tempdata">
+                  <td class="v-align-middle">{{item.feeHead}}</td>
+                  <td class="v-align-middle">{{item.feeAmount | amount}}</td>
+                  <td class="v-align-middle">{{item.concessionFullName}}</td>
+                  <td class="v-align-middle">{{item.payableAmount | amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <table class="table" v-if="manualSubinstallment==false">
+          <thead>
+            <tr role="row">
+              <th>
+                Challan No
+              </th>
+              <th>
+                Paid Date
+              </th>
+              <th>
+                Due Date
+              </th>
+              <th>
+                Challan Amount
+              </th>
+              <th>
+               Exempted Amount
+              </th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in ManualExemptionList ">
+              <td>
+                {{item.challanNo}}
+              </td>
+              <td>
+                {{item.paidDate | formatDMY}}
+              </td>
+              <td>
+                {{item.dueDate | formatDMY}}
+              </td>
+              <td>
+                {{item.feeAmount | amount}}
+              </td>
+              <td><input type=number :disabled="item.paidDate!=null"  v-model="item.exemptedAmount"></td>
+
+              <td > 
+                  <button type="button" v-if="item.paidDate == null" class="btn btn-primary"
+                    @click="SaveManualExemption(item.admissionFormId,installNo,item.exemptedAmount,item.challanNo)">Save</button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn btn-danger ripple" @click="cancel">Close</button>
+        </div>
+      </div>
+    </div>
+    
+    <report-engine :data="challanRData" :path="report"></report-engine>
+  </div>
+</modal> -->
+
+
+
+
+
+
+
+
+
+
+<div>
+  <modal name="student-challan-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-6 modal_heading">
+          <h3 class="modal-title">{{$t('navigation.mulitplesubinstallments')}}</h3>
+          <p> {{title}} </p>
+        </div>
+        <div class="col-md-6 text-right">
+          <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+            <i class="la la-close"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body staffModel">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h6>{{$t('modal.helper.studentFee.reference')}}</h6>
+                  <span class="kt-badge kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">
+                    {{RefrenceNo}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h6>{{$t('modal.helper.studentFee.name')}}</h6>
+                  <span class="kt-badge  kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">{{FullName}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h6>{{$t('modal.helper.studentFee.program')}}</h6>
+                  <span class="kt-badge  kt-badge--inline kt-badge--pill" style="background: rgba(93, 120, 254, 0.29); 
+                color: black; font-size: 1rem;">{{program}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4" v-if="manualSubinstallment==true">
+            <div class="form-group">
+              <label>{{$t('modal.feeExemptionManually.selectInstallment')}}</label>
+              <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installNo"
+                @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+          <div class="col-md-3" v-if="manualSubinstallment==false">
+            <div class="form-group">
+              <label>{{$t('modal.feeExemptionManually.selectInstallment')}}</label>
+              <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installNo"
+                @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Challan Type</label>
+              <select-ex :options="ChallanTypeList" keyValue="challanTypeId" displayValue="fullName"
+                v-model="challanType" @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Class</label>
+              <select-ex :options="classlist" keyValue="classId" displayValue="fullName" v-model="classid"
+                @input="filterData">
+              </select-ex>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead class="thead-light">
+                <tr role="row">
+                  <th>{{$t('modal.helper.studentChallan.feeHeads')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.feeAmount')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.concession')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.payableAmount')}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Tempdata">
+                  <td class="align-middle">{{item.feeHead}}</td>
+                  <td class="align-middle">{{item.feeAmount | amount}}</td>
+                  <td class="align-middle">{{item.concessionFullName}}</td>
+                  <td class="align-middle">{{item.payableAmount | amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table" v-if="manualSubinstallment==false">
+              <thead class="thead-light">
+                <tr role="row">
+                  <th>{{$t('modal.helper.studentChallan.challanNo')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.paidDate')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.dueDate')}}</th>
+                  <th>{{$t('modal.helper.studentChallan.challanAmount')}}</th>
+                  <th>Add SubInstallment</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item,index) in TempChallandata">
+                  <td class="align-middle">
+                    {{item.challanNo}}
+                  </td>
+                  <td class="align-middle">
+                    {{item.paidDate | formatDMY}}
+                  </td>
+                  <td class="align-middle" v-if="item.challanNo!='000000000000'">
+                    {{item.dueDate | formatDMY}}
+                  </td>
+                  <td class="align-middle" v-if="item.challanNo=='000000000000'">
+                   <!-- <input type="date"  v-model="item.dueDate">  -->
+                   <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="item.dueDate"
+                                    format="DD/MM/YYYY" lang="en" v-mask="'##/##/####'">
+                                </date-picker>
+                  </td>
+                  <td class="align-middle" v-if="item.challanNo!='000000000000'">
+                    {{item.feeAmount | amount}}
+                  </td>
+                  <td class="align-middle" v-if="item.challanNo=='000000000000'">
+                   <input type="number"  v-model="item.feeAmount">
+                  </td>
+                  <td>
+             
+
+               
+                </td>
+
+
+
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <!-- <div class="col-md-6 ">
+            <button class="btn btn-primary btn-sm btn-sm" @click="cancel"> <i class="la la-close"></i>
+              {{$t('button.close')}}</button>
+          </div> -->
+          <div class="col-md-6 text-right">
+            <button type="button"   class="btn btn-primary btn-sm btn-sm" data-toggle="modal" 
+            data-target="#myModal"> <i class="la la-save"></i>{{$t('button.save')}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </modal>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-md-6 modal_heading">
+            <h3 class="modal-title">{{$t('navigation.feeExemptionManually')}}</h3>
+            <p>
+              {{$t('modal.attendanceBulkDetail.Confirmation')}}
+            </p>
+          </div>
+          <div class="col-md-6 text-right">
+            <button type="button" class="close " data-dismiss="modal">
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to save this SubInstallmnet ?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light btn-hover btn-sm btn-sm" type="submit" data-dismiss="modal">
+            <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-sm" data-dismiss="modal" type="submit"
+            @click="SaveData()">
+            <i class="la la-save"></i> {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

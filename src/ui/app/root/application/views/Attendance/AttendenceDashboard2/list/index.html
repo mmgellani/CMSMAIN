@@ -1,0 +1,186 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.dashboard')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.attendanceAttendenceDashboard')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.attendanceAttendenceDashboard')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3 mt-2">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.date')}}<span style="color:red"> *</span></label>
+            <!-- <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="dated" format="DD/MM/YYYY"
+                lang="en" @input="refreshData"></date-picker> -->
+
+            <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="dated" format="DD/MM/YYYY"
+              lang="en" @input="GetCityData"></date-picker>
+          </div>
+        </div>
+
+        <div class="col-md-3 mt-2">
+          <div class="form-group">
+            <label>{{$t('modal.attendanceAttendenceDashboard.session')}}<span style="color:red"> *</span></label>
+            <select-ex :options="sessionList" keyValue="sessionId" displayValue="fullName" v-model="sessionId"
+              @input="loadClass">
+            </select-ex>
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <label for="campus-id">Campus</label>
+          <div class="mt-2"></div>
+          <select-ex id="campus-id" :options="campusSubCityModel" keyValue="campusId" displayValue="campusName"
+            groupBy="cityName" v-model="campusId" @input="loadProgramsOfCampus" multiple></select-ex>
+        </div> -->
+
+
+        <div class="col-md-3" style="position: relative;">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8"><label>Campus</label></div>
+              <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                    class="m-0"><input type="checkbox" checked="checked" v-model="viewCities" @change="showAllRecord()">
+                    <span></span></label></span></div>
+            </div>
+            <select-ex id="campus-id" :options="campusSubCityModel" keyValue="campusId" displayValue="campusName"
+              groupBy="cityName" v-model="campusId" @input="loadProgramsOfCampus" multiple :disabled="viewCities">
+            </select-ex>
+            <label class="show-checkBox">All Campus</label>
+          </div>
+        </div>
+
+        <div class="col-md-3" style="position: relative;" v-if="viewCities">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8"><label>Program Detail</label></div>
+              <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                    class="m-0"><input type="checkbox" checked="checked" v-model="viewPrograms"
+                      @change="showAllRecordEx()"> <span></span></label></span></div>
+            </div>
+            <select-ex :options="ProgramDetailList" groupBy="fullName" key-value="programDetailId"
+              display-value="description" v-model.trim="programDetailId" @input="refreshData" multiple
+              :disabled="viewPrograms">
+            </select-ex>
+            <label class="show-checkBox">All Program</label>
+          </div>
+        </div>
+
+        <div class="col-md-3" style="position: relative;" v-if="!viewCities">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8"><label>Program Detail</label></div>
+              <div class="col-md-4 text-right"><span class="kt-switch kt-switch--sm kt-switch--icon"><label
+                    class="m-0"><input type="checkbox" checked="checked" v-model="viewPrograms"
+                      @change="showAllRecordEx()"> <span></span></label></span></div>
+            </div>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" key-value="programDetailId"
+              display-value="description" v-model.trim="programDetailId" @input="refreshData" multiple
+              :disabled="viewPrograms">
+            </select-ex>
+            <label class="show-checkBox">All Program</label>
+          </div>
+        </div>
+        <!-- <div class="col-md-3  mt-2">
+          <div class="form-group validated">
+            <div class="row">
+              <label class="form-control-label">Program Detail</label>
+              <div class="mt-2"></div>
+            </div>
+            <select-ex :options="campusProgramLinkList" groupBy="programName" key-value="programDetailId"
+              display-value="description" v-model.trim="programDetailId" @input="refreshData" multiple></select-ex>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="mb-3">{{$t('modal.attendanceAttendenceDashboard.class')}}<span style="color:red">
+                *</span></label>
+            <select-ex :options="classList" keyValue="classId" displayValue="fullName" v-model="classId"
+              @input="refreshData"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-9 text-right">
+          <button class="btn btn-primary btn-sm" title="Clear selection" style="width:40px;margin-top: 24px;"
+          @click="clearSelection()"><i class="fa fa-times"></i></button>
+        <button class="btn btn-info btn-sm" title="Reload selection" style="width:40px;margin-top: 24px;"
+          @click="refreshData()"><i class="fa fa-refresh"></i></button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Scheduled Vs Held
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsK" />
+            </template>
+          </collapsible-widget>
+        </div>
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Held Vs Un-Held
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsH" />
+            </template>
+          </collapsible-widget>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <collapsible-widget>
+            <template slot="title">
+              Attendance: Last 6 Months Comparison
+            </template>
+            <template slot="content">
+              <Highcharts :options="options" />
+            </template>
+          </collapsible-widget>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Attendance: Top 5 Cities
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsL" />
+            </template>
+          </collapsible-widget>
+        </div>
+        <div class="col-md-6">
+          <collapsible-widget>
+            <template slot="title">
+              Attendance: Bottom 5 Cities
+            </template>
+            <template slot="content">
+              <Highcharts :options="optionsM" />
+            </template>
+          </collapsible-widget>
+        </div>
+      </div>
+
+    </template>
+  </portlet-area>
+  <add-edit-model></add-edit-model>
+</page-area>

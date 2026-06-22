@@ -1,0 +1,30 @@
+//    Auther: H.Muhammad Kamran
+//    email: hmuhdkamran@gmail.com
+//    contact: +92 (313 / 333) 9112 845
+
+@import "variables";
+
+@import "fonts";
+
+@import "~assets/fonts/icons/index";
+
+@import "components";
+
+@import "metronica/style";
+
+@import "metronica/global/layout/base/base";
+
+@import "metronica/global/layout/header/skins/base/light";
+@import "metronica/global/layout/header/skins/menu/light";
+
+@import "metronica/global/layout/aside/skins/dark";
+
+@import "metronica/global/layout/brand/skins/dark";
+
+@import "metronica/pages/login/login-1";
+
+@import "metronica/custom/example-1";
+
+@import "login";
+@import "theme-override";
+//@import "./animate.scss";

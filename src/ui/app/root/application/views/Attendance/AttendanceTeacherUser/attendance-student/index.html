@@ -1,0 +1,67 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<modal name="attendance-student" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.attendanceTeacherUser')}}</h3>
+                <p> View </p>
+            </div>
+
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="modal-body staffModel">
+            <grid :data="Ddata" :columns="columns" pre="modal.userAttendanceX.">
+                <template slot="startTime" slot-scope="item">
+                    {{item.row.startTime}} - {{item.row.endTime}}
+                </template>
+                <template slot="action" slot-scope="item">
+                    <label v-for="(model,index) in attendanceStatusList"
+                        :class="addClass(model,item.row.attendenceStatusId)" style="position: relative;">
+                        <input
+                            :disabled="item.row.shouldAbsent ||shouldclickable(model) ||DisableonLeave(item.row.attendenceStatusId)"
+                            type="radio" :value="model.attendenceStatusId" v-model="item.row.attendenceStatusId"
+                            style="visibility: hidden; position: absolute;" />
+                        {{model.code}}
+                    </label>
+                </template>
+            </grid>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <!-- <span style="color: red;"><i>* Student's RollNo Column Must Named As "RollNo" in order to upload excel file.</i></span> -->
+
+            <div class="col-md-12 text-right">
+                <div class="form-group">
+                    <span v-if="isApproved == false">
+                        <vue-xlsx-table @on-select-file="uploadExcel"> Click to Upload Excel File
+                        </vue-xlsx-table>
+                    </span>
+                   
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" :disabled="isApproved == true"
+                        @click="saveModel"><i class="la la-floppy-o"></i>
+                        {{$t('button.save')}}</button>
+                </div>
+                </div>
+        </div>
+    </div>
+   
+</modal>

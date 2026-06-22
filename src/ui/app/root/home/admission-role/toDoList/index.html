@@ -1,0 +1,30 @@
+<widget-box class="col-lg-4 col-md-6 col-12 col-sm-6">
+    <template slot="title">
+        <!-- <div class="row"> -->
+        <!-- <div class="col=md-3"> -->
+        <div class="justify-content-between" style="display: flex">
+
+            <span class="circle bg-warning text-warning  mr-xs" style="font-size: 4px; margin-top:7px; ">.</span>
+
+            <div style="flex-grow: 1">To Do List</div>
+        </div>
+        <br>
+
+    </template>
+    <template slot="content">
+
+        <div>
+            <input class="form form-collection" v-model="listItem" placeholder="What needs to be Done? ">
+            <button class="btn  btn-hover btn-sm btn-primary" @click="insertToList"> Enter</button>
+            <div v-for="(item,index) in toDoList">
+
+                <ul style="margin-left: -40px;"><input type="checkbox" v-model=item.isDone>
+                    <strike v-if="item.isDone">{{item.name}}</strike>
+                    <span v-else>{{item.name}}</span>
+                </ul>
+            </div>
+
+
+        </div>
+    </template>
+</widget-box>

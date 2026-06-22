@@ -1,0 +1,32 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.academiccalendar')}}</h3>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.calendarConfirmation')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.calendarConfirmation')">
+    <template slot="portlet-body">
+      <grid :data="calendarviewList" :columns="columns" pre="modal.calendarConfirmation.">
+        <template slot="isApproved" slot-scope="item">
+          <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="item.row.isApproved==true">Approved</span>
+          <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill"
+            v-if="item.row.isApproved==false">Unapproved</span>
+        </template>
+        <template slot="action" slot-scope="item">
+          <span class="kt-switch kt-switch--sm kt-switch--icon">
+            <label class="m-0">
+              <input type="checkbox" @change="checked(item.row)" v-model="item.row.isApproved"> <span></span>
+            </label>
+          </span>
+        </template>
+      </grid>
+    </template>
+  </portlet-area>
+</page-area>

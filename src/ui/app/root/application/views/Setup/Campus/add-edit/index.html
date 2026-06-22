@@ -1,0 +1,350 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="Campus-add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5"
+    :reset="true" :scrollable="true" :adaptive="true" transition="nice-modal-fade"   top="10" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.setupCampus')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body programcourse">
+            <div class="row" >
+                <div class="col-md-3" v-if="!IsNewRecord">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.setupCampus.recordStatus')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-2 text-center">
+                    <div class="form-group" style="text-align: left;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-control-label">{{$t('modal.setupCampus.isEbook')}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="data.isEbook">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 text-center">
+                    <div class="form-group" style="text-align: left;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-control-label">{{$t('modal.setupCampus.isTestCampus')}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" :true-value="1" :false-value="0" checked="checked"
+                                            v-model="data.isTestCampus">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- <input class="kt-switch kt-switch--sm kt-switch--icon" type="checkbox"
+                                        :true-value="1" :false-value="0" v-model="data.isTestCampus"> -->
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="form-group" style="text-align: left;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-control-label">{{$t('modal.setupCampus.isMerchandise')}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="data.isMerchandise">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-md-2 text-center">
+                    <div class="form-group" style="text-align: left;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-control-label">Delivery Campus</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" v-model="data.isDelivery">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="row">
+                <div class="col-md-12"> -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label :class="!$v.data.institutionId.required"
+                            class="form-control-label">{{$t('modal.setupCampus.BusinessUnit')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="businessUnitList" keyValue="businessUnitId" displayValue="fullName"
+                            v-model.trim="data.businessUnitId" @input="$v.data.businessUnitId.$touch()">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.businessUnitId.$error">
+                            <span v-if="!$v.data.businessUnitId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.setupCampus.institution')}}<span
+                                style="color:red"> *</span></label>
+                        <select-ex :options="institutionList" keyValue="institutionId" displayValue="fullName"
+                            v-model.trim="data.institutionId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.institutionId.$error">
+                            <span v-if="!$v.data.institutionId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                            <div class="form-group validated">
+                                <label class="form-control-label">{{$t('modal.setupCampus.city')}}</label>
+                                <select-ex :options="citylist" keyValue="cityId" displayValue="fullName"
+                                    v-model.trim="cityId" @input="loadSubCity">
+                                </select-ex>
+                            </div>
+                        </div> -->
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label :class="!$v.data.institutionId.required"
+                            class="form-control-label">{{$t('modal.setupCampus.subCity')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="citySubCityList" keyValue="subCityId" displayValue="subCityName"
+                            v-model.trim="data.subCityId" groupBy="cityName" @input="changeTbl">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.subCityId.$error">
+                            <span v-if="!$v.data.subCityId.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.fullName')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control "
+                             v-model.trim="data.fullName"
+                            >
+                        <div class="invalid-feedback" v-show="$v.data.fullName.$error">
+                            <span v-if="!$v.data.fullName.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.fullName.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.code')}}<span style="color:red">
+                                *</span></label>
+                        <input readonly type="text" disabled class="form-control  "
+                            v-model.trim="data.code">
+                        <div class="invalid-feedback" v-show="$v.data.code.$error">
+                            <span v-if="!$v.data.code.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div> -->
+
+                 <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.code')}}<span style="color:red">
+                                *</span></label>
+                        <input  type="text"  class="form-control  "
+                            v-model.trim="data.code" maxlength="10">
+                        <div class="invalid-feedback" v-show="$v.data.code.$error">
+                            <span v-if="!$v.data.code.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.digitCode')}}<span style="color:red">
+                                *</span></label>
+                        <the-mask :class="{'is-invalid': $v.data.digitCode.$error}" :mask="'###'"
+                            v-model="data.digitCode" class="form-control  "
+                            @input="$v.data.digitCode.$touch()" />
+                        <div class="invalid-feedback" v-show="$v.data.digitCode.$error">
+                            <span v-if="!$v.data.digitCode.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.digitCode.minLength">{{$t('validation.minLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.description')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  "
+                            :class="{'is-invalid': $v.data.description.$error}" v-model.trim="data.description"
+                            @input="$v.data.description.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.description.$error">
+                            <span v-if="!$v.data.description.required">{{$t('validation.required')}}</span>
+                            <span v-if="!$v.data.description.maxLength">{{$t('validation.maxLength')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.setupCampus.customerCode')}}<span style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control  "
+                                :class="{'is-invalid': $v.data.customerCode.$error}" v-model.trim="data.customerCode"
+                                @input="$v.data.description.$touch()">
+
+                        <!-- <the-mask :class="{'is-invalid': $v.data.customerCode.$error}" :mask="'###############'"
+                            v-model.trim="data.customerCode" class="form-control form-control-sm"
+                            @input="$v.data.customerCode.$touch()" /> -->
+                        <div class="invalid-feedback" v-show="$v.data.customerCode.$error">
+                            <span v-if="!$v.data.customerCode.required">{{$t('validation.required')}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 validated">
+                    <label class="form-control-label">{{$t('modal.setupCampus.ownership')}}</label>
+                    <select-ex :options="franchiseData" keyValue="franchiseId" displayValue="description"
+                        v-model.trim="data.franchiseId">
+                    </select-ex>
+                    <!-- <div class="invalid-feedback" v-show="$v.data.franchiseId.$error">
+                                            <span v-if="!$v.data.franchiseId.required">{{$t('validation.required')}}</span>
+                                        </div> -->
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-control-label">
+                        {{$t('modal.setupCampus.groupLogo')}}
+                    </label>
+                    <div v-if="!data.logo" class="dropzone-panel">
+                        <div class="img-wrapper">
+                            <div class="img-icon">
+                                <label for="AttachFile" class="btn btn-primary">Attach File</label>
+                                <input type="file" class="dropzone-select" style="display: none;" id="AttachFile"
+                                    @input="onFileChange($event)">
+                            </div>
+                        </div>
+                        <span class="form-text text-muted">Max file size is 1MB.</span>
+                    </div>
+                    <div class="col-md-4" v-else>
+                        <div class="group-logo-img">
+                            <img :src="data.logo" />
+                            <span text="Delete image">
+                                <button class="group-logo-del" vs-type="border" vs-icon="close" @click="removeImage">
+                                    <i class="la la-trash"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.setupCampus.SmsMask')}}</label>
+                        <select-ex :options="smsapilist" keyValue="smsApId" displayValue="mask"
+                            v-model.trim="data.smsApId">
+                        </select-ex>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            Email Prefix</label>
+                        <input type="text" class="form-control  "
+                                 v-model.trim="data.emailPrefix">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+    <div class="modal-footer">
+        <div class="row text-right">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i>
+                    {{$t('button.save')}}</button>
+            </div>
+        </div>
+    </div>
+    <!-- <institution v-on:submit="loadInstitution"></institution>
+    <SubCity v-on:submit="loadSubCity"></SubCity>
+    <Address v-on:submit="loadAddress"></Address>
+    <City v-on:submit="loadCity"></City> -->
+</modal>

@@ -1,0 +1,64 @@
+<modal name="staff-rec" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+  :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+  @before-open="beforeModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-md-6 modal_heading">
+        <h3 class="modal-title">Teacher Hod</h3>
+        <p>Add Record</p>
+      </div>
+      <div class="col-md-6 text-right">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+          <i class="la la-close"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body staffModel">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr role="row">
+                <th>Sr#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Select</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item,index) in data">
+                <td>{{index+1}}</td>
+                <td class="align-middle"> {{item.fullName}}</td>
+                <td class="align-middle">{{item.email}}</td>
+                <!-- <td class="align-middle"><label class="kt-checkbox kt-checkbox--brand"
+                    style="margin-bottom: 14px !important;"></label><input type="checkbox" v-model="item.isChecked"
+                    @change="ResetOthers(item.ide)"></td> -->
+                <td>
+                  <label class="kt-checkbox kt-checkbox--brand" style="margin-bottom: 14px !important;">
+                    <input type="checkbox" v-model="item.isChecked" @change="ResetOthers(item.ide)">
+                    <span></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button @click="save" class="btn btn-light btn-hover btn-sm btn-primary">
+            <i class="la la-save"></i>{{$t('button.insert')}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</modal>

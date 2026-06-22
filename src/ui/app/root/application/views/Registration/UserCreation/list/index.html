@@ -1,0 +1,210 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<page-area>
+
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.registration')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.enrollmentBatch')}} </a>
+    </div>
+  </template>
+
+
+  <portlet-area action="1" :title="$t('navigation.enrollmentBatch')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.session')}}</label>
+            <select-ex @input="loadCityCampus" :options="sessionList" keyValue="sessionId" displayValue="fullName"
+              v-model.trim="sessionId">
+            </select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.campus')}}</label>
+            <select-ex @input="loadProgramsOfCampus" :options="campusCityList" groupBy="cityName" keyValue="campusId"
+              displayValue="campusName" v-model.trim="campusId"></select-ex>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.program')}}</label>
+            <select-ex @input="loadClass" :options="campusProgramLinkList" groupBy="programName"
+              keyValue="campusProgramId" displayValue="description" v-model.trim="campusProgramId"></select-ex>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.class')}}</label>
+            <select-ex @input="refreshData" :options="classList" groupBy="cityName" keyValue="classId"
+              displayValue="fullName" v-model.trim="classid"></select-ex>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.gender')}}</label>
+            <select-ex @input="refreshData" :options="genderModel" keyValue="genderId" displayValue="description"
+              v-model.trim="idGender">
+            </select-ex>
+            <!-- <select @change="refreshData()" v-model="idGender" class="form-control form-control-sm" required>
+                <option :value="item.genderId" v-for="item in genderModel">{{item.description}}
+                </option>
+              </select> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.admissionType')}}</label>
+            <select-ex @input="refreshData" :options="admissionTypeList" keyValue="admissionTypeId"
+              displayValue="fullName" v-model.trim="admissionTypeId"></select-ex>
+            <!-- <select @change="refreshData()" v-model="admissionTypeId" class="form-control form-control-sm" required>
+                <option :value="model.admissionTypeId" v-for="(model,index) in admissionTypeList">
+                  {{model.fullName}}
+                </option>
+              </select> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>{{$t('modal.enrollmentBulk.sectionName')}}</label>
+            <select-ex :options="sectionList" keyValue="sectionId" displayValue="sectionName" v-model.trim="sectionId"
+              @input="showRange()">
+            </select-ex>
+
+          </div>
+        </div>
+        <div v-if="enableBatch" class="col-md-3">
+          <div class="form-group">
+            <label>Batch</label>
+            <!-- <select-ex :options="batchList" keyValue="num" displayValue="num" v-model="batchNo"> -->
+            <!-- </select-ex> -->
+
+            <select-ex :options="batchLinkList" keyValue="batchId" displayValue="fullName" v-model="batchId"></select-ex>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- <div>{{remaining}}</div> -->
+      <grid :data="datas" :columns="columns" pre="modal.enrollmentBulk.">
+        <!-- <template slot="isSelected-header" slot-scope="item">
+          <span style="width: 20px;">
+
+
+
+            <label class="kt-checkbox kt-checkbox--brand" style="margin-top: 4px;">
+              <input type="checkbox">&nbsp;<span></span>
+            </label>
+          </span>
+        </template> -->
+
+        <template slot="action-area">
+          <!-- <button v-if="canAdd" @click="assign" :disabled="!allowsubmit()"
+            class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i>{{$t('button.assign')}}
+          </button> -->
+          <button @click="refreshData" class="btn btn-hover btn-sm btn-outline-primary">
+            <i class="la la-refresh"></i> {{$t('button.reload')}}
+          </button>
+          <button v-if="canAdd" @click="insertModel" :disabled="!allowsubmit()"
+            class="btn btn-light btn-hover btn-sm btn-outline-primary">
+            <i class="la la-save"></i>{{$t('button.save')}}
+          </button>
+          <div >
+            <span style="margin-top: 20px; font-size: 13px;padding: 16px;" class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill"
+            v-if="remaining.length>0"> {{remaining}}</span>
+           </div>
+        </template>
+        
+
+        <template slot="range" slot-scope="item">
+          <label>{{item.row.range}}</label>
+        </template>
+        <template slot="rollNo" slot-scope="item">
+          <input :disabled="sectionId.length==0" @blur="enableCheckBox(item.row)" class="form-control form-control-sm" style="width: 120px;"
+            v-model.trim="item.row.rollNo" type="text" placeholder="RollNo" />
+          <div v-if="item.isDisabled" class="input-group-append">
+            <span class="input-group-text" style="color:red;" id="basic-addon2">!</span>
+          </div>
+        </template>
+        <template slot="isSelected" slot-scope="item">
+          <span style="width: 20px;">
+            <label class="kt-checkbox kt-checkbox--brand">
+              <input type="checkbox"
+                :disabled="item.row.isDisabled || item.row.rollNo.length==0"
+                v-model="item.row.isSelected" @change="check(item.row)">&nbsp;<span></span>
+
+            </label>
+            <!-- <label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid" style="margin-top: 4px;">
+              <input type="checkbox" :disabled="item.row.isDisabled" v-model="item.row.isSelected"
+                @change="check(item.row)">&nbsp;<span></span>
+            </label> -->
+          </span>
+        </template>
+
+      </grid>
+    </template>
+  </portlet-area>
+  <div class="last-popup-outer" v-if="showTopPop">
+    
+    <div class="last-popup" style="top: 69% !important;">
+        <div class="modal-header" style="padding: 15px;">
+            <h5 class="modal-title text-dangerous" style="margin-top: 15px; color: red;" id="exampleModalLabel">Enrollment Duplication Alert!</h5>
+            <button type="button" class="close" @click="ClosethePopUp" style="margin: 0px !important;" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body scrollable-popup-body">
+            <p> Student is already Enrolled with same CNIC number, <br> following are the details:</p>
+           
+                <div class="row">
+                  <div class="col-md-6 bordered-box"  v-for="item in resultOfstudent">
+                  <div class="scrollable-content">
+                    <p><b>Reference Number :  </b>{{item.refrenceNo}}</p>
+                    <p><b>Roll Number :     </b>{{item.rollNo}}</p>
+                    <p><b>Student Name :     </b>{{item.studentName}}</p>
+                    <p><b>Student CNIC # :   </b>{{item.studentCNIC}}</p>  
+                    <p><b>Campus Name :     </b>{{item.campusName}}</p>
+                    <p><b>Program Name :     </b>{{item.programName}}</p>
+                    <p><b>Class :     </b>{{item.className}}</p>
+                  </div>
+               
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" @click="ClosethePopUp" >Ok</button>
+                </div>   
+          </div>
+         
+    </div>
+
+    <div class="overlay-outer">
+
+    </div>
+    
+</div>
+
+</page-area>
+
+
+  

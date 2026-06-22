@@ -1,0 +1,64 @@
+[
+    [
+        {
+            "challanNote": "<ul>&#9679;Dues once paid are not refundable</ul>",
+            "customerCode": "5220222",
+            "challanNo": "0001019200000015",
+            "userName": "admin@cms.edu"
+        }
+    ],
+    [
+        {
+            "lazyLoader": {},
+            "feeChallanId": "ac3dd48e-cfb0-4e6c-bb71-85475e11dbfa",
+            "feeHeadId": "5b7b8c37-e0fb-4e51-81a3-4053185af73f",
+            "studentFeeStructureId": "8bc5fea4-9ed8-11e9-9404-00155d0a1e04",
+            "admissionFormId": "3edbcb2e-c719-4fcb-9dd8-922ededce7cb",
+            "studentChallanId": "8bc5feac-9ed8-11e9-9404-00155d0a1e04",
+            "concessionDetailId": null,
+            "campusId": "a2373a74-5b53-432e-b88e-a4f1fe7bdb97",
+            "programDetailId": "0c316f30-91a5-4c09-8342-d91efdf0bfdc",
+            "installmentNo": 2,
+            "challanNo": "0001019200000015",
+            "feeHead": "Tuition Fee",
+            "fullName": "HAIDer",
+            "refferenceNo": "SMUSFSCEMM1900006",
+            "fatherName": "BALti",
+            "concessionName": null,
+            "campusName": "Campus Management System",
+            "description": "Engineering Morning (Morning - English)",
+            "feeAmount": 16667,
+            "challanAmount": 16667,
+            "payableAmount": 16667,
+            "dueDate": "2019-08-15T05:00:00+05:00",
+            "paidDate": null,
+            "statusId": 1,
+            "loggerId": "8bc5fea5-9ed8-11e9-9404-00155d0a1e04",
+            "customerCode": "5220222",
+            "businessUnit": "Education Excellence Ltd",
+            "totalMarks": "1100",
+            "obtainMarks": "965",
+            "sectionName": null
+        }
+    ],
+    [
+        {
+            "lazyLoader": {},
+            "campusBankLinkId": "fc7258b7-1f93-4741-8573-4890d1a49ae9",
+            "campusId": "a2373a74-5b53-432e-b88e-a4f1fe7bdb97",
+            "bankName": "Punjab Bank",
+            "accountNo": "12115155454",
+            "bankId": "88ed1e29-6e00-4f94-a0e7-7749864e54b3",
+            "statusId": 1
+        },
+        {
+            "lazyLoader": {},
+            "campusBankLinkId": "17cb2861-16b7-48ed-9f27-4ffa48dcdc70",
+            "campusId": "a2373a74-5b53-432e-b88e-a4f1fe7bdb97",
+            "bankName": "faisal",
+            "accountNo": "16564654",
+            "bankId": "e8326bed-ec92-4fc4-9ea0-fcb28360823c",
+            "statusId": 1
+        }
+    ]
+]

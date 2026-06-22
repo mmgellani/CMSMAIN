@@ -1,0 +1,77 @@
+<page-area>
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title">{{$t('navigation.teachermng')}}</h3>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.studentAttendance')}} </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.studentAttendance')">
+        <template slot="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" placeholder="Search" class="form-control">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sr.No
+                                </th>
+                                <th>
+                                    Class
+                                </th>
+                                <th>
+                                    Section
+                                </th>
+                                <th>
+                                    Slot
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    First Year
+                                </td>
+                                <td>
+                                    EV-36
+                                </td>
+                                <td>
+                                    09:00 AM - 10:00AM
+                                </td>
+                                <td>
+                                    <span
+                                        class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Marked</span>
+                                </td>
+                                <td>
+                                    <button title="Edit" type="button"
+                                        class="btn btn-outline-primary btn-icon btn-sm btn-circle"><i
+                                            class="la la-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </template>
+    </portlet-area>
+</page-area>

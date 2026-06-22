@@ -1,0 +1,21 @@
+<li v-if="menuItem.childrenLinks" :class="currentClass">
+    <a :href="'#' + menuItem.name" data-toggle="collapse" data-parent="#sidebar" class="collapsed" aria-expanded="false"
+        @click="() => togglePanelCollapse(menuItem.link)">
+        <span class="icon">
+            <i :class="menuItem.iconName"></i>
+        </span>
+        {{menuItem.header}} <sup v-if="menuItem.label" class="headerLabel">{{menuItem.label}}</sup>
+        <i class="toggle fa fa-angle-down"></i>
+    </a>
+    <ul :id="menuItem.name" class="collapse" :visible="menuItem.isActive">
+        <nav-link v-for="link in menuItem.childrenLinks" :activeItem="link.activeItem" :menuItem="link" />
+    </ul>
+</li>
+<li v-else :class="currentClass">
+    <router-link :to="menuItem.index !== 'menu' && menuItem.link">
+        <span class="icon">
+            <i :class="menuItem.iconName"></i>
+        </span>
+        {{menuItem.header}} <sup v-if="menuItem.label" class="headerLabel">{{menuItem.label}}</sup>
+    </router-link>
+</li>

@@ -1,0 +1,159 @@
+<page-area>
+
+
+    <template slot="breadcrumbs-area">
+        <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.fee')}} </a>
+        </div>
+        <span class="kt-subheader__separator kt-hidden"></span>
+        <div class="kt-subheader__breadcrumbs">
+            <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
+            <a href="" class="kt-subheader__breadcrumbs-link">
+                {{$t('navigation.studentChallanDetail')}} </a>
+        </div>
+    </template>
+
+    <portlet-area action="1" :title="$t('navigation.studentChallanDetail')">
+        <template slot="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Enter Roll No/Reference No</label>
+                        <input type="text" class="form-control" v-model.trim="filterString"
+                            v-on:keydown.enter="loadStudents">
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                      <label>{{$t('modal.attendanceTeacherUser.class')}}</label>
+                      <select-ex @input="loadStudents" :options="classList" keyValue="classId" displayValue="fullName"
+                        v-model="classId">
+                      </select-ex>
+                    </div>
+                  </div> -->
+            </div>
+           
+            <!-- <grid :data="studentRecord" :columns="columns" pre="modal.studentChallanDetail."> -->
+            <grid :data="displayList" :columns="columns" pre="modal.attendanceReports.">
+                <template slot="action" slot-scope="item">
+                    <button @click="viewData(item.row.rollNo,item.row.classId)"  v-if="canRead" title="View Report" type="button"
+                        class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+                        <i class="la la-file-text"></i>
+                    </button>
+
+
+                </template>
+                <!-- <template slot="dueDate" slot-scope="item">
+                    {{item.row.dueDate | formatDMY}}
+
+                </template>
+                <template slot="paidDate" slot-scope="item">
+                    {{item.row.paidDate | formatDMY}}
+                    <button v-if="item.row.paidDate==null" 
+                    @click="generateChallanReport(item.row.challanNo,item.row.installmentNo,item.row.challanTypeId,item.row.refferenceNo,item.row.admissionFormId)"
+                        class=" btn btn-outline-primary btn-icon btn-sm btn-circle" data-toggle="tooltip"
+                        data-placement="top" title="Print Challan">
+                        <i class="fa fa-print"></i>
+                    </button>
+
+                </template> -->
+
+            </grid>
+
+
+        </template>
+    </portlet-area>
+<challan-info></challan-info>
+</page-area>
+
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-title">
+                Student Challan Detail
+            </div>
+
+            <div class="row mt-4" style="overflow: visible !important">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" v-model="filterString"
+                                placeholder="Enter Here " v-on:keydown.enter="getstudent">
+                            <label>Enter Roll No </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <p> <b> Name: </b>{{studentName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <p> <b> Father Name: </b>{{fatherName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <p><b> Roll No: </b>{{rollNo}}</p>
+                </div>
+                <div class="col-md-3">
+                    <p><b> Program: </b>{{description}}</p>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div v-if="canRead">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive" v-if="canRead ">
+                                <div class="dataTables_wrapper no-footer">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Installment No</th>
+                                                <th></th>
+                                                <th>Challan No.</th>
+                                                <th> </th>
+                                                <th>Due Date</th>
+                                                <th> </th>
+                                                <th>Challan Type</th>
+                                                <th> </th>
+                                                <th>Concession/Remarks</th>
+                                                <th></th>
+                                                <th>Amount</th>
+                                                <th> </th>
+                                                <th>Paid Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in studentRecord">
+
+                                                <td>{{item.installmentNo}}</td>
+                                                <td></td>
+
+                                                <td> {{item.challanNo}} </td>
+                                                <td> </td>
+                                                <td> {{item.dueDate | formatDMY}}</td>
+                                                <td> </td>
+                                                <td> {{item.fullName}}</td>
+                                                <td> </td>
+                                                <td> {{item.concession}}</td>
+                                                <td> </td>
+                                                <td> {{item.feeAmount}} </td>
+                                                <td> </td>
+                                                <td> {{item.paidDate | formatDMY}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

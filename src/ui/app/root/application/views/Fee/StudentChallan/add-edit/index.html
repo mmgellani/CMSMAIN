@@ -1,0 +1,141 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+
+
+<modal name="student-challan-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5"
+  :reset="true" :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+  @before-open="beforeModalOpen">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-2">
+          <a href="#" @click="cancel" class="cancel"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="col-md-8 text-centre">
+          <div class="modal-title">
+
+            StudentChallan&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+          </div>
+        </div>
+
+
+        <div class="col-md-2 text-right">
+          <div class="row">
+            <div class="col-md-12">
+              <div v-if="manualSubinstallment==true">
+                <div class="form-group">
+                  <select @change="filterData" v-model="installNo" class="form-control form-control-sm" required>
+                    <option value="" disabled>Select Installment No</option>
+                    <option v-for="item in 12" :value="item">{{item}}</option>
+                  </select>
+
+                  <!-- <label>Select Installment No</label> -->
+                </div>
+              </div>
+              <div v-if="manualSubinstallment==false">
+                <div class="form-group">
+                  <select @change="filterData" v-model="installNo" class="form-control form-control-sm" required>
+                    <option value="" disabled>Select Installment No</option>
+                    <option v-for="item in 12" :value="item">{{item}}</option>
+                  </select>
+                  <!-- <label>Select Installment No</label> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="form-group m-form__group m--margin-top-10">
+        <div class="row ModeColor">
+          <div class="col-md-4 mt-4">
+            <h3 class="mt-3">RefNo: {{RefrenceNo}}
+            </h3>
+            <h3>Name: {{FullName}}</h3>
+            <h3 style="margin-top: 10px">Program:{{program}}</h3>
+          </div>
+          <div class="col-md-8">
+            <table class="table">
+              <thead>
+                <tr role="row">
+                  <th>FeeHeads </th>
+                  <th>FeeAmount</th>
+                  <th>Concession (if any)</th>
+                  <th>PayableAmount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in Tempdata">
+                  <td class="v-align-middle">{{item.feeHead}}</td>
+                  <td class="v-align-middle">{{item.feeAmount | amount}}</td>
+                  <td class="v-align-middle">{{item.concessionFullName}}</td>
+                  <td class="v-align-middle">{{item.payableAmount | amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <table class="table" v-if="manualSubinstallment==false">
+          <thead>
+            <tr role="row">
+              <th>
+                Challan No
+              </th>
+              <th>
+                Paid Date
+              </th>
+              <th>
+                Due Date
+              </th>
+              <th>
+                Challan Amount
+              </th>
+              <th>
+                Print Challan
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in TempChallandata ">
+              <td class="align-middle">
+                {{item.challanNo}}
+              </td>
+              <td class="align-middle">
+                {{item.paidDate | formatDMY}}
+              </td>
+              <td class="align-middle">
+                {{item.dueDate | formatDMY}}
+              </td>
+              <td class="align-middle">
+                {{item.feeAmount | amount}}
+              </td>
+
+              <td class="align-middle">
+                <button type="button" v-if="item.paidDate == null && savedisable" class="btn btn-primary btn-sm tbl-btn"
+                  @click="generateChallanReport(item.challanNo)">Print Challan</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn btn-danger ripple" @click="cancel">Close</button>
+          <!-- <button class="btn btn-primary" @click="SaveSubInstallment">Save</button> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <report-engine :data="challanRData" :path="report"></report-engine> -->
+  </div>
+</modal>

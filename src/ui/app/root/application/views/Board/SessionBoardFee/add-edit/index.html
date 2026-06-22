@@ -1,0 +1,199 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true" :scrollable="true"
+    :adaptive="false" transition="nice-modal-fade" width="40%" top="10" height="auto" @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="modal-title">
+
+                        Board Session Fee &nbsp;-&nbsp;
+                        <span class="font12">{{title}}</span>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div role="group" aria-label="..." class="m-btn-group m-btn-group--pill btn-group close" v-if="!IsNewRecord">
+                        <input class="switch" type="checkbox" v-model="isActive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control" v-model="data.sessionId" required>
+                            <option v-for="(model,index) in SessionList" :value="model.sessionId">{{model.fullName}}</option>
+                        </select>
+                        <label>Session</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control" v-model="data.boardId" required>
+                            <option v-for="(model,index) in boardList" :value="model.boardId">{{model.fullName}}</option>
+                        </select>
+                        <label>Board</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group ">
+                    <select class="form-control" @change="loadFeeHeads()" v-model="challanTypeId">
+                        <option :value="model.challanTypeId" v-for="(model,index) in challanTypeList">{{model.fullName}}
+                        </option>
+                    </select>
+                    <label >Challan Type</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group ">
+                    <select class="form-control" v-model="data.feeHeadId" @change="loadFeeHeads">
+                        <option :value="model.feeHeadId" v-for="(model,index) in feeHeadList">{{model.fullName}}
+                        </option>
+                    </select>
+                    <label >FeeHead</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="=row">
+        <div class="col-md-6">
+                <label>Amount</label>
+            <input type="number"  class="form-control" v-model="data.amount">
+            
+        </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row text-right">
+            <div class="col-md-12">
+                <button class="btn btn-danger ripple" @click="cancel">Close</button>
+
+                <button class="btn btn-primary" @click="saveModel">Save</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</modal> -->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" width="60%" height="auto"
+    @before-open="beforeModalOpen">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h4 class="modal-title">{{$t('navigation.sessionBoardFee')}}</h4>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.boardSessionBoardFee.session')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="SessionList" keyValue="sessionId" displayValue="fullName"
+                            v-model.trim="data.sessionId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.sessionId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.boardSessionBoardFee.board')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <select-ex :options="boardList" keyValue="boardId" displayValue="fullName"
+                            v-model.trim="data.boardId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.boardId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.boardSessionBoardFee.challanType')}}
+                            <!-- <span style="color:red">
+                                *</span> -->
+                            </label>
+                        <select-ex :options="challanTypeList" keyValue="challanTypeId" displayValue="fullName"
+                            v-model.trim="challanTypeId" @input="loadFeeHeads">
+                        </select-ex>
+                        <!-- <div class="invalid-feedback" v-show="$v.data.challanTypeId.$error">
+                            {{$t('validation.required')}}
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">
+                            {{$t('modal.boardSessionBoardFee.feeHead')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="feeHeadList" keyValue="feeHeadId" displayValue="fullName"
+                            v-model.trim="data.feeHeadId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.data.feeHeadId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> {{$t('modal.boardSessionBoardFee.amount')}}<span
+                                style="color:red">
+                                *</span></label>
+                        <input type="text" class="form-control form-control-sm"
+                            :class="{'is-invalid': $v.data.amount.$error}" v-model.trim="data.amount"
+                            @input="$v.data.amount.$touch()">
+                        <div class="invalid-feedback" v-show="$v.data.amount.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row text-right">
+
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+
+                    <button class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

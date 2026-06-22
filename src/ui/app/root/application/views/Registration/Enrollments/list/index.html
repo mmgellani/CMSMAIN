@@ -1,0 +1,65 @@
+<!--
+*   Authr: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-title">
+        Enrollments
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" v-model="filterString" required />
+              <label for="">Search</label>
+            </div>
+          </div>
+          <div class="col-md-9 text-right">
+            <button v-if="canAdd" @click="insertModel" class="b-add">
+              <feather icon="plus-circle"></feather>
+            </button>
+            <button @click="refreshData" class="b-refresh">
+              <feather icon="refresh-ccw" ></feather>
+            </button>
+          </div>
+        </div>
+        <div v-if="canRead">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>EnrollmentId</th>
+                <th>AdmissionFormId</th>
+                <th>SectionCourseLinkId</th>
+                <th>Status</th>
+                <th>LoggerId</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in data">
+                <td class="v-align-middle">{{item.enrollmentId}}</td>
+                <td class="v-align-middle">{{item.admissionFormId}}</td>
+                <td class="v-align-middle">{{item.sectionCourseLinkId}}</td>
+                <td class="v-align-middle">{{item.statusId}}</td>
+                <td class="v-align-middle">{{item.loggerId}}</td>
+
+                <td>
+                  <a href="#" class="btn btn-primary" @click="editModel(item)" v-if="canEdit"><feather icon="edit" xclass="b-edit"></feather></a>
+                  <a href="#" class="btn btn-danger" @click="deleteModel(item)" v-if="canDelete"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <add-edit-model v-on:submit="refreshData"></add-edit-model>
+  <delete-model v-on:submit="refreshData"></delete-model>
+</div>

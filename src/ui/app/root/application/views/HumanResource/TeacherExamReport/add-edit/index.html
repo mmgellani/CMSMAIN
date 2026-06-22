@@ -1,0 +1,134 @@
+<modal name="cal-add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="40%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">Academic Calendar</h3>
+                <p>{{title}}</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label>Academic Calendar Type
+                            <span style="color:red"> *</span>
+                        </label>
+                        <!-- <label>{{$t('navigation.boards')}}</label> -->
+                        <select-ex :options="academicCalendarTypeList" @input="showdisabled(), GetChapters()"
+                            keyValue="academicCalendarTypeId" displayValue="fullName"
+                            v-model="academicCalendarModel.academicCalendarTypeId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.academicCalendarModel.academicCalendarTypeId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"><span style="color:red"> *</span>Holiday Type</label>
+                        <select-ex :options="holidaytypelist" :disabled="!showdisabled()" keyValue="holidayTypeId"
+                            displayValue="name" v-model.trim="academicCalendarModel.holidayTypeId">
+                        </select-ex>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{$t('navigation.boards')}}<span style="color:red"> *</span></label>
+                        <select-ex :options="boardList" :disabled="showdisabled()" keyValue="boardId"
+                            displayValue="fullName" v-model="academicCalendarModel.boardId" @input="GetChapters()">
+                        </select-ex>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <div class="form-group validated m-0">
+                        <label class="form-control-label">Course<span style="color:red">
+                                *</span></label>
+
+                        <select-ex :options="programCourse" :disabled="showdisabled()" keyValue="courseId"
+                            displayValue="fullName" v-model.trim="courseId" @input="GetChapters()">
+                        </select-ex>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label class="form-control-label"> <span
+                                style="color:red">
+                                *</span>Name</label>
+                        <input type="text" class="form-control form-control-sm"
+                            v-model.trim="fullName"
+                            >
+                      
+                    </div>
+                </div> -->
+                <div class="col-md-6 form-group">
+                    <label>{{$t('Chapters')}}<span style="color:red">
+                            *</span></label>
+                    <select-ex :options="data" :disabled="showdisabled()" @input="loadTopics()" keyValue="chapterId"
+                        displayValue="fullName" v-model="chapterid">
+                    </select-ex>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group validated">
+                        <label>{{$t('modal.TopicVideoChapterLink.topicName')}}<span style="color:red">
+                                *</span></label>
+                        <select-ex :options="topicList" :disabled="showdisabled()" keyValue="topicId"
+                            displayValue="title" v-model="academicCalendarModel.topicId">
+                        </select-ex>
+                        <div class="invalid-feedback" v-show="$v.academicCalendarModel.topicId.$error">
+                            {{$t('validation.required')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" v-if="showdisabled()">
+                    <div class="form-group validated">
+                        <label>Exam Type<span style="color:red">
+                                *</span></label>
+                        <input v-model="examType.name" type="text" class="form-control form-control-sm">
+
+                    </div>
+                </div>
+
+                <div class="col-md-2" v-if="IsNewReord">
+                    <label for="customControlAutosizing">Full Week</label>
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom" style="border: none !important;">
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" @click="viewWeeks($event)">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="col-md-10" v-if="showdisabled()">
+                    <div class="form-group validated">
+                        <label class="form-control-label"><span style="color:red">
+                                *</span>Description</label>
+                        <textarea rows="4" cols="50" class="form-control form-control-sm"
+                            v-model.trim="academicCalendarModel.description" placeholder="Enter Description">
+                    </textarea>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i
+                            class="la la-close"></i>
+                        {{$t('button.close')}}</button>
+                    <button class="btn btn-light btn-hover btn-sm btn-primary" @click="save"><i
+                            class="la la-floppy-o"></i> {{$t('button.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal>

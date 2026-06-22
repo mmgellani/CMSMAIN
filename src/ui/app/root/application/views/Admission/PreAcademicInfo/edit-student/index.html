@@ -1,0 +1,126 @@
+<modal name="edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="bounce" top="10" height="auto" width="60%"
+    @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('modal.preAcademicInfo.preAcademicInfo')}}</h3>
+                <p> {{title}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-4 mt-3" v-if="!IsNewRecord">
+                    <div class="form-group">
+                        <label class="kt-option kt-option-custom">
+                            <span class="kt-option__label">
+                                <span class="kt-option__head">
+                                    <span class="kt-option__title mt-1">
+                                        {{$t('modal.studentDetails.status')}}
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                <label class="m-0">
+                                    <input type="checkbox" checked="checked" v-model="isActive">
+                                    <span></span>
+                                </label>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group validated">
+                        <label class="form-control-label">{{$t('modal.studentDetails.degree')}}</label>
+                        <span style="color:red"> *</span>
+                        <select v-model="degreeId" class="form-control form-control-sm" @change="loadPreacademicDegree">
+                        <option v-for="items in degreeList":value="items.degreeId">{{items.fullName}}</option>
+                      </select>
+                        <!-- <select-ex :options="degreeList" keyValue="degreeId" displayValue="fullName"
+                            v-model.trim="degreeId" @input="loadPreacademicDegree">
+                        </select-ex> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group validated m-0">
+                                    <label class="form-control-label">{{$t('modal.studentDetails.course')}}</label>
+                                    <span style="color:red"> *</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group validated m-0">
+                                    <label class="form-control-label">{{$t('modal.studentDetails.totalMarks')}}</label>
+                                    <span style="color:red"> *</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group validated m-0">
+                                    <label
+                                        class="form-control-label">{{$t('modal.studentDetails.obtainedMarks')}}</label>
+                                    <span style="color:red"> *</span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right" style="margin-top:24px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div v-for="(item,index) in academicsArray" style="margin-top:12px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group validated m-0">
+                                    <select-ex :options="programCourse" keyValue="courseId" displayValue="fullName"
+                                        v-model.trim="item.courseId">
+                                    </select-ex>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group validated m-0">
+                                    <the-mask :mask="'#####'" class="form-control form-control-sm"
+                                        v-model="item.totalMarks" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group validated m-0">
+                                    <the-mask :mask="'#####'" class="form-control form-control-sm"
+                                        v-model="item.obtainMarks" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button class="btn btn-outline-primary btn-icon btn-sm btn-circle"
+                                    v-if="index==academicsArray.length-1" @click="addAcademics"><i
+                                        class="fa fa-plus"></i></button>
+                                <button class="btn btn-outline-danger btn-icon btn-sm btn-circle"
+                                    @click="deleteAcademics(index)" v-if="academicsArray.length>1"><i
+                                        class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <span v-if="checkMarks(item.totalMarks,item.obtainMarks)"
+                            style="font-size: 11px;color: red;">Obtained Marks cannot be greter than Total Marks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}</button>
+                <button class="btn btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i>
+                    {{$t('button.save')}}</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</modal>

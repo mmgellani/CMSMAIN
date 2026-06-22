@@ -1,0 +1,163 @@
+<page-area>
+  <template slot="breadcrumbs-area">
+    <h3 class="kt-subheader__title">{{$t('navigation.qserup')}}</h3>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.registration')}} </a>
+    </div>
+    <span class="kt-subheader__separator kt-hidden"></span>
+    <div class="kt-subheader__breadcrumbs">
+      <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+      <span class="kt-subheader__breadcrumbs-separator"></span>
+      <a href="" class="kt-subheader__breadcrumbs-link">
+        {{$t('navigation.MicrosoftStudentPassword')}} </a>
+    </div>
+  </template>
+
+  <portlet-area action="1" :title="$t('navigation.MicrosoftStudentPassword')">
+    <template slot="portlet-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+
+            <label>Student Roll No</label>
+            <input type="input" style="width: 100%" placeholder="Enter Roll No" class="form-control" v-model="rolnumber" required>
+            
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="d-block">&nbsp;</label>
+            <button class="btn btn-light btn-hover btn-sm btn-primary  mt-1" @click="clickRollno()"><i
+                class="la la-floppy-o"></i> Query</button>
+          </div>
+        </div>
+      </div>
+      <div v-if="profileList">
+
+        <table class="table table-striped">
+
+          <tbody>
+            <tr>
+
+              
+              <td><b>Student Name</b></td>
+              <td><b>Student CNIC</b></td>
+               
+            </tr>
+            <tr>
+
+              
+              <td>{{studentProfileList.studentName}}</td>
+              <td>{{studentProfileList.studentCNIC}}</td>
+               
+            </tr>
+            <tr>
+              <td><b>Program Name</b></td>
+              <td><b>Section Name</b></td>
+           
+              
+              
+              
+            </tr>
+            <tr>
+              <td>{{studentProfileList.programName}}</td>
+              <td>{{studentProfileList.sectionName}}</td>
+            
+        
+              
+            </tr>
+            <tr>
+
+              <td><b>Student Contact No</b></td>
+              <td><b>Parent Contact No</b></td>
+            </tr>
+            <tr>
+
+              <td>{{studentProfileList.studentContactNo}}</td>
+              <td>{{studentProfileList.parentContactNo}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <b>{{studentProfileList.password}}</b>  -->
+        <!-- <h6>Dear Student,Thank you for contacting CMS Helpline. As per your request the new password of your Microsoft  account is: <input type="input" style="width: auto !important;display: inline-block;" placeholder="Enter Password" class="form-control" v-model="sendPassword" required>
+        </h6> -->
+        <div class="infoList mb-5 text-center ">
+         <textarea name="" id="" class="p-3 border bg-light"  style="width:100%" cols="2"  rows="2" v-model="sendPassword"  >
+               
+
+
+            </textarea>
+
+        </div>
+
+        
+        
+        
+
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label for="stdMnumber" class="mr-4">Student Mobile number</label>
+                <input type="radio" id="stdMnumber" value="stdMnumber" v-model="smsTOSent" :disabled="!cellnos" class="cursor-pointer	form-check-input"
+                  v-on:change="changeOn('checked')">
+              </div>
+              <div class="col-md-4">
+                <label for="prtMnumber" class="mr-4">Parent Mobile number</label>
+                <input type="radio" id="prtMnumber" value="prtMnumber" v-model="smsTOSent" :disabled="!cellnop" class="cursor-pointer form-check-input	"
+                  v-on:change="changeOn('checked')">
+              </div>
+              <div class="col-md-4">
+                <label for="bothMnumber" class="mr-4">Both Mobile numbers</label>
+                <input type="radio" id="bothMnumber" value="bothMnumber" v-model="smsTOSent" class="cursor-pointer	form-check-input"
+                  v-on:change="changeOn('checked')">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-md-2 mt-2">
+            <label> Select SMS Masking<span style="color:red"> *</span></label>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select-ex :options="stdProfilemask" keyValue="smsApId" displayValue="mask" :disabled="!showMasking"
+                v-model="smsapId"></select-ex>
+            </div>
+
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+
+              <button class="btn btn-light btn-hover btn-sm btn-primary  mt-1" :disabled="!showMasking"
+                @click="submitMask()"><i class="la la-floppy-o"></i> Send SMS</button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <p>Password has been sent to Both Mobile numbers via SMS using CMS masking.</p>
+          </div>
+        </div> -->
+
+
+      </div>
+
+
+      </div>
+
+    </template>
+
+
+
+
+  </portlet-area>
+</page-area>

@@ -1,0 +1,436 @@
+<!--
+*   Author: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<!-- <div class="modal-content">
+  <div class="row">
+    <div class="col-md-9 mt-1 text-center">
+      <h5>
+        <u>Student Challan</u>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="background: none">
+        <select v-model="installNo" class="form-control form-control-sm" required> -->
+
+
+<!-- <option  >Select Installment No</option> -->
+
+
+<!-- <option v-for="item in maxInstallments" :value="item">{{item}}</option>
+        </select>
+        <label>Select Installment</label>
+      </div>
+    </div>
+  </div> -->
+
+
+<!-- <div class="modal-header">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 text-centre">
+        <div class="modal-title"> Student Challan </div>
+      </div>
+      
+    </div>
+  </div> -->
+
+<!-- 
+  <div class="modal-body">
+    <div class="row ModeColor">
+      <div class="col-md-4 mt-5">
+        <div class="row">
+          <div class="col-md-5">
+            <span class="headingFont">Refference: </span>
+          </div>
+          <div class="col-md-6">
+            <span class="spanHeading">{{studentInfo.refferenceNo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <span class="headingFont">Name: </span>
+          </div>
+          <div class="col-md-6">
+            <span class="spanHeading">{{getProperty('fullName')}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <span class="headingFont">Roll No: </span>
+          </div>
+          <div class="col-md-6">
+            <span class="spanHeading">{{getProperty('rollNo')}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <span class="headingFont">Program:</span>
+          </div>
+          <div class="col-md-6">
+            <span class="spanHeading">{{getProperty('description')}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <table class="table">
+          <thead>
+            <tr role="row">
+              <th>FeeHeads </th>
+              <th>FeeAmount</th>
+              <th>Concession (if any)</th>
+              <th>PayableAmount</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in feeHeadData">
+              <td class="v-align-middle">{{item.feeHead}}</td>
+              <td class="v-align-middle">{{item.feeAmount | amount}}</td>
+              <td class="v-align-middle">
+                <span v-if="item.concessionFullName">
+                  {{item.concessionFullName}} ({{item.remarks}})
+                </span>
+              </td>
+              <td class="v-align-middle">{{item.payableAmount | amount}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total Amount</td>
+              <td>{{sumFeeHead('feeAmount') | amount}}</td>
+              <td></td>
+              <td>{{sumFeeHead('payableAmount') | amount}}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr role="row">
+              <th> Challan No </th>
+              <th> Due Date </th>
+              <th> Challan Amount </th>
+              <th> Paid Date </th>
+              <th> Print Challan </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in feeDetail ">
+              <td> {{item.challanNo}} </td>
+              <td> {{item.dueDate | formatDMY}} </td>
+              <td> {{item.feeAmount | amount}} </td>
+              <td> {{item.paidDate | formatDMY}} </td>
+
+              <td>
+                <button type="button" v-if="item.paidDate == null && savedisable" :disabled="!getMinDate(item.dueDate)"
+                  class="btn btn-primary btn-sm tbl-btn" @click="generateChallanReport(item.challanNo)">Print
+                  Challan</button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <b>Total Amount</b>
+              </td>
+              <td></td>
+              <td>
+                <b>{{sumFee('feeAmount') | amount}}</b>
+              </td>
+              <td></td>
+            </tr>
+
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+ -->
+
+
+
+
+
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-8 text-center">
+      <h5 class="mt-4" u>{{$t('modal.helper.studentChallan.studentChallan')}}</u></h5>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.helper.studentChallan.selectInstallment')}}</label>
+        <select-ex :options="maxInstallments" keyValue="item" displayValue="item" v-model="installNo">
+        </select-ex>
+        <!-- !-- <option v-for="item in maxInstallments" :value="item">{{item}}</option>
+      </select>
+      <label>Select Installment</label> -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>
+              {{$t('modal.helper.studentChallan.feeHeads')}}
+            </th>
+            <th>
+              {{$t('modal.helper.studentChallan.feeAmount')}}
+            </th>
+            <th>
+              {{$t('modal.helper.studentChallan.concession')}}
+            </th>
+            <th>
+              {{$t('modal.helper.studentChallan.payableAmount')}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="row" v-if="!IsNewRecord">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="kt-option kt-option-custom">
+              <span class="kt-option__label">
+                <span class="kt-option__head">
+                  <span class="kt-option__title">
+                    {{$t('modal.designationHr.recordStatus')}}
+                  </span>
+                </span>
+              </span>
+              <span class="kt-option__control">
+                <span class="kt-radio kt-radio--bold kt-radio--brand" checked="">
+                  <input type="checkbox" v-model="isActive">
+                  <span></span>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div> -->
+  <!-- <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label> {{$t('modal.staffHr.fullName')}}<span style="color:red">
+            *</span></label>
+        <input type="text" class="form-control form-control-sm" v-model="data.fullName" required>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.fatherName')}}<span style="color:red">
+            *</span></label>
+        <input type="text" class="form-control form-control-sm" v-model="data.fatherName" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.email')}}<span style="color:red">
+            *</span></label>
+        <input type="text" class="form-control form-control-sm" v-model="data.email" required>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.cnic')}}<span style="color:red"> *</span></label>
+        <the-mask :mask="'#####-#######-#'" v-model="data.cnic" class="form-control form-control-sm" required />
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <div class="row">
+        <div class="col-md-6 ModeColor">
+          {{$t('modal.staffHr.contact')}}<span style="color:red"> *</span>
+        </div>
+        <div class="col-md-6 text-right">
+          <a href="#" class="" @click="addPhoneNo" title="Add contact">
+            <i class="fa fa-plus"></i> </a>
+        </div>
+
+        <div class="col-md-12 mt-2" v-for="model in IPhoneList">
+          <div class="input-group">
+            <the-mask :mask="'(####) ### ####'" v-model="model.contactNo" class="form-control form-control-sm"
+              required />
+            <div class="input-group-append" @click="delPhoneNo(model)">
+              <span class="input-group-text danger">
+                <i class="fa fa-close"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label> {{$t('modal.staffHr.gender')}}<span style="color:red">
+            *</span></label>
+        <select-ex :options="GenderList" keyValue="genderId" displayValue="description" v-model="data.genderId">
+        </select-ex>
+        
+
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="custom-control custom-checkbox mr-sm-2" style="margin-top: 2.2rem !important;">
+        <input type="checkbox" v-model="data.maritalStatus" class="custom-control-input" id="customControlAutosizing">
+        <label class="custom-control-label" for="customControlAutosizing">{{$t('modal.staffHr.maritalStatus')}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 ">
+      <div class="row">
+        <div class="col-md-6 ModeColor">
+          {{$t('modal.staffHr.address')}}<span style="color:red"> *</span>
+        </div>
+        <div class="col-md-6 text-right">
+          <a href="#" class="" @click="addAddress" title="Add address">
+            <i class="fa fa-plus"></i>
+          </a>
+        </div>
+        <div class="col-md-12 mt-2" v-for="model in IAddressList">
+          <div class="input-group">
+            <input type="text" size=50 v-model="model.address" class="form-control form-control-sm" required>
+            <div class="input-group-append" @click="delAddress(model)">
+              <span class="input-group-text danger">
+                <i class="fa fa-close"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.country')}}<span style="color:red"> *</span></label>
+        <select-ex :options="CountryList" keyValue="countryId" displayValue="fullName" v-model="data.countryId">
+        </select-ex>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.bloodGroup')}}<span style="color:red"> *</span></label>
+        <select-ex :options="BloodGroupList" keyValue="bloodGroupId" displayValue="fullName"
+          v-model="data.bloodGroupId">
+        </select-ex>
+        
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.employeeCode')}}<span style="color:red"> *</span></label>
+        <the-mask :mask="'#####'" v-model="data.empolyeeCode" class="form-control form-control-sm" required />
+      
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.DOB')}}<span style="color:red"> *</span></label>
+        <date-picker class="input-28" id="change-width" ref="changeWidth" v-model="data.dateOfBirth" format="DD/MM/YYYY"
+          lang="en" v-mask="'##/##/####'"></date-picker>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.religion')}}<span style="color:red"> *</span></label>
+        <select-ex :options="ReligionList" keyValue="religionId" displayValue="fullName" v-model="data.religionId">
+        </select-ex>
+       
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>{{$t('modal.staffHr.city')}}<span style="color:red"> *</span></label>
+        <select-ex :options="cityList" keyValue="cityId" displayValue="fullName" v-model="data.cityId">
+        </select-ex>
+     
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="left-p">{{$t('modal.staffHr.department')}}<span style="color:red">
+              *</span></label>
+        </div>
+        <div class="col-md-6 text-right">
+          <a href="#" class="" @click="addNewDepartments" title="Add Designation">
+            <i class="fa fa-plus"></i>
+          </a>
+          &nbsp;
+          <a href="#" class="" @click="loadDepartments" title="Add Designation">
+            <i class="fa fa-refresh"></i>
+          </a>
+        </div>
+      </div>
+
+      <select-ex :options="DepartmentList" keyValue="departmentId" displayValue="fullName" v-model="data.departmentId">
+      </select-ex>
+     
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="left-p">{{$t('modal.staffHr.designation')}}<span style="color:red">
+              *</span></label>
+        </div>
+        <div class="col-md-6 text-right">
+          <a href="#" class="" @click="addNewDesignations" title="Add Designation">
+            <i class="fa fa-plus"></i>
+          </a>
+          &nbsp;
+          <a href="#" class="" @click="loadDesignations" title="Add Designation">
+            <i class="fa fa-refresh"></i>
+          </a>
+        </div>
+      </div>
+      <select-ex :options="DesignationList" keyValue="designationId" displayValue="fullName"
+        v-model="data.designationId">
+      </select-ex>
+
+
+  
+    </div>
+  </div> -->
+</div>
+<!-- <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+            {{$t('button.close')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i class="la la-floppy-o"></i>
+            {{$t('button.save')}}</button>
+          <button class="btn btn-light btn-hover btn-sm btn-primary" disabled><i class="la la-floppy-o"></i>
+            {{$t('button.save')}}</button>
+        </div>
+      </div>
+    </div> -->
+<!-- </modal> -->

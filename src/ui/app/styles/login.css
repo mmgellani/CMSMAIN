@@ -1,0 +1,140 @@
+.login-wrapper {
+  /* width: 100%; */
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #B3CED6;
+  overflow: hidden;
+}
+
+.login-wrapper .login-body {
+  width: 70%;
+  height: 80vh;
+  min-height: 1em;
+  display: table;
+  border-radius: 1em;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 3em 5em;
+  position: relative;
+  overflow: hidden !important;
+}
+
+.login-body .section-left {
+  display: table-cell;
+  width: 50%;
+}
+
+.section-left .site-logo {
+  width: 80px;
+  margin-bottom: 6em;
+}
+
+.section-left .site-logo img {
+  width: 160px;
+}
+
+.section-left .border {
+  width: 100px;
+  height: 4px;
+  background-color: #ea2f2c;
+  margin-top: 1em;
+}
+
+.h1 {
+  color: #ea2f2c;
+  margin: 0;
+  font-weight: 300;
+  font-size: 24px !important;
+}
+
+.h2 {
+  margin: 0;
+  color: #B3CED6;
+  font-size: 24px !important;
+}
+
+.login-body .section-right {
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.section-right .login-btn {
+  background: #2264b3;
+  color: #fff;
+  clear: both;
+  padding: 0.5em 3em .5em 4em;
+  border: none;
+  border-radius: 6px;
+  position: relative;
+  /* display: flex; */
+  font-size: 16px;
+  font-weight: 200 !important;
+}
+
+.login-btn img {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 25px;
+}
+
+.abs-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 220px;
+}
+
+@media screen and (max-width: 800px) {
+  .login-body {
+    width: 100% !important;
+    display: block !important;
+    height: 100vh !important;
+    /* text-align: center; */
+    border-radius: unset !important;
+    padding: 4em 2em !important;
+  }
+  .section-right,
+  .section-left {
+    display: block !important;
+    width: 100% !important;
+  }
+  .login-btn {
+    margin: 2em auto;
+    font-size: 12px;
+    margin-top: 40%;
+  }
+  .abs-img {
+    width: 150px;
+    display: none;
+  }
+}
+
+.ft-text {
+  position: absolute;
+  bottom: 1em;
+  color: #2264b3;
+  font-size: 12px;
+  left: 50%;
+  width: 100% !important;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.link {
+  color: #ea2f2c !important;
+}
+/*# sourceMappingURL=login.css.map */

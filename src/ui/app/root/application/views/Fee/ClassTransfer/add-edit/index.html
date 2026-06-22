@@ -1,0 +1,96 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+<modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true" :scrollable="true"
+    :adaptive="false" transition="nice-modal-fade" width="30%" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-11 text-center">
+                    <div class="modal-title">
+                        Program Transfer&nbsp;-&nbsp;
+                        <span class="font12">Modal</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group-attached">
+                    <div class="row">
+
+
+                        <div class="col-md-12">
+                            <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" @change="loadProgramsOfCampus" key-value="campusId"
+                                display-value="campusName" placeholder="Campus">
+                            </drop-down>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <drop-down v-model="campusProgramId" @change="loadSectionsList" :data="campusProgramLinkList" group-by="programName" key-value="campusProgramId"
+                                display-value="description" placeholder="Transfer to Program">
+                            </drop-down>
+                        </div>
+
+                        <div class="row">
+<!-- 
+                            <div class="col-md-12">
+                                Remove RollNo
+                                <input class="switch" type="checkbox" v-model="removerollno">
+                            </div> -->
+                            <div class="col-md-12">
+                                <select class="form-control form-control-sm" v-model="SectionCourselinkId" >
+                                    <option v-for="(model,index) in SectionCourseLinkLIst" :value="model.sectionCourseLinkId">{{model.fullName}} :{{model.fromSerial}}--{{model.toSerial}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <select v-model="campusProgramId" class="form-control form-control-sm">
+                                    <option value="" disabled selected>Transfer to Program</option>
+                                    <template v-for="(item,index) in programDDL">
+                                        <template v-if="item.group">
+                                            <option value="item.id" class="bold-option" disabled>
+
+                                                <strong>{{item.title}}</strong>
+                                            </option>
+                                            <option :value="chItem.id" v-for="(chItem,chIndex) in item.group">
+                                                <span v-html="'&#8680; ' + chItem.text"></span>
+                                            </option>
+                                        </template>
+                                    </template>
+                                </select>
+                            </div>
+
+
+                        </div> -->
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="#" class="btn btn-danger" @click="cancel">
+                        Close</a>
+                    <a href="#" class="btn btn-primary " @click="ProgramTransfer">
+                        Save</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</modal>

@@ -1,0 +1,230 @@
+<!--
+*   Auther: H.Muhammad Kamran
+*   email: hmuhdkamran@gmail.com
+*   contact: +92 (313 / 333) 9112 845
+//-->
+
+
+<!-- <modal name="add-edit-model" :clickToClose="false" :min-width="200" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="false" transition="nice-modal-fade" width="80%" top="10" height="auto"
+    @before-open="beforeModalOpen" @before-close="beforeModalClose">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" @click="cancel" class="cancel">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+                <div class="col-md-5 text-center">
+                    <div class="modal-title">
+                        Section Rights&nbsp;-&nbsp;<span class="font12">{{title}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select @change="getSectionPrevilagesList" class="form-control form-control-sm" v-model="sessionId" required>
+                            <option v-for="(model,index) in sessList" :value="model.sessionId">
+                                {{model.fullName}}</option>
+                        </select>
+                        <label>Session</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                        display-value="campusName" placeholder="Campus" @change="getSectionPrevilagesList">
+                    </drop-down>
+                </div> -->
+
+
+
+
+<!-- <div class="col-md-3">
+                            <div class="form-group">
+                                <select @change="getSectionPrevilagesList" class="form-control form-control-sm" v-model="classId"
+                                    required>
+                                    <option v-for="(model,index) in classList" :value="model.classId">
+                                        {{model.fullName}}</option>
+                                </select>
+                                <label>Class</label>
+                            </div>
+                        </div> -->
+
+
+
+
+<!-- </div>
+            <div class="list-style-none ModeColor">
+                <div class="row" v-for="item in parent">
+                    <div class="col-md-3" v-for="mod in item.group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-7"><strong>{{mod.text}}</strong><i> ( {{item.title}} )</i></div>
+                                    <div class="col-md-5"> <input @change="insertOrUpdate(mod)" type="checkbox" v-model="mod.isChecked" class="switch" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+
+<!-- <h4>Select Section(s)</h4>
+                <ul v-for="item in parent">
+                    <label><strong>{{item.title}}</strong></label>
+                    <li style="margin-left:20px" v-for="mod in item.group">
+                        <input @change="insertOrUpdate(mod)" type="checkbox" v-model="mod.isChecked" /> {{mod.text}}
+
+                    </li>
+                </ul> -->
+
+
+
+<!-- </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-danger ripple" @click="cancel">Close</button>
+                    <button class="btn btn-primary" @click="saveModel">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal> -->
+
+
+
+
+<modal name="add-edit-model" :clickToClose="false" :width="921" :min-height="200" :pivot-y="0.5" :reset="true"
+    :scrollable="true" :adaptive="true" transition="bounce" top="10" height="auto" @before-open="beforeModalOpen">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-6 modal_heading">
+                <h3 class="modal-title">{{$t('navigation.SectionRightLink')}}</h3>
+                <p>{{$t('modal.SectionRightLink.title')}} </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close" @click="cancel">
+                    <i class="la la-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body staffModel">
+            <div class="row">
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.SectionRightLink.session')}}</label>
+                        <select-ex :options="sessList" keyValue="sessionId" displayValue="fullName"
+                            v-model.trim="sessionId" @input="getSectionPrevilagesList">
+                        </select-ex>
+                        <!-- <select @change="getSectionPrevilagesList" class="form-control form-control-sm" v-model="sessionId"
+                        required>
+                        <option v-for="(model,index) in sessList" :value="model.sessionId">
+                            {{model.fullName}}</option>
+                    </select> -->
+                    </div>
+                </div>
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label class="form-control-label">{{$t('modal.SectionRightLink.campus')}}</label>
+                        <select-ex :options="campusCityList" keyValue="campusId" displayValue="campusName"
+                            v-model.trim="campusId" groupBy="cityName" @input="getSectionPrevilagesList">
+                        </select-ex>
+                        <!-- <drop-down v-model="campusId" :data="campusCityList" group-by="cityName" key-value="campusId"
+                            display-value="campusName" placeholder="Campus" @change="getSectionPrevilagesList">
+                        </drop-down> -->
+                    </div>
+                </div>
+
+                <div class="col-md-3" style="position: relative;">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <label>{{$t('modal.concessionRenew.class')}}</label>
+                        </div>
+                        <div class="col-md-4 text-right">
+                          <span class="kt-switch kt-switch--sm kt-switch--icon"
+                            ><label class="m-0"
+                              ><input
+                                type="checkbox"
+                                checked="checked"
+                                v-model="viewClass"
+                                @change="checkRecord()"/>
+                              <span></span></label
+                          ></span>
+                        </div>
+                      </div>
+                      <select-ex :options="classlist" keyValue="classId" displayValue="fullName" v-model="classid"
+                            @input="getSectionPrevilagesList" :disabled="viewClass"></select-ex>
+                    </div>
+                  </div>
+
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                        <label>{{$t('modal.concessionRenew.class')}}</label>
+                        <select-ex :options="classlist" keyValue="classId" displayValue="fullName" v-model="classid"
+                            @input="getSectionPrevilagesList"></select-ex>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-md-3" style="margin-top: 24px;">
+                    <button class="btn btn-hover btn-sm btn-outline-primary" @click.prevent="checkAll">Check
+                        All</button>
+                    <button class="btn btn-hover btn-sm btn-outline-primary" @click.prevent="UncheckAll">UnCheck
+                        All</button>
+                    <!-- v-if="canAdd" -->
+                </div>
+
+
+                <!-- v-if="canAdd" -->
+
+            </div>
+            <div class="row mt-2" v-for="item in parent">
+                <div class="col-md-6" v-for="mod in item.group"
+                    style="border:1px solid #ebedf2; padding:6px 0 !important;">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="align-middle role-firstTD">
+                                    {{mod.text}} ( {{item.title}} )
+                                </td>
+                                <td class="align-middle role-secondTD">
+                                    <label class="kt-checkbox kt-checkbox--brand"
+                                        style="margin-bottom: 14px !important;">
+                                        <input type="checkbox" v-model="mod.isChecked" @change="insertOrUpdate(mod)">
+                                        <span></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-secondary btn-hover btn-sm" @click="cancel"> <i class="la la-close"></i>
+                    {{$t('button.close')}}
+                </button>
+                <button class="btn btn-light btn-hover btn-sm btn-primary" @click="saveModel"><i
+                        class="la la-floppy-o"></i> {{$t('button.save')}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</modal>
