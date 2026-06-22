@@ -6,7 +6,7 @@ namespace Cms360.Server.Model
 {
     /// <summary>
     /// This represents the response entity for error.
-    /// </summary>
+    /// </summary> //
     public class ErrorResponse
     {
         /// <summary>
